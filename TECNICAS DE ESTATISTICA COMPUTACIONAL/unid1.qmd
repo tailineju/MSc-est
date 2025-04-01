@@ -1,0 +1,83 @@
+---
+title: "Unidade 1"
+subtitle: "Técnicas de Estatística Computacional"
+author: "Tailine J. S. Nonato"
+date: "`r Sys.Date()`"
+format: html
+---
+
+# Geração de NPA's
+
+## Gerador congruencial linear (Lehmer)
+
+```{r}
+lehmer_generator <- function(seed, a, m, n) {
+  x <- numeric(n)
+  x[1] <- seed
+  for (i in 2:n) {
+    x[i] <- (a * x[i - 1]) %% m
+  }
+  return(x)
+}
+
+# Parâmetros clássicos 
+seed <- 12345
+a <- 16807         # valor clássico (proposto por Park e Miller)
+m <- 2^31 - 1      # primo grande
+n <- 100
+
+# Gerar números
+valores <- lehmer_generator(seed, a, m, n)
+
+# Normalizar para intervalo [0,1]
+valores_normalizados <- valores / m
+
+# Ver primeiros valores
+head(valores_normalizados)
+```
+
+## Método da Trnasformação Inversa
+
+### Caso contínuo
+
+```{r}
+n <-200;lambda <- 1
+u <- runif(n)
+e <- -(log(1-u)/lambda) ## x <- -log(runif(n))/lambda
+t <- seq(0,10,.01)
+hist(e,probability = TRUE,main = "")
+lines(t,lambda*exp(-lambda*(t)),col=c("red"))
+```
+
+### Caso discreto
+
+```{r}
+n <- 1000
+p <- c(.1, .2, .2, .2, .3)
+cdf <- cumsum(p)
+x <- numeric(n)
+for (i in 1:n) x[i] <- sum(as.integer(runif(1) > cdf))
+rbind(table(x) / n, p)
+
+## usando a função sample
+n <- 1000
+p <- c(.1, .2, .2, .2, .3)
+x <- sample(0:4, size=n, prob=p, replace=TRUE)
+rbind(table(x) / n, p)
+```
+
+## Método da Aceitação e Rejeição
+```{r}
+optimize(f=function(x){
+  dbeta(x,2.7,6.3)},interval = c(0,1),maximum = T)$objective #M =2.7
+
+Nsim <- 2500
+alpha=2.7;beta=6.3
+M <- 2.7
+u <- runif(Nsim,max = M)
+y <- runif(Nsim)
+x <- y[u<dbeta(y,alpha,beta)]
+w<-seq(0,1,.01)
+hist(x,probability = TRUE)
+lines(w,dbeta(w,alpha,beta),col=c("blue"))
+```
