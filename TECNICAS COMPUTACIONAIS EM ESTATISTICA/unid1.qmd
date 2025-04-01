@@ -1,0 +1,163 @@
+---
+title: "Unidade 1"
+subtitle: "Técnicas de Estatística Computacional"
+author: "Tailine J. S. Nonato"
+date: today
+date-format: long
+format: html
+---
+
+# Geração de NPA's
+
+## Gerador congruencial linear (Lehmer)
+
+```{r}
+lehmer_generator <- function(seed, a, m, n) {
+  x <- numeric(n)
+  x[1] <- seed
+  for (i in 2:n) {
+    x[i] <- (a * x[i - 1]) %% m
+  }
+  return(x)
+}
+
+# Parâmetros clássicos 
+seed <- 12345
+a <- 16807         # valor clássico (proposto por Park e Miller)
+m <- 2^31 - 1      # primo grande
+n <- 100
+
+# Gerar números
+valores <- lehmer_generator(seed, a, m, n)
+
+# Normalizar para intervalo [0,1]
+valores_normalizados <- valores / m
+
+# Ver primeiros valores
+head(valores_normalizados)
+```
+
+## Método da Trnasformação Inversa
+
+### Caso contínuo
+
+$X \sim$ Exponencial $(1)$ com $f(x) = \lambda e^{-\lambda x}$, $x > 0$, $\lambda = 1$.
+
+A função de distribuição acumulada é $F(x) = 1 - e^{-\lambda x}$, $x > 0$. E a inversa é $F^{-1}(u) = -\frac{1}{\lambda} \log(1-u)$, $u \in (0,1)$
+
+```{r}
+n <-200;lambda <- 1
+u <- runif(n)
+e <- -(log(1-u)/lambda) ## x <- -log(runif(n))/lambda
+t <- seq(0,10,.01)
+hist(e,probability = TRUE,main = "")
+lines(t,lambda*exp(-lambda*(t)),col=c("red"))
+```
+
+### Caso discreto
+
+$X \sim$ Geométrica $p(0)= 0.1, p(1) = 0.2, p(2) = 0.2, p(3) = 0.2, p(4) = 0.3$
+
+```{r}
+n <- 1000
+p <- c(.1, .2, .2, .2, .3)
+cdf <- cumsum(p)
+x <- numeric(n)
+for (i in 1:n) x[i] <- sum(as.integer(runif(1) > cdf))
+rbind(table(x) / n, p)
+
+## usando a função sample
+n <- 1000
+p <- c(.1, .2, .2, .2, .3)
+x <- sample(0:4, size=n, prob=p, replace=TRUE)
+rbind(table(x) / n, p)
+```
+
+## Método da Aceitação e Rejeição
+
+$f$: $Beta(2.7,6.3)$ com $M = 2.7$
+
+$g$: $Uniforme[0,1]$
+
+```{r}
+optimize(f=function(x){
+  dbeta(x,2.7,6.3)},interval = c(0,1),maximum = T)$objective #M =2.7
+
+Nsim <- 2500
+alpha=2.7;beta=6.3
+M <- 2.7
+u <- runif(Nsim,max = M)
+y <- runif(Nsim)
+x <- y[u<dbeta(y,alpha,beta)]
+w<-seq(0,1,.01)
+hist(x,probability = TRUE)
+lines(w,dbeta(w,alpha,beta),col=c("blue"))
+```
+
+## Método da Transformação (relações estocásticas)
+
+$U \sim Gama (a, \beta)$ e $V \sim Gama (b, \beta)$ independetes. Então $U + V \sim Gama (a + b, \beta)$ e $U/(U+V) \sim Beta(a,b)$
+
+```{r}
+n <- 200
+a <- 2
+b <- 2
+u <- rgamma(n, shape=a, rate=1)
+v <- rgamma(n, shape=b, rate=1)
+x <- u / (u + v)
+q <- qbeta(ppoints(n), a, b)
+qqplot(q, x, cex=0.5, xlab="Beta(2, 2)", ylab="amostra")
+abline(0, 1,col="red")
+```
+
+## Mistura de Distribuições
+
+Mistura de Normais $X: \frac{1}{3} X_1 + \frac{2}{3} X_2$ com $X_1 \sim N(0,1)$ e $X_2 \sim N(3,1)$
+
+```{r}
+n <- 1000
+mu<-c(0,3)
+k <- sample(1:2, size=n, replace=TRUE, prob=c(1/3,2/3))
+m <- mu[k] # vector dim=n (mu_k1,...,mu_kn), elementos mu[1]=0 ou mu[2]=3
+x <- rnorm(n, m, 1)
+#par(mfrow = c(2, 2))
+
+# plot da densidade da mistura dos NPAs
+plot(density(x),xlim=c(-6,6),ylim=c(0,.5),
+lwd=3,xlab="x",main="",col="grey20")
+text(1.9,0.05,"1000 NPAs mistura",col="grey20")
+```
+
+## Distribuições multivariadas
+
+### Normal multivariada
+
+Utilizando Cholesky
+
+```{r}	
+rmvn.Choleski <- function(n, mu, Sigma) {
+# generate n random vectors from MVN(mu, Sigma)
+# dimension is inferred from mu and Sigma
+d <- length(mu)
+Q <- chol(Sigma) # Choleski factorization of Sigma
+Z <- matrix(rnorm(n*d), nrow=n, ncol=d)
+X <- Z %*% Q + matrix(mu, n, d, byrow=TRUE)
+X
+}
+
+# gerando o C
+```
+
+```{r}	
+y <- subset(x=iris, Species=="virginica")[, 1:4]
+mu <- colMeans(y)
+mu
+Sigma <- cov(y)
+Sigma
+
+#now generate MVN data with this mean and covariance
+X <- rmvn.Choleski(200, mu, Sigma)
+pairs(X)
+```
+
+# Otimização e Máxima Verossimilhança
