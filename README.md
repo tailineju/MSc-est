@@ -2,7 +2,7 @@
 
 > **Traces of a student**: This project is a collection of notes, exercises and study materials of the courses and projects I am doing for my Master of Science in Statistics.
 
-The materials here were intended to aid in my learning journey and may be useful for others as well. However, please be aware that the content is a "*work in progress*" and may not be fully accurate or comprehensive. I will not be doing any reviewing of the content so soon.
+The materials here were intended to aid in my learning journey and may be useful for others as well. However, please be aware that the content is a "*work in progress*" and may not be fully accurate or comprehensive. I will not be doing any reviewing of the content anytime soon.
 
 ## About the repository
 
