@@ -37,7 +37,7 @@ valores_normalizados <- valores / m
 head(valores_normalizados)
 ```
 
-## Método da Trnasformação Inversa
+## Método da Transformação Inversa
 
 ### Caso contínuo
 
@@ -144,8 +144,6 @@ Z <- matrix(rnorm(n*d), nrow=n, ncol=d)
 X <- Z %*% Q + matrix(mu, n, d, byrow=TRUE)
 X
 }
-
-# gerando o C
 ```
 
 ```{r}	
@@ -161,3 +159,33 @@ pairs(X)
 ```
 
 # Otimização e Máxima Verossimilhança
+
+## Método de Newton-Raphson
+
+```{r}
+g       <- function(x) log(x)/(1+x)
+h       <-  function(x) ((x+1)*(1+1/x-log(x)))/(3+4/x+1/x^2-2*log(x)) 
+
+my.newton = function(x0,g,h,tolerance=1e-3,max.iter=50) {
+  x = x0
+  iterations = 0
+  made.changes = TRUE
+  while(made.changes & (iterations < max.iter)) {
+    x.old <- x
+    iterations <- iterations +1
+    made.changes <- FALSE
+    x.new = x + h(x)
+    relative.change = abs(x.new - x.old)/abs(x.old) 
+    made.changes = (relative.change > tolerance)
+    x = x.new
+  }
+  if (made.changes) {
+    warning("Newton’s method terminated before convergence")
+  }
+  return(list(value=x,value=g(x),
+              iterations=iterations,converged=!made.changes))
+}
+
+
+my.newton(x0=3,g=g,h=h,tolerance=1e-3,max.iter=50) 
+```

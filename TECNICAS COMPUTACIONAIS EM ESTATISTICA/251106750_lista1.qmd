@@ -75,7 +75,13 @@ Seja $\theta_0 = 3$, $n = 10$, e gere $X_1, \dots, X_n \sim N(\theta_0, 1)$. Use
 
 ### Resolução
 
----
+Sendo $f$: densidade alvo (a qual se deseja simular) e $g$: densidade candidata ou instrumental, tem-se
+
+$f$: $\frac{1}{\pi} \frac{1}{1 + \theta^2} \frac{1}{(2\pi)^{n/2}} \prod_{i=1}^n e^{-(x_i - \theta)^2 / 2}$, $\theta \sim \text{Ca}(0, 1)$
+
+$g$: $\text{Ca}(0, 1)$
+
+
 
 ## Exercício 3
 
@@ -94,11 +100,76 @@ Use o método de decomposição de Cholesky.
 
 ### Resolução
 
+```{r}
+rmvn.Choleski <- function(n, mu, Sigma) {
+d <- length(mu)
+Q <- chol(Sigma)
+Z <- matrix(rnorm(n*d), nrow=n, ncol=d)
+X <- Z %*% Q + matrix(mu, n, d, byrow=TRUE)
+X}
 
----
+Sigma <- matrix(c(1.0, -0.5, 0.5,
+                  -0.5, 1.0, -0.5,
+                  0.5, -0.5, 1.0), nrow = 3, byrow = TRUE)
+mu <- c(0, 1, 2)
+n <- 200
+X <- rmvn.Choleski(n, mu, Sigma)
+pairs(X)
+```
+
 
 ## Exercício 4
 
 Considere o artigo “Bivariate Birnbaum–Saunders distribution and associated inference” (Kundu et al., 2010), disponível em PDF, onde os autores apresentam uma formulação para a distribuição bivariada de Birnbaum–Saunders (BVBS). A geração de dados desta distribuição é descrita na equação (8) do artigo. Utilize a parametrização apresentada no artigo para simular 1.000 observações de um vetor aleatório bivariado $(T_1, T_2)$ com distribuição $\text{BVBS}(\alpha_1 = 0.5, \alpha_2 = 0.8, \beta_1 = 1.0, \beta_2 = 2.0, \rho = 0.7)$. Apresente um gráfico de dispersão dos dados gerados.
 
 ### Resolução
+
+```{r}
+alpha1 <- 0.5
+alpha2 <- 0.8
+beta1 <- 1
+beta2 <- 2
+rho <- 0.7
+```
+
+- Step 1: Generate independent $U_1$ and $U_2$ from N(0, 1).
+
+```{r}
+U1 <- rnorm(1000, 0, 1)
+U2 <- rnorm(1000, 0, 1)
+```
+
+- Step 2: Compute
+
+$$
+Z_1 = \frac{\sqrt{1+\rho} + \sqrt{1-\rho}}{2} * U1 + \frac{\sqrt{1+\rho} - \sqrt{1-\rho}}{2} * U2
+$$
+
+$$
+Z_2 = \frac{\sqrt{1+\rho} - \sqrt{1-\rho}}{2} * U1 + \frac{\sqrt{1+\rho} + \sqrt{1-\rho}}{2} * U2
+$$
+
+
+```{r}
+Z1 <- (sqrt(1 + rho) + sqrt(1 - rho)) / 2 * U1 +
+ (sqrt(1 + rho) - sqrt(1 - rho)) / 2 * U2
+Z2 <- (sqrt(1 + rho) - sqrt(1 - rho)) / 2 * U1 + 
+(sqrt(1 + rho) + sqrt(1 - rho)) / 2 * U2
+```
+
+- Step 3: Obtain
+
+$$
+T_i = \beta_i \left[\frac{1}{2}\alpha_i Z_i + \sqrt{{\left(\frac{1}{2}\alpha_i Z_i \right)^2 + 1}}\right]^2, \quad i = 1, 2
+$$
+
+```{r}	
+T1 <- beta1 * (0.5 * alpha1 * Z1 + sqrt((0.5 * alpha1 * Z1)^2 + 1))^2
+T2 <- beta2 * (0.5 * alpha2 * Z2 + sqrt((0.5 * alpha2 * Z2)^2 + 1))^2
+```
+
+- Gráfico de dispersão dos dados gerados:
+
+```{r}
+plot(T1, T2, xlab = "T1", ylab = "T2", main = "Gráfico de dispersão dos dados gerados")
+```
