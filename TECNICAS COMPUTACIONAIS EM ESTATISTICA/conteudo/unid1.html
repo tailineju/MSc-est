@@ -174,9 +174,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n) x[i] <span class="ot">&lt;-</span> <span class="fu">sum</span>(<span class="fu">as.integer</span>(<span class="fu">runif</span>(<span class="dv">1</span>) <span class="sc">&gt;</span> cdf))</span>
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="fu">rbind</span>(<span class="fu">table</span>(x) <span class="sc">/</span> n, p)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>     0     1     2     3    4
-  0.11 0.207 0.187 0.186 0.31
-p 0.10 0.200 0.200 0.200 0.30</code></pre>
+<pre><code>      0     1     2     3    4
+  0.086 0.211 0.194 0.199 0.31
+p 0.100 0.200 0.200 0.200 0.30</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="do">## usando a função sample</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
@@ -184,9 +184,9 @@ p 0.10 0.200 0.200 0.200 0.30</code></pre>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">4</span>, <span class="at">size=</span>n, <span class="at">prob=</span>p, <span class="at">replace=</span><span class="cn">TRUE</span>)</span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="fu">rbind</span>(<span class="fu">table</span>(x) <span class="sc">/</span> n, p)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>      0     1     2     3     4
-  0.111 0.176 0.215 0.203 0.295
-p 0.100 0.200 0.200 0.200 0.300</code></pre>
+<pre><code>      0     1     2    3    4
+  0.103 0.211 0.206 0.19 0.29
+p 0.100 0.200 0.200 0.20 0.30</code></pre>
 </div>
 </div>
 </section>
@@ -267,9 +267,7 @@ p 0.100 0.200 0.200 0.200 0.300</code></pre>
 <span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>Z <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">rnorm</span>(n<span class="sc">*</span>d), <span class="at">nrow=</span>n, <span class="at">ncol=</span>d)</span>
 <span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>X <span class="ot">&lt;-</span> Z <span class="sc">%*%</span> Q <span class="sc">+</span> <span class="fu">matrix</span>(mu, n, d, <span class="at">byrow=</span><span class="cn">TRUE</span>)</span>
 <span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>X</span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="co"># gerando o C</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">subset</span>(<span class="at">x=</span>iris, Species<span class="sc">==</span><span class="st">"virginica"</span>)[, <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>]</span>
@@ -343,6 +341,56 @@ $converged
 </div>
 </div>
 </section>
+</section>
+<section id="algoritmo-em" class="level1">
+<h1>Algoritmo EM</h1>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>a<span class="ot">=</span><span class="dv">170</span>;n<span class="ot">=</span><span class="dv">300</span>;theta<span class="ot">=</span><span class="dv">168</span> <span class="co">#-- verdadeiro theta --#</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span><span class="fu">rnorm</span>(n,theta,<span class="dv">1</span>)</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> x[x<span class="sc">&lt;</span>a]</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span><span class="fu">length</span>(y)</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>ybar <span class="ot">&lt;-</span><span class="fu">mean</span>(y)</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>sd <span class="ot">&lt;-</span><span class="fu">sd</span>(y)</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>ybar</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 167.9647</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>sd</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.955017</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>m</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 294</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Algoritmo EM</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>i<span class="ot">=</span><span class="dv">1</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>nonstop <span class="ot">&lt;-</span> <span class="cn">TRUE</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>theta[i] <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">1</span>,<span class="at">mean=</span>ybar,<span class="at">sd=</span><span class="fu">sd</span>(y))</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"theta["</span>,i,<span class="st">"]="</span>,theta[i],<span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>theta[ 1 ]= 168.3803 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> (nonstop){</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>    theta[i<span class="sc">+</span><span class="dv">1</span>] <span class="ot">&lt;-</span> m<span class="sc">*</span>ybar<span class="sc">/</span>n<span class="sc">+</span>((n<span class="sc">-</span>m)<span class="sc">/</span>n)<span class="sc">*</span>(theta[i]<span class="sc">+</span><span class="fu">dnorm</span>(a<span class="sc">-</span>theta[i])<span class="sc">/</span>(<span class="dv">1</span><span class="sc">-</span><span class="fu">pnorm</span>(a<span class="sc">-</span>theta[i])))</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>    i<span class="ot">=</span>i<span class="sc">+</span><span class="dv">1</span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">"theta["</span>,i,<span class="st">"]="</span>,theta[i],<span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>    nonstop<span class="ot">=</span>(<span class="fu">abs</span>(theta[i]<span class="sc">-</span>theta[i<span class="dv">-1</span>])<span class="sc">&gt;</span><span class="dv">10</span><span class="sc">^</span>(<span class="sc">-</span><span class="dv">5</span>))</span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>theta[ 2 ]= 168.0138 
+theta[ 3 ]= 168.0129 
+theta[ 4 ]= 168.0129 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"# de iterações"</span>,i)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># de iterações 4</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"theta^"</span>,theta[i],<span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>theta^ 168.0129 </code></pre>
+</div>
+</div>
 </section>
 
 </main>

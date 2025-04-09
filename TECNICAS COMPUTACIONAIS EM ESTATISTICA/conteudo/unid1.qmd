@@ -189,3 +189,32 @@ my.newton = function(x0,g,h,tolerance=1e-3,max.iter=50) {
 
 my.newton(x0=3,g=g,h=h,tolerance=1e-3,max.iter=50) 
 ```
+
+# Algoritmo EM
+
+```{r}	
+a=170;n=300;theta=168 #-- verdadeiro theta --#
+x <-rnorm(n,theta,1)
+y <- x[x<a]
+m <-length(y)
+ybar <-mean(y)
+sd <-sd(y)
+ybar
+sd
+m
+
+## Algoritmo EM
+i=1
+nonstop <- TRUE
+theta[i] <- rnorm(1,mean=ybar,sd=sd(y))
+cat("theta[",i,"]=",theta[i],"\n")
+
+while (nonstop){
+    theta[i+1] <- m*ybar/n+((n-m)/n)*(theta[i]+dnorm(a-theta[i])/(1-pnorm(a-theta[i])))
+    i=i+1
+    cat("theta[",i,"]=",theta[i],"\n")
+    nonstop=(abs(theta[i]-theta[i-1])>10^(-5))
+}
+cat("# de iterações",i)
+cat("theta^",theta[i],"\n")
+```	

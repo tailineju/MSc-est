@@ -75,12 +75,95 @@ Seja $\theta_0 = 3$, $n = 10$, e gere $X_1, \dots, X_n \sim N(\theta_0, 1)$. Use
 
 ### Resolução
 
-Sendo $f$: densidade alvo (a qual se deseja simular) e $g$: densidade candidata ou instrumental, tem-se
-
 $f$: $\frac{1}{\pi} \frac{1}{1 + \theta^2} \frac{1}{(2\pi)^{n/2}} \prod_{i=1}^n e^{-(x_i - \theta)^2 / 2}$, $\theta \sim \text{Ca}(0, 1)$
 
 $g$: $\text{Ca}(0, 1)$
 
+Verificação de condições:
+
+[ X ] $f$ e $g$ têm suportes compatíveis.
+
+[ X ] Há uma constante $M$ tal que $f(x) \leq M g(x)$ para todo $x$.
+
+```{r}
+theta_0 <- 3
+n <- c(10, 25, 50, 100)
+Nsim <- 2500
+
+set.seed(123)
+
+posteriori <- function(n, theta0, Nsim) {
+  # step 1: amostra de x
+  x <- rnorm(n, theta0, 1)
+ 
+  # step 2: amostra de y e u (candidatos e uniforme)
+  y <- rcauchy(Nsim)
+  g_y <- dcauchy(y)                    
+  
+  # f(y): priori * verossimilhança
+  priori_y <- dcauchy(y)
+  lik_y <- sapply(y, function(t) prod(dnorm(x, mean = t, sd = 1)))
+  f_y <- priori_y * lik_y
+
+
+  ratio <- f_y / g_y
+  # o menor valor que garante que M >= f_y/g_y 
+  M <- max(ratio)
+  u <- runif(Nsim, 0, M)
+  
+  # step 3: aceitação-rejeição
+  aceito <- y[u <= (ratio / M)]
+
+  # visualização
+    hist(aceito, probability = TRUE, main = paste("n =", n), 
+    xlim = c(-10, 10), breaks = 30)
+  
+}
+
+# estendendo para n = 10, 25, 50, 100
+par(mfrow = c(2,2))
+sapply(c(10, 25, 50, 100), posteriori, theta0 = theta_0, Nsim = Nsim)
+```
+
+Explicação do porquê usar M = max(ratio):
+
+**Lembrando o objetivo do algoritmo**  
+
+A ideia é gerar uma amostra de uma distribuição complicada $f(\theta)$, usando uma distribuição mais simples $g(\theta)$ como candidata.
+
+Para isso funcionar, a função $f(\theta)$ precisa ser menor ou igual a $M \cdot g(\theta)$ em todos os pontos:
+
+$$
+f(\theta) \leq M \cdot g(\theta), \quad \text{para todo } \theta
+$$
+
+**Por que o máximo da razão $\frac{f(\theta)}{g(\theta)}$?**  
+
+Porque essa razão mede o quanto $f$ é maior do que $g$ em cada ponto. Então:
+
+$$
+\frac{f(\theta)}{g(\theta)} \leq M \iff f(\theta) \leq M \cdot g(\theta)
+$$
+
+Logo, o menor valor de $M$ que garante isso é justamente o maior valor da razão:
+
+$$
+M = \sup_{\theta} \left( \frac{f(\theta)}{g(\theta)} \right)
+$$
+
+Usar o máximo observado (ou uma boa aproximação dele) torna o algoritmo mais eficiente: aceita mais amostras e rejeita menos.
+
+**Ilustração intuitiva:**  
+
+Imagine que $f(\theta)$ é uma montanha e $g(\theta)$ é uma colina.
+
+Você precisa inflar $g$ com o fator $M$ até que ela cubra completamente $f$.
+
+- Muito pequeno → rejeita demais ou nem cobre $f$ → errado
+
+- Muito grande → cobre tudo, mas com desperdício → ineficiente
+
+- Máximo exato da razão → cobre só o necessário → ideal
 
 
 ## Exercício 3
