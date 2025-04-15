@@ -95,6 +95,18 @@ Obtenha a $\sigma$-álgebra de $\Omega = \{1, 2, 3, 4, 5\}$ gerada por:
 
 (e) $\mathcal{C}_5 = \{\{1\}, \{2, 3\}\}$.
 
+### Resolução
+
+(a) $\mathcal{F}_1 = \{\emptyset, \Omega, \{2\}, \{1, 3, 4, 5\}\}$
+
+(b) $\mathcal{F}_2 = \{\emptyset, \Omega, \{1, 2\}, \{3, 4, 5\}\}$
+
+(c) $\mathcal{F}_3 = \{\emptyset, \Omega, \{1, 2, 3\}, \{4, 5\}\}$
+
+(d) $\mathcal{F}_4 = \{\emptyset, \Omega, \{1, 2\}, \{1, 3\}, \{3, 4, 5\}, \{2, 4, 5\}, \{1, 2,3 \} \{4, 5\}\}$
+
+(e) $\mathcal{F}_5 = \{\emptyset, \Omega, \{1\}, \{2, 3\}, \{2, 3 , 4, 5\}, \{1, 4, 5\} \{1, 2, 3\}, \{4, 5\}\}$
+
 ## Exercício 8
 Construa a menor $\sigma$-álgebra em $[0,1]$, contendo o subconjunto $[1/4,3/4]$.
 

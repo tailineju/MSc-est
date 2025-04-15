@@ -1,5 +1,5 @@
 ---
-title: "Unidade 1"
+title: "Codes & algorithms"
 subtitle: "Técnicas de Estatística Computacional"
 author: "Tailine J. S. Nonato"
 date: today
@@ -7,11 +7,32 @@ date-format: long
 format: html
 ---
 
+:::: {.panel-tabset}
+
 # Geração de NPA's
+
 
 ## Gerador congruencial linear (Lehmer)
 
+### Passo a passo
+
+1. Escolher um número inteiro positivo $x_0$ (semente) e um número inteiro positivo $a$ (multiplicador).
+
+2. Escolher um número inteiro positivo $m$ (modulo) tal que $m > x_0$. Geralmente escolhe-se $m$ um número primo grande (Ex.: $2^{31}-1$).
+
+3. Escolher um número inteiro positivo $a$ (incremento). Geralmente escolhe-se o valor clássico proposto por Park e Miller: $a = 16807$.
+
+4. Gerar a sequência de números pseudo-aleatórios $x_i$ utilizando a seguinte fórmula:
+
+$$
+x_i = (a \cdot x_{i-1}) \mod m
+$$
+
+### No R
+
 ```{r}
+#| label: "gerador-lehmer"
+
 lehmer_generator <- function(seed, a, m, n) {
   x <- numeric(n)
   x[1] <- seed
@@ -192,6 +213,8 @@ my.newton(x0=3,g=g,h=h,tolerance=1e-3,max.iter=50)
 
 # Algoritmo EM
 
+## Dados com censura do tipo I
+
 ```{r}	
 a=170;n=300;theta=168 #-- verdadeiro theta --#
 x <-rnorm(n,theta,1)
@@ -218,3 +241,120 @@ while (nonstop){
 cat("# de iterações",i)
 cat("theta^",theta[i],"\n")
 ```	
+
+## Mistura de duas distribuições normais
+
+```{r}
+## Dados
+y <- c(13.84823, 19.65983, 14.80328, 14.39590, 20.69053, 15.41869, 15.01747, 
+      13.69639, 13.19747, 15.06224, 14.82386, 14.89709, 14.40141, 12.66398, 
+      15.11618, 13.22798, 14.04956, 20.17014, 14.53800, 13.43051, 21.18457, 
+      13.88862, 19.94610, 16.20979, 15.45938, 14.28910, 14.93497, 14.49772, 
+      12.57415, 19.58430, 13.82636, 19.98711, 13.74862, 13.45034, 13.64232, 
+      14.46726, 19.22776, 13.68149, 20.61726, 14.04241, 19.02825, 20.54842, 
+      18.01239, 12.15557, 12.62941, 13.88048, 12.30432, 17.25600, 14.33063, 
+      13.96460)
+hist(y)
+
+## Plotando os dados
+plot(density(y))
+
+## Obtendo valores iniciais
+clasy <- kmeans(y,2)$cluster
+mu10 <- mean(y[clasy==1])
+mu20 <- mean(y[clasy==2])
+sigma10 <- sd(y[clasy==1])
+sigma20 <- sd(y[clasy==2])
+pi10 <- sum(clasy==1)/length(clasy)
+pi20 <- sum(clasy==2)/length(clasy)
+
+
+
+## Implementando a função EM
+EM.mixnormals <- function(y,mu,sigma,pi,tol=10e-7){
+
+mu1    <- mu[1] 
+mu2    <- mu[2]
+sigma1 <- sigma[1]  
+sigma2 <- sigma[2]
+pi1    <- pi[1]
+pi2    <- pi[2]
+
+nonstop <- TRUE 
+loglik  <- 0
+i       <- 1
+
+## valor inicial para a loglik
+loglik[1] <- sum(log(pi1 * dnorm(y, mu1, sigma1) + pi2 * dnorm(y, mu2, sigma2)))
+
+while(nonstop) {
+  
+  # E step
+  num1 <- pi1 * dnorm(y, mu1, sigma1)
+  num2 <- pi2 * dnorm(y, mu2, sigma2)
+  den <- num1 + num2
+  
+  y1 <- num1/den
+  y2 <- num2/den
+  
+  # M step
+  pi1 <- sum(y1) / length(y)
+  pi2 <- sum(y2) / length(y)
+  
+  mu1 <- sum(y1 * y) / sum(y1)
+  mu2 <- sum(y2 * y) / sum(y2)
+  
+  sigma1 <- sqrt(sum(y1 * (y-mu1)^2) / sum(y1))
+  sigma2 <- sqrt(sum(y2 * (y-mu2)^2) / sum(y2))
+  
+  i= i + 1
+  
+ loglik[i] <- sum(log(pi1 * dnorm(y, mu1, sigma1) + pi2 * dnorm(y, mu2, sigma2)))
+  
+  nonstop <- (abs(loglik[i]-loglik[i-1])>tol) 
+}
+
+return(list(mu = c(mu1,mu2), sigma=c(sigma1,sigma2), pi = c(pi1,pi2) ) ) 
+
+}
+
+## Rodando a função
+resEM1 <- EM.mixnormals(y, mu = c(mu10,mu20), sigma= c(sigma10,sigma20), 
+                        pi = c(pi10,pi20))
+#resEM2 <- EM.mixnormals(x, mu = c(10,15), sigma= c(0.5,0.5), pi = c(0.7,0.3))
+
+resEM1
+
+#resEM2
+
+num1_hat <- resEM1$pi[1] * dnorm(y, resEM1$mu[1], resEM1$sigma[1])
+num2_hat <- resEM1$pi[2] * dnorm(y, resEM1$mu[2], resEM1$sigma[2])
+den_hat <- num1_hat + num2_hat
+y1_hat <- num1_hat/den_hat
+y2_hat <- num2_hat/den_hat
+head(cbind(y1_hat,y2_hat,(y1_hat+y2_hat)))
+
+```
+
+```{r}
+#comparação com a função normalmixEM
+pacman::p_load(mixtools)
+
+resMix <- normalmixEM(y,k=2,lambda=c(pi10,pi20),mu=c(mu10,mu20),sigma=c(sigma10,sigma20))
+
+resMix$lambda
+resMix$mu
+resMix$sigma
+
+
+# comparação com a função mclust
+pacman::p_load(mclust)
+
+xdataMclust <- Mclust(y,G=2,modelNames = c("V"))
+xdataMclust$parameters 
+
+## Fazendo classificação com o mclust
+plot(xdataMclust)
+```
+
+::::
