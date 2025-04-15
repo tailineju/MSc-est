@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Tailine J. S. Nonato">
+<meta name="dcterms.date" content="2025-04-14">
+
+<title>Lista 1</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="lista1_files/libs/clipboard/clipboard.min.js"></script>
+<script src="lista1_files/libs/quarto-html/quarto.js"></script>
+<script src="lista1_files/libs/quarto-html/popper.min.js"></script>
+<script src="lista1_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="lista1_files/libs/quarto-html/anchor.min.js"></script>
+<link href="lista1_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="lista1_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="lista1_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="lista1_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="lista1_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Lista 1</h1>
+<p class="subtitle lead">Estatística Matemática</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Tailine J. S. Nonato </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">April 14, 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="exercício-1" class="level2">
+<h2 class="anchored" data-anchor-id="exercício-1">Exercício 1</h2>
+<p>Se <span class="math inline">\(\Omega = \{C, R\} \times \{C, R\}\)</span>, determine o conjunto potência <span class="math inline">\(P(\Omega)\)</span>.</p>
+<section id="resolução" class="level3">
+<h3 class="anchored" data-anchor-id="resolução">Resolução</h3>
+<p><span class="math display">\[\begin{align*}
+\mathcal{P}(\Omega) &amp;= \{\emptyset, \Omega, \{(C,C)\}, \{(C,R)\}, \{(R,C)\}, \{(R,R)\}, \\
+&amp;\{(C,C),(C,R)\}, \{(C,C),(R,C)\}, \{(C,C),(R,R)\}, \\
+&amp;\{(C,R),(R,C)\}, \{(C,R),(R,R)\}, \{(R,C),(R,R)\}, \\
+&amp;\{(C,C),(C,R),(R,C)\}, \{(C,C),(C,R),(R,R)\}, \\
+&amp;\{(C,C),(R,C),(R,R)\}, \{(C,R),(R,C),(R,R)\} \}
+\end{align*}\]</span></p>
+<p>O número de subconjuntos de um conjunto com <span class="math inline">\(n\)</span> elementos é <span class="math inline">\(2^n\)</span>. Assim, o número de subconjuntos de <span class="math inline">\(\Omega\)</span> é <span class="math inline">\(2^4=16\)</span>.</p>
+</section>
+</section>
+<section id="exercício-2" class="level2">
+<h2 class="anchored" data-anchor-id="exercício-2">Exercício 2</h2>
+<p>Se <span class="math inline">\(\mathcal{F}\)</span> é uma <span class="math inline">\(\sigma\)</span>-álgebra, verifique que:</p>
+<ol type="a">
+<li><p>Se <span class="math inline">\(\{A_i\}_{i=1}^n \subset \mathcal{F}\)</span> então <span class="math inline">\(\bigcup_{i=1}^n A_i \in \mathcal{F}\)</span> e <span class="math inline">\(\bigcap_{i=1}^n A_i \in \mathcal{F}\)</span>.</p></li>
+<li><p>Se <span class="math inline">\(\{A_i\}_{i=1}^\infty \subset \mathcal{F}\)</span> então <span class="math inline">\(\bigcap_{i=1}^\infty A_i \in \mathcal{F}\)</span>.</p></li>
+<li><p><span class="math inline">\(A, B \in \mathcal{F}\)</span> então <span class="math inline">\(A \cap B^c \in \mathcal{F}\)</span>.</p></li>
+</ol>
+<section id="resolução-1" class="level3">
+<h3 class="anchored" data-anchor-id="resolução-1">Resolução</h3>
+<ol type="a">
+<li></li>
+</ol>
+<p>Dado que <span class="math inline">\(\mathcal{F}\)</span> é uma <span class="math inline">\(\sigma\)</span>-álgebra, tem-se que:</p>
+<p>Pela definição de <span class="math inline">\(\sigma\)</span>-álgebra, <span class="math inline">\(\mathcal{F}\)</span> é fechada sob união finita e interseção finita. Assim, se <span class="math inline">\(A_i \in \mathcal{F}\)</span> para todo <span class="math inline">\(i=1,\ldots,n\)</span>, então:</p>
+<p><span class="math inline">\(\bigcup_{i=1}^n A_i \in \mathcal{F}\)</span> e <span class="math inline">\(\bigcap_{i=1}^n A_i \in \mathcal{F}\)</span>.</p>
+<ol start="2" type="a">
+<li></li>
+</ol>
+<p>Dado que <span class="math inline">\(\mathcal{F}\)</span> é uma <span class="math inline">\(\sigma\)</span>-álgebra, tem-se que:</p>
+<p>Assim como no item (a), tem-se pela definição que <span class="math inline">\(\mathcal{F}\)</span> é fechada sob união infinita e interseção infinita. Assim, se <span class="math inline">\(A_i \in \mathcal{F}\)</span> para todo <span class="math inline">\(i=1,\ldots,\infty\)</span>, então:</p>
+<p><span class="math inline">\(\bigcap_{i=1}^\infty A_i \in \mathcal{F}\)</span>.</p>
+<ol start="3" type="a">
+<li></li>
+</ol>
+<p>Dado que <span class="math inline">\(\mathcal{F}\)</span> é uma <span class="math inline">\(\sigma\)</span>-álgebra, tem-se que:</p>
+<p>Pela definição de <span class="math inline">\(\sigma\)</span>-álgebra, <span class="math inline">\(\mathcal{F}\)</span> é fechada sob complemento.</p>
+<p>Assim, se <span class="math inline">\(A, B \in \mathcal{F}\)</span>, então <span class="math inline">\(B^c \in \mathcal{F}\)</span>.</p>
+<p>Portanto, como <span class="math inline">\(\mathcal{F}\)</span> é fechada sob interseção finita, tem-se que:</p>
+<p><span class="math inline">\(A \cap B^c \in \mathcal{F}\)</span>.</p>
+</section>
+</section>
+<section id="exercício-3" class="level2">
+<h2 class="anchored" data-anchor-id="exercício-3">Exercício 3</h2>
+<p>Seja <span class="math inline">\(I\)</span> um conjunto de índices. Verifique que: se <span class="math inline">\(\{\mathcal{F}_i\}_{i\in I}\)</span> é uma família de <span class="math inline">\(\sigma\)</span>-álgebras, então <span class="math inline">\(\bigcap_{i\in I}\mathcal{F}_i\)</span> é uma <span class="math inline">\(\sigma\)</span>-álgebra.</p>
+<section id="resolução-2" class="level3">
+<h3 class="anchored" data-anchor-id="resolução-2">Resolução</h3>
+</section>
+</section>
+<section id="exercício-4" class="level2">
+<h2 class="anchored" data-anchor-id="exercício-4">Exercício 4</h2>
+<p>Considere <span class="math inline">\(\Omega = \{a, b, c\}\)</span> e as coleções <span class="math inline">\(\mathcal{F}_1 = \{0, \Omega, \{a\}, \{b, c\}\}\)</span> e <span class="math inline">\(\mathcal{F}_2 = \{0, \Omega, \{c\}, \{a, b\}\}\)</span>. As coleções <span class="math inline">\(\mathcal{F}_1\)</span> e <span class="math inline">\(\mathcal{F}_2\)</span> são <span class="math inline">\(\sigma\)</span>-álgebras? <span class="math inline">\(\mathcal{F}_1 \cup \mathcal{F}_2\)</span> é uma <span class="math inline">\(\sigma\)</span>-álgebra?</p>
+<p><strong>Resposta:</strong> (a) Sim, (b) Não.</p>
+</section>
+<section id="exercício-5" class="level2">
+<h2 class="anchored" data-anchor-id="exercício-5">Exercício 5</h2>
+<p>Sejam <span class="math inline">\(\Omega = \{1, 2, 3, 4, 5, 6\}\)</span>, <span class="math inline">\(A =\)</span> “o resultado é um número par” e <span class="math inline">\(B = A - \{6\}\)</span>. Encontre as <span class="math inline">\(\sigma\)</span>-álgebras <span class="math inline">\(\sigma(\{A\})\)</span> e <span class="math inline">\(\sigma(\{A, B\})\)</span>, e as compare.</p>
+</section>
+<section id="exercício-6" class="level2">
+<h2 class="anchored" data-anchor-id="exercício-6">Exercício 6</h2>
+<p>Obtenha a <span class="math inline">\(\sigma\)</span>-álgebra gerada pela classe <span class="math inline">\(\mathcal{C} = \{0, 1\}, \{1, 2\}\)</span> se:</p>
+<ol type="a">
+<li><p><span class="math inline">\(\Omega = \{0, 1, 2\}\)</span>.</p></li>
+<li><p><span class="math inline">\(\Omega = \{0, 1, 2, 3\}\)</span>.</p></li>
+</ol>
+</section>
+<section id="exercício-7" class="level2">
+<h2 class="anchored" data-anchor-id="exercício-7">Exercício 7</h2>
+<p>Obtenha a <span class="math inline">\(\sigma\)</span>-álgebra de <span class="math inline">\(\Omega = \{1, 2, 3, 4, 5\}\)</span> gerada por:</p>
+<ol type="a">
+<li><p><span class="math inline">\(\mathcal{C}_1 = \{\{2\}\}\)</span>.</p></li>
+<li><p><span class="math inline">\(\mathcal{C}_2 = \{\{1, 2\}\}\)</span>.</p></li>
+<li><p><span class="math inline">\(\mathcal{C}_3 = \{\{1, 2, 3\}\}\)</span>.</p></li>
+<li><p><span class="math inline">\(\mathcal{C}_4 = \{\{1, 2\}, \{1, 3\}\}\)</span>.</p></li>
+<li><p><span class="math inline">\(\mathcal{C}_5 = \{\{1\}, \{2, 3\}\}\)</span>.</p></li>
+</ol>
+</section>
+<section id="exercício-8" class="level2">
+<h2 class="anchored" data-anchor-id="exercício-8">Exercício 8</h2>
+<p>Construa a menor <span class="math inline">\(\sigma\)</span>-álgebra em <span class="math inline">\([0,1]\)</span>, contendo o subconjunto <span class="math inline">\([1/4,3/4]\)</span>.</p>
+</section>
+<section id="exercício-9" class="level2">
+<h2 class="anchored" data-anchor-id="exercício-9">Exercício 9</h2>
+<p>Sejam <span class="math inline">\(A_{1},A_{2},\ldots\)</span> eventos aleatórios. Verifique que:</p>
+<ol type="a">
+<li><p><span class="math inline">\(\mathbb{P}\Big{(}\bigcap_{k=1}^{n}A_{k}\Big{)}\geqslant 1-\sum_{k=1}^{n}\mathbb{P}(A_{k}^{\varepsilon})\)</span>.</p></li>
+<li><p>Se <span class="math inline">\(\mathbb{P}(A_{k})\geqslant 1-\varepsilon\)</span> para <span class="math inline">\(k=1,\ldots,n\in\varepsilon&gt;0\)</span>, então <span class="math inline">\(\mathbb{P}\Big{(}\bigcap_{k=1}^{n}A_{k}\Big{)}\geqslant 1-ne\)</span>.</p></li>
+<li><p><span class="math inline">\(\mathbb{P}\Big{(}\bigcap_{k=1}^{\infty}A_{k}\Big{)}\geqslant 1-\sum_{k=1}^{\infty}\mathbb{P}(A_{k}^{\varepsilon})\)</span>.</p></li>
+</ol>
+<p><strong>Resposta:</strong> (a) Use a sub-aditividade de <span class="math inline">\(\mathbb{P}\)</span>, (b) Use o Item (a), (c) Use a sub-aditividade de <span class="math inline">\(\mathbb{P}\)</span>.</p>
+</section>
+<section id="exercício-10" class="level2">
+<h2 class="anchored" data-anchor-id="exercício-10">Exercício 10</h2>
+<p>Verifique as seguintes propriedades:</p>
+<ol type="a">
+<li><p>Se <span class="math inline">\(\mathbb{P}(A_{n})=0\)</span> para <span class="math inline">\(n=1,2,\ldots\)</span>, então <span class="math inline">\(\mathbb{P}\Big{(}\bigcup_{n=1}^{\infty}A_{n}\Big{)}=0\)</span>.</p></li>
+<li><p>Se <span class="math inline">\(\mathbb{P}(A_{n})=1\)</span> para <span class="math inline">\(n=1,2,\ldots\)</span>, então <span class="math inline">\(\mathbb{P}\Big{(}\bigcap_{n=1}^{\infty}A_{n}\Big{)}=1\)</span>.</p></li>
+</ol>
+<p><strong>Resposta:</strong> Para (a) e (b) use a sub-aditividade de <span class="math inline">\(\mathbb{P}\)</span>.</p>
+</section>
+<section id="exercício-11" class="level2">
+<h2 class="anchored" data-anchor-id="exercício-11">Exercício 11</h2>
+<p>Um casal é escolhido ao acaso e o número de filhos e filhas perguntado. Considerando o evento <span class="math inline">\(A=\text{``um casal não tem filhos''}\in\mathbb{P}(\{\omega\})=1/2^{x+y+2}\)</span> para todo <span class="math inline">\(\omega=(x,y)\in\Omega\)</span>, determine <span class="math inline">\(\mathbb{P}(A)\)</span>.</p>
+<p><strong>Resposta:</strong> <span class="math inline">\(1/2\)</span>.</p>
+</section>
+<section id="exercício-12" class="level2">
+<h2 class="anchored" data-anchor-id="exercício-12">Exercício 12</h2>
+<p>Uma moeda é lançada <span class="math inline">\(n\)</span> vezes, <span class="math inline">\(n\geqslant 2\)</span>. Qual é a probabilidade de que, nestes <span class="math inline">\(n\)</span> lançamentos, não apareçam <span class="math inline">\(2\)</span> caras seguidas?</p>
+<p><strong>Resposta:</strong> <span class="math inline">\(\frac{{n\choose 2}+2}{2^{n}}\)</span>.</p>
+<hr>
+</section>
+<section id="notação-de-conjuntos" class="level2">
+<h2 class="anchored" data-anchor-id="notação-de-conjuntos">Notação de Conjuntos</h2>
+<p>Seja <span class="math inline">\(\{A_{i}\}_{i=1}^{\infty}\subset\mathscr{F}\)</span>. Denotamos:</p>
+<ol type="I">
+<li><p><span class="math inline">\(A_{n}\uparrow A\iff A_{n}\subset A_{n+1}\ \forall n\geqslant 1\ \in\bigcup_{i=1}^{\infty}A_{i}=A\)</span>.</p></li>
+<li><p><span class="math inline">\(A_{n}\downarrow A\iff A_{n+1}\subset A_{n}\ \forall n\geqslant 1\ \in\bigcap_{i=1}^{\infty}A_{i}=A\)</span>.</p></li>
+<li><p><span class="math inline">\(\limsup_{n\to\infty}A_{n}\stackrel{{\mathrm{def.}}}{{:=}}\bigcap_{n=1}^{\infty}\bigcup_{m=n}^{\infty}A_{m}\)</span>.</p></li>
+<li><p><span class="math inline">\(\liminf_{n\to\infty}A_{n}\stackrel{{\mathrm{def.}}}{{:=}}\bigcup_{n=1}^{\infty}\bigcap_{m=n}^{\infty}A_{m}\)</span>.</p></li>
+<li><p><span class="math inline">\(A_{n}\to A\iff\limsup_{n\to\infty}A_{n}=\liminf_{n\to\infty}A_{n}=A\)</span>.</p></li>
+</ol>
+<hr>
+</section>
+<section id="exercício-13" class="level2">
+<h2 class="anchored" data-anchor-id="exercício-13">Exercício 13</h2>
+<p>Seja <span class="math inline">\(\{A_{i}\}_{i=1}^{\infty}\subset\mathscr{F}\)</span>. Verifique que:</p>
+<ol type="a">
+<li><p>Se <span class="math inline">\(A_{n}\uparrow A\)</span> então <span class="math inline">\(\lim_{n\to\infty}\mathbb{P}(A_{n})=\mathbb{P}(A)\in\mathbb{P}(A_{n})\leqslant \mathbb{P}(A_{n+1})\ \forall n\geqslant 1\)</span>.</p></li>
+<li><p>Se <span class="math inline">\(A_{n}\downarrow A\)</span> então <span class="math inline">\(\lim_{n\to\infty}\mathbb{P}(A_{n})=\mathbb{P}(A)\in\mathbb{P}(A_{n})\geqslant \mathbb{P}(A_{n+1})\ \forall n\geqslant 1\)</span>.</p></li>
+<li><p>Se <span class="math inline">\(A_{n}\to A\)</span> então <span class="math inline">\(A\in\mathscr{F}\in\lim_{n\to\infty}\mathbb{P}(A_{n})=\mathbb{P}(A)\)</span>.</p></li>
+<li><p>Se <span class="math inline">\(\sum_{i=1}^{\infty}\mathbb{P}(A_{i})&lt;\infty\)</span> então <span class="math inline">\(\mathbb{P}\big{(}\limsup_{n\to\infty}A_{n}\big{)}=0\)</span>.</p></li>
+</ol>
+<p><strong>Resposta:</strong> (a) Escreva <span class="math inline">\(A_n\)</span> e <span class="math inline">\(A\)</span> como união disjunta de eventos e aplique a <span class="math inline">\(\sigma\)</span>-aditividade de <span class="math inline">\(\mathbb{P}\)</span>,</p>
+<ol start="2" type="a">
+<li><p>Use o Item (a),</p></li>
+<li><p>Use os Itens (a) e (b),</p></li>
+<li><p>Use a sub-aditividade de <span class="math inline">\(\mathbb{P}\)</span> e o fato de que [ <em>{n } </em>{i=n}^{} (A_i) = 0. ]</p></li>
+</ol>
+</section>
+<section id="exercício-14" class="level2">
+<h2 class="anchored" data-anchor-id="exercício-14">Exercício 14</h2>
+<p>Se <span class="math inline">\(A, B, C \in \mathcal{F}\)</span>, verifique que:</p>
+<p>[ (A B C) = (A) + (B) + (C) - (A B) - (A C) - (B C) + (A B C). ]</p>
+</section>
+<section id="exercício-15" class="level2">
+<h2 class="anchored" data-anchor-id="exercício-15">Exercício 15</h2>
+<p>Verifique que a aplicação <span class="math inline">\(A \mapsto \mathbb{P}(A|B)\)</span> é uma medida de probabilidade.</p>
+</section>
+<section id="exercício-16" class="level2">
+<h2 class="anchored" data-anchor-id="exercício-16">Exercício 16</h2>
+<p>Certo experimento consiste em lançar um dado equilibrado 2 vezes, independentemente. Dado que os dois números sejam diferentes, qual é a probabilidade de:</p>
+<ol type="a">
+<li><p>Pelo menos um dos números ser 6?</p></li>
+<li><p>A soma dos números ser 8?</p></li>
+</ol>
+<p><strong>Resposta:</strong> (a) 1/3, (b) 2/15.</p>
+</section>
+<section id="exercício-17" class="level2">
+<h2 class="anchored" data-anchor-id="exercício-17">Exercício 17</h2>
+<p>Verifique que:</p>
+<ol type="a">
+<li><p>Um evento <span class="math inline">\(A\)</span> com <span class="math inline">\(\mathbb{P}(A) = 0\)</span> é independente a qualquer outro evento <span class="math inline">\(B\)</span>.</p></li>
+<li><p>Um evento <span class="math inline">\(A\)</span> com <span class="math inline">\(\mathbb{P}(A) = 1\)</span> é independente a qualquer outro evento <span class="math inline">\(B\)</span>.</p></li>
+</ol>
+</section>
+<section id="exercício-18" class="level2">
+<h2 class="anchored" data-anchor-id="exercício-18">Exercício 18</h2>
+<p>Considere o circuito em série da figura abaixo, onde <span class="math inline">\(R_1\)</span> e <span class="math inline">\(R_2\)</span> são componentes eletrônicos idênticos que permitem a passagem de corrente elétrica, cuja probabilidade da corrente perpassar cada um é <span class="math inline">\(p\)</span>. Determine a probabilidade da corrente sair de <span class="math inline">\(A\)</span> e chegar a <span class="math inline">\(B\)</span>.</p>
+<p><strong>Resposta:</strong> <span class="math inline">\(p^2\)</span>.</p>
+</section>
+<section id="exercício-19" class="level2">
+<h2 class="anchored" data-anchor-id="exercício-19">Exercício 19</h2>
+<p>Sejam <span class="math inline">\(A_1, \ldots, A_n\)</span> eventos aleatórios independentes, com <span class="math inline">\(\mathbb{P}(A_k) = p_k, k = 1, \ldots, n\)</span>. Obtenha a probabilidade de ocorrência dos seguintes eventos, em termos das probabilidades <span class="math inline">\(p_k\)</span>:</p>
+<ol type="a">
+<li><p>A ocorrência de nenhum dos <span class="math inline">\(A_k\)</span>.</p></li>
+<li><p>A ocorrência de pelo menos um dos <span class="math inline">\(A_k\)</span>.</p></li>
+<li><p>A ocorrência de exatamente um dos <span class="math inline">\(A_k\)</span>.</p></li>
+<li><p>A ocorrência de exatamente dois dos <span class="math inline">\(A_k\)</span>.</p></li>
+<li><p>A ocorrência de todos os <span class="math inline">\(A_k\)</span>.</p></li>
+<li><p>A ocorrência de, no máximo, <span class="math inline">\(n - 1\)</span> dos <span class="math inline">\(A_k\)</span>.</p></li>
+</ol>
+<p><strong>Resposta:</strong> (a) <span class="math inline">\(\prod_{k=1}^{n} (1 - p_k)\)</span>,<br>
+(b) <span class="math inline">\(1 - \prod_{k=1}^{n} (1 - p_k)\)</span>,<br>
+(c) <span class="math inline">\(\sum_{i=1}^{n} p_i \prod_{k \neq i} (1 - p_k)\)</span>,<br>
+(d) <span class="math inline">\(\sum_{i&lt;j} p_i p_j \prod_{k \neq i,j} (1 - p_k)\)</span>,<br>
+(e) <span class="math inline">\(\prod_{k=1}^{n} p_k\)</span>,<br>
+(f) <span class="math inline">\(1 - \prod_{k=1}^{n} p_k\)</span>.</p>
+</section>
+<section id="exercício-20" class="level2">
+<h2 class="anchored" data-anchor-id="exercício-20">Exercício 20</h2>
+<p>Sejam <span class="math inline">\(A, B, C\)</span> eventos definidos na figura</p>
+<ol type="a">
+<li>Os eventos <span class="math inline">\(A\)</span> e <span class="math inline">\(C\)</span> são independentes?<br>
+</li>
+<li>Os eventos <span class="math inline">\(A\)</span> e <span class="math inline">\(B\)</span> são independentes?</li>
+</ol>
+<p><strong>Resposta:</strong> (a) Sim, (b) Não.</p>
+</section>
+<section id="exercício-21" class="level2">
+<h2 class="anchored" data-anchor-id="exercício-21">Exercício 21</h2>
+<p>Sejam <span class="math inline">\(A_1, A_2, \ldots, A_n\)</span> e <span class="math inline">\(B_1, B_2, \ldots, B_n\)</span> eventos definidos em <span class="math inline">\((\Omega, \mathcal{F}, \mathbb{P})\)</span>. Para <span class="math inline">\(j = 1, 2, \ldots, n\)</span> suponha que <span class="math inline">\(B_j\)</span> seja independente de <span class="math inline">\(\bigcap_{i=1}^n A_i\)</span> e que os <span class="math inline">\(B_j\)</span>’s sejam disjuntos 2 a 2. Os eventos <span class="math inline">\(\bigcup_{j=1}^n B_j\)</span> e <span class="math inline">\(\bigcap_{i=1}^n A_i\)</span> são independentes?</p>
+<p><strong>Resposta:</strong> Sim.</p>
+</section>
+<section id="exercício-22" class="level2">
+<h2 class="anchored" data-anchor-id="exercício-22">Exercício 22</h2>
+<p>Seja <span class="math inline">\(\Omega = \{abc, acb, cab, cba, bca, bac, aaa, bbb, ccc\}\)</span> com <span class="math inline">\(\mathbb{P}(\{\omega\}) = 1/9\)</span> para todo <span class="math inline">\(\omega \in \Omega\)</span>, e o evento <span class="math inline">\(A_k = k\)</span>-ésima letra é <span class="math inline">\(a\)</span>, <span class="math inline">\(k = 1, 2, 3\)</span>. Verifique que a família <span class="math inline">\(\{A_1, A_2, A_3\}\)</span> é 2 a 2 independente porém não independente (coletivamente).</p>
+</section>
+<section id="exercício-23" class="level2">
+<h2 class="anchored" data-anchor-id="exercício-23">Exercício 23</h2>
+<p>Os coeficientes <span class="math inline">\(a\)</span> e <span class="math inline">\(b\)</span> da equação <span class="math inline">\(ax^2 + bx + 1 = 0\)</span> são, respectivamente, os resultados sucessivos de 2 lançamentos de um dado equilibrado. Determine a probabilidade das raízes dessa equação serem números reais.</p>
+<p><strong>Resposta:</strong> 19/36.</p>
+</section>
+<section id="exercício-24" class="level2">
+<h2 class="anchored" data-anchor-id="exercício-24">Exercício 24</h2>
+<p>Assuma que para cada cliente que solicita o cancelamento de um plano, a companhia responsável o faça com probabilidade <span class="math inline">\(q\)</span>.</p>
+<ol type="a">
+<li><p>Se 4 clientes solicitam o cancelamento, qual a probabilidade de que a companhia cancele o plano de exatamente 2 clientes?</p></li>
+<li><p>Qual a probabilidade de que sejam necessários exatamente 10 solicitações negadas para que o primeiro cancelamento seja efetuado?</p></li>
+</ol>
+<p><strong>Resposta:</strong> (a) <span class="math inline">\(6q^2(1 - q)^2\)</span>, (b) <span class="math inline">\((1 - q)^{10}q\)</span>.</p>
+</section>
+<section id="exercício-25" class="level2">
+<h2 class="anchored" data-anchor-id="exercício-25">Exercício 25</h2>
+<p>Numa população 10% das pessoas são infectadas por um determinado vírus. Um teste para detecção do vírus é eficiente em 95% dos casos nos quais os indivíduos são infectados, mas resulta em 4% de resultados positivos para os não infectados. Qual a probabilidade de que o teste de uma pessoa dessa população dê resultado positivo?</p>
+<p><strong>Resposta:</strong> 0.131.</p>
+</section>
+<section id="exercício-26" class="level2">
+<h2 class="anchored" data-anchor-id="exercício-26">Exercício 26</h2>
+<p>Suponha que temos duas urnas: a primeira tem 4 bolas azuis e 6 bolas brancas, a outra tem 7 azuis e 3 brancas. Lançamos um dado honesto, se sair um número par, selecionamos ao acaso uma bola da primeira urna, se for um número ímpar da segunda. Qual a probabilidade de selecionar uma bola azul?</p>
+<p><strong>Resposta:</strong> 0.55.</p>
+</section>
+<section id="exercício-27" class="level2">
+<h2 class="anchored" data-anchor-id="exercício-27">Exercício 27</h2>
+<p>Considere uma urna que contem 1 bola vermelha, 4 bolas brancas e 3 azuis. Supondo que se efetuam extrações sem reposição de 2 bolas, determine a probabilidade de retirar 1 bola vermelha na segunda extração.</p>
+<p><strong>Resposta:</strong> 0.125.</p>
+</section>
+<section id="exercício-28" class="level2">
+<h2 class="anchored" data-anchor-id="exercício-28">Exercício 28</h2>
+<p>Um lote contém 15 peças, de onde 5 são defeituosas. Se um funcionário extrai uma amostra de 5 peças aleatoriamente:</p>
+<ol type="a">
+<li><p>Qual é a probabilidade de que a amostra não contenha peças defeituosas se a escolha foi realizada com reposição?</p></li>
+<li><p>Qual é a probabilidade de que a amostra não contenha peças defeituosas, se a escolha foi realizada sem reposição?</p></li>
+</ol>
+<p><strong>Resposta:</strong> (a) 0.1317, (b) 0.0839.</p>
+</section>
+<section id="exercício-29" class="level2">
+<h2 class="anchored" data-anchor-id="exercício-29">Exercício 29</h2>
+<p>Suponha que a ocorrência de chuva (ou não) dependa das condições do tempo do dia anterior. Assumamos que, se (não) chova hoje, choverá amanhã com probabilidade (respectivamente q) p.&nbsp;Sabendo que choveu hoje, calcule a probabilidade de chover depois de amanhã.</p>
+<p><strong>Resposta:</strong> <span class="math inline">\(p^2 + q(1 - p)\)</span>.</p>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
