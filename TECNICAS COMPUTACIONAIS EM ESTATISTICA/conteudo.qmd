@@ -357,4 +357,22 @@ xdataMclust$parameters
 plot(xdataMclust)
 ```
 
+# Métodos de Monte Carlo
+
+## Integração de Monte Carlo
+
+```{r}
+x <- seq(.1, 2.5, length = 10)
+m <- 10000
+u <- runif(m)
+cdf <- numeric(length(x))
+for (i in 1:length(x)) {
+       g <- x[i] * exp(-(u * x[i])^2 / 2)
+       cdf[i] <- mean(g) / sqrt(2 * pi) + 0.5
+}
+
+Phi <- pnorm(x)
+print(round(rbind(x, cdf, Phi), 3))
+```
+
 ::::
