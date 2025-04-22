@@ -285,3 +285,7 @@ Um lote contém 15 peças, de onde 5 são defeituosas. Se um funcionário extrai
 Suponha que a ocorrência de chuva (ou não) dependa das condições do tempo do dia anterior. Assumamos que, se (não) chova hoje, choverá amanhã com probabilidade (respectivamente q) p. Sabendo que choveu hoje, calcule a probabilidade de chover depois de amanhã.
 
 **Resposta:** $p^2 + q(1 - p)$.
+
+```{r}
+sample(c(1:29), 1)
+```
