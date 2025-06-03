@@ -121,3 +121,4 @@ while (nonstop) {
 cat("# de iterações:", i, "\n")
 cat("theta^ =", theta[i], "\n")
 ```
+
