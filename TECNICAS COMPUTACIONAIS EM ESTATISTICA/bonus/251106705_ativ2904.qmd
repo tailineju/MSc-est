@@ -1,0 +1,91 @@
+---
+title: "Atividade Bônus"
+subtitle: "Técnicas Computacionais em Estatística"
+author: "Tailine J. S. Nonato"
+date: today
+date-format: long
+format: pdf
+---
+
+# Bônus: Poder do Teste
+
+**Testes de associação:**
+
+1) Pearson
+
+2) Spearman
+
+3) Kendall
+
+**Hipóteses:**
+
+$$
+\begin{cases}
+H_0: \rho = 0 \\ 
+H_1: \rho \neq 0 
+\end{cases}
+$$
+
+**Parte I:** Encontrar os poderes dos testes na Normal multivariada.
+```{r}
+#| label: "monte-carlo-poder-teste"
+
+set.seed(123)
+n <- 30
+m <- 1000
+pval_pearson <- numeric(m)
+pval_spearman <- numeric(m)
+pval_kendall <- numeric(m)
+
+for (i in 1:m) {
+  x <- rnorm(n, 0, 1)
+  y <- rnorm(n, 0, 1)
+  pval_pearson[i] <- cor.test(x, y, method = "pearson")$p.value
+  pval_spearman[i] <- cor.test(x, y, method = "spearman")$p.value
+  pval_kendall[i] <- cor.test(x, y, method = "kendall")$p.value
+}
+```
+
+```{r}
+#| label: "monte-carlo-poder-teste-2"
+# poder empírico = proporção de p-valores < 0.05
+alpha <- 0.05
+poder_pearson <- mean(pval_pearson < alpha)
+poder_spearman <- mean(pval_spearman < alpha)
+poder_kendall <- mean(pval_kendall < alpha)
+
+paste0(poder_pearson*100,"%")
+paste0(poder_spearman*100,"%")
+paste0(poder_kendall*100,"%")
+```
+
+**Parte II:** Encontrar distribuição alternativa em que o poder de Spearman ou de Kendall seja maior que o de Pearson. 
+
+```{r}
+#| label: "monte-carlo-poder-teste-3"
+
+pval_pearsonII <- numeric(m)
+pval_spearmanII <- numeric(m)
+pval_kendallII <- numeric(m)
+
+for (i in 1:m) {
+  x <- rnorm(n, 0, 1)
+  y <- x + rchisq(n, 1)
+  pval_pearsonII[i] <- cor.test(x, y, method = "pearson")$p.value
+  pval_spearmanII[i] <- cor.test(x, y, method = "spearman")$p.value
+  pval_kendallII[i] <- cor.test(x, y, method = "kendall")$p.value
+}
+```
+
+```{r}
+#| label: "monte-carlo-poder-teste-4"
+# poder empírico = proporção de p-valores < 0.05
+
+poder_pearsonII <- mean(pval_pearsonII < alpha)
+poder_spearmanII <- mean(pval_spearmanII < alpha)
+poder_kendallII <- mean(pval_kendallII < alpha)
+
+paste0(poder_pearsonII*100,"%")
+paste0(poder_spearmanII*100,"%")
+paste0(poder_kendallII*100,"%")
+```

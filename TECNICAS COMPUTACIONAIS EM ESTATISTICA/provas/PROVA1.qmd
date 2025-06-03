@@ -1,0 +1,215 @@
+---
+title: "Prova 1 "
+subtitle: "Técnicas Computacionais em Estatística"
+author: "Prof. Saulo"
+date: "05/06/2025"
+date-format: long
+format: pdf
+---
+
+# PROVA 1
+## Exercício 1 (2.0 pts)
+
+A função densidade de probabilidade da distribuição Laplace$(\mu, b)$ é dada por:
+$$
+f(x) = \frac{1}{2b} \exp\left(-\frac{|x-\mu|}{b}\right)
+$$
+
+**Escreva um algoritmo que utilize o método da transformação inversa para gerar $n$ números pseudo-aleatórios da Laplace$(\mu, b)$.**
+
+### Resolução
+
+A função de distribuição acumulada (CDF) $F(x) = P(X \leq x)$ é obtida como:
+
+Para $x < \mu$:
+$$
+F(x) = \int_{-\infty}^{x} \frac{1}{2b} \exp\left(-\frac{\mu-t}{b}\right) dt = \frac{1}{2} \exp\left(\frac{x-\mu}{b}\right)
+$$
+
+Para $x \geq \mu$:
+$$
+F(x) = \frac{1}{2} + \frac{1}{2}\left[1 - \exp\left(-\frac{x-\mu}{b}\right)\right] = 1 - \frac{1}{2} \exp\left(-\frac{x-\mu}{b}\right)
+$$
+
+Logo,
+$$
+F(x) = 
+\begin{cases}
+\frac{1}{2} \exp\left(\frac{x-\mu}{b}\right), & x < \mu \\
+1 - \frac{1}{2} \exp\left(-\frac{x-\mu}{b}\right), & x \geq \mu
+\end{cases}
+$$
+
+Para aplicar o método da transformação inversa:
+
+- Se $u < 0.5$, então $x = \mu + b \ln(2u)$
+- Se $u \geq 0.5$, então $x = \mu - b \ln[2(1-u)]$
+
+**Algoritmo:**
+
+1. Estabeleça valores para os parâmetros $\mu$, $b$ e o tamanho da amostra $n$.
+2. Para cada $i = 1, \ldots, n$:
+    - Gere $u_i \sim U(0,1)$
+    - Se $u_i < 0.5$, compute $x_i = \mu + b \ln(2u_i)$
+    - Se $u_i \geq 0.5$, compute $x_i = \mu - b \ln[2(1-u_i)]$
+    - Armazene $x_i$ como uma amostra da Laplace$(\mu, b)$.
+
+---
+
+## Exercício 2 (2.0 pts)
+
+Deseja-se gerar números pseudo-aleatórios associados à densidade
+$$
+f(x) = \frac{2}{\pi} \sqrt{1-x^2}, \quad |x| \leq 1
+$$
+utilizando o método da aceitação-rejeição com função candidata $g(x) = U(-1,1)$.
+
+### Resolução
+
+A densidade candidata é
+$$
+g(x) = \frac{1}{2}, \quad x \in [-1,1]
+$$
+
+Para encontrar $M$ tal que $f(x)/g(x) \leq M$:
+$$
+\frac{f(x)}{g(x)} = \frac{2}{\pi} \sqrt{1-x^2} \cdot 2 = \frac{4}{\pi} \sqrt{1-x^2}
+$$
+O máximo ocorre em $x=0$:
+$$
+M = \frac{4}{\pi}
+$$
+
+A razão utilizada no critério de aceitação é:
+$$
+\frac{f(y)}{M g(y)} = \frac{\frac{2}{\pi} \sqrt{1-y^2}}{\frac{4}{\pi} \cdot \frac{1}{2}} = \sqrt{1-y^2}
+$$
+
+**Algoritmo:**
+
+1. Defina o tamanho da amostra $n$.
+2. Enquanto o número de amostras aceitas for menor que $n$, repita:
+    - Gere $y \sim U(-1,1)$.
+    - Gere $u \sim U(0,1)$.
+    - Se $u < \sqrt{1-y^2}$, aceite $y$ e armazene-o.
+    - Caso contrário, rejeite o valor e volte ao passo anterior.
+
+---
+
+## Exercício 3 (2.0 pts)
+
+Seja $X_1, X_2, \ldots, X_n$ uma amostra aleatória da distribuição Rayleigh$(\sigma)$, com densidade:
+$$
+f(x; \sigma) = \frac{x}{\sigma^2} e^{-x^2/(2\sigma^2)}, \quad x \geq 0, \ \sigma > 0
+$$
+
+**Escreva um algoritmo que utiliza o método de Newton-Raphson para estimar o parâmetro $\sigma$ via máxima verossimilhança.**
+
+### Resolução
+
+A função de log-verossimilhança é:
+$$
+\ell(\sigma) = \sum_{i=1}^n \left[ \log(x_i) - 2\log(\sigma) - \frac{x_i^2}{2\sigma^2} \right]
+$$
+
+Primeira derivada:
+$$
+\ell'(\sigma) = -\frac{2n}{\sigma} + \frac{1}{\sigma^3} \sum_{i=1}^n x_i^2
+$$
+
+Segunda derivada:
+$$
+\ell''(\sigma) = \frac{2n}{\sigma^2} - \frac{3}{\sigma^4} \sum_{i=1}^n x_i^2
+$$
+
+**Algoritmo de Newton-Raphson:**
+
+1. Escolha um valor inicial $\sigma^{(0)} > 0$ e uma tolerância $\varepsilon$.
+2. Para $t = 0, 1, 2, \ldots$, repita até convergência:
+    - Calcule $\ell'(\sigma^{(t)})$ e $\ell''(\sigma^{(t)})$
+    - Atualize: $\sigma^{(t+1)} = \sigma^{(t)} - \frac{\ell'(\sigma^{(t)})}{\ell''(\sigma^{(t)})}$
+    - Verifique o critério de parada: $\left| \frac{\sigma^{(t+1)} - \sigma^{(t)}}{\sigma^{(t)}} \right| < \varepsilon$
+3. Retorne o valor estimado $\hat{\sigma}$.
+
+---
+
+## Exercício 4 (1.0 pt)
+
+Considere a integral definida por:
+$$
+J(\beta) = \int_0^{\infty} \frac{(\ln t)^2}{1+t} e^{-\beta t} dt, \quad \beta > 0
+$$
+
+**Proponha um algoritmo para estimar essa integral usando Monte Carlo.**
+
+### Resolução
+
+A densidade da distribuição Exponencial$(\beta)$ é:
+$$
+f(t) = \beta e^{-\beta t}, \quad t > 0
+$$
+
+Logo,
+$$
+J(\beta) = \mathbb{E}_f \left[ \frac{(\ln T)^2}{1+T} \right], \quad T \sim \text{Exponencial}(\beta)
+$$
+
+**Algoritmo:**
+
+1. Defina $h(t) = \frac{(\ln t)^2}{1+t}$
+2. Gere $n$ amostras $t_i \sim \text{Exponencial}(\beta)$
+3. Calcule a média amostral de $h(t_i)$:
+$$
+\hat{J}(\beta) = \frac{1}{n} \sum_{i=1}^n h(t_i)
+$$
+
+---
+
+## Exercício 5 (1.5 pts)
+
+**Descreva um algoritmo para estimar o poder de um teste estatístico utilizando o método de simulação de Monte Carlo, considerando uma hipótese alternativa fixa $\theta = \theta_1$.**
+
+### Algoritmo
+
+1. Escolha o parâmetro sob a alternativa: defina $\theta_1 \in \Theta$.
+2. Repita o processo $m$ vezes (simulações):
+    - Para cada simulação $j = 1, \ldots, m$:
+      - Gere uma amostra aleatória $x_1^{(j)}, \ldots, x_n^{(j)}$ sob $\theta = \theta_1$;
+      - Calcule a estatística de teste $T_j$;
+      - Compare com o valor crítico ao nível $\alpha$:
+         - Se $H_0$ for rejeitada, defina $I_j = 1$; caso contrário, $I_j = 0$.
+3. Estime o poder como:
+$$
+\hat{\pi}(\theta_1) = \frac{1}{m} \sum_{j=1}^m I_j
+$$
+
+---
+
+## Exercício 6 (1.5 pts)
+
+Seja $\rho \in [-1,1]$, e $X, \eta \sim N(0,1)$ independentes. Defina:
+$$
+Y = \rho X + \sqrt{1-\rho^2} \, \eta
+$$
+
+O estimador da correlação entre $X$ e $Y$ é a correlação amostral:
+$$
+\hat{\rho}(X, Y) = \frac{\sum_{i=1}^n (X_i - \bar{X})(Y_i - \bar{Y})}{\sqrt{\sum_{i=1}^n (X_i - \bar{X})^2 \sum_{i=1}^n (Y_i - \bar{Y})^2}}
+$$
+
+**Proponha um algoritmo de Monte Carlo para estimar o viés de $\hat{\rho}$ para diferentes valores de $\rho \in [-1,1]$.**
+
+### Algoritmo
+
+1. Defina parâmetros da simulação: tamanho da amostra $n$; número de simulações $m$; e conjunto de valores de $\rho \in [-1,1]$.
+2. Para cada valor $\rho_k$ do conjunto:
+    - Inicialize um vetor para armazenar as estimativas $\hat{\rho}^{(j)}$, $j=1,\ldots,m$.
+    - Para cada simulação $j=1,\ldots,m$:
+      - Gere $X^{(j)} \sim N(0,1)$ (vetor de tamanho $n$)
+      - Gere $\eta^{(j)} \sim N(0,1)$ (vetor de tamanho $n$)
+      - Calcule $Y^{(j)} = \rho_k X^{(j)} + \sqrt{1-\rho_k^2} \, \eta^{(j)}$
+      - Calcule $\hat{\rho}^{(j)} = \text{cor}(X^{(j)}, Y^{(j)})$
+    - Estime o viés para $\rho_k$:
+$$
+\text{viés}(\rho_k) = \frac{1}{m} \sum_{j=1}^m \hat{\rho}^{(j)} - \rho_k
+$$

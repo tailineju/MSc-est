@@ -16,16 +16,16 @@ format: html
 
 ### Passo a passo
 
-1. Escolher um número inteiro positivo $x_0$ (semente) e um número inteiro positivo $a$ (multiplicador).
+1. Escolher um número inteiro positivo $x_0$ (semente) e um número inteiro positivo $a$ (multiplicador).  Geralmente escolhe-se o valor clássico proposto por Park e Miller: $a = 16807$.
 
 2. Escolher um número inteiro positivo $m$ (modulo) tal que $m > x_0$. Geralmente escolhe-se $m$ um número primo grande (Ex.: $2^{31}-1$).
 
-3. Escolher um número inteiro positivo $a$ (incremento). Geralmente escolhe-se o valor clássico proposto por Park e Miller: $a = 16807$.
+3. Escolher um número inteiro positivo $c$ (incremento).
 
 4. Gerar a sequência de números pseudo-aleatórios $x_i$ utilizando a seguinte fórmula:
 
 $$
-x_i = (a \cdot x_{i-1}) \mod m
+x_i = (a \cdot x_{i-1} + c) \mod m
 $$
 
 ### No R
@@ -59,6 +59,16 @@ head(valores_normalizados)
 ```
 
 ## Método da Transformação Inversa
+
+### Passo a passo
+
+1. Gerar um número aleatório $u$ uniformemente distribuído no intervalo $(0,1)$.
+
+2. Calcular a inversa da função de distribuição acumulada $F^{-1}(u)$ para obter o número aleatório $x$ com a distribuição desejada.
+
+3. Repetir os passos 1 e 2 para gerar mais números aleatórios.
+
+
 
 ### Caso contínuo
 
@@ -95,6 +105,22 @@ rbind(table(x) / n, p)
 ```
 
 ## Método da Aceitação e Rejeição
+
+### Passo a passo
+
+1. Escolher uma função $g(x)$ que seja fácil de amostrar e que seja maior ou igual a $f(x)$ para todo $x$ no suporte de $f(x)$.
+
+2. Calcular a constante $M$ tal que $M \cdot g(x) \geq f(x)$ para todo $x$.
+
+    - $M = \max_{x} \frac{f(x)}{g(x)}$
+
+3. Gerar um número aleatório $u$ uniformemente distribuído no intervalo $(0,1)$ e um número aleatório $x$ de $g(x)$.
+
+4. Calcular $y = M \cdot g(x)$.
+
+5. Se $u < \frac{f(x)}{y}$, então aceite $x$ como um número aleatório de $f(x)$. Caso contrário, rejeite $x$ e volte ao passo 3.
+
+
 
 $f$: $Beta(2.7,6.3)$ com $M = 2.7$
 
@@ -384,5 +410,64 @@ for (i in 1:length(x)) {
 Phi <- pnorm(x)
 print(round(rbind(x, cdf, Phi), 3))
 ```
+
+## Exemplo em Poder do Teste
+
+Testes de associação: 
+
+1) Pearson
+
+2) Spearman
+
+3) Kendall
+
+Mostrar empiricamente que os testes de spearman e kendall são menos poderosos que o teste de pearso quando a amostra é uma normal bivariada. Encontre uma distribuição alternativa em que pelo menos um (spearman ou kendall) tenha maiorpoder empírico que o pearson.
+
+### Passo a passo
+
+- gerar os dados
+
+- aplicar o teste
+
+- armazenar o p-valor
+
+- aplicar monte carlo
+
+```{r}
+#| label: "monte-carlo-poder-teste"
+
+set.seed(452)
+
+n <- 1000
+x <- rnorm(n, 0, 1)
+y <- rnorm(n, 0, 1)
+
+m <- 1000
+p.values_pearson <- numeric(m)
+p.values_spearman <- numeric(m)
+p.values_kendall <- numeric(m)
+
+for (i in 1:m) {
+  x <- rnorm(n, 0, 1)
+  y <- rnorm(n, 0, 1)
+  p.values_pearson[i] <- cor.test(x, y, method = "pearson")$p.value
+  p.values_spearman[i] <- cor.test(x, y, method = "spearman")$p.value
+  p.values_kendall[i] <- cor.test(x, y, method = "kendall")$p.value
+}
+```
+
+```{r}
+#| label: "monte-carlo-poder-teste-2"
+# poder empírico = proporção de p-valores < 0.05
+poder_pearson <- mean(p.values_pearson < 0.05)
+poder_spearman <- mean(p.values_spearman < 0.05)
+poder_kendall <- mean(p.values_kendall < 0.05)
+
+paste0(poder_pearson*100,"%")
+paste0(poder_spearman*100,"%")
+paste0(poder_kendall*100,"%")
+```
+
+
 
 ::::
