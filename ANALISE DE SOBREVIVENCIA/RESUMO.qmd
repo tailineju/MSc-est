@@ -7,188 +7,83 @@ date-format: long
 format: pdf
 ---
 
-# 1. Distribuição Exponencial (com média $\lambda$)  
-## Funções principais:  
-$f(t) = \frac{1}{\lambda} e^{-\frac{t}{\lambda}}, \quad \text{para } t \geq 0$  
 
-$S(t) = P(T > t) = e^{-\frac{t}{\lambda}}$  
+\maketitle
 
-$H(t) = \text{função de risco acumulada} = -\ln(S(t)) = \frac{t}{\lambda}$  
+\section*{Modelo de Log-Sobrevivência Proporcional}
 
-$h(t) = \text{função de risco instantânea} = \frac{f(t)}{S(t)} = \frac{1}{\lambda} \quad (\text{constante})$  
+O modelo é definido como:
+\[
+\log S(t \mid \mathbf{x}) = g(\mathbf{x}^\top \beta) \cdot \log S_0(t)
+\]
+Ou, equivalentemente:
+\[
+S(t \mid \mathbf{x}) = S_0(t)^{g(\mathbf{x}^\top \beta)}
+\]
 
-$v(t) = \text{vida média residual} = \lambda \quad (\text{constante, propriedade da exponencial})$  
+\subsection*{i) Equivalência com o modelo de riscos proporcionais}
 
-## Quantil de ordem $p$:  
-$t_p = \lambda \cdot \left(-\ln(1 - p)\right)$  
+O modelo de Cox (riscos proporcionais) é:
+\[
+h(t \mid \mathbf{x}) = h_0(t) \cdot \exp(\mathbf{x}^\top \beta)
+\]
 
-## Variável discreta análoga (segundo 2.29):  
-Seja $T_d$ a v.a. discreta com $P(T_d = t) = S(t) - S(t+1)$. No caso da exponencial:  
+Queremos mostrar que o modelo de log-sobrevivência proporcional implica riscos proporcionais sob certas condições.
 
-$S(t) = e^{-\frac{t}{\lambda}} \implies P(T_d = t) = e^{-\frac{t}{\lambda}} \left(1 - e^{-\frac{1}{\lambda}}\right)$  
+\subsubsection*{Demonstração:}
+Assuma que:
+\[
+S(t \mid \mathbf{x}) = \left[ S_0(t) \right]^{\exp(\mathbf{x}^\top \beta)}
+\]
+A função de risco é dada por:
+\[
+h(t \mid \mathbf{x}) = \frac{f(t \mid \mathbf{x})}{S(t \mid \mathbf{x})} = -\frac{d}{dt} \log S(t \mid \mathbf{x})
+\]
+Como:
+\[
+\log S(t \mid \mathbf{x}) = \exp(\mathbf{x}^\top \beta) \cdot \log S_0(t)
+\]
+Temos:
+\[
+h(t \mid \mathbf{x}) = \exp(\mathbf{x}^\top \beta) \cdot h_0(t)
+\]
+\textbf{Conclusão:} Isso é exatamente o modelo de riscos proporcionais.
 
-Isso é a geométrica com parâmetro $p = 1 - e^{-\frac{1}{\lambda}}$.  
+\subsection*{ii) Modelo Binomial Negativa (2,0) não possui riscos proporcionais}
 
-# 2. Esperança e momento de $T$ discreta com valores em $\mathbb{N}_0$  
-Para qualquer v.a. discreta $T$ com suporte em $t = 0, 1, 2, \dots$:  
+Considere $T \sim \text{Binomial Negativa}(r = 2, p)$. A função de sobrevivência é:
+\[
+S(t) = P(T > t) = (1 - p)^{t + 1}(1 + (t + 1)p)
+\]
 
-## Fórmulas úteis:  
-$\mathbb{E}(T) = \sum_{t=0}^\infty S(t)$  
+Aplicando o modelo log-sobrevivência proporcional:
+\[
+S(t \mid x) = S_0(t)^{g(x)} = \left[ (1 - p)^{t+1}(1 + (t+1)p) \right]^{g(x)}
+\]
 
-$\mathbb{E}(T^2) = \mathbb{E}(T) + 2 \sum_{t=1}^\infty t S(t)$  
+A função de risco discreta é:
+\[
+h(t \mid x) = \frac{S(t \mid x) - S(t+1 \mid x)}{S(t \mid x)}
+\]
 
-Usa-se essas fórmulas quando a distribuição é dada via função de sobrevivência.  
+Como o fator $g(x)$ entra de forma não linear, especialmente em termos como $(1 + (t+1)p)^{g(x)}$, o quociente de riscos depende de $t$.
 
-# 3. Quando a função de risco é dada (ex: $h(t) = 2t$)  
-## Passos para encontrar a distribuição:  
-Calcula $H(t)$ (acumulada da função de risco):  
+\textbf{Conclusão:} O modelo \textbf{não} possui a propriedade de riscos proporcionais.
 
-$H(t) = \int_0^t h(u) \, du$  
+\subsection*{Bônus: Modelo Geométrico possui riscos proporcionais}
 
-Função de sobrevivência:  
+Se $T \sim \text{Geom}(p)$, então:
+\[
+S_0(t) = (1 - p)^{t + 1}
+\]
+Logo:
+\[
+S(t \mid x) = S_0(t)^{g(x)} = (1 - p)^{g(x)(t + 1)}
+\]
 
-$S(t) = e^{-H(t)}$  
+A função de risco discreta é:
+\[
+h(t \mid x) = 1 - \frac{S(t + 1 \mid x)}{S(t \mid x)} = 1 - \frac{(1 - p)^{g(x)(t+2)}}{(1 - p)^{g(x)(t+1)}} = 1 - (1 - p)^{g(x)}
+\]
 
-Função densidade:  
-
-$f(t) = h(t) \cdot S(t)$  
-
-## Probabilidade de sobreviver mais de $a$ anos:  
-$P(T > a) = S(a)$  
-
-## Mediana:  
-Resolver $S(m) = 0.5$ para encontrar o valor $m$.  
-
-## Vida média residual:  
-$v(t) = \frac{1}{S(t)} \int_t^{\infty} S(u) \, du$  
-
-# 4. Comparação de tratamentos via gráficos de $S(t)$  
-## Regras de interpretação:  
-Quanto mais rapidamente a curva de $S(t)$ decresce, menor a chance de sobrevivência.  
-
-O melhor tratamento (mais eficiente para cura):  
-É o que tem menor $S(t)$ (maior probabilidade de cura) mais cedo.  
-
-Para curar até tempo $t^*$:  
-Prefira o tratamento com maior $P(T \leq t^*) = 1 - S(t^*)$.  
-
-# 5. Variável discreta análoga (segundo equação 2.29)  
-## Quando você tem uma v.a. contínua com $S(t)$:  
-Constrói a versão discreta $T_d \in \mathbb{N}_0$:  
-
-Função de probabilidade discreta:  
-
-$P(T_d = t) = S(t) - S(t+1)$  
-
-Função de sobrevivência discreta:  
-
-$S_d(t) = P(T_d > t) = S(t+1)$  
-
-Função de risco discreta:  
-
-$h_d(t) = \frac{P(T_d = t)}{P(T_d \geq t)} = \frac{S(t) - S(t+1)}{S(t)}$  
-
-
-# 6. Funções Fundamentais  
-Dada uma variável aleatória $T$, tempo até um evento:  
-
-Função de sobrevivência:  
-$$S(t) = P(T > t)$$  
-
-Função de risco (hazard):  
-$$h(t) = \frac{f(t)}{S(t)}$$  
-
-Função de risco acumulado (cumulative hazard):  
-$$H(t) = \int_0^t h(u) \, du = -\ln(S(t))$$  
-
-Função vida média residual:  
-$$\nu(t) = \mathbb{E}(T - t \mid T > t) = \frac{1}{S(t)} \int_t^{\infty} S(u) \, du$$  
-
-# 7. Estimadores Não Paramétricos  
-
-## Kaplan-Meier (KM)  
-Define $S(t)$ com base em tempos ordenados de falha $t_1, t_2, \dots, t_k$:  
-$$\hat{S}(t) = \prod_{t_i \leq t} \left( 1 - \frac{d_i}{n_i} \right)$$  
-onde:  
-- $d_i$: número de eventos em $t_i$  
-- $n_i$: número de indivíduos em risco logo antes de $t_i$  
-
-## Nelson-Aalen (NA)  
-Estimativa da função de risco acumulado:  
-$$\hat{H}(t) = \sum_{t_i \leq t} \frac{d_i}{n_i}, \quad \hat{S}(t) = \exp(-\hat{H}(t))$$  
-
-# 8. Intervalos de Confiança  
-
-📎 Intervalo Simétrico (KM):  
-$$\hat{S}(t) \pm z_{\alpha/2} \sqrt{\widehat{\text{Var}}(\hat{S}(t))}$$  
-
-📎 Intervalo via log-log:  
-$$IC: \left[ \exp\left(-\exp\left(\log[-\log \hat{S}(t)] \pm z_{\alpha/2} \sqrt{\widehat{\text{Var}}(U(t))}\right)\right)\right]$$  
-com $U(t) = \log[-\log \hat{S}(t)]$.  
-
-📎 Intervalo para $H(t)$:  
-$$IC_H(t) = \hat{H}(t) \pm z_{\alpha/2} \sqrt{\widehat{\text{Var}}(\hat{H}(t))}$$  
-
-# 9. Quantis e Esperança  
-
-Quantil $p$ de $T$:  
-Resolva $S(t_p) = 1 - p$.  
-
-Esperança (Exponencial):  
-$$\mathbb{E}(T) = \lambda$$  
-
-Para discretas:  
-$$\mathbb{E}(T) = \sum_{t=0}^\infty S(t)$$  
-$$\mathbb{E}(T^2) = \mathbb{E}(T) + 2 \sum_{t=1}^\infty t S(t)$$  
-
-# 10. Distribuição Discreta Análoga (Fórmula 2.29)  
-
-Para $T$ contínua com $S(t)$, define-se uma v.a. discreta $T^*$ com:  
-$$P(T^* = t) = S(t) - S(t+1)$$  
-$$S^*(t) = S(\lfloor t \rfloor)$$  
-$$h^*(t) = \frac{P(T^* = t)}{S^*(t)}$$  
-
-Para Exponencial(\(\lambda\)), $T^* \sim \text{Geom}(p)$, onde $p = 1 - e^{-1/\lambda}$.  
-
-
-# 11. Comparação de Grupos (R)
-
-```{r}	
-#| eval: false
-pacman::p_load(survival)
-```
-
-📊 Logrank Test
-```{r}
-#| eval: false
-survdiff(Surv(tempo, status) ~ grupo, data = dados)
-```
-
-📊 Harrington-Fleming (G-rho family)
-
-```{r}
-#| eval: false
-survdiff(Surv(tempo, status) ~ grupo, data = dados, rho = 1)
-```
-
-📊 Comparações Múltiplas (ex: post-hoc logrank)
-Pairwise logrank com correção de Bonferroni:
-
-```{r}
-#| eval: false
-pairwise_survdiff(Surv(tempo, status) ~ grupo, data = dados, p.adjust.method = "bonferroni")
-```
-
-
-# 12. Estimativas no R com KM e NA
-```{r}
-#| eval: false
-fit_km <- survfit(Surv(tempo, status) ~ grupo, data = dados)
-summary(fit_km)
-
-fit_na <- survfit(Surv(tempo, status) ~ 1, data = dados, type = "fh") # Nelson-Aalen
-```
-
-```{r}
-sample(c(1:33),1)
-```
+\textbf{Conclusão:} A função de risco depende apenas de $x$ (via $g(x)$), e não de $t$. \textbf{Portanto, o modelo geométrico apresenta riscos proporcionais.}

@@ -1,0 +1,16 @@
+---
+title: "Atividade Bônus 2"
+subtitle: "Técnicas Computacionais em Estatística"
+author: "Tailine J. S. Nonato"
+date: today
+date-format: long
+format: pdf
+---
+
+**Exercício**
+
+Considere o modelo de regressão linear dado por
+\[
+Y_t \mid x_t \sim N(\beta_0 + \beta_1 x_t, \sigma^2).
+\]
+Seja \(\phi = 1/\sigma^2\), com \(\beta_0, \beta_1 \sim N(0, 1000)\) e \(\phi \sim \text{Gamma}(0.01, 0.01)\). Obtenha as condicionais completas e desenvolva um algoritmo de Gibbs para estimar os parâmetros. Ilustre a metodologia com os dados `cars` do R, em que `dist` é a variável dependente e `speed` é a variável explicativa. Assuma independência das distribuições a priori.

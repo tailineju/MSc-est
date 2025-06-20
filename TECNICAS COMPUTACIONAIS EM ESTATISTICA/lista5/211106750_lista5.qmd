@@ -37,7 +37,7 @@ $$
 A média da distribuição exponencial é dada por $E[X] = \theta = \frac{1}{\lambda}$, logo o estimador de máxima verossimilhança para a média é:
 
 $$
-\hat{\theta} = \frac{1}{\hat{\lambda}} = \frac{\sum_{i=1}^n X_i}{n}
+\hat{\theta} = \frac{\sum_{i=1}^n X_i}{n} = \frac{1}{\hat{\lambda}} = \frac{\sum_{i=1}^n X_i}{n}
 $$
 
 ```{r}
