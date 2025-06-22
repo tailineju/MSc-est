@@ -9,6 +9,20 @@ format: html
 
 :::: {.panel-tabset}
 
+# Content
+
+| **Tipo de variáveis** | **Fórmula da convolução** |
+|------------------------|----------------------------|
+| Contínuas              | $f_Z(z) = \int_{-\infty}^{\infty} f_X(x)\, f_Y(z - x)\, dx$ |
+| Discretas              | $p_Z(k) = \sum_{j} p_X(j)\, p_Y(k - j)$ |
+| Mista                  | $f_Z(z) = \sum_k \mathbb{P}(X = k)\, f_Y(z - k)$ |
+
+
+
+Para $Y = g(X)$ com $g$ injetora, $f_Y(y) = f_X(g^{-1}(y)) \left| \frac{d}{dy}g^{-1}(y) \right|$.
+
+Para $Z = g_1(X,Y)$ e $W = g_2(X,Y)$, $f_{Z,W}(z,w) = f_{X,Y}(h_1(z,w), h_2(z,w))\, |J(z,w)|$, onde $J$ é o Jacobiano da transformação inversa $(h_1, h_2)$.
+
 # Lista 3
 
 Disclaimer: Feito com NotebookLm, ferramenta de intelgência artificial do Google.

@@ -108,9 +108,39 @@ window.Quarto = {
 
 
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="">Lista 3</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">Lista 4</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="">Content</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">Lista 3</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false" href="">Lista 4</a></li></ul>
 <div class="tab-content">
 <div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 46%">
+<col style="width: 53%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Tipo de variáveis</strong></th>
+<th><strong>Fórmula da convolução</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Contínuas</td>
+<td><span class="math inline">\(f_Z(z) = \int_{-\infty}^{\infty} f_X(x)\, f_Y(z - x)\, dx\)</span></td>
+</tr>
+<tr class="even">
+<td>Discretas</td>
+<td><span class="math inline">\(p_Z(k) = \sum_{j} p_X(j)\, p_Y(k - j)\)</span></td>
+</tr>
+<tr class="odd">
+<td>Mista</td>
+<td><span class="math inline">\(f_Z(z) = \sum_k \mathbb{P}(X = k)\, f_Y(z - k)\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>Para <span class="math inline">\(Y = g(X)\)</span> com <span class="math inline">\(g\)</span> injetora, <span class="math inline">\(f_Y(y) = f_X(g^{-1}(y)) \left| \frac{d}{dy}g^{-1}(y) \right|\)</span>.</p>
+<p>Para <span class="math inline">\(Z = g_1(X,Y)\)</span> e <span class="math inline">\(W = g_2(X,Y)\)</span>, <span class="math inline">\(f_{Z,W}(z,w) = f_{X,Y}(h_1(z,w), h_2(z,w))\, |J(z,w)|\)</span>, onde <span class="math inline">\(J\)</span> é o Jacobiano da transformação inversa <span class="math inline">\((h_1, h_2)\)</span>.</p>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
 <p>Disclaimer: Feito com NotebookLm, ferramenta de intelgência artificial do Google.</p>
 <section id="questão-1" class="level2">
 <h2 class="anchored" data-anchor-id="questão-1">Questão 1</h2>
@@ -749,7 +779,7 @@ f(x) = \begin{cases}
 </ul>
 </section>
 </div>
-<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
 <p>Disclaimer: Feito com NotebookLm, ferramenta de intelgência artificial do Google.</p>
 <section id="questão-1-1" class="level2">
 <h2 class="anchored" data-anchor-id="questão-1-1">Questão 1</h2>
