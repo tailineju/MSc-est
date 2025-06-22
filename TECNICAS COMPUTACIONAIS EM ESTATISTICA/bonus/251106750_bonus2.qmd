@@ -14,3 +14,40 @@ Considere o modelo de regressão linear dado por
 Y_t \mid x_t \sim N(\beta_0 + \beta_1 x_t, \sigma^2).
 \]
 Seja \(\phi = 1/\sigma^2\), com \(\beta_0, \beta_1 \sim N(0, 1000)\) e \(\phi \sim \text{Gamma}(0.01, 0.01)\). Obtenha as condicionais completas e desenvolva um algoritmo de Gibbs para estimar os parâmetros. Ilustre a metodologia com os dados `cars` do R, em que `dist` é a variável dependente e `speed` é a variável explicativa. Assuma independência das distribuições a priori.
+
+### Solução
+
+```{r}
+data(cars)
+y <- cars$dist
+x <- cars$speed
+n <- length(y)
+X <- cbind(1, x)
+
+beta0_media <- c(0, 0)
+beta0_var <- diag(1000, 2)
+beta0_prec <- solve(beta0_var)
+
+a0 <- 0.01
+b0 <- 0.01
+
+B <- 5000
+beta_B <- matrix(0, nrow = B, ncol = 2)
+phi_B <- numeric(B)
+
+beta <- c(0, 0)
+phi <- 1
+
+# Gibbs sampler
+for (i in 1:B) {
+  V_beta <- solve(phi * t(X) %*% X + beta0_prec)
+  m_beta <- V_beta %*% (phi * t(X) %*% y)
+  beta <- mvtnorm::rmvnorm(1, mean = c(m_beta), sigma = V_beta)
+  resid <- y - X %*% t(beta)
+  a_post <- a0 + n / 2
+  b_post <- b0 + 0.5 * sum(resid^2)
+  phi <- rgamma(1, shape = a_post, rate = b_post)
+  beta_B[i, ] <- beta
+  phi_B[i] <- phi
+}
+```

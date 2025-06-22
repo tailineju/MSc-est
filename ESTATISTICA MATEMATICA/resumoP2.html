@@ -1,0 +1,1454 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.24">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Tailine J. S. Nonato">
+<meta name="dcterms.date" content="2025-06-22">
+
+<title>Resumo - Prova 2</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="resumoP2_files/libs/clipboard/clipboard.min.js"></script>
+<script src="resumoP2_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="resumoP2_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="resumoP2_files/libs/quarto-html/popper.min.js"></script>
+<script src="resumoP2_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="resumoP2_files/libs/quarto-html/anchor.min.js"></script>
+<link href="resumoP2_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="resumoP2_files/libs/quarto-html/quarto-syntax-highlighting-a37c72dd2dbac68997fcdc15a3622e78.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="resumoP2_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="resumoP2_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="resumoP2_files/libs/bootstrap/bootstrap-bb462d781dde1847d9e3ccf7736099dd.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="fullcontent quarto-light">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Resumo - Prova 2</h1>
+<p class="subtitle lead">Estatística Matemática</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Tailine J. S. Nonato </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">June 22, 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="">Lista 3</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">Lista 4</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<p>Disclaimer: Feito com NotebookLm, ferramenta de intelgência artificial do Google.</p>
+<section id="questão-1" class="level2">
+<h2 class="anchored" data-anchor-id="questão-1">Questão 1</h2>
+<p>Sejam X e Y variáveis aleatórias independentes com distribuição uniforme em <span class="math inline">\([\theta-0.5, \theta+0.5]\)</span>, <span class="math inline">\(\theta \in R\)</span>. Verifique que a distribuição de X − Y não depende de <span class="math inline">\(\theta\)</span>, encontrando sua densidade.</p>
+<p>Conceitos-Chave: Variáveis aleatórias independentes, Distribuição Uniforme, Transformação de variáveis aleatórias (soma/diferença).</p>
+<p>Método: Utilize o método da convolução para a diferença de duas variáveis aleatórias independentes. Se <span class="math inline">\(X\)</span> e <span class="math inline">\(Y\)</span> são independentes com densidades <span class="math inline">\(f_X(x)\)</span> e <span class="math inline">\(f_Y(y)\)</span>, a densidade de <span class="math inline">\(Z = X - Y\)</span> é dada por <span class="math inline">\(f_Z(z) = \int_{-\infty}^{\infty} f_X(x) f_Y(x-z) dx\)</span>.</p>
+<p><strong>Passos da Solução:</strong></p>
+<ol type="1">
+<li><p>Escreva a densidade de <span class="math inline">\(X\)</span> e <span class="math inline">\(Y\)</span>. Para <span class="math inline">\(X \sim U[\theta-0.5, \theta+0.5]\)</span>, a densidade é <span class="math inline">\(f_X(x) = 1\)</span> para <span class="math inline">\(x \in [\theta-0.5, \theta+0.5]\)</span> e <span class="math inline">\(0\)</span> caso contrário. Similarmente para <span class="math inline">\(Y\)</span>.</p></li>
+<li><p>Aplique a fórmula da convolução. Observe que a duração do intervalo uniforme é 1 para ambas as variáveis.</p></li>
+<li><p>A integração resultará em uma função de <span class="math inline">\(z\)</span> que não contém <span class="math inline">\(\theta\)</span>, verificando assim que a distribuição não depende de <span class="math inline">\(\theta\)</span>.</p></li>
+</ol>
+<p>Resultado Esperado (Rpt): <span class="math inline">\(f_{X-Y}(z) = \begin{cases} 1 + z, &amp; -1 \le z &lt; 0 \ 1 - z, &amp; 0 \le z &lt; 1 \ 0, &amp; \text{caso contrário} \end{cases}\)</span>.</p>
+</section>
+<section id="questão-2" class="level2">
+<h2 class="anchored" data-anchor-id="questão-2">Questão 2</h2>
+<p>Seja X uma variável aleatória cuja função de distribuição F é contínua e invertível na reta. Verifique que a distribuição de Y = F(X) é U.</p>
+<p>Conceitos-Chave: Função de distribuição acumulada (FDA), Transformação de variáveis aleatórias, Distribuição Uniforme.</p>
+<p>Método: Use o método da Função de Distribuição Acumulada para transformações de variáveis aleatórias. Para <span class="math inline">\(Y=g(X)\)</span>, <span class="math inline">\(F_Y(y) = P(Y \le y) = P(g(X) \le y)\)</span>.</p>
+<p>Passos da Solução:</p>
+<ol type="1">
+<li><p>Para <span class="math inline">\(Y = F(X)\)</span>, calcule <span class="math inline">\(F_Y(y) = P(F(X) \le y)\)</span>.</p></li>
+<li><p>Como <span class="math inline">\(F\)</span> é contínua e invertível (e por ser uma FDA, é não-decrescente), você pode aplicar a inversa <span class="math inline">\(F^{-1}\)</span> em ambos os lados da desigualdade: <span class="math inline">\(P(F(X) \le y) = P(X \le F^{-1}(y))\)</span>.</p></li>
+<li><p>Reconheça que <span class="math inline">\(P(X \le F^{-1}(y))\)</span> é, por definição, <span class="math inline">\(F_X(F^{-1}(y))\)</span>. Dado que a variável aleatória é <span class="math inline">\(X\)</span> e sua FDA é <span class="math inline">\(F\)</span>, então <span class="math inline">\(F_X(x) = F(x)\)</span>.</p></li>
+<li><p>Portanto, <span class="math inline">\(F_Y(y) = F(F^{-1}(y)) = y\)</span>. Isso é a FDA da distribuição uniforme contínua em $$.</p></li>
+</ol>
+<p>Insight: Este é um resultado fundamental em simulação, conhecido como o método da transformação inversa, que permite gerar variáveis aleatórias de qualquer distribuição contínua a partir de uma distribuição uniforme.</p>
+</section>
+<section id="questão-3" class="level2">
+<h2 class="anchored" data-anchor-id="questão-3">Questão 3</h2>
+<p>Sejam <span class="math inline">\(X ∼ Poisson(\alpha_1)\)</span> e <span class="math inline">\(Y ∼ Poisson(\alpha_2)\)</span> variáveis aleatórias independentes. Verifique que X + Y ∼ Poisson(<span class="math inline">\(\alpha_1 + \alpha_2\)</span>).</p>
+<p>Conceitos-Chave: Distribuição de Poisson, Variáveis aleatórias independentes, Soma de variáveis aleatórias, Função Característica.</p>
+<p>Método: O método mais eficiente é usar as funções características. A função característica de uma soma de variáveis independentes é o produto de suas funções características.</p>
+<p>Passos da Solução:</p>
+<ol type="1">
+<li><p>Encontre a função característica de uma variável aleatória Poisson. Para <span class="math inline">\(X \sim \text{Poisson}(\lambda)\)</span>, <span class="math inline">\(\varphi_X(t) = e^{\lambda(e^{it}-1)}\)</span>.</p></li>
+<li><p>Use a propriedade de que para variáveis independentes <span class="math inline">\(X\)</span> e <span class="math inline">\(Y\)</span>, <span class="math inline">\(\varphi_{X+Y}(t) = \varphi_X(t)\varphi_Y(t)\)</span>.</p></li>
+<li><p>Substitua e simplifique para mostrar que <span class="math inline">\(\varphi_{X+Y}(t) = e^{(\alpha_1+\alpha_2)(e^{it}-1)}\)</span>.</p></li>
+<li><p>Reconheça esta como a função característica de uma distribuição de Poisson com parâmetro <span class="math inline">\(\alpha_1+\alpha_2\)</span>. A unicidade da função característica garante o resultado.</p></li>
+</ol>
+</section>
+<section id="questão-4" class="level2">
+<h2 class="anchored" data-anchor-id="questão-4">Questão 4</h2>
+<p>Sejam X ∼ N(<span class="math inline">\(\mu_1, \sigma^2_1\)</span>) e Y ∼ N(<span class="math inline">\(\mu_2, \sigma^2_2\)</span>) variáveis aleatórias independentes. Verifique que X + Y ∼ N(<span class="math inline">\(\mu_1 + \mu_2, \sigma^2_1 + \sigma^2_2\)</span>).</p>
+<p>Conceitos-Chave: Distribuição Normal, Variáveis aleatórias independentes, Soma de variáveis aleatórias, Função Característica.</p>
+<p>Método: Similar ao Exercício 3, o método das funções características é o mais direto.</p>
+<p>Passos da Solução:</p>
+<ol type="1">
+<li><p>Encontre a função característica de uma variável aleatória Normal. Para <span class="math inline">\(X \sim N(\mu, \sigma^2)\)</span>, <span class="math inline">\(\varphi_X(t) = e^{i\mu t - \sigma^2 t^2/2}\)</span>.</p></li>
+<li><p>Multiplique as funções características de <span class="math inline">\(X\)</span> e <span class="math inline">\(Y\)</span> devido à independência.</p></li>
+<li><p>O produto resultante será a função característica de uma distribuição Normal com média <span class="math inline">\(\mu_1+\mu_2\)</span> e variância <span class="math inline">\(\sigma^2_1+\sigma^2_2\)</span>.</p></li>
+</ol>
+</section>
+<section id="questão-5" class="level2">
+<h2 class="anchored" data-anchor-id="questão-5">Questão 5</h2>
+<p>Seja G o seguinte triângulo: Suponha que X e Y tenham densidade conjunta <span class="math inline">\(f(x, y) = c\,1_G(x, y)\)</span>.</p>
+<p>Importante: A descrição do triângulo na Lista 3 (Ex. 5) é ambígua e a figura subsequente na fonte é um diamante (Figura 39) para outro exercício (Ex. 29 na Lista 3). Assumindo que o triângulo para o Exercício 5 é a região <span class="math inline">\(0 \le x, y\)</span> e <span class="math inline">\(x+y \le 1\)</span> (com vértices (0,0), (1,0), (0,1)), proceda da seguinte forma:</p>
+<p><strong>Conceitos-Chave:</strong> Densidade conjunta, Densidade marginal, Independência de variáveis aleatórias, Transformação de variáveis (soma).</p>
+<p><strong>Método:</strong> Integração para obter constantes e densidades marginais. Para independência, verifique se <span class="math inline">\(f_{X,Y}(x,y) = f_X(x)f_Y(y)\)</span>. Para a soma, use o método da FDA.</p>
+<p><strong>Passos da Solução:</strong></p>
+<p><strong>(a) Determine o valor da constante c.</strong></p>
+<ol type="1">
+<li>A densidade conjunta deve integrar a 1 sobre a região G. Calcule a área do triângulo (base 1, altura 1). Área <span class="math inline">\(= 1/2\)</span>.</li>
+<li>Portanto, <span class="math inline">\(c \cdot (1/2) = 1 \implies c = 2\)</span>.</li>
+</ol>
+<p><strong>(b) Calcule a distribuição de X, a de Y e a de Z = X + Y.</strong></p>
+<ol type="1">
+<li>Densidade de X: <span class="math inline">\(f_X(x) = \int_{0}^{1-x} c\,dy = c(1-x)\)</span> para <span class="math inline">\(x \in [0,1]\)</span>. Com <span class="math inline">\(c=2\)</span>, <span class="math inline">\(f_X(x) = 2(1-x)\)</span> para <span class="math inline">\(0 \le x \le 1\)</span>.</li>
+<li>Densidade de Y: Similarmente, <span class="math inline">\(f_Y(y) = c(1-y)\)</span> para <span class="math inline">\(y \in [0,1]\)</span>. Com <span class="math inline">\(c=2\)</span>, <span class="math inline">\(f_Y(y) = 2(1-y)\)</span> para <span class="math inline">\(0 \le y \le 1\)</span>.</li>
+<li>Distribuição de Z = X + Y:
+<ul>
+<li>Range de Z: Como <span class="math inline">\(0 \le X,Y\)</span> e <span class="math inline">\(X+Y \le 1\)</span>, <span class="math inline">\(Z\)</span> varia de <span class="math inline">\(0\)</span> a <span class="math inline">\(1\)</span>.</li>
+<li>FDA de Z: <span class="math inline">\(F_Z(z) = P(X+Y \le z) = \iint_{x+y \le z, x \ge 0, y \ge 0} c\,dx\,dy\)</span>. Para <span class="math inline">\(0 \le z \le 1\)</span>, esta é a área de um triângulo menor com catetos <span class="math inline">\(z\)</span>. Área <span class="math inline">\(= z^2/2\)</span>.</li>
+<li><span class="math inline">\(F_Z(z) = c \cdot z^2/2 = 2 \cdot z^2/2 = z^2\)</span> para <span class="math inline">\(0 \le z \le 1\)</span>.</li>
+<li><span class="math inline">\(F_Z(z)=0\)</span> para <span class="math inline">\(z&lt;0\)</span> e <span class="math inline">\(F_Z(z)=1\)</span> para <span class="math inline">\(z \ge 1\)</span>.</li>
+</ul></li>
+</ol>
+<p><strong>(c) X e Y são independentes? Por quê?</strong></p>
+<ol type="1">
+<li>Verifique se <span class="math inline">\(f_{X,Y}(x,y) = f_X(x)f_Y(y)\)</span>.</li>
+<li><span class="math inline">\(2 \ne (2(1-x))(2(1-y)) = 4(1-x)(1-y)\)</span>.</li>
+<li>Além disso, o suporte da densidade conjunta é triangular, enquanto o suporte do produto das marginais seria um quadrado unitário. Variáveis com densidade conjunta em uma região não retangular não podem ser independentes. Portanto, X e Y não são independentes.</li>
+</ol>
+</section>
+<section id="questão-6" class="level2">
+<h2 class="anchored" data-anchor-id="questão-6">Questão 6</h2>
+<p>Se X e Y são as coordenadas de um ponto selecionado, ao acaso, do círculo unitário <span class="math inline">\(\{(x, y) : x^2 + y^2 \le 1\}\)</span>, qual a distribuição da variável aleatória <span class="math inline">\(Z = X^2 + Y^2\)</span>?</p>
+<p><strong>Conceitos-Chave:</strong> Distribuição uniforme em uma região, Transformação de variáveis aleatórias, Método da FDA.</p>
+<p><strong>Método:</strong> Use o método da Função de Distribuição Acumulada. <span class="math inline">\(F_Z(z) = P(Z \le z) = P(X^2+Y^2 \le z)\)</span>.</p>
+<p><strong>Passos da Solução:</strong></p>
+<ol type="1">
+<li>A densidade conjunta de <span class="math inline">\((X,Y)\)</span> é <span class="math inline">\(f_{X,Y}(x,y) = 1/\text{Área}\)</span> sobre o círculo unitário. A área do círculo unitário é <span class="math inline">\(\pi (1)^2 = \pi\)</span>. Então <span class="math inline">\(f_{X,Y}(x,y) = 1/\pi\)</span> para <span class="math inline">\(x^2+y^2 \le 1\)</span>.</li>
+<li>Para <span class="math inline">\(z &lt; 0\)</span>, <span class="math inline">\(F_Z(z)=0\)</span>.</li>
+<li>Para <span class="math inline">\(0 \le z \le 1\)</span>: <span class="math inline">\(P(X^2+Y^2 \le z)\)</span> é a probabilidade de que o ponto <span class="math inline">\((X,Y)\)</span> caia dentro de um círculo de raio <span class="math inline">\(\sqrt{z}\)</span>. A área desse círculo menor é <span class="math inline">\(\pi z\)</span>.</li>
+<li><span class="math inline">\(F_Z(z) = (\pi z) / \pi = z\)</span> para <span class="math inline">\(0 \le z \le 1\)</span>.</li>
+<li>Para <span class="math inline">\(z &gt; 1\)</span>, <span class="math inline">\(F_Z(z)=1\)</span>.</li>
+</ol>
+<p><strong>Resultado Esperado (Rpt):</strong> <span class="math display">\[
+F_Z(z) = \begin{cases}
+0, &amp; z &lt; 0 \\
+z, &amp; 0 \le z &lt; 1 \\
+1, &amp; z &gt; 1
+\end{cases}
+\]</span> Esta é a FDA de uma distribuição uniforme contínua em <span class="math inline">\([0,1]\)</span>.</p>
+</section>
+<section id="questão-7" class="level2">
+<h2 class="anchored" data-anchor-id="questão-7">Questão 7</h2>
+<p>Sejam <span class="math inline">\(X \sim \text{Poisson}(5)\)</span> e <span class="math inline">\(Y \sim U\)</span> variáveis aleatórias independentes. Ache a densidade de <span class="math inline">\(Z = X + Y\)</span>.</p>
+<p><strong>Conceitos-Chave:</strong> Variáveis aleatórias discretas e contínuas, Distribuição de Poisson, Distribuição Uniforme, Convolução (soma de discretas e contínuas).</p>
+<p><strong>Método:</strong> A densidade da soma de uma variável aleatória discreta <span class="math inline">\(X\)</span> e uma contínua <span class="math inline">\(Y\)</span> (independentes) é dada por <span class="math inline">\(f_Z(z) = \sum_{k} P(X=k) f_Y(z-k)\)</span>.</p>
+<p><strong>Passos da Solução:</strong></p>
+<ol type="1">
+<li>A PMF de <span class="math inline">\(X \sim \text{Poisson}(5)\)</span> é <span class="math inline">\(P(X=k) = e^{-5} 5^k / k!\)</span> para <span class="math inline">\(k=0, 1, 2, \dots\)</span>.</li>
+<li>A densidade de <span class="math inline">\(Y \sim U\)</span> é <span class="math inline">\(f_Y(y) = 1\)</span> para <span class="math inline">\(0 \le y \le 1\)</span> e <span class="math inline">\(0\)</span> caso contrário.</li>
+<li><span class="math inline">\(f_Y(z-k)=1\)</span> apenas quando <span class="math inline">\(0 \le z-k \le 1\)</span>, o que implica <span class="math inline">\(k \le z \le k+1\)</span>. Isso significa que para um dado <span class="math inline">\(z\)</span>, apenas um valor inteiro de <span class="math inline">\(k\)</span> (o piso de <span class="math inline">\(z\)</span>, <span class="math inline">\(k=\lfloor z \rfloor\)</span>) contribui para a soma.</li>
+<li>Portanto, para <span class="math inline">\(z &gt; 0\)</span>, <span class="math inline">\(f_Z(z) = P(X = \lfloor z \rfloor) \cdot 1 = e^{-5} 5^{\lfloor z \rfloor} / \lfloor z \rfloor!\)</span>.</li>
+</ol>
+<p><strong>Resultado Esperado (Rpt):</strong> <span class="math display">\[
+f_Z(z) = \begin{cases}
+0, &amp; z &lt; 0 \\
+e^{-5} 5^{\lfloor z \rfloor} / \lfloor z \rfloor!, &amp; z &gt; 0
+\end{cases}
+\]</span></p>
+</section>
+<section id="questão-8" class="level2">
+<h2 class="anchored" data-anchor-id="questão-8">Questão 8</h2>
+<p>Sejam <span class="math inline">\(X \sim N(0, 1)\)</span> e <span class="math inline">\(Y \sim N(0, 1)\)</span> variáveis aleatórias independentes. Verifique que <span class="math inline">\(U = (X + Y)/\sqrt{2}\)</span> e <span class="math inline">\(V = (X - Y)/\sqrt{2}\)</span> também são independentes e <span class="math inline">\(N(0, 1)\)</span>.</p>
+<p><strong>Conceitos-Chave:</strong> Distribuição Normal Padrão, Variáveis aleatórias independentes, Transformação de vetores aleatórios, Método do Jacobiano.</p>
+<p><strong>Método:</strong> Use o método do Jacobiano para transformações de múltiplas variáveis.</p>
+<p><strong>Passos da Solução:</strong></p>
+<ol type="1">
+<li>A densidade conjunta de <span class="math inline">\(X\)</span> e <span class="math inline">\(Y\)</span> é <span class="math inline">\(f_{X,Y}(x,y) = \frac{1}{2\pi} e^{-(x^2+y^2)/2}\)</span>, já que são independentes <span class="math inline">\(N(0,1)\)</span>.</li>
+<li>Expresse <span class="math inline">\(X\)</span> e <span class="math inline">\(Y\)</span> em termos de <span class="math inline">\(U\)</span> e <span class="math inline">\(V\)</span>: <span class="math inline">\(X = (U+V)/\sqrt{2}\)</span> e <span class="math inline">\(Y = (U-V)/\sqrt{2}\)</span>.</li>
+<li>Calcule o Jacobiano da transformação: <span class="math inline">\(|\det| = 1\)</span>.</li>
+<li>Substitua <span class="math inline">\(X\)</span> e <span class="math inline">\(Y\)</span> em <span class="math inline">\(f_{X,Y}(x,y)\)</span> e multiplique por <span class="math inline">\(|J|\)</span>. A soma dos quadrados <span class="math inline">\(x^2+y^2\)</span> se transforma em <span class="math inline">\(u^2+v^2\)</span>.</li>
+<li>A densidade conjunta de <span class="math inline">\(U\)</span> e <span class="math inline">\(V\)</span> será <span class="math inline">\(f_{U,V}(u,v) = \frac{1}{2\pi} e^{-(u^2+v^2)/2}\)</span>.</li>
+<li>Como a densidade conjunta se fatoriza em um produto de densidades marginais <span class="math inline">\(N(0,1)\)</span>, <span class="math inline">\(U\)</span> e <span class="math inline">\(V\)</span> são independentes e ambos seguem uma distribuição <span class="math inline">\(N(0,1)\)</span>.</li>
+</ol>
+</section>
+<section id="questão-9" class="level2">
+<h2 class="anchored" data-anchor-id="questão-9">Questão 9</h2>
+<p>Sejam <span class="math inline">\(X \sim U\)</span> e <span class="math inline">\(Y \sim U\)</span> variáveis aleatórias independentes.</p>
+<p><strong>Conceitos-Chave:</strong> Variáveis aleatórias independentes, Distribuição Uniforme, Transformação de vetores aleatórios, Método do Jacobiano, Independência de variáveis aleatórias.</p>
+<p><strong>Método:</strong> Use o método do Jacobiano. Para a independência, verifique a fatorização da densidade conjunta e/ou a forma do suporte.</p>
+<p><strong>Passos da Solução:</strong></p>
+<p><strong>(a) Ache a densidade conjunta de <span class="math inline">\(W = X + Y\)</span> e <span class="math inline">\(Z = X - Y\)</span>.</strong></p>
+<ol type="1">
+<li>A densidade conjunta de <span class="math inline">\(X\)</span> e <span class="math inline">\(Y\)</span> é <span class="math inline">\(f_{X,Y}(x,y)=1\)</span> para <span class="math inline">\(0 \le x,y \le 1\)</span>.</li>
+<li>As transformações inversas são <span class="math inline">\(X=(W+Z)/2\)</span> e <span class="math inline">\(Y=(W-Z)/2\)</span>.</li>
+<li>O Jacobiano da transformação é <span class="math inline">\(|J|=1/2\)</span>.</li>
+<li>Defina a região de suporte para <span class="math inline">\((W,Z)\)</span> transformando o quadrado unitário <span class="math inline">\([0,1] \times [0,1]\)</span>:
+<ul>
+<li><span class="math inline">\(0 \le (W+Z)/2 \le 1 \implies 0 \le W+Z \le 2\)</span>.</li>
+<li><span class="math inline">\(0 \le (W-Z)/2 \le 1 \implies 0 \le W-Z \le 2\)</span>.</li>
+<li>Isso define um losango (diamante) com vértices (0,0), (1,1), (2,0), (1,-1) no plano <span class="math inline">\((W,Z)\)</span>.</li>
+</ul></li>
+<li>A densidade conjunta de <span class="math inline">\(W\)</span> e <span class="math inline">\(Z\)</span> é <span class="math inline">\(f_{W,Z}(w,z) = 1/2\)</span> sobre a região G definida.</li>
+</ol>
+<p><strong>(b) As variáveis <span class="math inline">\(W\)</span> e <span class="math inline">\(Z\)</span> são independentes?</strong></p>
+<ol type="1">
+<li>Como a região de suporte G para <span class="math inline">\((W,Z)\)</span> não é retangular (é um losango), as variáveis <span class="math inline">\(W\)</span> e <span class="math inline">\(Z\)</span> não são independentes. Para variáveis independentes, o suporte conjunto deve ser um retângulo e a densidade conjunta deve ser o produto das marginais.</li>
+</ol>
+</section>
+<section id="questão-10" class="level2">
+<h2 class="anchored" data-anchor-id="questão-10">Questão 10</h2>
+<p>Suponha que <span class="math inline">\(X \sim U\)</span>. Calcule a densidade de <span class="math inline">\(Y = X^4\)</span> e a de <span class="math inline">\(Z = 1/X\)</span>. As variáveis <span class="math inline">\(Y\)</span> e <span class="math inline">\(Z\)</span> possuem densidade conjunta? Por quê?</p>
+<p><strong>Conceitos-Chave:</strong> Transformação de variáveis aleatórias, Densidade de probabilidade, Distribuições singulares.</p>
+<p><strong>Método:</strong> Use o método da FDA para as densidades marginais. Para a densidade conjunta de funções da mesma variável, considere a dependência funcional.</p>
+<p><strong>Passos da Solução:</strong></p>
+<p><strong>Densidade de <span class="math inline">\(Y = X^4\)</span>:</strong></p>
+<ol type="1">
+<li>Para <span class="math inline">\(y \in [0,1]\)</span>, <span class="math inline">\(F_Y(y) = P(X^4 \le y) = P(X \le y^{1/4}) = y^{1/4}\)</span> (já que <span class="math inline">\(X \sim U\)</span>).</li>
+<li><span class="math inline">\(f_Y(y) = dF_Y(y)/dy = (1/4)y^{-3/4}\)</span> para <span class="math inline">\(y \in (0,1)\)</span> e <span class="math inline">\(0\)</span> caso contrário.</li>
+</ol>
+<p><strong>Densidade de <span class="math inline">\(Z = 1/X\)</span>:</strong></p>
+<ol type="1">
+<li>Para <span class="math inline">\(z \ge 1\)</span> (pois <span class="math inline">\(X \in [0,1]\)</span>), <span class="math inline">\(F_Z(z) = P(1/X \le z) = P(X \ge 1/z) = 1 - P(X &lt; 1/z) = 1 - (1/z)\)</span>.</li>
+<li><span class="math inline">\(f_Z(z) = dF_Z(z)/dz = 1/z^2\)</span> para <span class="math inline">\(z \ge 1\)</span> e <span class="math inline">\(0\)</span> caso contrário.</li>
+</ol>
+<p><strong>Densidade conjunta de <span class="math inline">\(Y\)</span> e <span class="math inline">\(Z\)</span>:</strong></p>
+<ol type="1">
+<li>As variáveis <span class="math inline">\(Y\)</span> e <span class="math inline">\(Z\)</span> são funcionalmente dependentes: <span class="math inline">\(Z = 1/X = 1/(Y^{1/4}) = Y^{-1/4}\)</span>.</li>
+<li>Como <span class="math inline">\(Y\)</span> e <span class="math inline">\(Z\)</span> são funções da mesma variável aleatória <span class="math inline">\(X\)</span>, a distribuição conjunta de <span class="math inline">\((Y,Z)\)</span> reside em uma curva no plano <span class="math inline">\((y,z)\)</span>, ou seja, <span class="math inline">\(z = y^{-1/4}\)</span>.</li>
+<li>Isso significa que a distribuição conjunta é singular e não possui uma densidade conjunta no sentido usual sobre <span class="math inline">\(\mathbb{R}^2\)</span>. A probabilidade de <span class="math inline">\((Y,Z)\)</span> cair em qualquer região de área não-nula que não esteja na curva é 0.</li>
+</ol>
+</section>
+<section id="questão-11" class="level2">
+<h2 class="anchored" data-anchor-id="questão-11">Questão 11</h2>
+<p>Seja X uma variável aleatória possuindo densidade <span class="math inline">\(f(x)\)</span>. Ache a densidade de <span class="math inline">\(Y = |X|\)</span>.</p>
+<p><strong>Conceitos-Chave:</strong> Transformação de variáveis aleatórias, Densidade de probabilidade, Método da FDA.</p>
+<p><strong>Método:</strong> Use o método da Função de Distribuição Acumulada.</p>
+<p><strong>Passos da Solução:</strong> 1. Para <span class="math inline">\(y &lt; 0\)</span>, <span class="math inline">\(F_Y(y) = P(|X| \le y) = 0\)</span>. 2. Para <span class="math inline">\(y \ge 0\)</span>, <span class="math inline">\(F_Y(y) = P(|X| \le y) = P(-y \le X \le y) = F_X(y) - F_X(-y)\)</span> (assumindo <span class="math inline">\(F_X\)</span> contínua nos pontos relevantes). 3. A densidade <span class="math inline">\(f_Y(y) = dF_Y(y)/dy\)</span>. Usando a regra da cadeia, <span class="math inline">\(f_Y(y) = f_X(y) - f_X(-y)(-1) = f_X(y) + f_X(-y)\)</span> para <span class="math inline">\(y &gt; 0\)</span>.</p>
+<p><strong>Resultado Esperado (Rpt):</strong> <span class="math display">\[
+f_Y(y) = \begin{cases}
+f_X(y) + f_X(-y), &amp; y &gt; 0 \\
+0, &amp; \text{caso contrário}
+\end{cases}
+\]</span></p>
+</section>
+<section id="questão-12" class="level2">
+<h2 class="anchored" data-anchor-id="questão-12">Questão 12</h2>
+<p>Sejam <span class="math inline">\(X \sim \exp(\lambda)\)</span> e <span class="math inline">\(Y \sim \exp(\lambda)\)</span> variáveis aleatórias independentes. Verifique que <span class="math inline">\(Z = X/(X + Y) \sim U\)</span>.</p>
+<p><strong>Conceitos-Chave:</strong> Distribuição Exponencial, Variáveis aleatórias independentes, Transformação de vetores aleatórios, Método do Jacobiano.</p>
+<p><strong>Método:</strong> Use o método do Jacobiano. Defina uma segunda variável auxiliar (<span class="math inline">\(W = X+Y\)</span>) para transformar de <span class="math inline">\((X,Y)\)</span> para <span class="math inline">\((Z,W)\)</span>.</p>
+<p><strong>Passos da Solução:</strong> 1. A densidade conjunta de <span class="math inline">\(X\)</span> e <span class="math inline">\(Y\)</span> é <span class="math inline">\(f_{X,Y}(x,y) = \lambda^2 e^{-\lambda(x+y)}\)</span> para <span class="math inline">\(x,y &gt; 0\)</span>. 2. Defina <span class="math inline">\(Z = X/(X+Y)\)</span> e <span class="math inline">\(W = X+Y\)</span>. 3. As transformações inversas são <span class="math inline">\(X = ZW\)</span> e <span class="math inline">\(Y = W(1-Z)\)</span>. 4. Calcule o Jacobiano da transformação: <span class="math inline">\(|J| = w\)</span>. 5. O domínio é <span class="math inline">\(0 &lt; Z &lt; 1\)</span>, <span class="math inline">\(W &gt; 0\)</span>. 6. A densidade conjunta de <span class="math inline">\(Z\)</span> e <span class="math inline">\(W\)</span> é <span class="math inline">\(f_{Z,W}(z,w) = \lambda^2 w e^{-\lambda w}\)</span>. 7. Para obter a densidade marginal de <span class="math inline">\(Z\)</span>, integre <span class="math inline">\(f_{Z,W}(z,w)\)</span> em relação a <span class="math inline">\(w\)</span>: <span class="math inline">\(f_Z(z) = \int_0^\infty \lambda^2 w e^{-\lambda w} dw = 1\)</span>. 8. Portanto, <span class="math inline">\(f_Z(z) = 1\)</span> para <span class="math inline">\(0 &lt; z &lt; 1\)</span> e <span class="math inline">\(0\)</span> caso contrário, que é a densidade de uma distribuição <span class="math inline">\(U\)</span>.</p>
+</section>
+<section id="questão-13" class="level2">
+<h2 class="anchored" data-anchor-id="questão-13">Questão 13</h2>
+<p>Se <span class="math inline">\(X\)</span> possui densidade <span class="math inline">\(f_X(x) = f(x)\)</span>, <span class="math inline">\(-\pi/2 &lt; x &lt; \pi/2\)</span>. Qual a densidade de <span class="math inline">\(Y = \cos(X)\)</span>?</p>
+<p><strong>Conceitos-Chave:</strong> Transformação de variáveis aleatórias, Função não-injetora.</p>
+<p><strong>Método:</strong> Use o método da FDA para <span class="math inline">\(Y=g(X)\)</span>, considerando os dois ramos de <span class="math inline">\(\cos(x)\)</span>.</p>
+<p><strong>Passos da Solução:</strong> 1. Para <span class="math inline">\(y \in (0,1]\)</span>, a equação <span class="math inline">\(y=\cos(x)\)</span> tem duas soluções: <span class="math inline">\(x_1 = -\arccos(y)\)</span> e <span class="math inline">\(x_2 = \arccos(y)\)</span>. 2. O módulo da derivada inversa é <span class="math inline">\(|dx/dy| = 1/\sqrt{1-y^2}\)</span>. 3. A densidade de <span class="math inline">\(Y\)</span> é a soma das contribuições de cada ramo: <span class="math display">\[
+f_Y(y) = \frac{1}{\sqrt{1-y^2}} [f(-\arccos(y)) + f(\arccos(y))]
+\]</span> para <span class="math inline">\(0 &lt; y &lt; 1\)</span>.</p>
+<p><strong>Resultado Esperado (Rpt):</strong> <span class="math display">\[
+f_Y(y) = \begin{cases}
+\frac{1}{\sqrt{1-y^2}} [f(-\arccos(y)) + f(\arccos(y))], &amp; 0 &lt; y &lt; 1 \\
+0, &amp; \text{caso contrário}
+\end{cases}
+\]</span></p>
+</section>
+<section id="questão-14" class="level2">
+<h2 class="anchored" data-anchor-id="questão-14">Questão 14</h2>
+<p>Se <span class="math inline">\(X\)</span> é uma variável aleatória com densidade <span class="math inline">\(f_X(x) = \frac{2x}{\pi^2}\)</span>, <span class="math inline">\(0 &lt; x &lt; \pi\)</span>. Qual a densidade de <span class="math inline">\(Y = \sin(X)\)</span>?</p>
+<p><strong>Conceitos-Chave:</strong> Transformação de variáveis aleatórias, Função não-injetora.</p>
+<p><strong>Método:</strong> Use o método da FDA, considerando os múltiplos ramos da inversa.</p>
+<p><strong>Passos da Solução:</strong> 1. Para <span class="math inline">\(y \in (0,1]\)</span>, as soluções são <span class="math inline">\(x_1 = \arcsin(y)\)</span> e <span class="math inline">\(x_2 = \pi - \arcsin(y)\)</span>. 2. O módulo da derivada inversa é <span class="math inline">\(1/\sqrt{1-y^2}\)</span>. 3. A densidade de <span class="math inline">\(Y\)</span> é: <span class="math display">\[
+f_Y(y) = \frac{2}{\pi^2\sqrt{1-y^2}} [\arcsin(y) + \pi - \arcsin(y)] = \frac{2}{\pi\sqrt{1-y^2}}
+\]</span> para <span class="math inline">\(0 &lt; y &lt; 1\)</span>.</p>
+<p><strong>Resultado Esperado (Rpt):</strong> <span class="math display">\[
+f_Y(y) = \begin{cases}
+\frac{2}{\pi\sqrt{1-y^2}}, &amp; 0 &lt; y &lt; 1 \\
+0, &amp; \text{caso contrário}
+\end{cases}
+\]</span></p>
+</section>
+<section id="questão-15" class="level2">
+<h2 class="anchored" data-anchor-id="questão-15">Questão 15</h2>
+<p>Sejam <span class="math inline">\(X \sim U\)</span> e <span class="math inline">\(Y \sim U\)</span> variáveis aleatórias independentes, e sejam <span class="math inline">\(R = \sqrt{-2 \log(1-X)}\)</span> e <span class="math inline">\(\Theta = \pi(2Y - 1)\)</span>.</p>
+<p><strong>Conceitos-Chave:</strong> Transformação de variáveis aleatórias, Distribuição Uniforme, Distribuição de Rayleigh, Distribuição Normal, Método do Jacobiano (Box-Muller).</p>
+<p><strong>Passos da Solução:</strong></p>
+<ol type="a">
+<li><p>Verifique que <span class="math inline">\(\Theta \sim U[-\pi, \pi]\)</span> e que <span class="math inline">\(R\)</span> tem distribuição de Rayleigh com densidade <span class="math inline">\(f(r) = r e^{-r^2/2}\)</span>, <span class="math inline">\(r &gt; 0\)</span>.</p></li>
+<li><p>Verifique que <span class="math inline">\(Z = R \cos(\Theta)\)</span> e <span class="math inline">\(W = R \sin(\Theta)\)</span> também são independentes e <span class="math inline">\(N(0, 1)\)</span>.</p></li>
+</ol>
+</section>
+<section id="questão-16" class="level2">
+<h2 class="anchored" data-anchor-id="questão-16">Questão 16</h2>
+<p>Sejam <span class="math inline">\(X \sim \text{Gama}(\alpha_1, 1)\)</span> e <span class="math inline">\(Y \sim \text{Gama}(\alpha_2, 1)\)</span> variáveis aleatórias independentes, com <span class="math inline">\(\alpha_1 &gt; 0\)</span> e <span class="math inline">\(\alpha_2 &gt; 0\)</span>. Verifique que <span class="math inline">\(X + Y\)</span> e <span class="math inline">\(X/Y\)</span> são independentes e ache as suas distribuições.</p>
+<p><strong>Conceitos-Chave:</strong> Distribuição Gama, Variáveis aleatórias independentes, Transformação de vetores aleatórios, Método do Jacobiano, Distribuição Beta-prima.</p>
+<p><strong>Passos da Solução:</strong> - <span class="math inline">\(U = X + Y \sim \text{Gama}(\alpha_1+\alpha_2, 1)\)</span> - <span class="math inline">\(V = X/Y\)</span> tem distribuição Beta-prima: <span class="math inline">\(f_V(v) = \frac{\Gamma(\alpha_1+\alpha_2)}{\Gamma(\alpha_1)\Gamma(\alpha_2)} v^{\alpha_1-1} (1+v)^{-(\alpha_1+\alpha_2)}\)</span> - <span class="math inline">\(U\)</span> e <span class="math inline">\(V\)</span> são independentes.</p>
+</section>
+<section id="questão-17" class="level2">
+<h2 class="anchored" data-anchor-id="questão-17">Questão 17</h2>
+<p>Seja <span class="math inline">\((X,Y)\)</span> o vetor aleatório com distribuição uniforme sobre o triângulo <span class="math inline">\(\{(x, y) \in \mathbb{R}^2 : 0 \le x \le y \le 1\}\)</span>; isto é, <span class="math inline">\((X,Y)\)</span> tem função de densidade conjunta <span class="math inline">\(f(x, y) = 2\)</span>, <span class="math inline">\(0 \le x \le y \le 1\)</span>. Determine a densidade de <span class="math inline">\(Z = X + Y\)</span>.</p>
+<p><strong>Resultado Esperado (Rpt):</strong> <span class="math display">\[
+f_Z(z) = \begin{cases}
+z, &amp; 0 \le z \le 1 \\
+2 - z, &amp; 1 \le z \le 2 \\
+0, &amp; \text{caso contrário}
+\end{cases}
+\]</span></p>
+</section>
+<section id="questão-18" class="level2">
+<h2 class="anchored" data-anchor-id="questão-18">Questão 18</h2>
+<p>Suponha que o vetor aleatório <span class="math inline">\((X,Y)\)</span> tem função de densidade conjunta <span class="math inline">\(f(x, y) = e^{-x}\)</span>, <span class="math inline">\(0 \le y \le x &lt; \infty\)</span>.</p>
+<ol type="a">
+<li>Determine a densidade conjunta de <span class="math inline">\(W = X + Y\)</span> e <span class="math inline">\(Z = X - Y\)</span>.</li>
+</ol>
+<ul>
+<li>Transformações inversas: <span class="math inline">\(X = (W+Z)/2\)</span>, <span class="math inline">\(Y = (W-Z)/2\)</span></li>
+<li>Jacobiano: <span class="math inline">\(|J| = 1/2\)</span></li>
+<li>Suporte: <span class="math inline">\(0 \le Z \le W &lt; \infty\)</span></li>
+<li><span class="math inline">\(f_{W,Z}(w,z) = \frac{1}{2} e^{-(w+z)/2}\)</span></li>
+</ul>
+<ol start="2" type="a">
+<li>Densidades marginais:</li>
+</ol>
+<ul>
+<li><span class="math inline">\(f_W(w) = e^{-w/2}(1-e^{-w/2})\)</span> para <span class="math inline">\(w &gt; 0\)</span></li>
+<li><span class="math inline">\(f_Z(z) = e^{-z}\)</span> para <span class="math inline">\(z &gt; 0\)</span></li>
+</ul>
+</section>
+<section id="questão-19" class="level2">
+<h2 class="anchored" data-anchor-id="questão-19">Questão 19</h2>
+<p>A variável aleatória <span class="math inline">\(X\)</span> tem distribuição de Weibull se possui densidade <span class="math inline">\(f(x) = \lambda \alpha x^{\alpha-1} e^{-\lambda x^\alpha}\)</span>, <span class="math inline">\(x &gt; 0\)</span>. Determine <span class="math inline">\(E(X)\)</span>.</p>
+<p><strong>Conceitos-Chave:</strong> Expectância (Esperança Matemática), Densidade de probabilidade.</p>
+<p><strong>Método:</strong> Calcule a esperança pela integral <span class="math inline">\(E[X] = \int_0^\infty x f_X(x) dx\)</span>.</p>
+<p><strong>Passos da Solução:</strong></p>
+<ol type="1">
+<li>Substitua a densidade: <span class="math inline">\(E[X] = \int_0^\infty x (\lambda \alpha x^{\alpha-1} e^{-\lambda x^\alpha}) dx = \int_0^\infty \lambda \alpha x^\alpha e^{-\lambda x^\alpha} dx\)</span>.</li>
+<li>Use a substituição <span class="math inline">\(u = \lambda x^\alpha\)</span>. Então <span class="math inline">\(x = (u/\lambda)^{1/\alpha}\)</span> e <span class="math inline">\(du = \lambda \alpha x^{\alpha-1} dx\)</span>.</li>
+<li>A integral se transforma em <span class="math inline">\(E[X] = \int_0^\infty (u/\lambda)^{1/\alpha} e^{-u} du = \lambda^{-1/\alpha} \int_0^\infty u^{1/\alpha} e^{-u} du\)</span>.</li>
+<li>A integral <span class="math inline">\(\int_0^\infty u^{s-1} e^{-u} du\)</span> é a função Gama <span class="math inline">\(\Gamma(s)\)</span>. Então <span class="math inline">\(\int_0^\infty u^{1/\alpha} e^{-u} du = \Gamma(1/\alpha+1)\)</span>.</li>
+</ol>
+<p><strong>Resultado Esperado (Rpt):</strong> <span class="math inline">\(E(X) = \Gamma(1+1/\alpha)/\lambda^{1/\alpha}\)</span>.</p>
+</section>
+<section id="questão-20" class="level2">
+<h2 class="anchored" data-anchor-id="questão-20">Questão 20</h2>
+<p>Sejam <span class="math inline">\(X \sim U\)</span> e <span class="math inline">\(Y \sim U\)</span> variáveis aleatórias independentes. Calcule <span class="math inline">\(E(Z)\)</span> e <span class="math inline">\(E(W)\)</span>, onde <span class="math inline">\(Z = \min\{X,Y\}\)</span> e <span class="math inline">\(W = \max\{X,Y\}\)</span>.</p>
+<p><strong>Conceitos-Chave:</strong> Ordem estatística, Distribuição Uniforme, Expectância.</p>
+<p><strong>Método:</strong></p>
+<ul>
+<li>Para <span class="math inline">\(Z = \min\{X,Y\}\)</span>:
+<ol type="1">
+<li>A FDA de <span class="math inline">\(Z\)</span> é <span class="math inline">\(F_Z(z) = P(\min\{X,Y\} \le z) = 1 - P(X&gt;z, Y&gt;z)\)</span>.</li>
+<li>Devido à independência, <span class="math inline">\(P(X&gt;z, Y&gt;z) = (1-z)^2\)</span> para <span class="math inline">\(z \in [0,1]\)</span>.</li>
+<li><span class="math inline">\(F_Z(z) = 1 - (1-z)^2 = 2z-z^2\)</span>.</li>
+<li>A densidade <span class="math inline">\(f_Z(z) = dF_Z(z)/dz = 2-2z\)</span> para <span class="math inline">\(z \in [0,1]\)</span>.</li>
+<li><span class="math inline">\(E[Z] = \int_0^1 z(2-2z) dz = 1/3\)</span>.</li>
+</ol></li>
+<li>Para <span class="math inline">\(W = \max\{X,Y\}\)</span>:
+<ol type="1">
+<li>A FDA de <span class="math inline">\(W\)</span> é <span class="math inline">\(F_W(w) = P(\max\{X,Y\} \le w) = w^2\)</span> para <span class="math inline">\(w \in [0,1]\)</span>.</li>
+<li>A densidade <span class="math inline">\(f_W(w) = dF_W(w)/dw = 2w\)</span> para <span class="math inline">\(w \in [0,1]\)</span>.</li>
+<li><span class="math inline">\(E[W] = \int_0^1 w(2w) dw = 2/3\)</span>.</li>
+</ol></li>
+</ul>
+</section>
+<section id="questão-21" class="level2">
+<h2 class="anchored" data-anchor-id="questão-21">Questão 21</h2>
+<p>Um jogador vai lançando uma moeda honesta. Ele para depois de lançar ou duas caras sucessivas ou duas coroas sucessivas. Seja <span class="math inline">\(X\)</span> o número de lançamentos.</p>
+<p><strong>Conceitos-Chave:</strong> Variável aleatória discreta, Espaço amostral, Expectância.</p>
+<p><strong>Método:</strong> Defina a distribuição de probabilidade de <span class="math inline">\(X\)</span> (<span class="math inline">\(p_X(k)\)</span>).</p>
+<p><strong>Passos da Solução:</strong></p>
+<ol type="a">
+<li>Encontre a distribuição de <span class="math inline">\(X\)</span>.</li>
+</ol>
+<ol type="1">
+<li><span class="math inline">\(P(X=2)\)</span>: A sequência pode ser HH ou TT. <span class="math inline">\(P(X=2) = (1/2)^2 + (1/2)^2 = 1/2\)</span>.</li>
+<li><span class="math inline">\(P(X=3)\)</span>: A sequência deve ser THH ou HTT. <span class="math inline">\(P(X=3) = (1/2)^3 + (1/2)^3 = 1/4\)</span>.</li>
+<li><span class="math inline">\(P(X=k)\)</span> para <span class="math inline">\(k &gt; 3\)</span>: A sequência deve alternar até <span class="math inline">\(k-1\)</span> e então o <span class="math inline">\(k\)</span>-ésimo lançamento deve ser igual ao <span class="math inline">\((k-1)\)</span>-ésimo. <span class="math inline">\(p_X(k) = 2 \cdot (1/2)^k = 1/2^{k-1}\)</span> para <span class="math inline">\(k \ge 2\)</span>.</li>
+</ol>
+<ol start="2" type="a">
+<li>Determine <span class="math inline">\(E(X)\)</span>.</li>
+</ol>
+<ol type="1">
+<li><span class="math inline">\(E[X] = \sum_{k=2}^\infty k \cdot p_X(k) = \sum_{k=2}^\infty k \cdot (1/2)^{k-1}\)</span>.</li>
+<li>Usando séries geométricas, <span class="math inline">\(E[X] = 3\)</span>.</li>
+</ol>
+</section>
+<section id="questão-22" class="level2">
+<h2 class="anchored" data-anchor-id="questão-22">Questão 22</h2>
+<p>Uma urna contém 3 bolas numeradas 1, 2, 3. Uma pessoa tira uma bola e a devolve, tira outra e a devolve, continuando até tirar uma bola pela segunda vez. Seja <span class="math inline">\(X\)</span> o número total de retiradas necessárias para obter essa repetição.</p>
+<p><strong>Conceitos-Chave:</strong> Variável aleatória discreta, Probabilidade, Expectância.</p>
+<p><strong>Método:</strong> Defina a distribuição de probabilidade de <span class="math inline">\(X\)</span> (<span class="math inline">\(p_X(k)\)</span>).</p>
+<p><strong>Passos da Solução:</strong></p>
+<ol type="a">
+<li>Encontre a distribuição de <span class="math inline">\(X\)</span>.</li>
+</ol>
+<ul>
+<li><span class="math inline">\(P(X=2) = 1/3\)</span></li>
+<li><span class="math inline">\(P(X=3) = 4/9\)</span></li>
+<li><span class="math inline">\(P(X=4) = 2/9\)</span></li>
+</ul>
+<ol start="2" type="a">
+<li>Determine <span class="math inline">\(E(X)\)</span>.</li>
+</ol>
+<ul>
+<li><span class="math inline">\(E[X] = 2 \cdot (1/3) + 3 \cdot (4/9) + 4 \cdot (2/9) = 26/9\)</span></li>
+</ul>
+</section>
+<section id="questão-23" class="level2">
+<h2 class="anchored" data-anchor-id="questão-23">Questão 23</h2>
+<p>Suponha que a variável aleatória <span class="math inline">\(X\)</span> tenha a seguinte densidade triangular: <span class="math display">\[
+f(x) = \begin{cases}
+1 + x, &amp; -1 \le x \le 0 \\
+1 - x, &amp; 0 &lt; x \le 1 \\
+0, &amp; \text{caso contrário}
+\end{cases}
+\]</span> Calcule <span class="math inline">\(E(X)\)</span> e <span class="math inline">\(Var(X)\)</span>.</p>
+<p><strong>Conceitos-Chave:</strong> Expectância, Variância, Densidade de probabilidade.</p>
+<p><strong>Método:</strong> Use as definições de esperança e variância para variáveis aleatórias contínuas.</p>
+<p><strong>Passos da Solução:</strong></p>
+<ul>
+<li><span class="math inline">\(E[X] = 0\)</span> (simetria)</li>
+<li><span class="math inline">\(Var(X) = 1/6\)</span></li>
+</ul>
+</section>
+<section id="questão-24" class="level2">
+<h2 class="anchored" data-anchor-id="questão-24">Questão 24</h2>
+<p>Encontre as variâncias de <span class="math inline">\(Z\)</span> e <span class="math inline">\(W\)</span> no Exercício 20.</p>
+<p><strong>Conceitos-Chave:</strong> Variância, Ordem estatística, Distribuição Uniforme.</p>
+<p><strong>Método:</strong> Use <span class="math inline">\(Var(X) = E[X^2] - (E[X])^2\)</span>.</p>
+<p><strong>Passos da Solução:</strong></p>
+<ul>
+<li><span class="math inline">\(Var(Z) = 1/18\)</span></li>
+<li><span class="math inline">\(Var(W) = 1/18\)</span></li>
+</ul>
+</section>
+<section id="questão-25" class="level2">
+<h2 class="anchored" data-anchor-id="questão-25">Questão 25</h2>
+<p>Através de experimentos estatísticos, determina-se que a duração de um certo tipo de chamada telefônica satisfaz a relação <span class="math inline">\(P(T &gt; t) = ae^{-\lambda t} + (1 − a)e^{-\xi t}\)</span>, <span class="math inline">\(t &gt; 0\)</span>, com <span class="math inline">\(0 \le a \le 1\)</span>, <span class="math inline">\(\lambda &gt; 0\)</span>, <span class="math inline">\(\xi &gt; 0\)</span>. Encontre a média e a variância de <span class="math inline">\(T\)</span>.</p>
+<p><strong>Conceitos-Chave:</strong> Função de Sobrevivência, Expectância, Variância, Distribuição exponencial.</p>
+<p><strong>Método:</strong> Para variáveis aleatórias não negativas, <span class="math inline">\(E[T] = \int_0^\infty P(T&gt;t) dt\)</span>.</p>
+<p><strong>Passos da Solução:</strong></p>
+<ul>
+<li><span class="math inline">\(E[T] = a/\lambda + (1-a)/\xi\)</span></li>
+<li><span class="math inline">\(Var(T) = 2a/\lambda^2 + 2(1-a)/\xi^2 - (a/\lambda + (1-a)/\xi)^2\)</span></li>
+</ul>
+</section>
+<section id="questão-26" class="level2">
+<h2 class="anchored" data-anchor-id="questão-26">Questão 26</h2>
+<p>Calcule a esperança e a variância da variável aleatória <span class="math inline">\(X\)</span>, com:</p>
+<p><strong>Conceitos-Chave:</strong> Expectância, Variância, Propriedades das distribuições comuns.</p>
+<p><strong>Passos da Solução (Resultados Padrão):</strong></p>
+<ul>
+<li><ol type="a">
+<li><span class="math inline">\(X \sim \text{Poisson}(\lambda)\)</span>: <span class="math inline">\(E[X]=\lambda\)</span>, <span class="math inline">\(Var(X)=\lambda\)</span></li>
+</ol></li>
+<li><ol start="2" type="a">
+<li><span class="math inline">\(X \sim \text{binomial}(n, p)\)</span>: <span class="math inline">\(E[X]=np\)</span>, <span class="math inline">\(Var(X)=np(1-p)\)</span></li>
+</ol></li>
+<li><ol start="3" type="a">
+<li><span class="math inline">\(X \sim N(\mu, \sigma^2)\)</span>: <span class="math inline">\(E[X]=\mu\)</span>, <span class="math inline">\(Var(X)=\sigma^2\)</span></li>
+</ol></li>
+<li><ol start="4" type="a">
+<li><span class="math inline">\(X \sim \text{Gama}(\alpha, \beta)\)</span>: <span class="math inline">\(E[X]=\alpha/\beta\)</span>, <span class="math inline">\(Var(X)=\alpha/\beta^2\)</span></li>
+</ol></li>
+<li><ol start="5" type="a">
+<li><span class="math inline">\(X \sim U[a, b]\)</span>: <span class="math inline">\(E[X]=(a+b)/2\)</span>, <span class="math inline">\(Var(X)=(b-a)^2/12\)</span></li>
+</ol></li>
+</ul>
+</section>
+<section id="questão-27" class="level2">
+<h2 class="anchored" data-anchor-id="questão-27">Questão 27</h2>
+<p>Sejam <span class="math inline">\(X \in \{0, 1\}\)</span> e <span class="math inline">\(Y \in \{0, 1\}\)</span> duas variáveis aleatórias dicotômicas. Se <span class="math inline">\(E(XY) = E(X)E(Y)\)</span>, então <span class="math inline">\(X\)</span> e <span class="math inline">\(Y\)</span> são independentes?</p>
+<p><strong>Conceitos-Chave:</strong> Independência de variáveis aleatórias, Expectância, Covariância.</p>
+<p><strong>Método:</strong> Verifique a definição de independência para todas as combinações de valores.</p>
+<p><strong>Passos da Solução:</strong></p>
+<ul>
+<li>Para variáveis dicotômicas, <span class="math inline">\(E[X] = P(X=1)\)</span>, <span class="math inline">\(E[Y]=P(Y=1)\)</span>, e <span class="math inline">\(E[XY]=P(X=1, Y=1)\)</span>.</li>
+<li>A condição <span class="math inline">\(E[XY] = E[X]E[Y]\)</span> implica independência para todas as combinações.</li>
+</ul>
+<p><strong>Resultado Esperado (Rpt):</strong> Sim, são independentes.</p>
+</section>
+<section id="questão-28" class="level2">
+<h2 class="anchored" data-anchor-id="questão-28">Questão 28</h2>
+<p>Seja <span class="math inline">\(X \sim \text{Bernoulli}(p)\)</span>, <span class="math inline">\(Y = 1-X\)</span> e <span class="math inline">\(Z = XY\)</span>.</p>
+<p><strong>Conceitos-Chave:</strong> Distribuição de Bernoulli, Variável aleatória discreta, Função de probabilidade conjunta, Independência de variáveis aleatórias.</p>
+<p><strong>Método:</strong> Crie tabelas de probabilidade conjunta para as variáveis.</p>
+<p><strong>Passos da Solução:</strong></p>
+<ol type="a">
+<li>Encontre as seguintes funções de probabilidade conjunta: <span class="math inline">\(P(X = x, Y = y)\)</span> e <span class="math inline">\(P(X = x, Z = z)\)</span>, para cada <span class="math inline">\(x, y, z\)</span>.</li>
+</ol>
+<ol type="1">
+<li><p>Para <span class="math inline">\(X \sim \text{Bernoulli}(p)\)</span>, <span class="math inline">\(P(X=1)=p\)</span> e <span class="math inline">\(P(X=0)=1-p\)</span>.</p></li>
+<li><p><span class="math inline">\(P(X=x, Y=y)\)</span>:</p>
+<ul>
+<li>Se <span class="math inline">\(X=1\)</span>, então <span class="math inline">\(Y=0\)</span>. <span class="math inline">\(P(X=1, Y=0) = P(X=1) = p\)</span>.</li>
+<li>Se <span class="math inline">\(X=0\)</span>, então <span class="math inline">\(Y=1\)</span>. <span class="math inline">\(P(X=0, Y=1) = P(X=0) = 1-p\)</span>.</li>
+<li>Todas as outras combinações têm probabilidade 0.</li>
+</ul>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>X</th>
+<th>Y</th>
+<th><span class="math inline">\(P(X, Y)\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>0</td>
+<td>1</td>
+<td><span class="math inline">\(1-p\)</span></td>
+</tr>
+<tr class="odd">
+<td>1</td>
+<td>0</td>
+<td><span class="math inline">\(p\)</span></td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>1</td>
+<td>0</td>
+</tr>
+</tbody>
+</table></li>
+<li><p><span class="math inline">\(P(X=x, Z=z)\)</span>:</p>
+<ul>
+<li><span class="math inline">\(Y=1-X\)</span>, então <span class="math inline">\(Z=XY = X(1-X)\)</span>. Se <span class="math inline">\(X=1\)</span>, <span class="math inline">\(Z=0\)</span>; se <span class="math inline">\(X=0\)</span>, <span class="math inline">\(Z=0\)</span>. Portanto, <span class="math inline">\(Z\)</span> é sempre 0.</li>
+<li><span class="math inline">\(P(X=0, Z=0) = 1-p\)</span>.</li>
+<li><span class="math inline">\(P(X=1, Z=0) = p\)</span>.</li>
+<li>Todas as outras combinações têm probabilidade 0.</li>
+</ul>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>X</th>
+<th>Z</th>
+<th><span class="math inline">\(P(X, Z)\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>0</td>
+<td><span class="math inline">\(1-p\)</span></td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>0</td>
+<td><span class="math inline">\(p\)</span></td>
+</tr>
+</tbody>
+</table></li>
+</ol>
+<ol start="2" type="a">
+<li><span class="math inline">\(X\)</span> e <span class="math inline">\(Y\)</span> são independentes?</li>
+</ol>
+<ul>
+<li>Verifique se <span class="math inline">\(P(X=x, Y=y) = P(X=x)P(Y=y)\)</span>.</li>
+<li>Por exemplo, <span class="math inline">\(P(X=0, Y=0) = 0\)</span>, mas <span class="math inline">\(P(X=0)P(Y=0) = (1-p)p\)</span>.</li>
+<li>Como <span class="math inline">\(0 \ne (1-p)p\)</span> (para <span class="math inline">\(p \in (0,1)\)</span>), <span class="math inline">\(X\)</span> e <span class="math inline">\(Y\)</span> não são independentes.</li>
+</ul>
+<ol start="3" type="a">
+<li><span class="math inline">\(X\)</span> e <span class="math inline">\(Z\)</span> são independentes?</li>
+</ol>
+<ul>
+<li><span class="math inline">\(P(Z=0) = 1\)</span> (pois <span class="math inline">\(Z\)</span> só pode ser 0).</li>
+<li><span class="math inline">\(P(X=0, Z=0) = 1-p\)</span> e <span class="math inline">\(P(X=0)P(Z=0) = (1-p)\cdot 1 = 1-p\)</span>.</li>
+<li><span class="math inline">\(P(X=1, Z=0) = p\)</span> e <span class="math inline">\(P(X=1)P(Z=0) = p\cdot 1 = p\)</span>.</li>
+<li>Portanto, <span class="math inline">\(X\)</span> e <span class="math inline">\(Z\)</span> são independentes.</li>
+</ul>
+</section>
+<section id="questão-29" class="level2">
+<h2 class="anchored" data-anchor-id="questão-29">Questão 29</h2>
+<p>Seja <span class="math inline">\((X,Y)\)</span> uniformemente distribuído na região <span class="math inline">\(G\)</span> dada na seguinte figura: (Assume Figura 39 - diamante)</p>
+<p><strong>Conceitos-Chave:</strong> Densidade uniforme conjunta, Densidades marginais, Covariância.</p>
+<p><strong>Ambiguidade:</strong> A “seguinte figura” referida na Lista 3 (Ex. 29) é a Figura 39 no livro-texto, que é uma região em forma de diamante com vértices <span class="math inline">\((-1,0)\)</span>, <span class="math inline">\((0,1)\)</span>, <span class="math inline">\((1,0)\)</span>, <span class="math inline">\((0,-1)\)</span>. A área dessa região é 2. Portanto, a densidade uniforme <span class="math inline">\(f_{X,Y}(x,y) = 1/2\)</span> sobre <span class="math inline">\(G\)</span>. Contraditoriamente, os resultados (Rpt) para as densidades marginais <span class="math inline">\(f_X(x)\)</span> e <span class="math inline">\(f_Y(y)\)</span> implicam uma região de suporte diferente, não uniforme ou não correspondente ao diamante. Este guia seguirá o que a figura 39 indica para o cálculo da constante <span class="math inline">\(c\)</span> e da Covariância, e notará a inconsistência com as marginais fornecidas na Rpt.</p>
+<p><strong>Passos da Solução:</strong></p>
+<ul>
+<li><strong>Área da Região <span class="math inline">\(G\)</span> (Figura 39):</strong> A região é um diamante, com diagonais de comprimento 2. A área é <span class="math inline">\(1/2 \cdot d_1 \cdot d_2 = 1/2 \cdot 2 \cdot 2 = 2\)</span>.</li>
+<li><strong>Constante <span class="math inline">\(c\)</span>:</strong> Se a distribuição é uniforme, <span class="math inline">\(c = 1/\text{Área} = 1/2\)</span>.</li>
+</ul>
+<p><strong>(a) Encontre as densidades marginais de <span class="math inline">\(X\)</span> e <span class="math inline">\(Y\)</span>.</strong></p>
+<ol type="1">
+<li>Densidade de <span class="math inline">\(X\)</span>: <span class="math inline">\(f_X(x) = \int_{-(1-|x|)}^{1-|x|} (1/2) dy = (1/2) \cdot [y]_{-(1-|x|)}^{1-|x|} = (1/2) \cdot (1-|x| - (-(1-|x|))) = (1/2) \cdot 2(1-|x|) = 1-|x|\)</span> para <span class="math inline">\(x \in [-1,1]\)</span> e <span class="math inline">\(0\)</span> caso contrário.</li>
+<li>Densidade de <span class="math inline">\(Y\)</span>: Devido à simetria do diamante, <span class="math inline">\(f_Y(y)\)</span> é idêntica a <span class="math inline">\(f_X(x)\)</span>: <span class="math inline">\(f_Y(y) = 1-|y|\)</span> para <span class="math inline">\(y \in [-1,1]\)</span> e <span class="math inline">\(0\)</span> caso contrário.</li>
+<li><strong>Inconsistência:</strong> O Rpt para <span class="math inline">\(f_X(x)\)</span> e <span class="math inline">\(f_Y(y)\)</span> são diferentes destas, sugerindo que a figura ou o tipo de densidade uniforme não são os que o Rpt usa. No entanto, para o cálculo da Covariância, o valor 0 é consistente com a simetria da região diamante.</li>
+</ol>
+<p><strong>(b) Ache <span class="math inline">\(\mathrm{Cov}(X,Y)\)</span>.</strong></p>
+<ol type="1">
+<li><span class="math inline">\(\mathrm{Cov}(X,Y) = E[XY] - E[X]E[Y]\)</span>.</li>
+<li>Devido à simetria da região <span class="math inline">\(G\)</span> em torno de ambos os eixos e o fato de <span class="math inline">\(f_{X,Y}(x,y)\)</span> ser uniforme (constante), <span class="math inline">\(E[X]=0\)</span> e <span class="math inline">\(E[Y]=0\)</span>.</li>
+<li><span class="math inline">\(E[XY] = \iint_G xy \cdot (1/2) dx dy\)</span>. Devido à simetria da região <span class="math inline">\(G\)</span> e o comportamento da função <span class="math inline">\(g(x,y)=xy\)</span> (que é positiva nos quadrantes I e III e negativa nos quadrantes II e IV), a integral de <span class="math inline">\(xy\)</span> sobre o diamante será 0.</li>
+<li>Portanto, <span class="math inline">\(E[XY]=0\)</span>.</li>
+<li><span class="math inline">\(\mathrm{Cov}(X,Y) = 0 - 0 \cdot 0 = 0\)</span>.</li>
+</ol>
+</section>
+<section id="questão-30" class="level2">
+<h2 class="anchored" data-anchor-id="questão-30">Questão 30</h2>
+<p>Sejam <span class="math inline">\(X \sim U\)</span> e <span class="math inline">\(Y \sim U\)</span> variáveis aleatórias independentes, e sejam <span class="math inline">\(X_{(1)} = \min\{X,Y\}\)</span>, <span class="math inline">\(X_{(2)} = \max\{X,Y\}\)</span>. Determine o coeficiente de correlação <span class="math inline">\(\rho_{X_{(1)},X_{(2)}}\)</span>.</p>
+<p><strong>Conceitos-Chave:</strong> Ordem estatística, Distribuição Uniforme, Coeficiente de Correlação.</p>
+<p><strong>Método:</strong> Use a definição do coeficiente de correlação: <span class="math inline">\(\rho_{A,B} = \mathrm{Cov}(A,B) / (\sigma_A \sigma_B)\)</span>.</p>
+<p><strong>Passos da Solução:</strong></p>
+<ol type="1">
+<li>No Exercício 20, calculamos:
+<ul>
+<li><span class="math inline">\(E[X_{(1)}] = 1/3\)</span> e <span class="math inline">\(E[X_{(2)}] = 2/3\)</span>.</li>
+<li><span class="math inline">\(\mathrm{Var}(X_{(1)}) = 1/18\)</span> e <span class="math inline">\(\mathrm{Var}(X_{(2)}) = 1/18\)</span>.</li>
+</ul></li>
+<li>Calculamos <span class="math inline">\(\mathrm{Cov}(X_{(1)}, X_{(2)})\)</span>. Note que <span class="math inline">\(X_{(1)}X_{(2)} = \min\{X,Y\}\max\{X,Y\} = XY\)</span>.</li>
+<li>Como <span class="math inline">\(X\)</span> e <span class="math inline">\(Y\)</span> são independentes e <span class="math inline">\(U\)</span>, <span class="math inline">\(E[XY] = E[X]E[Y] = (1/2)(1/2) = 1/4\)</span>.</li>
+<li><span class="math inline">\(\mathrm{Cov}(X_{(1)}, X_{(2)}) = E[X_{(1)}X_{(2)}] - E[X_{(1)}]E[X_{(2)}] = 1/4 - (1/3)(2/3) = 1/4 - 2/9 = (9-8)/36 = 1/36\)</span>.</li>
+<li><span class="math inline">\(\rho_{X_{(1)}, X_{(2)}} = \frac{1/36}{\sqrt{1/18 \cdot 1/18}} = \frac{1/36}{1/18} = 1/2\)</span>.</li>
+</ol>
+</section>
+<section id="questão-31" class="level2">
+<h2 class="anchored" data-anchor-id="questão-31">Questão 31</h2>
+<p>Sejam <span class="math inline">\(X,Y\)</span> e <span class="math inline">\(Z\)</span> variáveis aleatórias independentes com distribuição comum <span class="math inline">\(U\)</span>. Determine a esperança e a variância de <span class="math inline">\(W = (X + Y)Z\)</span>.</p>
+<p><strong>Conceitos-Chave:</strong> Variáveis aleatórias independentes, Expectância de funções de variáveis aleatórias, Variância de funções de variáveis aleatórias.</p>
+<p><strong>Método:</strong> Use as propriedades de linearidade da esperança e da independência para simplificar os cálculos.</p>
+<p><strong>Passos da Solução:</strong></p>
+<ul>
+<li><span class="math inline">\(E(W)\)</span>:
+<ol type="1">
+<li><span class="math inline">\(W = (X+Y)Z\)</span>. Como <span class="math inline">\(Z\)</span> é independente de <span class="math inline">\((X+Y)\)</span>, <span class="math inline">\(E[W] = E[(X+Y)Z] = E[X+Y]E[Z]\)</span>.</li>
+<li>Como <span class="math inline">\(X\)</span> e <span class="math inline">\(Y\)</span> são independentes, <span class="math inline">\(E[X+Y] = E[X]+E[Y]\)</span>.</li>
+<li>Para <span class="math inline">\(X,Y,Z \sim U\)</span>, <span class="math inline">\(E[X]=E[Y]=E[Z]=1/2\)</span>.</li>
+<li><span class="math inline">\(E[W] = (1/2+1/2) \cdot (1/2) = 1 \cdot (1/2) = 1/2\)</span>.</li>
+</ol></li>
+<li><span class="math inline">\(\mathrm{Var}(W)\)</span>:
+<ol type="1">
+<li><span class="math inline">\(\mathrm{Var}(W) = E[W^2] - (E[W])^2 = E[(X+Y)^2Z^2] - (1/2)^2\)</span>.</li>
+<li>Como <span class="math inline">\(Z\)</span> é independente de <span class="math inline">\((X+Y)\)</span>, <span class="math inline">\(E[(X+Y)^2Z^2] = E[(X+Y)^2]E[Z^2]\)</span>.</li>
+<li>Para <span class="math inline">\(Z \sim U\)</span>, <span class="math inline">\(E[Z^2] = \int_0^1 z^2 \cdot 1 dz = 1/3\)</span>.</li>
+<li><span class="math inline">\(E[(X+Y)^2] = E[X^2+2XY+Y^2]\)</span>. Como <span class="math inline">\(X,Y\)</span> são independentes, <span class="math inline">\(E[XY]=E[X]E[Y]\)</span>.</li>
+<li><span class="math inline">\(E[X^2] = \int_0^1 x^2 \cdot 1 dx = 1/3\)</span>, e <span class="math inline">\(E[Y^2]=1/3\)</span>.</li>
+<li><span class="math inline">\(E[(X+Y)^2] = E[X^2]+2E[X]E[Y]+E[Y^2] = 1/3 + 2(1/2)(1/2) + 1/3 = 1/3 + 1/2 + 1/3 = 7/6\)</span>.</li>
+<li><span class="math inline">\(\mathrm{Var}(W) = (7/6)(1/3) - (1/2)^2 = 7/18 - 1/4 = (14-9)/36 = 5/36\)</span>.</li>
+</ol></li>
+</ul>
+</section>
+<section id="questão-32" class="level2">
+<h2 class="anchored" data-anchor-id="questão-32">Questão 32</h2>
+<p>Seja <span class="math inline">\(\rho\)</span> o coeficiente de correlação entre as variáveis aleatórias <span class="math inline">\(X\)</span> e <span class="math inline">\(Y\)</span>. Se <span class="math inline">\(Z = aX + b\)</span> e <span class="math inline">\(W = cY + d\)</span>, com <span class="math inline">\(a \ne 0\)</span> e <span class="math inline">\(c \ne 0\)</span>, calcule <span class="math inline">\(\rho_{Z,W}\)</span>.</p>
+<p><strong>Conceitos-Chave:</strong> Coeficiente de Correlação, Propriedades de Covariância e Variância sob transformações lineares.</p>
+<p><strong>Método:</strong> Use as propriedades de <span class="math inline">\(\mathrm{Cov}(aX+b, cY+d) = ac\,\mathrm{Cov}(X,Y)\)</span> e <span class="math inline">\(\sigma_{aX+b} = |a|\sigma_X\)</span>.</p>
+<p><strong>Passos da Solução:</strong></p>
+<ol type="1">
+<li><span class="math inline">\(\mathrm{Cov}(Z,W) = \mathrm{Cov}(aX+b, cY+d) = ac\,\mathrm{Cov}(X,Y)\)</span>.</li>
+<li><span class="math inline">\(\sigma_Z = \sqrt{\mathrm{Var}(aX+b)} = \sqrt{a^2\mathrm{Var}(X)} = |a|\sigma_X\)</span>.</li>
+<li><span class="math inline">\(\sigma_W = \sqrt{\mathrm{Var}(cY+d)} = \sqrt{c^2\mathrm{Var}(Y)} = |c|\sigma_Y\)</span>.</li>
+<li><span class="math inline">\(\rho_{Z,W} = \frac{\mathrm{Cov}(Z,W)}{\sigma_Z \sigma_W} = \frac{ac\,\mathrm{Cov}(X,Y)}{|a|\sigma_X |c|\sigma_Y} = \frac{ac}{|a||c|} \frac{\mathrm{Cov}(X,Y)}{\sigma_X \sigma_Y} = \text{sgn}(ac) \rho_{X,Y}\)</span>.</li>
+</ol>
+<p><strong>Resultado Esperado (Rpt):</strong> <span class="math inline">\(\rho_{Z,W} = \rho\)</span>. Este resultado implica que <span class="math inline">\(a\)</span> e <span class="math inline">\(c\)</span> têm o mesmo sinal (ou seja, <span class="math inline">\(ac &gt; 0\)</span>), de modo que <span class="math inline">\(\text{sgn}(ac)=1\)</span>. Se tivessem sinais opostos, o coeficiente de correlação seria <span class="math inline">\(-\rho\)</span>.</p>
+</section>
+<section id="questão-33" class="level2">
+<h2 class="anchored" data-anchor-id="questão-33">Questão 33</h2>
+<p>Sejam <span class="math inline">\(U\)</span>, <span class="math inline">\(T\)</span> e <span class="math inline">\(X\)</span> três variáveis aleatórias (absolutamente) contínuas e não negativas. Denote por <span class="math inline">\(G_U\)</span> e <span class="math inline">\(f_T\)</span> as correspondentes funções de distribuição acumulada e de densidade para <span class="math inline">\(U\)</span> e <span class="math inline">\(T\)</span>. Para <span class="math inline">\(X\)</span> defina a função real <span class="math inline">\(F_X\)</span> como segue:</p>
+<p><strong>Conceitos-Chave:</strong> Função de Distribuição Acumulada (FDA), Expectância, Desigualdade de Markov.</p>
+<p><strong>Método:</strong></p>
+<ul>
+<li><ol type="a">
+<li>Verifique que <span class="math inline">\(F_X\)</span> é a função de distribuição acumulada de <span class="math inline">\(X\)</span>.</li>
+</ol>
+<ol type="1">
+<li>Verifique as propriedades de uma FDA: não-decrescente, limite para <span class="math inline">\(-\infty\)</span> é 0, limite para <span class="math inline">\(+\infty\)</span> é 1, e continuidade à direita.</li>
+<li><span class="math inline">\(F_X(x) = \int_0^{G_U(x)/(1-G_U(x))} f_T(t) dt\)</span> para <span class="math inline">\(x &gt; 0\)</span> e <span class="math inline">\(0\)</span> para <span class="math inline">\(x \le 0\)</span>.</li>
+<li>Note que <span class="math inline">\(G_U(x)\)</span> é a FDA de <span class="math inline">\(U\)</span>.</li>
+</ol></li>
+<li><ol start="2" type="a">
+<li>Se além do mais, <span class="math inline">\(E(T) &lt; \infty\)</span>, <span class="math inline">\(E(U^p) &lt; \infty\)</span>, <span class="math inline">\(\forall p &gt; 0\)</span>, e existe <span class="math inline">\(a &gt; 0\)</span> tal que <span class="math inline">\(G_U(a) &gt; 0\)</span>, verifique que <span class="math inline">\(E(X^p) &lt;\infty\)</span>.</li>
+</ol>
+<ol type="1">
+<li>Dica do Rpt: Use a Desigualdade de Markov. A Desigualdade de Markov afirma que para uma variável aleatória não-negativa <span class="math inline">\(X\)</span> e <span class="math inline">\(a &gt; 0\)</span>, <span class="math inline">\(P(X \ge a) \le E[X]/a\)</span>.</li>
+<li>A ideia é usar as informações dadas sobre <span class="math inline">\(E[T]\)</span> e <span class="math inline">\(E[U^p]\)</span> para mostrar que <span class="math inline">\(E[X^p]\)</span> é finito. Este é um problema mais avançado, que provavelmente requer a aplicação de teoremas de convergência ou técnicas de integração mais complexas, dada a natureza da definição de <span class="math inline">\(F_X(x)\)</span>.</li>
+</ol></li>
+</ul>
+</section>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<p>Disclaimer: Feito com NotebookLm, ferramenta de intelgência artificial do Google.</p>
+<section id="questão-1-1" class="level2">
+<h2 class="anchored" data-anchor-id="questão-1-1">Questão 1</h2>
+<ol type="1">
+<li>Sejam <span class="math inline">\(X_1\)</span> e <span class="math inline">\(X_2\)</span> variáveis aleatórias independentes com distribuição geométrica de parâmetro <span class="math inline">\(0 &lt; p &lt; 1\)</span>: <span class="math inline">\(P(X_i = k) = p(1−p)^k\)</span>, <span class="math inline">\(k = 0, 1, 2, \dots\)</span>; <span class="math inline">\(i = 1, 2\)</span>.</li>
+</ol>
+<ol type="a">
+<li><p>Calcule <span class="math inline">\(P(X_1 = X_2)\)</span> e <span class="math inline">\(P(X_1 &lt; X_2)\)</span>.</p></li>
+<li><p>Determine a distribuição condicional de <span class="math inline">\(X_1\)</span> dada <span class="math inline">\(X_1 + X_2\)</span>.</p></li>
+</ol>
+<p><strong>Resposta:</strong></p>
+<ol type="a">
+<li><span class="math inline">\(P(X_1 = X_2) = \dfrac{p}{2-p}\)</span> e <span class="math inline">\(P(X_1 &lt; X_2) = \dfrac{1-p}{2-p}\)</span>.</li>
+</ol>
+<p>Para calcular <span class="math inline">\(P(X_1 = X_2)\)</span>, usamos a lei da probabilidade total, somando sobre todos os valores possíveis de <span class="math inline">\(k\)</span>: <span class="math display">\[
+P(X_1 = X_2) = \sum_{k=0}^{\infty} P(X_1 = k, X_2 = k) = \sum_{k=0}^{\infty} [p(1-p)^k]^2 = p^2 \sum_{k=0}^{\infty} (1-p)^{2k}
+\]</span> Esta é uma série geométrica de razão <span class="math inline">\(r = (1-p)^2\)</span>: <span class="math display">\[
+\sum_{k=0}^{\infty} r^k = \frac{1}{1-r}
+\]</span> Logo, <span class="math display">\[
+P(X_1 = X_2) = p^2 \cdot \frac{1}{1-(1-p)^2} = p^2 \cdot \frac{1}{2p-p^2} = \frac{p}{2-p}
+\]</span></p>
+<p>Para <span class="math inline">\(P(X_1 &lt; X_2)\)</span>: <span class="math display">\[
+P(X_1 &lt; X_2) = \sum_{k_1=0}^{\infty} P(X_1 = k_1) P(X_2 &gt; k_1)
+\]</span> A probabilidade <span class="math inline">\(P(X_2 &gt; k_1) = (1-p)^{k_1+1}\)</span>, então: <span class="math display">\[
+P(X_1 &lt; X_2) = \sum_{k_1=0}^{\infty} p(1-p)^{k_1} (1-p)^{k_1+1} = p(1-p) \sum_{k_1=0}^{\infty} (1-p)^{2k_1}
+\]</span> <span class="math display">\[
+= p(1-p) \cdot \frac{1}{1-(1-p)^2} = \frac{1-p}{2-p}
+\]</span></p>
+<ol start="2" type="a">
+<li><span class="math inline">\(X_1|X_1 + X_2 = n \sim UD\{0, 1, \dots, n\}\)</span> (Uniforme Discreta).</li>
+</ol>
+<p>Para determinar <span class="math inline">\(P(X_1 = k | X_1 + X_2 = n)\)</span>: <span class="math display">\[
+P(X_1 = k | X_1 + X_2 = n) = \frac{P(X_1 = k, X_2 = n-k)}{P(X_1 + X_2 = n)}
+\]</span> <span class="math display">\[
+= \frac{p(1-p)^k \cdot p(1-p)^{n-k}}{(n+1)p^2(1-p)^n} = \frac{1}{n+1}
+\]</span> para <span class="math inline">\(k = 0, 1, \dots, n\)</span>.</p>
+</section>
+<section id="questão-2-1" class="level2">
+<h2 class="anchored" data-anchor-id="questão-2-1">Questão 2</h2>
+<p>Uma certa lâmpada tem uma vida, em horas, seguindo uma distribuição exponencial de parâmetro <span class="math inline">\(\lambda = 1\)</span>. Um jogador acende a lâmpada e, enquanto a lâmpada ainda estiver acesa, lança um dado equilibrado de 15 em 15 segundos. Qual o número esperado de 3’s lançados pelo jogador até a lâmpada se apagar?</p>
+<p><strong>Resposta:</strong> Seja <span class="math inline">\(X\)</span> o número total de 3’s lançados pelo jogador até a lâmpada se apagar. Logo, <span class="math inline">\(E(X) = 40\)</span>.</p>
+<p>A vida da lâmpada <span class="math inline">\(T \sim \exp(1)\)</span>. O tempo esperado de vida é <span class="math inline">\(E[T] = 1\)</span> hora. O jogador lança o dado a cada 15 segundos, ou seja, 240 vezes por hora. A chance de sair ‘3’ em cada lançamento é <span class="math inline">\(1/6\)</span>. Assim, a taxa de ‘3s’ por hora é <span class="math inline">\(240 \times (1/6) = 40\)</span>. O número esperado de ‘3s’ é <span class="math inline">\(E[X] = 40 \cdot E[T] = 40 \cdot 1 = 40\)</span>.</p>
+</section>
+<section id="questão-3-1" class="level2">
+<h2 class="anchored" data-anchor-id="questão-3-1">Questão 3</h2>
+<p>Sejam <span class="math inline">\(X \sim \mathrm{Bin}(m, p)\)</span> e <span class="math inline">\(Y \sim \mathrm{Bin}(n, p)\)</span> variáveis aleatórias independentes. Obtenha a distribuição condicional de <span class="math inline">\(X\)</span> dada <span class="math inline">\(X + Y\)</span>. Qual o nome desta distribuição?</p>
+<p><strong>Resposta:</strong> <span class="math inline">\(X|X + Y = r \sim \mathrm{Hgeo}(m, m+n, r)\)</span> (Hipergeométrica).</p>
+<p>A distribuição condicional é: <span class="math display">\[
+P(X = k | X+Y = r) = \frac{\binom{m}{k} \binom{n}{r-k}}{\binom{m+n}{r}}
+\]</span></p>
+</section>
+<section id="questão-4-1" class="level2">
+<h2 class="anchored" data-anchor-id="questão-4-1">Questão 4</h2>
+<p>Sejam <span class="math inline">\(X \sim \mathrm{Poisson}(\lambda_1)\)</span> e <span class="math inline">\(Y \sim \mathrm{Poisson}(\lambda_2)\)</span> variáveis aleatórias independentes. Obtenha a distribuição condicional de <span class="math inline">\(X\)</span> dada <span class="math inline">\(X + Y\)</span>. Qual o nome desta distribuição?</p>
+<p><strong>Resposta:</strong> <span class="math inline">\(X|X + Y = n \sim \mathrm{Bin}(n, \lambda_1/(\lambda_1+\lambda_2))\)</span> (Binomial).</p>
+<p>A distribuição condicional é: <span class="math display">\[
+P(X = k | X+Y = n) = \binom{n}{k} \left(\frac{\lambda_1}{\lambda_1+\lambda_2}\right)^k \left(\frac{\lambda_2}{\lambda_1+\lambda_2}\right)^{n-k}
+\]</span> ## Questão 5 5. Suponha que o vetor <span class="math inline">\((X,Y)\)</span> possua distribuição normal bivariada com densidade <span class="math inline">\(f(x, y)\)</span>.<br>
+(a) Encontre as densidades marginais de <span class="math inline">\(X\)</span> e <span class="math inline">\(Y\)</span>.<br>
+(b) Obtenha a distribuição condicional de <span class="math inline">\(X\)</span> dada <span class="math inline">\(Y\)</span>.<br>
+<strong>Resposta:</strong><br>
+(a) <span class="math inline">\(X \sim N(\mu_1, \sigma_1^2)\)</span> e <span class="math inline">\(Y \sim N(\mu_2, \sigma_2^2)\)</span>.<br>
+(b) <span class="math inline">\(X|Y = y \sim N\left(\mu_1 + \rho \frac{\sigma_1}{\sigma_2}(y - \mu_2),\ \sigma_1^2(1- \rho^2)\right)\)</span>.</p>
+<p>A densidade conjunta de um vetor bivariado normal é dada por:<br>
+<span class="math display">\[
+f(x, y) = \frac{1}{2\pi\sigma_1\sigma_2 \sqrt{1- \rho^2}} \exp\left\{ - \frac{1}{2(1- \rho^2)} \left[ \left(\frac{x- \mu_1}{\sigma_1}\right)^2 - 2\rho\left(\frac{x- \mu_1}{\sigma_1}\right)\left(\frac{y - \mu_2}{\sigma_2}\right) + \left(\frac{y - \mu_2}{\sigma_2}\right)^2 \right] \right\}
+\]</span></p>
+<ol type="a">
+<li>As densidades marginais de <span class="math inline">\(X\)</span> e <span class="math inline">\(Y\)</span> para uma distribuição normal bivariada são, por si só, distribuições normais:</li>
+</ol>
+<ul>
+<li><span class="math inline">\(X \sim N(\mu_1, \sigma_1^2)\)</span></li>
+<li><span class="math inline">\(Y \sim N(\mu_2, \sigma_2^2)\)</span></li>
+</ul>
+<ol start="2" type="a">
+<li>A distribuição condicional de <span class="math inline">\(X\)</span> dado <span class="math inline">\(Y=y\)</span> para uma distribuição normal bivariada também é normal.<br>
+</li>
+</ol>
+<ul>
+<li>Média condicional: <span class="math inline">\(E[X|Y=y] = \mu_1 + \rho \frac{\sigma_1}{\sigma_2}(y-\mu_2)\)</span><br>
+</li>
+<li>Variância condicional: <span class="math inline">\(Var(X|Y=y) = \sigma_1^2(1-\rho^2)\)</span><br>
+Portanto, <span class="math inline">\(X|Y=y \sim N\left(\mu_1 + \rho \frac{\sigma_1}{\sigma_2}(y-\mu_2),\ \sigma_1^2(1-\rho^2)\right)\)</span>.</li>
+</ul>
+</section>
+<section id="questão-6-1" class="level2">
+<h2 class="anchored" data-anchor-id="questão-6-1">Questão 6</h2>
+<ol start="6" type="1">
+<li>Considere o seguinte experimento de 2 etapas: primeiro, escolhe-se um ponto <span class="math inline">\(x\)</span> de acordo com a distribuição uniforme em <span class="math inline">\((0, 1)\)</span>; depois escolhe-se um ponto <span class="math inline">\(y\)</span> de acordo com a distribuição uniforme em <span class="math inline">\((-x, x)\)</span>. Se o vetor <span class="math inline">\((X,Y)\)</span> representar o resultado do experimento:<br>
+</li>
+</ol>
+<ol type="a">
+<li>Qual será a densidade conjunta de <span class="math inline">\(X\)</span> e <span class="math inline">\(Y\)</span>?<br>
+</li>
+<li>A densidade marginal de <span class="math inline">\(Y\)</span>?<br>
+</li>
+<li>A densidade condicional de <span class="math inline">\(X\)</span> dada <span class="math inline">\(Y\)</span>?<br>
+<strong>Resposta:</strong><br>
+</li>
+<li><span class="math inline">\(f(x, y) = \frac{1}{2x}\ 1\{-x&lt;y&lt;x,\ 0&lt;x&lt;1\}\)</span><br>
+</li>
+<li><span class="math inline">\(f_Y(y) = \frac{1}{2} \log\left(\frac{1}{|y|}\right)\ 1\{-1&lt;y&lt;1\}\)</span><br>
+</li>
+<li><span class="math inline">\(f_{X|Y}(x|y) = \frac{1}{x \log(1/|y|)}\ 1\{0&lt;x&lt;1,\ -1&lt;y&lt;1\}\)</span></li>
+</ol>
+</section>
+<section id="questão-7-1" class="level2">
+<h2 class="anchored" data-anchor-id="questão-7-1">Questão 7</h2>
+<ol start="7" type="1">
+<li>Observam-se duas lâmpadas durante suas vidas úteis. Suponha as vidas independentes e exponenciais de parâmetro <span class="math inline">\(\lambda\)</span>. Sejam <span class="math inline">\(X\)</span> o tempo de queima da primeira lâmpada a queimar e <span class="math inline">\(Y\)</span> o tempo de queima da segunda a queimar (<span class="math inline">\(X \le Y\)</span>).<br>
+</li>
+</ol>
+<ol type="a">
+<li>Qual a distribuição condicional de <span class="math inline">\(X\)</span> dada <span class="math inline">\(Y\)</span>?<br>
+</li>
+<li>Qual a distribuição de <span class="math inline">\(Y\)</span> dada <span class="math inline">\(X\)</span>?<br>
+<strong>Resposta:</strong><br>
+</li>
+<li><span class="math inline">\(P(X \le x|Y = y) = \begin{cases} 0, &amp; x &lt; 0 \\ \frac{1-e^{-\lambda x}}{1-e^{-\lambda y}}, &amp; 0 \le x &lt; y \\ 1, &amp; x \ge y \end{cases}\)</span><br>
+</li>
+<li><span class="math inline">\(P(Y \le y|X = x) = [1- e^{-\lambda(y-x)}]\, 1\{y&gt;x\}\)</span></li>
+</ol>
+</section>
+<section id="questão-8-1" class="level2">
+<h2 class="anchored" data-anchor-id="questão-8-1">Questão 8</h2>
+<ol start="8" type="1">
+<li>Sejam <span class="math inline">\(X\)</span> e <span class="math inline">\(Y\)</span> o mínimo e o máximo de duas variáveis aleatórias independentes com distribuição comum <span class="math inline">\(\exp(\lambda)\)</span>, <span class="math inline">\(\lambda &gt; 0\)</span>. Verifique, de duas maneiras, que <span class="math inline">\(Y-X|X \sim \exp(\lambda)\)</span>:<br>
+</li>
+</ol>
+<ol type="a">
+<li>A partir da densidade conjunta de <span class="math inline">\(X\)</span> e <span class="math inline">\(Y-X\)</span>.<br>
+</li>
+<li>Utilizando o princípio de substituição e o resultado do Exercício 7(b).<br>
+<strong>Resposta:</strong><br>
+</li>
+<li>Use o método do Jacobiano.<br>
+</li>
+<li>Aplicação direta do Exercício 7(b).</li>
+</ol>
+</section>
+<section id="questão-9-1" class="level2">
+<h2 class="anchored" data-anchor-id="questão-9-1">Questão 9</h2>
+<ol start="9" type="1">
+<li>Verifique que, se <span class="math inline">\(X\)</span> é constante quase certamente, i.e., <span class="math inline">\(P(X = c) = 1\)</span>, então <span class="math inline">\(P(X = c|Y = y) = 1\)</span>. Deduza a propriedade: se <span class="math inline">\(X = c\)</span>, para alguma constante <span class="math inline">\(c\)</span>, então <span class="math inline">\(E(X|Y) = c\)</span>.<br>
+<strong>Resposta:</strong><br>
+Se <span class="math inline">\(X = c\)</span> quase certamente, então <span class="math inline">\(P(X = c|Y = y) = 1\)</span> para todo <span class="math inline">\(y\)</span> tal que <span class="math inline">\(P(Y=y)&gt;0\)</span>. Portanto, <span class="math inline">\(E[X|Y] = c\)</span>.</li>
+</ol>
+</section>
+<section id="questão-10-1" class="level2">
+<h2 class="anchored" data-anchor-id="questão-10-1">Questão 10</h2>
+<ol start="10" type="1">
+<li>Sejam <span class="math inline">\(X\)</span> e <span class="math inline">\(Y\)</span> variáveis aleatórias tais que <span class="math inline">\(E(X^2) &lt; \infty\)</span> e <span class="math inline">\(E(Y^2) &lt; \infty\)</span>. Verifique que <span class="math inline">\(\mathrm{Cov}(X,Y) = \mathrm{Cov}(X,E(Y|X))\)</span>.<br>
+<strong>Resposta:</strong><br>
+<span class="math inline">\(\mathrm{Cov}(X,Y) = \mathrm{Cov}(X,E(Y|X))\)</span>.</li>
+</ol>
+</section>
+<section id="questão-11-1" class="level2">
+<h2 class="anchored" data-anchor-id="questão-11-1">Questão 11</h2>
+<ol start="11" type="1">
+<li>Suponha que <span class="math inline">\(X\)</span> e <span class="math inline">\(Y\)</span> possuam densidade conjunta <span class="math inline">\(f(x, y) = 1/\pi\)</span>, se <span class="math inline">\(x^2 + y^2 \le 1\)</span>; <span class="math inline">\(0\)</span>, caso contrário.<br>
+</li>
+</ol>
+<ol type="a">
+<li>Obtenha a distribuição condicional de <span class="math inline">\(Y\)</span> dada <span class="math inline">\(X\)</span>. Calcule <span class="math inline">\(E(Y|X)\)</span>.<br>
+</li>
+<li><span class="math inline">\(X\)</span> e <span class="math inline">\(Y\)</span> são independentes? Por quê?<br>
+</li>
+<li>Verifique que <span class="math inline">\(X\)</span> e <span class="math inline">\(Y\)</span> são não correlacionadas.<br>
+<strong>Resposta:</strong><br>
+</li>
+<li><span class="math inline">\(f_{Y|X}(y|x) = \frac{1}{2\sqrt{1-x^2}}\, 1\{-\sqrt{1-x^2}&lt;y&lt;\sqrt{1-x^2},\ -1&lt;x&lt;1\}\)</span>; <span class="math inline">\(E(Y|X) = 0\)</span>.<br>
+</li>
+<li>Não, não são independentes.<br>
+</li>
+<li>Sim, são não correlacionadas.</li>
+</ol>
+</section>
+<section id="questão-12-1" class="level2">
+<h2 class="anchored" data-anchor-id="questão-12-1">Questão 12</h2>
+<ol start="12" type="1">
+<li>Seja <span class="math inline">\(Y\)</span> uma variável aleatória discreta com <span class="math inline">\(P(Y = 1) = 1/8\)</span> e <span class="math inline">\(P(Y = 2) = 7/8\)</span>. Se <span class="math inline">\(0 &lt; p &lt; 1\)</span> e <span class="math inline">\(X|Y = \begin{cases} 2Y, &amp; \text{com probabilidade } p \\ 3Y, &amp; \text{com probabilidade } 1-p \end{cases}\)</span>, determine <span class="math inline">\(E(X|Y)\)</span>.<br>
+<strong>Resposta:</strong><br>
+<span class="math inline">\(E(X|Y) = (3-p)\,1\{Y=1\} + 2(3-p)\,1\{Y=2\}\)</span></li>
+</ol>
+</section>
+<section id="questão-13-1" class="level2">
+<h2 class="anchored" data-anchor-id="questão-13-1">Questão 13</h2>
+<ol start="13" type="1">
+<li>Sejam <span class="math inline">\(X \sim \exp(1)\)</span> e <span class="math inline">\(t &gt; 0\)</span> fixo. Encontre <span class="math inline">\(E(X|\max\{X, t\})\)</span> e <span class="math inline">\(E(X|\min\{X, t\})\)</span>.<br>
+<strong>Resposta:</strong><br>
+Sejam <span class="math inline">\(U = \max\{X, t\}\)</span> e <span class="math inline">\(V = \min\{X, t\}\)</span>.<br>
+<span class="math inline">\(E(X|U) = U\,1\{U&gt;t\} + \frac{1-(t+1)e^{-t}}{1-e^{-t}}\,1\{U=t\}\)</span><br>
+<span class="math inline">\(E(X|V) = V\,1\{V&lt;t\} + (1+t)\,1\{V=t\}\)</span></li>
+</ol>
+</section>
+<section id="questão-14-1" class="level2">
+<h2 class="anchored" data-anchor-id="questão-14-1">Questão 14</h2>
+<ol start="14" type="1">
+<li>Seja <span class="math inline">\((X,Y)\)</span> um vetor aleatório bidimensional. Suponha que (i) <span class="math inline">\(X \sim \exp(1/2)\)</span> (ii) para cada <span class="math inline">\(x &gt; 0\)</span>, <span class="math inline">\(Y|X = x \sim U[0, x^2]\)</span>.<br>
+</li>
+</ol>
+<ol type="a">
+<li>Qual a distribuição de <span class="math inline">\(Z = Y/X^2\)</span>?<br>
+</li>
+<li>Calcule <span class="math inline">\(E(X)\)</span>, <span class="math inline">\(E(Y)\)</span> e <span class="math inline">\(\mathrm{Cov}(X,Y)\)</span>.<br>
+<strong>Resposta:</strong><br>
+</li>
+<li><span class="math inline">\(P(Z \le z) = \begin{cases} 0, &amp; z &lt; 0 \\ z, &amp; 0 \le z &lt; 1 \\ 1, &amp; z \ge 1 \end{cases}\)</span> (ou seja, <span class="math inline">\(Z \sim U\)</span>).<br>
+</li>
+<li><span class="math inline">\(E(X) = 2\)</span>, <span class="math inline">\(E(Y) = 4\)</span> e <span class="math inline">\(\mathrm{Cov}(X,Y) = 16\)</span>.</li>
+</ol>
+</section>
+<section id="questão-15-1" class="level2">
+<h2 class="anchored" data-anchor-id="questão-15-1">Questão 15</h2>
+<ol start="15" type="1">
+<li>Determine <span class="math inline">\(E(X|Y)\)</span> e <span class="math inline">\(E(Y|X)\)</span> no Exercício 6. Calcule <span class="math inline">\(\mathrm{Cov}(X,Y)\)</span>. As variáveis <span class="math inline">\(X\)</span> e <span class="math inline">\(Y\)</span> são independentes?<br>
+<strong>Resposta:</strong><br>
+<span class="math inline">\(E(X|Y) = \frac{1-|Y|}{\log(1/|Y|)}\,1\{-1&lt;Y&lt;1\}\)</span>, <span class="math inline">\(E(Y|X) = 0\)</span>, <span class="math inline">\(\mathrm{Cov}(X,Y) = 0\)</span>. As variáveis <span class="math inline">\(X\)</span> e <span class="math inline">\(Y\)</span> não são independentes.</li>
+</ol>
+</section>
+<section id="questão-16-1" class="level2">
+<h2 class="anchored" data-anchor-id="questão-16-1">Questão 16</h2>
+<ol start="16" type="1">
+<li><ol type="a">
+<li>Verifique que, se <span class="math inline">\(X\)</span> e <span class="math inline">\(Y\)</span> são independentes, então <span class="math inline">\(P(X &lt; Y) = \int_{-\infty}^\infty [1- F_Y(x)]\, dF_X(x)\)</span>.<br>
+</li>
+</ol></li>
+</ol>
+<ol start="2" type="a">
+<li>Sejam <span class="math inline">\(X\)</span> e <span class="math inline">\(Y\)</span> independentes, <span class="math inline">\(X\)</span> exponencial de parâmetro <span class="math inline">\(\lambda\)</span> e <span class="math inline">\(Y\)</span> uniforme em <span class="math inline">\([0, \lambda]\)</span>, <span class="math inline">\(\lambda &gt; 0\)</span>. Obtenha <span class="math inline">\(P(X &lt; Y)\)</span>, <span class="math inline">\(P(X &gt; Y)\)</span> e <span class="math inline">\(P(X = Y)\)</span>.<br>
+<strong>Resposta:</strong><br>
+</li>
+<li>Use a Lei da Esperança Total.<br>
+</li>
+<li><span class="math inline">\(P(X &lt; Y) = \frac{\lambda^2 + e^{-\lambda^2} - 1}{\lambda^2}\)</span>, <span class="math inline">\(P(X &gt; Y) = \frac{1-e^{-\lambda^2}}{\lambda^2}\)</span>, <span class="math inline">\(P(X = Y) = 0\)</span>.</li>
+</ol>
+</section>
+<section id="questão-17-1" class="level2">
+<h2 class="anchored" data-anchor-id="questão-17-1">Questão 17</h2>
+<ol start="17" type="1">
+<li>Seja <span class="math inline">\(f_{X,Y}(x, y) = 1_A(x, y)\)</span>, onde <span class="math inline">\(A\)</span> é o triângulo com vértices <span class="math inline">\((0, 0)\)</span>, <span class="math inline">\((2, 0)\)</span>, <span class="math inline">\((0, 1)\)</span>. Encontre a densidade condicional <span class="math inline">\(f_{Y|X}(y|x)\)</span> e a esperança condicional <span class="math inline">\(E(Y|X = 1)\)</span>.<br>
+<strong>Resposta:</strong><br>
+<span class="math inline">\(f_{Y|X}(y|x) = \frac{2}{2-x}\,1\{0&lt;y&lt;(2-x)/2,\ 0&lt;x&lt;2\}\)</span><br>
+<span class="math inline">\(E(Y|X=1) = 1/4\)</span></li>
+</ol>
+</section>
+<section id="questão-18-1" class="level2">
+<h2 class="anchored" data-anchor-id="questão-18-1">Questão 18</h2>
+<ol start="18" type="1">
+<li>Seja <span class="math inline">\(f_{X,Y}(x, y) = (x + y)\,1_A(x, y)\)</span>, onde <span class="math inline">\(A = [0,1]\times[0,1]\)</span>. Encontre <span class="math inline">\(E(X|Y = y)\)</span>, para cada <span class="math inline">\(y \in \mathbb{R}\)</span>.<br>
+<strong>Resposta:</strong><br>
+<span class="math inline">\(E(X|Y = y) = \frac{3y+2}{6y+3}\,1\{0&lt;y&lt;1\}\)</span></li>
+</ol>
+</section>
+<section id="questão-19-1" class="level2">
+<h2 class="anchored" data-anchor-id="questão-19-1">Questão 19</h2>
+<ol start="19" type="1">
+<li>Seja <span class="math inline">\(F(x, y) = \begin{cases} 1, &amp; x+ 2y &gt; 1 \\ 0, &amp; \text{caso contrário} \end{cases}\)</span>. A função <span class="math inline">\(F\)</span> define uma função de distribuição no plano?<br>
+<strong>Resposta:</strong><br>
+Não! Pois existe <span class="math inline">\(a_1 &lt; b_1\)</span> e <span class="math inline">\(a_2 &lt; b_2\)</span> tal que <span class="math inline">\(F(b_1, b_2) - F(b_1, a_2) - F(a_1, b_2) + F(a_1, a_2) &lt; 0\)</span>.</li>
+</ol>
+</section>
+<section id="questão-20-1" class="level2">
+<h2 class="anchored" data-anchor-id="questão-20-1">Questão 20</h2>
+<ol start="20" type="1">
+<li>Sejam <span class="math inline">\(Y,Z\)</span> variáveis aleatórias i.i.d, com distribuição exponencial de parâmetro <span class="math inline">\(\lambda &gt; 0\)</span>. Denote <span class="math inline">\(V = Y + Z\)</span>. Qual a densidade condicional de <span class="math inline">\(Y\)</span> dado <span class="math inline">\(V\)</span>? Calcule <span class="math inline">\(E(Y|V)\)</span>.<br>
+<strong>Resposta:</strong><br>
+<span class="math inline">\(E(Y|V) = \frac{V}{2}\,1\{V &gt; 0\}\)</span> ## Questão 21</li>
+</ol>
+<p>O vetor <span class="math inline">\((X,Y)\)</span> tem densidade conjunta <span class="math inline">\(f\)</span> dada por <span class="math inline">\(f(x, y) = 1/4\)</span> dentro do quadrado com vértices nos pontos <span class="math inline">\((1, 0)\)</span>, <span class="math inline">\((0, 1)\)</span>, <span class="math inline">\((-1, 0)\)</span> e <span class="math inline">\((0,-1)\)</span> no plano, e <span class="math inline">\(f(x, y) = 0\)</span> em outro caso. Encontre as densidades marginais de <span class="math inline">\(X\)</span> e <span class="math inline">\(Y\)</span>, as duas densidades condicionais e verifique que <span class="math inline">\(E(X|Y) = E(Y|X)\)</span>.</p>
+<p><strong>Resposta:</strong><br>
+<span class="math inline">\(f_X(x) = \frac{1}{2}\ 1\{-1 &lt; x &lt; 1\}\)</span><br>
+<span class="math inline">\(f_Y(y) = \frac{1}{2}\ 1\{-1 &lt; y &lt; 1\}\)</span><br>
+<span class="math inline">\(f_{X|Y}(x|y) = \frac{1}{2}\ 1\{-1 &lt; x, y &lt; 1\}\)</span><br>
+<span class="math inline">\(f_{Y|X}(y|x) = \frac{1}{2}\ 1\{-1 &lt; x, y &lt; 1\}\)</span></p>
+<p>A descrição “quadrado com vértices nos pontos <span class="math inline">\((1, 0)\)</span>, <span class="math inline">\((0, 1)\)</span>, <span class="math inline">\((-1, 0)\)</span> e <span class="math inline">\((0,-1)\)</span>” define uma região em forma de losango (ou diamante) dada por <span class="math inline">\(|x|+|y| \le 1\)</span>. A área dessa região é 2. No entanto, as respostas fornecidas para <span class="math inline">\(f_X(x)\)</span> e <span class="math inline">\(f_Y(y)\)</span> são <span class="math inline">\(1/2\)</span> para <span class="math inline">\(x,y \in (-1,1)\)</span>, o que corresponde à densidade marginal de uma distribuição uniforme em um quadrado <span class="math inline">\([-1,1] \times [-1,1]\)</span> (área 4). As respostas para <span class="math inline">\(f_{X|Y}(x|y)\)</span> e <span class="math inline">\(f_{Y|X}(y|x)\)</span> também implicam um quadrado <span class="math inline">\([-1,1] \times [-1,1]\)</span> e independência. Seguindo a resposta fornecida no Rpt, que deve ser a interpretação pretendida do problema, assumimos que <span class="math inline">\((X,Y)\)</span> está uniformemente distribuído no quadrado <span class="math inline">\([-1,1] \times [-1,1]\)</span>. A área deste quadrado é <span class="math inline">\(2 \times 2 = 4\)</span>. Então, <span class="math inline">\(f_{X,Y}(x,y) = 1/4\)</span> para <span class="math inline">\(-1 &lt; x &lt; 1,\ -1 &lt; y &lt; 1\)</span>.</p>
+<ul>
+<li><p><strong>Densidades marginais de <span class="math inline">\(X\)</span> e <span class="math inline">\(Y\)</span>:</strong><br>
+<span class="math inline">\(f_X(x) = \int_{-1}^1 \frac{1}{4} dy = \frac{1}{2}\)</span> para <span class="math inline">\(-1 &lt; x &lt; 1\)</span>.<br>
+<span class="math inline">\(f_Y(y) = \int_{-1}^1 \frac{1}{4} dx = \frac{1}{2}\)</span> para <span class="math inline">\(-1 &lt; y &lt; 1\)</span>.</p></li>
+<li><p><strong>Densidades condicionais de <span class="math inline">\(X\)</span> dado <span class="math inline">\(Y\)</span> e <span class="math inline">\(Y\)</span> dado <span class="math inline">\(X\)</span>:</strong><br>
+<span class="math inline">\(f_{X|Y}(x|y) = \frac{f_{X,Y}(x,y)}{f_Y(y)} = \frac{1/4}{1/2} = \frac{1}{2}\)</span> para <span class="math inline">\(-1 &lt; x &lt; 1,\ -1 &lt; y &lt; 1\)</span>.<br>
+<span class="math inline">\(f_{Y|X}(y|x) = \frac{f_{X,Y}(x,y)}{f_X(x)} = \frac{1/4}{1/2} = \frac{1}{2}\)</span> para <span class="math inline">\(-1 &lt; x &lt; 1,\ -1 &lt; y &lt; 1\)</span>.</p></li>
+<li><p><strong>Verificar que <span class="math inline">\(E(X|Y) = E(Y|X)\)</span>:</strong><br>
+<span class="math inline">\(E[X|Y=y] = \int_{-1}^1 x \cdot f_{X|Y}(x|y) dx = \int_{-1}^1 x \cdot \frac{1}{2} dx = 0\)</span>.<br>
+Portanto, <span class="math inline">\(E[X|Y] = 0\)</span>.<br>
+Por simetria, <span class="math inline">\(E[Y|X=x] = \int_{-1}^1 y \cdot \frac{1}{2} dy = 0\)</span>.<br>
+Portanto, <span class="math inline">\(E[Y|X] = 0\)</span>.<br>
+Conclui-se que <span class="math inline">\(E(X|Y) = E(Y|X)\)</span>.</p></li>
+</ul>
+</section>
+</div>
+</div>
+</div>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
