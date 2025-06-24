@@ -1,0 +1,118 @@
+---
+title: "Prova 2"
+subtitle: "Técnicas Computacionais em Estatística"
+author: "Prof. Saulo"
+date: "10/06/2025"
+date-format: long
+format: pdf
+---
+
+## Exercício 1 (3.5 pts)
+
+Considere o conjunto de dados de ar condicionado (`aircondit`) disponível no pacote `boot` do R. São 12 observações dos tempos (em horas) entre falhas do equipamento de ar condicionado:
+
+```
+3, 5, 7, 18, 43, 85, 91, 98, 100, 130, 230, 487.
+```
+
+Suponha que os tempos entre falhas sigam um modelo Birnbaum-Saunders $\text{BS}(\alpha, \beta)$. Escreva um algoritmo para obter o viés e o erro padrão Jackknife de $\hat{\alpha}$ e $\hat{\beta}$.
+
+### Resolução
+
+**Algoritmo**
+
+#### 1. Calcular estimativas:
+
+1.1 Definir função `est.par(values)` que retorna as estimativas $(\hat{\alpha}, \hat{\beta})$.  
+1.2 $(\hat{\alpha}, \hat{\beta}) \leftarrow \text{est.par(hours)}$
+
+#### 2. Jackknife (para $i = 1, \ldots, n$):
+
+- $\text{hours}_{(-i)} \leftarrow \text{amostra sem o } i\text{-ésimo elemento}$
+- $(\hat{\alpha}_i, \hat{\beta}_i) \leftarrow \text{est.par}(\text{hours}_{(-i)})$
+
+#### 3. Calcular as médias:
+
+$$
+\bar{\alpha} = \frac{1}{n} \sum_{i=1}^n \hat{\alpha}_i, \quad \bar{\beta} = \frac{1}{n} \sum_{i=1}^n \hat{\beta}_i
+$$
+
+#### 4. Viés (bias):
+
+$$
+\text{bias}_\alpha = (n - 1)(\bar{\alpha} - \hat{\alpha}), \quad \text{bias}_\beta = (n - 1)(\bar{\beta} - \hat{\beta})
+$$
+
+#### 5. Erro padrão (erro-padrão):
+
+$$
+\text{se}_\alpha = \sqrt{ \frac{n - 1}{n} \sum_{i=1}^n (\hat{\alpha}_i - \bar{\alpha})^2 }, \quad 
+\text{se}_\beta = \sqrt{ \frac{n - 1}{n} \sum_{i=1}^n (\hat{\beta}_i - \bar{\beta})^2 }
+$$
+
+---
+
+## Exercício 2 (3.5 pts)
+
+Escreva um algoritmo que implemente um amostrador Metropolis-Hastings para gerar números pseudo-aleatórios de uma distribuição Cauchy padrão com $N = 10000$, usando $\mathcal{N}(x_t, \sigma^2 = 3^2)$ como função candidata. Obtenha a forma simplificada da probabilidade de aceitação.
+
+### Resolução
+
+A densidade da distribuição Cauchy padrão é:
+
+$$
+f(x) = \frac{1}{\pi(1 + x^2)}
+$$
+
+Como a candidata é simétrica, a razão de aceitação é:
+
+$$
+\alpha(x_t, y) = \min\left\{ \frac{f(y)}{f(x_t)}, 1 \right\} = \min\left\{ \frac{1 + x_t^2}{1 + y^2}, 1 \right\}
+$$
+
+### Algoritmo
+
+1. Inicialize: $x_0 \leftarrow \mathcal{N}(0, \sigma^2)$
+2. Para $t = 1, \ldots, N-1$:
+    - Gerar $y \leftarrow \mathcal{N}(x_{t-1}, \sigma^2)$
+    - Calcular $\alpha = \min\left\{ \frac{1 + x_{t-1}^2}{1 + y^2}, 1 \right\}$
+    - Gerar $u \sim \text{Unif}(0,1)$
+    - Se $u \leq \alpha$, então $x_t \leftarrow y$, senão $x_t \leftarrow x_{t-1}$
+
+---
+
+## Exercício 3 (3.0 pts)
+
+Queremos gerar amostras de:
+
+$$
+\pi(x) = \frac{1}{\xi} \cdot \frac{\sin^2(x)}{x^2}, \quad x \in [-3\pi, 3\pi]
+$$
+
+Assumindo $Y_t = X_{t-1} + \epsilon_t$ com $\epsilon_t \sim \mathcal{N}(0, \sigma^2)$ e $\sigma = 6$, elabore um algoritmo Metropolis-Hastings.
+
+### Resolução
+
+A razão de aceitação:
+
+$$
+\alpha(x_t, y) = \min\left\{ \frac{\sin^2(y)/y^2}{\sin^2(x_t)/x_t^2}, 1 \right\} = \min\left\{ \left( \frac{x_t \sin(y)}{y \sin(x_t)} \right)^2 \cdot \mathbb{I}_{[-3\pi, 3\pi]}(y),\ 1 \right\}
+$$
+
+**Observação:** $x_0 \not= 0$, pois $\pi(x)$ não é definida em 0. Podemos iniciar com $x_0 \sim \text{Unif}(-3\pi, 3\pi)$.
+
+### Algoritmo
+
+1. Inicialização: $x_0 \leftarrow \text{Unif}(-3\pi, 3\pi)$
+2. Para $t = 1, \ldots, N-1$:
+   - Gerar $y \leftarrow \mathcal{N}(x_{t-1}, \sigma^2)$
+   - Se $|y| \leq 3\pi$, então:
+
+$$
+     \alpha = \min\left\{ \left( \frac{x_{t-1} \sin(y)}{y \sin(x_{t-1})} \right)^2, 1 \right\}
+$$
+
+senão $\alpha = 0$
+
+   - Gerar $u \sim \text{Unif}(0,1)$
+   - Se $u \leq \alpha$, $x_t \leftarrow y$; caso contrário, $x_t \leftarrow x_{t-1}$
