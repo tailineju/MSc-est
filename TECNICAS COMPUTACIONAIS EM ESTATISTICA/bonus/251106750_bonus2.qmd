@@ -18,6 +18,7 @@ Seja \(\phi = 1/\sigma^2\), com \(\beta_0, \beta_1 \sim N(0, 1000)\) e \(\phi \s
 ### Solução
 
 ```{r}
+pacman::p_load(mvtnorm)
 data(cars)
 y <- cars$dist
 x <- cars$speed

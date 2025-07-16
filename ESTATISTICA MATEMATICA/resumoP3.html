@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.24">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Tailine J. S. Nonato">
+<meta name="dcterms.date" content="2025-07-15">
+
+<title>Resumo - Prova 3</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="resumoP3_files/libs/clipboard/clipboard.min.js"></script>
+<script src="resumoP3_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="resumoP3_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="resumoP3_files/libs/quarto-html/popper.min.js"></script>
+<script src="resumoP3_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="resumoP3_files/libs/quarto-html/anchor.min.js"></script>
+<link href="resumoP3_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="resumoP3_files/libs/quarto-html/quarto-syntax-highlighting-a37c72dd2dbac68997fcdc15a3622e78.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="resumoP3_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="resumoP3_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="resumoP3_files/libs/bootstrap/bootstrap-bb462d781dde1847d9e3ccf7736099dd.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="fullcontent quarto-light">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Resumo - Prova 3</h1>
+<p class="subtitle lead">Estatística Matemática</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Tailine J. S. Nonato </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">July 15, 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="">Content</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">Lista 5</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<p>Disclaimer: Feito com NotebookLm, ferramenta de inteligência artificial do Google.</p>
+<ol type="1">
+<li>Sejam X1, X2, . . . variáveis independentes com distribuição comum Poisson(λ). Qual o limite em probabilidade da sequência (Yn)n&gt;1, onde Yn = X2 1 + · · ·+X2 n / n ? Rpt. λ(1 + λ). Explicação e Resolução: O problema pede o limite em probabilidade da sequência <span class="math inline">\(Y_n = \frac{1}{n} \sum_{i=1}^{n} X_i^2\)</span>. Para variáveis aleatórias independentes e identicamente distribuídas (i.i.d.) com média finita, a Lei dos Grandes Números (LGN) afirma que a média amostral converge em probabilidade para a média esperada. Neste caso, os termos na soma são <span class="math inline">\(X_i^2\)</span>. Se <span class="math inline">\(X_i\)</span> são i.i.d., então <span class="math inline">\(X_i^2\)</span> também são i.i.d. Portanto, se <span class="math inline">\(E[X_1^2]\)</span> for finito, <span class="math inline">\(Y_n\)</span> convergirá em probabilidade para <span class="math inline">\(E[X_1^2]\)</span> pela LGN. Primeiro, vamos determinar a média e a variância de uma variável Poisson(λ): • A esperança de uma variável aleatória <span class="math inline">\(X \sim \text{Poisson}(\lambda)\)</span> é <span class="math inline">\(E[X] = \lambda\)</span>. • A variância de uma variável aleatória <span class="math inline">\(X \sim \text{Poisson}(\lambda)\)</span> é <span class="math inline">\(\text{Var}(X) = \lambda\)</span>. A relação entre esperança e variância é <span class="math inline">\(\text{Var}(X) = E[X^2] - (E[X])^2\)</span>. Podemos rearranjar esta fórmula para encontrar <span class="math inline">\(E[X^2]\)</span>: <span class="math inline">\(E[X^2] = \text{Var}(X) + (E[X])^2\)</span>. Substituindo os valores para a distribuição Poisson(λ): <span class="math inline">\(E[X_1^2] = \lambda + \lambda^2 = \lambda(1 + \lambda)\)</span>. Como <span class="math inline">\(E[X_1^2]\)</span> é finito, pela Lei dos Grandes Números, a sequência <span class="math inline">\(Y_n = \frac{1}{n} \sum_{i=1}^{n} X_i^2\)</span> converge em probabilidade para <span class="math inline">\(E[X_1^2] = \lambda(1 + \lambda)\)</span>.</li>
+</ol>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 100%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>2. Seja (Xn)n&gt;1 uma sequência de variáveis aleatórias. Verifique que: se limn→∞ E(Xn) = α e limn→∞Var(Xn) = 0, então Xn P−→ α. Rpt. Use a Desigualdade de Markov. Explicação e Resolução: O problema pede para provar a convergência em probabilidade (<span class="math inline">\(X_n \overset{P}{\rightarrow} \alpha\)</span>) utilizando a Desigualdade de Markov, dadas as condições <span class="math inline">\(\lim_{n \to \infty} E[X_n] = \alpha\)</span> e <span class="math inline">\(\lim_{n \to \infty} \text{Var}(X_n) = 0\)</span>. A definição de convergência em probabilidade afirma que <span class="math inline">\(X_n \overset{P}{\rightarrow} \alpha\)</span> se, para todo <span class="math inline">\(\epsilon &gt; 0\)</span>, <span class="math inline">\(\lim_{n \to \infty} P(|X_n - \alpha| &gt; \epsilon) = 0\)</span>. A Desigualdade de Markov estabelece que para uma variável aleatória <span class="math inline">\(Y\)</span> não negativa e <span class="math inline">\(a &gt; 0\)</span>, <span class="math inline">\(P(Y \ge a) \le \frac{E[Y]}{a}\)</span>. Vamos aplicar a Desigualdade de Markov à variável aleatória não negativa <span class="math inline">\(|X_n - \alpha|^2\)</span> e ao valor <span class="math inline">\(\epsilon^2\)</span>: <span class="math inline">\(P(|X_n - \alpha| &gt; \epsilon) = P(|X_n - \alpha|^2 &gt; \epsilon^2)\)</span>. Pela Desigualdade de Markov: <span class="math inline">\(P(|X_n - \alpha|^2 &gt; \epsilon^2) \le \frac{E[|X_n - \alpha|^2]}{\epsilon^2}\)</span>. Agora, vamos calcular <span class="math inline">\(E[|X_n - \alpha|^2]\)</span>. Podemos usar a propriedade <span class="math inline">\(\text{Var}(Y) = E[Y^2] - (E[Y])^2\)</span>, que implica <span class="math inline">\(E[Y^2] = \text{Var}(Y) + (E[Y])^2\)</span>. Consideramos a expressão <span class="math inline">\(E[(X_n - \alpha)^2]\)</span>: <span class="math inline">\(E[(X_n - \alpha)^2] = E[((X_n - E[X_n]) + (E[X_n] - \alpha))^2]\)</span> <span class="math inline">\(= E[(X_n - E[X_n])^2 + 2(X_n - E[X_n])(E[X_n] - \alpha) + (E[X_n] - \alpha)^2]\)</span> <span class="math inline">\(= E[(X_n - E[X_n])^2] + 2(E[X_n] - \alpha)E[X_n - E[X_n]] + (E[X_n] - \alpha)^2\)</span> <span class="math inline">\(= \text{Var}(X_n) + 2(E[X_n] - \alpha) \cdot 0 + (E[X_n] - \alpha)^2\)</span> <span class="math inline">\(= \text{Var}(X_n) + (E[X_n] - \alpha)^2\)</span>. Substituindo este resultado de volta na desigualdade de Markov: <span class="math inline">\(P(|X_n - \alpha| &gt; \epsilon) \le \frac{\text{Var}(X_n) + (E[X_n] - \alpha)^2}{\epsilon^2}\)</span>. Finalmente, calculamos o limite quando <span class="math inline">\(n \to \infty\)</span>: <span class="math inline">\(\lim_{n \to \infty} P(|X_n - \alpha| &gt; \epsilon) \le \frac{\lim_{n \to \infty} \text{Var}(X_n) + (\lim_{n \to \infty} E[X_n] - \alpha)^2}{\epsilon^2}\)</span>. Dadas as condições <span class="math inline">\(\lim_{n \to \infty} \text{Var}(X_n) = 0\)</span> e <span class="math inline">\(\lim_{n \to \infty} E[X_n] = \alpha\)</span>: <span class="math inline">\(\lim_{n \to \infty} P(|X_n - \alpha| &gt; \epsilon) \le \frac{0 + (\alpha - \alpha)^2}{\epsilon^2} = \frac{0}{\epsilon^2} = 0\)</span>. Como a probabilidade é não-negativa e o limite superior é 0, temos <span class="math inline">\(\lim_{n \to \infty} P(|X_n - \alpha| &gt; \epsilon) = 0\)</span>. Portanto, <span class="math inline">\(X_n \overset{P}{\rightarrow} \alpha\)</span> está verificado.</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>3. Sejam X1, X2, . . . variáveis independentes tais que X1 = 0 e para j &gt; 2, Xj é variável aleatória discreta satisfazendo P(Xj = k) = 1/j^3, se k = ±1,±2, . . . ,±j; P(Xj = 0) = 1 − 2/j^2. Verifique que (∑(j=1 to n) Xj) / n^α P−→ 0, quando n→∞, se α &gt; 1/2. Rpt. Aplique o Exercício 2. Explicação e Resolução: O problema pede para verificar a convergência em probabilidade de <span class="math inline">\(Y_n = \frac{1}{n^\alpha} \sum_{j=1}^{n} X_j\)</span> para 0, para <span class="math inline">\(\alpha &gt; 1/2\)</span>. A sugestão é usar o Exercício 2, o que significa que precisamos mostrar que <span class="math inline">\(\lim_{n \to \infty} E[Y_n] = 0\)</span> e <span class="math inline">\(\lim_{n \to \infty} \text{Var}(Y_n) = 0\)</span>. Passo 1: Calcular <span class="math inline">\(E[X_j]\)</span> e <span class="math inline">\(E[Y_n]\)</span>. • Para <span class="math inline">\(X_1\)</span>: <span class="math inline">\(X_1 = 0\)</span>, então <span class="math inline">\(E[X_1] = 0\)</span>. • Para <span class="math inline">\(X_j\)</span> (onde <span class="math inline">\(j \ge 2\)</span>): A esperança de uma variável aleatória discreta é <span class="math inline">\(E[X_j] = \sum_k k \cdot P(X_j = k)\)</span>. <span class="math inline">\(E[X_j] = \sum_{k=-j, k \ne 0}^{j} k \cdot \frac{1}{j^3} + 0 \cdot \left(1 - \frac{2}{j^2}\right)\)</span> <span class="math inline">\(E[X_j] = \frac{1}{j^3} \sum_{k=-j, k \ne 0}^{j} k = \frac{1}{j^3} (-j + \dots + (-1) + 1 + \dots + j) = 0\)</span>. Portanto, <span class="math inline">\(E[X_j] = 0\)</span> para todo <span class="math inline">\(j \ge 1\)</span>. Agora, calculamos <span class="math inline">\(E[Y_n]\)</span>: <span class="math inline">\(E[Y_n] = E\left[\frac{1}{n^\alpha} \sum_{j=1}^{n} X_j\right] = \frac{1}{n^\alpha} \sum_{j=1}^{n} E[X_j] = \frac{1}{n^\alpha} \sum_{j=1}^{n} 0 = 0\)</span>. Assim, <span class="math inline">\(\lim_{n \to \infty} E[Y_n] = 0\)</span>. Passo 2: Calcular <span class="math inline">\(\text{Var}(X_j)\)</span> e <span class="math inline">\(\text{Var}(Y_n)\)</span>. • Para <span class="math inline">\(X_1\)</span>: <span class="math inline">\(\text{Var}(X_1) = 0\)</span> (já que <span class="math inline">\(X_1\)</span> é uma constante). • Para <span class="math inline">\(X_j\)</span> (onde <span class="math inline">\(j \ge 2\)</span>): <span class="math inline">\(\text{Var}(X_j) = E[X_j^2] - (E[X_j])^2 = E[X_j^2] - 0^2 = E[X_j^2]\)</span>. <span class="math inline">\(E[X_j^2] = \sum_{k=-j, k \ne 0}^{j} k^2 \cdot \frac{1}{j^3} + 0^2 \cdot \left(1 - \frac{2}{j^2}\right)\)</span> <span class="math inline">\(E[X_j^2] = \frac{1}{j^3} \sum_{k=-j, k \ne 0}^{j} k^2 = \frac{1}{j^3} \left(2 \sum_{k=1}^{j} k^2\right)\)</span>. A fórmula para a soma dos primeiros <span class="math inline">\(j\)</span> quadrados é <span class="math inline">\(\sum_{k=1}^{j} k^2 = \frac{j(j+1)(2j+1)}{6}\)</span>. Então, <span class="math inline">\(E[X_j^2] = \frac{1}{j^3} \cdot 2 \cdot \frac{j(j+1)(2j+1)}{6} = \frac{(j+1)(2j+1)}{3j^2}\)</span>. Portanto, <span class="math inline">\(\text{Var}(X_j) = \frac{(j+1)(2j+1)}{3j^2}\)</span> para <span class="math inline">\(j \ge 2\)</span>. Note que <span class="math inline">\(\lim_{j \to \infty} \frac{(j+1)(2j+1)}{3j^2} = \lim_{j \to \infty} \frac{2j^2 + 3j + 1}{3j^2} = \frac{2}{3}\)</span>. Agora, calculamos <span class="math inline">\(\text{Var}(Y_n)\)</span>. Como <span class="math inline">\(X_j\)</span> são independentes, a variância da soma é a soma das variâncias: <span class="math inline">\(\text{Var}(Y_n) = \text{Var}\left(\frac{1}{n^\alpha} \sum_{j=1}^{n} X_j\right) = \frac{1}{(n^\alpha)^2} \sum_{j=1}^{n} \text{Var}(X_j) = \frac{1}{n^{2\alpha}} \left(\text{Var}(X_1) + \sum_{j=2}^{n} \text{Var}(X_j)\right)\)</span> <span class="math inline">\(\text{Var}(Y_n) = \frac{1}{n^{2\alpha}} \left(0 + \sum_{j=2}^{n} \frac{(j+1)(2j+1)}{3j^2}\right)\)</span>. Para que <span class="math inline">\(\lim_{n \to \infty} \text{Var}(Y_n) = 0\)</span>, precisamos analisar o comportamento da soma <span class="math inline">\(\sum_{j=2}^{n} \frac{(j+1)(2j+1)}{3j^2}\)</span>. Quando <span class="math inline">\(j\)</span> é grande, <span class="math inline">\(\frac{(j+1)(2j+1)}{3j^2} \approx \frac{2j^2}{3j^2} = \frac{2}{3}\)</span>. Então, a soma <span class="math inline">\(\sum_{j=2}^{n} \frac{(j+1)(2j+1)}{3j^2}\)</span> se comporta aproximadamente como <span class="math inline">\(\sum_{j=2}^{n} \frac{2}{3} = \frac{2}{3}(n-1)\)</span>, que é aproximadamente <span class="math inline">\(\frac{2}{3}n\)</span>. Portanto, <span class="math inline">\(\text{Var}(Y_n) \approx \frac{1}{n^{2\alpha}} \cdot \frac{2}{3}n = \frac{2}{3} n^{1-2\alpha}\)</span>. Para que <span class="math inline">\(\lim_{n \to \infty} \text{Var}(Y_n) = 0\)</span>, o expoente de <span class="math inline">\(n\)</span> deve ser negativo, ou seja, <span class="math inline">\(1 - 2\alpha &lt; 0\)</span>. <span class="math inline">\(1 &lt; 2\alpha \Rightarrow \alpha &gt; 1/2\)</span>. Conclusão: Como <span class="math inline">\(\lim_{n \to \infty} E[Y_n] = 0\)</span> e <span class="math inline">\(\lim_{n \to \infty} \text{Var}(Y_n) = 0\)</span> para <span class="math inline">\(\alpha &gt; 1/2\)</span>, pelo Exercício 2, <span class="math inline">\(\frac{1}{n^\alpha} \sum_{j=1}^{n} X_j \overset{P}{\rightarrow} 0\)</span> para <span class="math inline">\(\alpha &gt; 1/2\)</span>.</td>
+</tr>
+</tbody>
+</table>
+<ol start="4" type="1">
+<li>Sejam X1, X2, . . . variáveis independentes tais que P(Xn = 1) = 1/n, P(Xn = 0) = 1 − 1/n.&nbsp;Verifique que Xn P−→ 0 mas P(limn→∞Xn = 0) = 0. Rpt. Para obter Xn P−→ 0, aplique o Exercı́cio 2. Para verificar P(limn→∞Xn = 0) = 0, aplique o Lema de Borel-Cantelli e a caracterização de convergência quase certa. Explicação e Resolução: Parte 1: Verificar <span class="math inline">\(X_n \overset{P}{\rightarrow} 0\)</span> usando o Exercício 2. Para usar o Exercício 2, precisamos verificar que <span class="math inline">\(\lim_{n \to \infty} E[X_n] = 0\)</span> e <span class="math inline">\(\lim_{n \to \infty} \text{Var}(X_n) = 0\)</span>. • Esperança de <span class="math inline">\(X_n\)</span>: <span class="math inline">\(E[X_n] = 1 \cdot P(X_n=1) + 0 \cdot P(X_n=0) = 1 \cdot \frac{1}{n} + 0 \cdot \left(1 - \frac{1}{n}\right) = \frac{1}{n}\)</span>. <span class="math inline">\(\lim_{n \to \infty} E[X_n] = \lim_{n \to \infty} \frac{1}{n} = 0\)</span>. • Variância de <span class="math inline">\(X_n\)</span>: <span class="math inline">\(\text{Var}(X_n) = E[X_n^2] - (E[X_n])^2\)</span>. <span class="math inline">\(E[X_n^2] = 1^2 \cdot P(X_n=1) + 0^2 \cdot P(X_n=0) = 1 \cdot \frac{1}{n} + 0 = \frac{1}{n}\)</span>. <span class="math inline">\(\text{Var}(X_n) = \frac{1}{n} - \left(\frac{1}{n}\right)^2 = \frac{1}{n} - \frac{1}{n^2}\)</span>. <span class="math inline">\(\lim_{n \to \infty} \text{Var}(X_n) = \lim_{n \to \infty} \left(\frac{1}{n} - \frac{1}{n^2}\right) = 0\)</span>. Como ambas as condições são satisfeitas, pelo Exercício 2, <span class="math inline">\(X_n \overset{P}{\rightarrow} 0\)</span>. Parte 2: Verificar <span class="math inline">\(P(\lim_{n \to \infty} X_n = 0) = 0\)</span> usando o Lema de Borel-Cantelli. A convergência quase certa (<span class="math inline">\(X_n \overset{q.c.}{\rightarrow} X\)</span>) significa que <span class="math inline">\(P(\omega : X_n(\omega) \to X(\omega)) = 1\)</span>. Queremos verificar se <span class="math inline">\(P(\lim_{n \to \infty} X_n = 0) = 0\)</span>. A sequência <span class="math inline">\(X_n\)</span> converge para 0 se e somente se o evento <span class="math inline">\({X_n \ne 0 \text{ ocorre infinitas vezes}}\)</span> tem probabilidade 0. O evento <span class="math inline">\({X_n \ne 0}\)</span> é o mesmo que <span class="math inline">\({X_n = 1}\)</span>. Vamos definir <span class="math inline">\(A_n\)</span> como o evento <span class="math inline">\({X_n = 1}\)</span>. Então <span class="math inline">\(P(A_n) = \frac{1}{n}\)</span>. Precisamos avaliar <span class="math inline">\(P(A_n \text{ i.o.})\)</span> (ou seja, <span class="math inline">\(A_n\)</span> ocorre infinitas vezes). • Primeiro Lema de Borel-Cantelli: Se <span class="math inline">\(\sum_{n=1}^{\infty} P(A_n) &lt; \infty\)</span>, então <span class="math inline">\(P(A_n \text{ i.o.}) = 0\)</span>. Neste caso, <span class="math inline">\(\sum_{n=1}^{\infty} P(A_n) = \sum_{n=1}^{\infty} \frac{1}{n}\)</span>. Esta é a série harmônica, que diverge ( <span class="math inline">\(\sum \frac{1}{n} = \infty\)</span>). Portanto, o Primeiro Lema de Borel-Cantelli não nos permite concluir <span class="math inline">\(P(A_n \text{ i.o.}) = 0\)</span>. • Segundo Lema de Borel-Cantelli: Se <span class="math inline">\(A_n\)</span> são eventos independentes e <span class="math inline">\(\sum_{n=1}^{\infty} P(A_n) = \infty\)</span>, então <span class="math inline">\(P(A_n \text{ i.o.}) = 1\)</span>. Os <span class="math inline">\(X_n\)</span> são variáveis aleatórias independentes, o que implica que os eventos <span class="math inline">\(A_n = {X_n = 1}\)</span> são independentes. Como <span class="math inline">\(\sum_{n=1}^{\infty} P(A_n) = \infty\)</span> e os eventos <span class="math inline">\(A_n\)</span> são independentes, pelo Segundo Lema de Borel-Cantelli, <span class="math inline">\(P(A_n \text{ i.o.}) = 1\)</span>. Isso significa que <span class="math inline">\(P(X_n = 1 \text{ ocorre infinitas vezes}) = 1\)</span>. Se <span class="math inline">\(X_n\)</span> assume o valor 1 infinitas vezes, ela não pode convergir para 0. Portanto, <span class="math inline">\(P(\lim_{n \to \infty} X_n = 0) = 0\)</span>. Conclusão Final: A sequência <span class="math inline">\(X_n\)</span> converge em probabilidade para 0, mas não converge quase certamente para 0 (na verdade, não converge para 0 em um sentido quase certo), demonstrando a diferença entre esses dois tipos de convergência.</li>
+</ol>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 100%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>5. Sejam X1, X2, . . . variáveis independentes e identicamente distribuı́das tais que X1 ∼ U. Verifique que n−Xn P−→ 0. Explicação e Resolução: Queremos verificar que <span class="math inline">\(n^{-X_n} \overset{P}{\rightarrow} 0\)</span>. Pela definição de convergência em probabilidade, isso significa que para qualquer <span class="math inline">\(\epsilon &gt; 0\)</span>, <span class="math inline">\(\lim_{n \to \infty} P(|n^{-X_n} - 0| &gt; \epsilon) = 0\)</span>. Como <span class="math inline">\(X_n \in\)</span>, <span class="math inline">\(n^{-X_n}\)</span> é sempre não-negativo, então <span class="math inline">\(|n^{-X_n} - 0| = n^{-X_n}\)</span>. A desigualdade <span class="math inline">\(n^{-X_n} &gt; \epsilon\)</span> pode ser reescrita usando logaritmos (em base <span class="math inline">\(e\)</span> ou em base 10, desde que seja consistente): <span class="math inline">\(n^{-X_n} &gt; \epsilon \iff \log(n^{-X_n}) &gt; \log(\epsilon)\)</span> <span class="math inline">\(\iff -X_n \log(n) &gt; \log(\epsilon)\)</span> <span class="math inline">\(\iff X_n \log(n) &lt; -\log(\epsilon)\)</span> (invertendo a desigualdade porque <span class="math inline">\(\log(n)\)</span> é positivo). <span class="math inline">\(\iff X_n &lt; \frac{-\log(\epsilon)}{\log(n)}\)</span>. Seja <span class="math inline">\(c_n = \frac{-\log(\epsilon)}{\log(n)}\)</span>. Como <span class="math inline">\(X_n \sim U\)</span>, sua função de distribuição cumulativa (CDF) é <span class="math inline">\(F_{X_n}(x) = x\)</span> para <span class="math inline">\(0 \le x \le 1\)</span>. Então, <span class="math inline">\(P(X_n &lt; c_n) = F_{X_n}(c_n) = c_n\)</span>, desde que <span class="math inline">\(0 \le c_n \le 1\)</span>. Observe que <span class="math inline">\(c_n\)</span> será positivo para <span class="math inline">\(\epsilon &lt; 1\)</span>. Se <span class="math inline">\(\epsilon \ge 1\)</span>, <span class="math inline">\(\log(\epsilon) \ge 0\)</span>, então <span class="math inline">\(c_n \le 0\)</span>, e <span class="math inline">\(P(X_n &lt; c_n) = 0\)</span>, que trivialmente converge para 0. Então, assumimos <span class="math inline">\(0 &lt; \epsilon &lt; 1\)</span>. Agora, vamos analisar o limite de <span class="math inline">\(c_n\)</span> quando <span class="math inline">\(n \to \infty\)</span>: <span class="math inline">\(\lim_{n \to \infty} c_n = \lim_{n \to \infty} \frac{-\log(\epsilon)}{\log(n)}\)</span>. Como <span class="math inline">\(\log(n) \to \infty\)</span> quando <span class="math inline">\(n \to \infty\)</span>, temos <span class="math inline">\(\lim_{n \to \infty} c_n = 0\)</span>. Portanto, <span class="math inline">\(\lim_{n \to \infty} P(n^{-X_n} &gt; \epsilon) = \lim_{n \to \infty} P(X_n &lt; c_n) = \lim_{n \to \infty} c_n = 0\)</span>. Isso confirma que <span class="math inline">\(n^{-X_n} \overset{P}{\rightarrow} 0\)</span>.</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>6. Sejam X1, X2, . . . variáveis independentes e identicamente distribuı́das tais que X1 ∼ U. Determine o limite quase certo da média geométrica(n∏ k=1Xk)1/n.&nbsp;Rpt. e−1. Propriedade de convergência quase certa. (a) Se Xn q.c.−→ X e Yn q.c.−→ Y com P(Y 6= 0) = 1, então Xn/Yn q.c.−→ X/Y . (b) Propriedades similares são válidas para a soma, substração e multiplicação. Explicação e Resolução: O problema pede o limite quase certo da média geométrica <span class="math inline">\(Y_n = \left(\prod_{k=1}^{n} X_k\right)^{1/n}\)</span>. Podemos usar o logaritmo para transformar o produto em uma soma, o que nos permite aplicar a Lei Forte dos Grandes Números (LFG). <span class="math inline">\(\log(Y_n) = \log\left(\left(\prod_{k=1}^{n} X_k\right)^{1/n}\right) = \frac{1}{n} \log\left(\prod_{k=1}^{n} X_k\right) = \frac{1}{n} \sum_{k=1}^{n} \log(X_k)\)</span>. Seja <span class="math inline">\(Z_k = \log(X_k)\)</span>. Como <span class="math inline">\(X_k\)</span> são i.i.d., <span class="math inline">\(Z_k\)</span> também são i.i.d. Precisamos calcular <span class="math inline">\(E[Z_1] = E[\log(X_1)]\)</span>. Como <span class="math inline">\(X_1 \sim U\)</span>, sua função densidade de probabilidade (PDF) é <span class="math inline">\(f(x) = 1\)</span> para <span class="math inline">\(0 \le x \le 1\)</span> e <span class="math inline">\(0\)</span> caso contrário. <span class="math inline">\(E[\log(X_1)] = \int_{0}^{1} \log(x) \cdot 1 , dx\)</span>. Para resolver esta integral, podemos usar integração por partes: <span class="math inline">\(\int u , dv = uv - \int v , du\)</span>. Seja <span class="math inline">\(u = \log(x)\)</span> e <span class="math inline">\(dv = dx\)</span>. Então <span class="math inline">\(du = \frac{1}{x} , dx\)</span> e <span class="math inline">\(v = x\)</span>. <span class="math inline">\(\int \log(x) , dx = x\log(x) - \int x \cdot \frac{1}{x} , dx = x\log(x) - \int 1 , dx = x\log(x) - x\)</span>. Avaliando a integral definida de 0 a 1: <span class="math inline">\(\lim_{a \to 0^+} [x\log(x) - x]{a}^{1} = (1\log(1) - 1) - \lim{a \to 0^+} (a\log(a) - a)\)</span>. Sabemos que <span class="math inline">\(\log(1) = 0\)</span>, então <span class="math inline">\(1\log(1) - 1 = -1\)</span>. E <span class="math inline">\(\lim_{a \to 0^+} a\log(a) = 0\)</span> (um limite padrão). Então, <span class="math inline">\(E[\log(X_1)] = -1 - (0 - 0) = -1\)</span>. Para aplicar a Lei Forte dos Grandes Números, precisamos verificar que <span class="math inline">\(E[|Z_1|] = E[|\log(X_1)|]\)</span> é finito. <span class="math inline">\(E[|\log(X_1)|] = \int_{0}^{1} |\log(x)| , dx = \int_{0}^{1} -\log(x) , dx = -[x\log(x) - x]_{0}^{1} = -(-1) = 1\)</span>. Como <span class="math inline">\(E[|\log(X_1)|] = 1\)</span>, que é finito, a Lei Forte dos Grandes Números se aplica. Pela Lei Forte dos Grandes Números, <span class="math inline">\(\frac{1}{n} \sum_{k=1}^{n} \log(X_k) \overset{q.c.}{\rightarrow} E[\log(X_1)] = -1\)</span>. Ou seja, <span class="math inline">\(\log(Y_n) \overset{q.c.}{\rightarrow} -1\)</span>. Finalmente, como a função exponencial <span class="math inline">\(g(x) = e^x\)</span> é uma função contínua, a convergência quase certa é preservada por transformações contínuas. Portanto, <span class="math inline">\(Y_n = e^{\log(Y_n)} \overset{q.c.}{\rightarrow} e^{-1}\)</span>. O limite quase certo da média geométrica é <span class="math inline">\(e^{-1}\)</span>.</td>
+</tr>
+</tbody>
+</table>
+<ol start="7" type="1">
+<li>Verifique que, se X1, X2, . . . são variáveis independentes e identicamente distribuı́das, com E(X1) = 1 = Var(X1), então (∑(i=1 to n) Xi) / (√n * √(∑(i=1 to n) X_i^2)) q.c.−→ 1/√2. Rpt. Aplique a propriedade de convergência quase certa. Explicação e Resolução: O problema pede para verificar a convergência quase certa de uma razão que envolve somas de variáveis i.i.d.. A sugestão é usar as propriedades de convergência quase certa para quocientes, que estabelecem que se <span class="math inline">\(A_n \overset{q.c.}{\rightarrow} A\)</span> e <span class="math inline">\(B_n \overset{q.c.}{\rightarrow} B\)</span> com <span class="math inline">\(P(B \ne 0) = 1\)</span>, então <span class="math inline">\(A_n/B_n \overset{q.c.}{\rightarrow} A/B\)</span>. Vamos reescrever a expressão dada para facilitar a aplicação da Lei Forte dos Grandes Números (LFG): <span class="math inline">\(\frac{\sum_{i=1}^{n} X_i}{\sqrt{n} \sqrt{\sum_{i=1}^{n} X_i^2}} = \frac{\frac{1}{n} \sum_{i=1}^{n} X_i}{\frac{1}{n} \sqrt{n} \sqrt{\sum_{i=1}^{n} X_i^2}} = \frac{\frac{1}{n} \sum_{i=1}^{n} X_i}{\sqrt{\frac{1}{n^2} n \sum_{i=1}^{n} X_i^2}} = \frac{\frac{1}{n} \sum_{i=1}^{n} X_i}{\sqrt{\frac{1}{n} \sum_{i=1}^{n} X_i^2}}\)</span>. Agora, analisamos o numerador e o denominador separadamente. Numerador: <span class="math inline">\(\frac{1}{n} \sum_{i=1}^{n} X_i\)</span>. Dadas que <span class="math inline">\(X_i\)</span> são i.i.d. com <span class="math inline">\(E[X_1] = 1\)</span> (finito), pela Lei Forte dos Grandes Números (LFG): <span class="math inline">\(\frac{1}{n} \sum_{i=1}^{n} X_i \overset{q.c.}{\rightarrow} E[X_1] = 1\)</span>. Denominador: <span class="math inline">\(\sqrt{\frac{1}{n} \sum_{i=1}^{n} X_i^2}\)</span>. Primeiro, vamos calcular <span class="math inline">\(E[X_1^2]\)</span>. Usamos a relação <span class="math inline">\(\text{Var}(X_1) = E[X_1^2] - (E[X_1])^2\)</span>. Dadas que <span class="math inline">\(E[X_1] = 1\)</span> e <span class="math inline">\(\text{Var}(X_1) = 1\)</span>: <span class="math inline">\(1 = E[X_1^2] - (1)^2 \Rightarrow E[X_1^2] = 1 + 1 = 2\)</span>. Como <span class="math inline">\(X_i\)</span> são i.i.d., <span class="math inline">\(X_i^2\)</span> também são i.i.d. com <span class="math inline">\(E[X_1^2] = 2\)</span> (finito). Pela LFG: <span class="math inline">\(\frac{1}{n} \sum_{i=1}^{n} X_i^2 \overset{q.c.}{\rightarrow} E[X_1^2] = 2\)</span>. Como a função <span class="math inline">\(g(x) = \sqrt{x}\)</span> é contínua e o limite é <span class="math inline">\(2 &gt; 0\)</span>, a convergência quase certa é preservada por transformações contínuas. Então, <span class="math inline">\(\sqrt{\frac{1}{n} \sum_{i=1}^{n} X_i^2} \overset{q.c.}{\rightarrow} \sqrt{2}\)</span>. Convergência da Razão: Aplicando a propriedade de quociente de convergência quase certa, como o denominador converge para <span class="math inline">\(\sqrt{2} \ne 0\)</span>: <span class="math inline">\(\frac{\frac{1}{n} \sum_{i=1}^{n} X_i}{\sqrt{\frac{1}{n} \sum_{i=1}^{n} X_i^2}} \overset{q.c.}{\rightarrow} \frac{1}{\sqrt{2}}\)</span>. Portanto, a expressão converge quase certamente para <span class="math inline">\(1/\sqrt{2}\)</span>.</li>
+</ol>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 100%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">8. Seja 0 &lt; θ &lt; 1/2. Verifique que, se X1, X2, . . . são variáveis independentes tais que P(Xn = nθ) = 1/2 = P(Xn = −nθ), então (X1 + · · ·+Xn) / n q.c.−→ 0. Explicação e Resolução: O problema pede para verificar a convergência quase certa da média amostral <span class="math inline">\(S_n/n = \frac{1}{n} \sum_{k=1}^n X_k\)</span> para 0. As variáveis <span class="math inline">\(X_n\)</span> são independentes, mas não identicamente distribuídas, pois a distribuição de <span class="math inline">\(X_n\)</span> depende de <span class="math inline">\(n\)</span>. Primeiro, calculamos a esperança e a variância de <span class="math inline">\(X_n\)</span>: • Esperança de <span class="math inline">\(X_n\)</span>: <span class="math inline">\(E[X_n] = n\theta \cdot P(X_n=n\theta) + (-n\theta) \cdot P(X_n=-n\theta) = n\theta \cdot \frac{1}{2} + (-n\theta) \cdot \frac{1}{2} = 0\)</span>. • Variância de <span class="math inline">\(X_n\)</span>: <span class="math inline">\(\text{Var}(X_n) = E[X_n^2] - (E[X_n])^2\)</span>. <span class="math inline">\(E[X_n^2] = (n\theta)^2 \cdot P(X_n=n\theta) + (-n\theta)^2 \cdot P(X_n=-n\theta) = (n\theta)^2 \cdot \frac{1}{2} + (n\theta)^2 \cdot \frac{1}{2} = (n\theta)^2 = n^2\theta^2\)</span>. Então, <span class="math inline">\(\text{Var}(X_n) = n^2\theta^2 - 0^2 = n^2\theta^2\)</span>. Agora, calculamos a esperança e a variância da média amostral <span class="math inline">\(S_n/n\)</span>: • <span class="math inline">\(E[S_n/n] = E\left[\frac{1}{n} \sum_{k=1}^n X_k\right] = \frac{1}{n} \sum_{k=1}^n E[X_k] = \frac{1}{n} \sum_{k=1}^n 0 = 0\)</span>. • <span class="math inline">\(\text{Var}(S_n/n) = \text{Var}\left(\frac{1}{n} \sum_{k=1}^n X_k\right) = \frac{1}{n^2} \text{Var}\left(\sum_{k=1}^n X_k\right)\)</span>. Como <span class="math inline">\(X_k\)</span> são independentes, <span class="math inline">\(\text{Var}\left(\sum_{k=1}^n X_k\right) = \sum_{k=1}^n \text{Var}(X_k)\)</span>. <span class="math inline">\(\text{Var}(S_n/n) = \frac{1}{n^2} \sum_{k=1}^n k^2\theta^2 = \frac{\theta^2}{n^2} \sum_{k=1}^n k^2\)</span>. Usando a fórmula para a soma dos primeiros <span class="math inline">\(n\)</span> quadrados: <span class="math inline">\(\sum_{k=1}^n k^2 = \frac{n(n+1)(2n+1)}{6}\)</span>. <span class="math inline">\(\text{Var}(S_n/n) = \frac{\theta^2}{n^2} \cdot \frac{n(n+1)(2n+1)}{6} = \frac{\theta^2 (n+1)(2n+1)}{6n}\)</span>. Quando <span class="math inline">\(n \to \infty\)</span>: <span class="math inline">\(\lim_{n \to \infty} \text{Var}(S_n/n) = \lim_{n \to \infty} \frac{\theta^2 (2n^2 + 3n + 1)}{6n} = \lim_{n \to \infty} \frac{\theta^2}{6} \left(2n + 3 + \frac{1}{n}\right) = \infty\)</span>. Análise da Convergência: O fato de <span class="math inline">\(\text{Var}(S_n/n) \to \infty\)</span> implica que <span class="math inline">\(S_n/n\)</span> não converge em probabilidade para 0. Por exemplo, pela Desigualdade de Chebyshev, <span class="math inline">\(P(|S_n/n - 0| &gt; \epsilon) \le \frac{\text{Var}(S_n/n)}{\epsilon^2} = \frac{\theta^2 (n+1)(2n+1)}{6n\epsilon^2}\)</span>, que tende a <span class="math inline">\(\infty\)</span> quando <span class="math inline">\(n \to \infty\)</span>. Se não converge em probabilidade, não converge quase certamente. A Lei Forte dos Grandes Números de Kolmogorov para variáveis independentes (não necessariamente i.i.d.) com <span class="math inline">\(E[X_k]=0\)</span> exige que <span class="math inline">\(\sum_{k=1}^{\infty} \frac{\text{Var}(X_k)}{k^2} &lt; \infty\)</span>. Neste caso, <span class="math inline">\(\sum_{k=1}^{\infty} \frac{\text{Var}(X_k)}{k^2} = \sum_{k=1}^{\infty} \frac{k^2\theta^2}{k^2} = \sum_{k=1}^{\infty} \theta^2 = \infty\)</span>, pois <span class="math inline">\(\theta &gt; 0\)</span>. Portanto, esta condição não é satisfeita. Este é um exemplo clássico em teoria da probabilidade em que a Lei Forte dos Grandes Números não se aplica porque a variância dos termos é muito grande, fazendo com que a soma <span class="math inline">\(S_n\)</span> não seja suficientemente “controlada” pela divisão por <span class="math inline">\(n\)</span>. A média amostral <span class="math inline">\(S_n/n\)</span> para essa sequência de variáveis aleatórias não converge quase certamente para 0. Na verdade, <span class="math inline">\(S_n/n\)</span> não converge para 0 nem em probabilidade. Conclusão: Com base na análise e nos teoremas padrão de convergência (como a Lei Forte dos Grandes Números de Kolmogorov e a Desigualdade de Chebyshev), a afirmação de que <span class="math inline">\(\frac{X_1 + \dots + X_n}{n} \overset{q.c.}{\rightarrow} 0\)</span> não pode ser verificada como verdadeira para a sequência de variáveis aleatórias dadas. O “Rpt. 0” na lista de exercícios para este problema parece indicar um erro, pois essa sequência é um conhecido contraexemplo para a Lei Forte dos Grandes Números.</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">9. Sejam X1, X2, . . . variáveis independentes com densidade comum f(x) = {e−(x+1/2), x &gt; −1/2; 0, x &lt; −1/2. Verifique que X1 + · · ·+Xn q.c.−→ +∞. Explicação e Resolução: O problema pede para verificar que a soma <span class="math inline">\(S_n = \sum_{i=1}^n X_i\)</span> converge quase certamente para <span class="math inline">\(+\infty\)</span>. Para uma sequência de variáveis i.i.d. onde <span class="math inline">\(E[X_1] &gt; 0\)</span> e <span class="math inline">\(E[|X_1|] &lt; \infty\)</span>, a Lei Forte dos Grandes Números (LFG) garante que <span class="math inline">\(\frac{1}{n} S_n \overset{q.c.}{\rightarrow} E[X_1]\)</span>. Se <span class="math inline">\(E[X_1] &gt; 0\)</span>, então <span class="math inline">\(\frac{1}{n} S_n \overset{q.c.}{\rightarrow} \mu &gt; 0\)</span>, o que implica que <span class="math inline">\(S_n \overset{q.c.}{\rightarrow} +\infty\)</span>. Primeiro, vamos verificar se <span class="math inline">\(f(x)\)</span> é uma função densidade de probabilidade (PDF) válida, integrando-a sobre seu domínio: <span class="math inline">\(\int_{-\infty}^{\infty} f(x) , dx = \int_{-1/2}^{\infty} e^{-(x+1/2)} , dx = e^{-1/2} \int_{-1/2}^{\infty} e^{-x} , dx\)</span>. Calculando a integral: <span class="math inline">\(\int_{-1/2}^{\infty} e^{-x} , dx = [-e^{-x}]{-1/2}^{\infty} = \lim{b \to \infty} (-e^{-b}) - (-e^{-(-1/2)}) = 0 - (-e^{1/2}) = e^{1/2}\)</span>. Então, <span class="math inline">\(\int_{-\infty}^{\infty} f(x) , dx = e^{-1/2} \cdot e^{1/2} = e^0 = 1\)</span>. A função é uma PDF válida. Agora, calculamos a esperança <span class="math inline">\(E[X_1]\)</span>: <span class="math inline">\(E[X_1] = \int_{-\infty}^{\infty} x f(x) , dx = \int_{-1/2}^{\infty} x e^{-(x+1/2)} , dx = e^{-1/2} \int_{-1/2}^{\infty} x e^{-x} , dx\)</span>. Para a integral <span class="math inline">\(\int x e^{-x} , dx\)</span>, usamos integração por partes (<span class="math inline">\(u=x, dv=e^{-x}dx \Rightarrow du=dx, v=-e^{-x}\)</span>): <span class="math inline">\(\int x e^{-x} , dx = -x e^{-x} - \int (-e^{-x}) , dx = -x e^{-x} + \int e^{-x} , dx = -x e^{-x} - e^{-x} = -(x+1)e^{-x}\)</span>. Avaliando a integral definida: <span class="math inline">\(\int_{-1/2}^{\infty} x e^{-x} , dx = [-(x+1)e^{-x}]{-1/2}^{\infty} = \lim{b \to \infty} (-(b+1)e^{-b}) - (-(-1/2+1)e^{-(-1/2)})\)</span>. O limite <span class="math inline">\(\lim_{b \to \infty} (-(b+1)e^{-b}) = 0\)</span> (pode ser visto usando a regra de L’Hôpital). Então, a integral é <span class="math inline">\(0 - (-(1/2)e^{1/2}) = \frac{1}{2}e^{1/2}\)</span>. Substituindo de volta em <span class="math inline">\(E[X_1]\)</span>: <span class="math inline">\(E[X_1] = e^{-1/2} \cdot \frac{1}{2}e^{1/2} = \frac{1}{2}e^0 = \frac{1}{2}\)</span>. Como <span class="math inline">\(E[X_1] = 1/2 &gt; 0\)</span> e as variáveis são i.i.d., pela Lei Forte dos Grandes Números (LFG), a média amostral <span class="math inline">\(\frac{S_n}{n} \overset{q.c.}{\rightarrow} E[X_1] = \frac{1}{2}\)</span>. Se <span class="math inline">\(\frac{S_n}{n}\)</span> converge quase certamente para <span class="math inline">\(1/2\)</span>, que é um valor positivo, isso significa que para <span class="math inline">\(n\)</span> grande o suficiente, <span class="math inline">\(\frac{S_n}{n}\)</span> é aproximadamente <span class="math inline">\(1/2\)</span>. Portanto, <span class="math inline">\(S_n \approx n \cdot (1/2)\)</span>. À medida que <span class="math inline">\(n \to \infty\)</span>, <span class="math inline">\(n/2 \to +\infty\)</span>. Assim, <span class="math inline">\(X_1 + \dots + X_n \overset{q.c.}{\rightarrow} +\infty\)</span>.</td>
+</tr>
+</tbody>
+</table>
+<ol start="10" type="1">
+<li>Sejam X1, X2, . . . variáveis independentes com distribuição comum N(0, 1). Qual o limite quase certo de (X1^2 + · · ·+Xn^2) / ((X1 − 1)^2 + · · ·+ (Xn − 1)^2)? Rpt. 1/2 (Aplique a propriedade de convergência quase certa). Explicação e Resolução: O problema pede o limite quase certo de uma razão de somas de variáveis aleatórias. Para resolver, podemos aplicar a Lei Forte dos Grandes Números (LFG) aos termos do numerador e do denominador. Se o numerador e o denominador convergem quase certamente para valores finitos, a razão também converge quase certamente para a razão dos limites, desde que o limite do denominador não seja zero. Dadas <span class="math inline">\(X_i\)</span> são i.i.d. <span class="math inline">\(N(0,1)\)</span>. A esperança <span class="math inline">\(E[X_i] = 0\)</span> e a variância <span class="math inline">\(\text{Var}(X_i) = 1\)</span>. Analisando o Numerador: O numerador é <span class="math inline">\(\sum_{i=1}^{n} X_i^2\)</span>. Vamos considerar a média <span class="math inline">\(\frac{1}{n} \sum_{i=1}^{n} X_i^2\)</span>. Seja <span class="math inline">\(Y_i = X_i^2\)</span>. Como <span class="math inline">\(X_i\)</span> são i.i.d., <span class="math inline">\(Y_i\)</span> também são i.i.d. Calculamos a esperança de <span class="math inline">\(Y_i\)</span>: <span class="math inline">\(E[Y_i] = E[X_i^2]\)</span>. Usando a relação <span class="math inline">\(\text{Var}(X_i) = E[X_i^2] - (E[X_i])^2\)</span>: <span class="math inline">\(E[X_i^2] = \text{Var}(X_i) + (E[X_i])^2 = 1 + 0^2 = 1\)</span>. Como <span class="math inline">\(E[Y_1] = E[X_1^2] = 1\)</span> (finito), pela Lei Forte dos Grandes Números (LFG): <span class="math inline">\(\frac{1}{n} \sum_{i=1}^{n} X_i^2 \overset{q.c.}{\rightarrow} E[X_1^2] = 1\)</span>. Analisando o Denominador: O denominador é <span class="math inline">\(\sum_{i=1}^{n} (X_i - 1)^2\)</span>. Vamos considerar a média <span class="math inline">\(\frac{1}{n} \sum_{i=1}^{n} (X_i - 1)^2\)</span>. Seja <span class="math inline">\(Z_i = (X_i - 1)^2\)</span>. Como <span class="math inline">\(X_i\)</span> são i.i.d., <span class="math inline">\(Z_i\)</span> também são i.i.d. Calculamos a esperança de <span class="math inline">\(Z_i\)</span>: <span class="math inline">\(E[Z_i] = E[(X_i - 1)^2]\)</span>. Usando a linearidade da esperança: <span class="math inline">\(E[(X_i - 1)^2] = E[X_i^2 - 2X_i + 1] = E[X_i^2] - 2E[X_i] + 1\)</span>. Já sabemos <span class="math inline">\(E[X_i^2] = 1\)</span> e <span class="math inline">\(E[X_i] = 0\)</span>: <span class="math inline">\(E[Z_i] = 1 - 2(0) + 1 = 2\)</span>. Como <span class="math inline">\(E[Z_1] = E[(X_1 - 1)^2] = 2\)</span> (finito), pela LFG: <span class="math inline">\(\frac{1}{n} \sum_{i=1}^{n} (X_i - 1)^2 \overset{q.c.}{\rightarrow} E[(X_1 - 1)^2] = 2\)</span>. Analisando a Razão Total: A expressão original pode ser escrita como: <span class="math inline">\(\frac{\sum_{i=1}^{n} X_i^2}{\sum_{i=1}^{n} (X_i - 1)^2} = \frac{\frac{1}{n} \sum_{i=1}^{n} X_i^2}{\frac{1}{n} \sum_{i=1}^{n} (X_i - 1)^2}\)</span>. Aplicando a propriedade de quociente de convergência quase certa, como o numerador converge para 1 e o denominador converge para 2 (que é diferente de zero): <span class="math inline">\(\frac{\frac{1}{n} \sum_{i=1}^{n} X_i^2}{\frac{1}{n} \sum_{i=1}^{n} (X_i - 1)^2} \overset{q.c.}{\rightarrow} \frac{1}{2}\)</span>. O limite quase certo da sequência é 1/2.</li>
+</ol>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 100%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">11. Verifique que Xn q.c.−→ 2, com (Xn)n&gt;1 sendo uma sequencia de variáveis aleatórias tais que P(Xn = 1) = P(Xn = 3) = 1/n^2 e P(Xn = 2) = 1− 2/n^2, ∀n &gt; 1. Rpt. Aplique o Lema de Borel-Cantelli e a caracterização de convergência quase certa. Explicação e Resolução: Para verificar que <span class="math inline">\(X_n \overset{q.c.}{\rightarrow} 2\)</span>, precisamos mostrar que, para qualquer <span class="math inline">\(\epsilon &gt; 0\)</span>, a probabilidade de o evento <span class="math inline">\({|X_n - 2| &gt; \epsilon}\)</span> ocorrer infinitas vezes é zero, ou seja, <span class="math inline">\(P({|X_n - 2| &gt; \epsilon} \text{ i.o.}) = 0\)</span>. Este é o Primeiro Lema de Borel-Cantelli. Vamos analisar o evento <span class="math inline">\({|X_n - 2| &gt; \epsilon}\)</span>: Os valores que <span class="math inline">\(X_n\)</span> pode assumir são 1, 2 e 3. • Se <span class="math inline">\(X_n = 1\)</span>, então <span class="math inline">\(|X_n - 2| = |1 - 2| = 1\)</span>. • Se <span class="math inline">\(X_n = 2\)</span>, então <span class="math inline">\(|X_n - 2| = |2 - 2| = 0\)</span>. • Se <span class="math inline">\(X_n = 3\)</span>, então <span class="math inline">\(|X_n - 2| = |3 - 2| = 1\)</span>. Para qualquer <span class="math inline">\(\epsilon \in (0, 1]\)</span>, o evento <span class="math inline">\({|X_n - 2| &gt; \epsilon}\)</span> ocorre se e somente se <span class="math inline">\(X_n = 1\)</span> ou <span class="math inline">\(X_n = 3\)</span>. A probabilidade deste evento é: <span class="math inline">\(P(|X_n - 2| &gt; \epsilon) = P(X_n = 1 \text{ ou } X_n = 3)\)</span>. Como os eventos <span class="math inline">\({X_n=1}\)</span> e <span class="math inline">\({X_n=3}\)</span> são disjuntos: <span class="math inline">\(P(|X_n - 2| &gt; \epsilon) = P(X_n = 1) + P(X_n = 3) = \frac{1}{n^2} + \frac{1}{n^2} = \frac{2}{n^2}\)</span>. Agora, aplicamos o Primeiro Lema de Borel-Cantelli. Precisamos verificar se a série <span class="math inline">\(\sum_{n=1}^{\infty} P(|X_n - 2| &gt; \epsilon)\)</span> converge. <span class="math inline">\(\sum_{n=1}^{\infty} P(|X_n - 2| &gt; \epsilon) = \sum_{n=1}^{\infty} \frac{2}{n^2} = 2 \sum_{n=1}^{\infty} \frac{1}{n^2}\)</span>. A série <span class="math inline">\(\sum_{n=1}^{\infty} \frac{1}{n^2}\)</span> é uma p-série com <span class="math inline">\(p=2\)</span>, que é conhecida por convergir (converge para <span class="math inline">\(\pi^2/6\)</span>). Como <span class="math inline">\(2 \sum_{n=1}^{\infty} \frac{1}{n^2} &lt; \infty\)</span>, o Primeiro Lema de Borel-Cantelli se aplica. Isso implica que <span class="math inline">\(P({|X_n - 2| &gt; \epsilon} \text{ i.o.}) = 0\)</span>. Portanto, <span class="math inline">\(X_n \overset{q.c.}{\rightarrow} 2\)</span> está verificado.</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">12. As variáveis Xn, n &gt; 1, são independentes e todas têm distribuição exponencial de parâmetro λ. Verifique que a sequencia (X2 n)n&gt;1 satisfaz a Lei Forte dos Grandes Números. Explicação e Resolução: Para que uma sequência de variáveis aleatórias satisfaça a Lei Forte dos Grandes Números (LFG), é necessário que as variáveis sejam independentes e identicamente distribuídas (i.i.d.) e que a esperança do valor absoluto do primeiro termo seja finita, ou seja, <span class="math inline">\(E[|Y_1|] &lt; \infty\)</span>. No problema, temos que <span class="math inline">\(X_n\)</span> são independentes e todas têm distribuição exponencial de parâmetro <span class="math inline">\(\lambda\)</span>. Isso significa que <span class="math inline">\(X_n\)</span> são i.i.d. com <span class="math inline">\(X_n \sim \text{Exp}(\lambda)\)</span>. Estamos interessados na sequência <span class="math inline">\((Y_n)_{n \ge 1}\)</span> onde <span class="math inline">\(Y_n = X_n^2\)</span>. Como <span class="math inline">\(X_n\)</span> são i.i.d., <span class="math inline">\(Y_n = X_n^2\)</span> também são independentes e identicamente distribuídas. Agora, precisamos calcular a esperança de <span class="math inline">\(Y_1 = X_1^2\)</span> e verificar se é finita. Para uma variável <span class="math inline">\(X \sim \text{Exp}(\lambda)\)</span>, temos: • <span class="math inline">\(E[X] = 1/\lambda\)</span>. • <span class="math inline">\(\text{Var}(X) = 1/\lambda^2\)</span>. Usando a relação <span class="math inline">\(\text{Var}(X) = E[X^2] - (E[X])^2\)</span>, podemos encontrar <span class="math inline">\(E[X^2]\)</span>: <span class="math inline">\(E[X^2] = \text{Var}(X) + (E[X])^2 = 1/\lambda^2 + (1/\lambda)^2 = 1/\lambda^2 + 1/\lambda^2 = 2/\lambda^2\)</span>. Como <span class="math inline">\(E[Y_1] = E[X_1^2] = 2/\lambda^2\)</span> é um valor finito (assumindo <span class="math inline">\(\lambda \ne 0\)</span>), as condições para a Lei Forte dos Grandes Números são satisfeitas para a sequência <span class="math inline">\((Y_n){n \ge 1}\)</span>.Portanto, a sequência <strong><span class="math inline">\((X_n^2){n \ge 1}\)</span> satisfaz a Lei Forte dos Grandes Números</strong>, o que significa que <span class="math inline">\(\frac{1}{n} \sum_{i=1}^n X_i^2 \overset{q.c.}{\rightarrow} 2/\lambda^2\)</span>.</td>
+</tr>
+</tbody>
+</table>
+<ol start="13" type="1">
+<li>Sejam X1, . . . , Xn variáveis aleatórias independentes com Xn ∼Poisson( √ n), para cada n &gt; 1. Verifique que (Xn − √ n) L2−→ 0, onde X = (X1 + · · ·+Xn)/n. Explicação e Resolução: O enunciado da questão 13 na fonte é ambíguo. Apresenta “(Xn − √ n) L2−→ 0” e, em seguida, define “onde X = (X1 + · · ·+Xn)/n”. Interpretação da Ambiguidade:</li>
+<li>Se “Xn” na expressão <span class="math inline">\((X_n - \sqrt{n})\)</span> se refere à variável individual <span class="math inline">\(X_n\)</span>: ◦ <span class="math inline">\(X_n \sim \text{Poisson}(\sqrt{n})\)</span>, então <span class="math inline">\(E[X_n] = \sqrt{n}\)</span> e <span class="math inline">\(\text{Var}(X_n) = \sqrt{n}\)</span>. ◦ A convergência em <span class="math inline">\(L_2\)</span> de <span class="math inline">\((X_n - \sqrt{n})\)</span> para 0 significa que <span class="math inline">\(E[|X_n - \sqrt{n}|^2] \to 0\)</span> quando <span class="math inline">\(n \to \infty\)</span>. ◦ <span class="math inline">\(E[|X_n - \sqrt{n}|^2] = E[ (X_n - E[X_n])^2 ] = \text{Var}(X_n) = \sqrt{n}\)</span>. ◦ Como <span class="math inline">\(\sqrt{n} \to \infty\)</span> quando <span class="math inline">\(n \to \infty\)</span>, a convergência em <span class="math inline">\(L_2\)</span> NÃO ocorre para a variável individual <span class="math inline">\(X_n\)</span>. ◦ A definição de <span class="math inline">\(X = (X_1 + \dots + X_n)/n\)</span> na sequência da frase ficaria sem sentido para esta parte da verificação.</li>
+<li>Se “X” na expressão <span class="math inline">\((X - \sqrt{n})\)</span> se refere à média amostral <span class="math inline">\(X = \frac{1}{n} \sum_{k=1}^n X_k\)</span>, e “<span class="math inline">\(\sqrt{n}\)</span>” se refere a <span class="math inline">\(E[X_n]\)</span> do último termo: ◦ Nesse caso, a convergência em <span class="math inline">\(L_2\)</span> de <span class="math inline">\((X - \sqrt{n})\)</span> para 0 significaria <span class="math inline">\(E[|X - \sqrt{n}|^2] \to 0\)</span>. ◦ <span class="math inline">\(E[X] = E\left[\frac{1}{n} \sum_{k=1}^n X_k\right] = \frac{1}{n} \sum_{k=1}^n E[X_k]\)</span>. ◦ Dada <span class="math inline">\(X_k \sim \text{Poisson}(\sqrt{k})\)</span>, então <span class="math inline">\(E[X_k] = \sqrt{k}\)</span>. ◦ <span class="math inline">\(E[X] = \frac{1}{n} \sum_{k=1}^n \sqrt{k}\)</span>. ◦ <span class="math inline">\(\text{Var}(X) = \text{Var}\left(\frac{1}{n} \sum_{k=1}^n X_k\right) = \frac{1}{n^2} \sum_{k=1}^n \text{Var}(X_k)\)</span> (já que são independentes). ◦ <span class="math inline">\(\text{Var}(X_k) = \sqrt{k}\)</span>. ◦ <span class="math inline">\(\text{Var}(X) = \frac{1}{n^2} \sum_{k=1}^n \sqrt{k}\)</span>. ◦ Para o limite de <span class="math inline">\(\text{Var}(X)\)</span>, a soma <span class="math inline">\(\sum_{k=1}^n \sqrt{k}\)</span> é aproximadamente <span class="math inline">\(\int_1^n \sqrt{x} dx = \left[\frac{2}{3}x^{3/2}\right]_1^n \approx \frac{2}{3}n^{3/2}\)</span>. ◦ Então, <span class="math inline">\(\lim_{n \to \infty} \text{Var}(X) = \lim_{n \to \infty} \frac{1}{n^2} \cdot \frac{2}{3}n^{3/2} = \lim_{n \to \infty} \frac{2}{3}n^{-1/2} = 0\)</span>. ◦ A condição <span class="math inline">\(E[|Y_n - Y|^2] \to 0\)</span> para <span class="math inline">\(L_2\)</span> é <span class="math inline">\(E[|X - \sqrt{n}|^2] = \text{Var}(X) + (E[X] - \sqrt{n})^2\)</span>. ◦ <span class="math inline">\(\lim_{n \to \infty} E[X] = \lim_{n \to \infty} \frac{1}{n} \sum_{k=1}^n \sqrt{k} \approx \lim_{n \to \infty} \frac{1}{n} \cdot \frac{2}{3}n^{3/2} = \lim_{n \to \infty} \frac{2}{3}n^{1/2} = \lim_{n \to \infty} \frac{2}{3}\sqrt{n}\)</span>. ◦ Então, <span class="math inline">\((E[X] - \sqrt{n})^2 \approx \left(\frac{2}{3}\sqrt{n} - \sqrt{n}\right)^2 = \left(-\frac{1}{3}\sqrt{n}\right)^2 = \frac{1}{9}n\)</span>. ◦ Como <span class="math inline">\(\frac{1}{9}n \to \infty\)</span>, a convergência em <span class="math inline">\(L_2\)</span> de <span class="math inline">\((X - \sqrt{n})\)</span> para 0 NÃO ocorre nesta interpretação.</li>
+<li>Se a intenção do problema é (X - E[X]) L2−→ 0, onde X é a média amostral: ◦ Esta é a interpretação mais provável em listas de exercícios de Teoria da Probabilidade, onde o “Rpt. L2-&gt;0” faz sentido, e o termo é o centrador de <span class="math inline">\(X\)</span>. ◦ Para <span class="math inline">\(X = \frac{1}{n} \sum_{k=1}^n X_k\)</span>, já calculamos <span class="math inline">\(\text{Var}(X) = \frac{1}{n^2} \sum_{k=1}^n \sqrt{k}\)</span>. ◦ <span class="math inline">\(\lim_{n \to \infty} \text{Var}(X) = 0\)</span>, conforme calculado na Interpretação 2. ◦ Pela definição de convergência em <span class="math inline">\(L_2\)</span>, se <span class="math inline">\(E[|X - E[X]|^2] = \text{Var}(X) \to 0\)</span>, então <span class="math inline">\(X - E[X] \overset{L_2}{\rightarrow} 0\)</span>. ◦ Nesta interpretação, a verificação é bem-sucedida. Conclusão: Dada a ambiguidade do enunciado e a resposta esperada “Rpt. L2-&gt;0”, a interpretação mais coerente com o contexto de Teoria da Probabilidade é que o problema solicita a verificação de que a média amostral <span class="math inline">\(X\)</span> converge para sua própria esperança <span class="math inline">\(E[X]\)</span> no sentido <span class="math inline">\(L_2\)</span>. Verificação assumindo a Interpretação 3: Seja <span class="math inline">\(X = \frac{1}{n} \sum_{k=1}^n X_k\)</span>. Queremos verificar que <span class="math inline">\(X \overset{L_2}{\rightarrow} E[X]\)</span>. Isso é equivalente a mostrar que <span class="math inline">\(\lim_{n \to \infty} E[|X - E[X]|^2] = 0\)</span>, que é o mesmo que <span class="math inline">\(\lim_{n \to \infty} \text{Var}(X) = 0\)</span>. Para <span class="math inline">\(X_k \sim \text{Poisson}(\sqrt{k})\)</span>, temos <span class="math inline">\(E[X_k] = \sqrt{k}\)</span> e <span class="math inline">\(\text{Var}(X_k) = \sqrt{k}\)</span>. Como os <span class="math inline">\(X_k\)</span> são independentes, a variância da soma é a soma das variâncias: <span class="math inline">\(\text{Var}(X) = \text{Var}\left(\frac{1}{n} \sum_{k=1}^n X_k\right) = \frac{1}{n^2} \text{Var}\left(\sum_{k=1}^n X_k\right) = \frac{1}{n^2} \sum_{k=1}^n \text{Var}(X_k) = \frac{1}{n^2} \sum_{k=1}^n \sqrt{k}\)</span>. Para avaliar o limite de <span class="math inline">\(\sum_{k=1}^n \sqrt{k}\)</span>, podemos usar a aproximação integral: <span class="math inline">\(\sum_{k=1}^n \sqrt{k} \approx \int_1^n \sqrt{x} dx = \left[\frac{2}{3}x^{3/2}\right]_1^n = \frac{2}{3}n^{3/2} - \frac{2}{3}\)</span>. Então, <span class="math inline">\(\text{Var}(X) \approx \frac{1}{n^2} \left(\frac{2}{3}n^{3/2}\right) = \frac{2}{3}n^{3/2 - 2} = \frac{2}{3}n^{-1/2} = \frac{2}{3\sqrt{n}}\)</span>. Quando <span class="math inline">\(n \to \infty\)</span>, <span class="math inline">\(\text{Var}(X) \to 0\)</span>. Portanto, <span class="math inline">\(X - E[X] \overset{L_2}{\rightarrow} 0\)</span>.</li>
+</ol>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 100%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">14. Sejam (Xn)n&gt;1 variáveis aleatórias i.d.d. com média µ e variância σ2, ambas finitas, Veri-fique que (1/n) ∑(i=1 to n) (Xi − X)^2 P−→ σ2. Explicação e Resolução: O problema pede para verificar a convergência em probabilidade do estimador da variância <span class="math inline">\(\frac{1}{n} \sum_{i=1}^n (X_i - \bar{X})^2\)</span> para <span class="math inline">\(\sigma^2\)</span>. Aqui, <span class="math inline">\(\bar{X} = \frac{1}{n} \sum_{i=1}^n X_i\)</span> é a média amostral. Podemos reescrever a soma dos quadrados dos desvios: <span class="math inline">\(\sum_{i=1}^n (X_i - \bar{X})^2 = \sum_{i=1}^n (X_i^2 - 2X_i\bar{X} + \bar{X}^2)\)</span> <span class="math inline">\(= \sum_{i=1}^n X_i^2 - 2\bar{X}\sum_{i=1}^n X_i + \sum_{i=1}^n \bar{X}^2\)</span> Como <span class="math inline">\(\sum_{i=1}^n X_i = n\bar{X}\)</span>: <span class="math inline">\(= \sum_{i=1}^n X_i^2 - 2\bar{X}(n\bar{X}) + n\bar{X}^2\)</span> <span class="math inline">\(= \sum_{i=1}^n X_i^2 - 2n\bar{X}^2 + n\bar{X}^2\)</span> <span class="math inline">\(= \sum_{i=1}^n X_i^2 - n\bar{X}^2\)</span>. Então, a expressão a ser verificada é <span class="math inline">\(\frac{1}{n} \sum_{i=1}^n (X_i - \bar{X})^2 = \frac{1}{n} \sum_{i=1}^n X_i^2 - \bar{X}^2\)</span>. Vamos analisar a convergência em probabilidade de cada termo: 1. Termo <span class="math inline">\(\frac{1}{n} \sum_{i=1}^n X_i^2\)</span>: • Como <span class="math inline">\(X_i\)</span> são i.i.d. com média <span class="math inline">\(\mu\)</span> e variância <span class="math inline">\(\sigma^2\)</span>, temos <span class="math inline">\(E[X_1^2] = \text{Var}(X_1) + (E[X_1])^2 = \sigma^2 + \mu^2\)</span>. • Como <span class="math inline">\(\sigma^2\)</span> e <span class="math inline">\(\mu\)</span> são finitas, <span class="math inline">\(E[X_1^2]\)</span> é finito. • Pela Lei dos Grandes Números (LGN) (na forma de convergência em probabilidade para i.i.d. com esperança finita), a média amostral de <span class="math inline">\(X_i^2\)</span> converge em probabilidade para <span class="math inline">\(E[X_1^2]\)</span>: <span class="math inline">\(\frac{1}{n} \sum_{i=1}^n X_i^2 \overset{P}{\rightarrow} \sigma^2 + \mu^2\)</span>. 2. Termo <span class="math inline">\(\bar{X}^2\)</span>: • Pela LGN, a média amostral <span class="math inline">\(\bar{X} = \frac{1}{n} \sum_{i=1}^n X_i\)</span> converge em probabilidade para <span class="math inline">\(E[X_1] = \mu\)</span>: <span class="math inline">\(\bar{X} \overset{P}{\rightarrow} \mu\)</span>. • Como a função <span class="math inline">\(g(x) = x^2\)</span> é contínua, e a convergência em probabilidade é preservada por transformações contínuas: <span class="math inline">\(\bar{X}^2 \overset{P}{\rightarrow} \mu^2\)</span>. Combinando os Termos: Usando a propriedade de que se <span class="math inline">\(Y_n \overset{P}{\rightarrow} Y\)</span> e <span class="math inline">\(Z_n \overset{P}{\rightarrow} Z\)</span>, então <span class="math inline">\(Y_n - Z_n \overset{P}{\rightarrow} Y - Z\)</span>: <span class="math inline">\(\frac{1}{n} \sum_{i=1}^n X_i^2 - \bar{X}^2 \overset{P}{\rightarrow} (\sigma^2 + \mu^2) - \mu^2 = \sigma^2\)</span>. Portanto, a expressão <span class="math inline">\(\frac{1}{n} \sum_{i=1}^n (X_i - \bar{X})^2 \overset{P}{\rightarrow} \sigma^2\)</span> está verificada.</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">15. Sejam µ ∈ R, σ &gt; 0 e (Xn)n&gt;1 uma sequência de variáveis aleatórias tal que para todo n &gt; 1, Xn é normalmente distribuı́da com média µ e variância σ2. Assuma que X1, . . . , Xn são independentes para todo n &gt; 1. Seja X = (X1 + · · ·+Xn)/n.&nbsp;Verifique que X converge em Lp a µ, para todo p &gt; 1. Rpt. Lembre que, neste caso, X ∼ N(µ, σ2/n). Explicação e Resolução: O problema pede para verificar a convergência em <span class="math inline">\(L_p\)</span> da média amostral <span class="math inline">\(X = \frac{1}{n} \sum_{i=1}^n X_i\)</span> para <span class="math inline">\(\mu\)</span>. A convergência em <span class="math inline">\(L_p\)</span> de <span class="math inline">\(Y_n\)</span> para <span class="math inline">\(Y\)</span> significa que <span class="math inline">\(\lim_{n \to \infty} E[|Y_n - Y|^p] = 0\)</span>. Neste caso, queremos mostrar <span class="math inline">\(\lim_{n \to \infty} E[|X - \mu|^p] = 0\)</span> para todo <span class="math inline">\(p &gt; 1\)</span>. O problema afirma que <span class="math inline">\(X_n \sim N(\mu, \sigma^2)\)</span> e que <span class="math inline">\(X_1, \dots, X_n\)</span> são independentes (e, implicitamente, identicamente distribuídas, pois têm a mesma média e variância). O Rpt. fornece uma informação crucial: neste caso, <span class="math inline">\(X = \frac{1}{n} \sum_{i=1}^n X_i \sim N\left(\mu, \frac{\sigma^2}{n}\right)\)</span>. Esta é uma propriedade conhecida da distribuição normal: a média amostral de variáveis normais i.i.d. é também normal, com a mesma média e variância <span class="math inline">\(\sigma^2/n\)</span>. Seja <span class="math inline">\(Z = X - \mu\)</span>. Então <span class="math inline">\(Z \sim N\left(0, \frac{\sigma^2}{n}\right)\)</span>. Precisamos calcular <span class="math inline">\(E[|Z|^p] = E\left[\left|N\left(0, \frac{\sigma^2}{n}\right)\right|^p\right]\)</span>. Para uma variável <span class="math inline">\(W \sim N(0, v^2)\)</span>, <span class="math inline">\(E[|W|^p] = v^p E[|N(0,1)|^p]\)</span>. Neste caso, <span class="math inline">\(v^2 = \frac{\sigma^2}{n}\)</span>, então <span class="math inline">\(v = \frac{\sigma}{\sqrt{n}}\)</span>. <span class="math inline">\(E[|X - \mu|^p] = E[|Z|^p] = \left(\frac{\sigma}{\sqrt{n}}\right)^p E[|N(0,1)|^p]\)</span>. <span class="math inline">\(E[|X - \mu|^p] = \frac{\sigma^p}{n^{p/2}} E[|N(0,1)|^p]\)</span>. <span class="math inline">\(E[|N(0,1)|^p]\)</span> é uma constante finita para qualquer <span class="math inline">\(p &gt; 0\)</span>. Para o caso de <span class="math inline">\(p\)</span> ser um inteiro par, é <span class="math inline">\(E[W^{2k}] = (2k-1)!! = (2k)!/(2^k k!)\)</span>. Para <span class="math inline">\(p\)</span> qualquer, envolve a função Gama. Mas o importante é que é finita. Considerando o limite quando <span class="math inline">\(n \to \infty\)</span>: <span class="math inline">\(\lim_{n \to \infty} \frac{\sigma^p}{n^{p/2}} E[|N(0,1)|^p] = E[|N(0,1)|^p] \cdot \lim_{n \to \infty} \frac{\sigma^p}{n^{p/2}}\)</span>. Como <span class="math inline">\(\sigma\)</span> é uma constante finita e <span class="math inline">\(p &gt; 1\)</span>, então <span class="math inline">\(p/2 &gt; 1/2\)</span>. Isso implica que <span class="math inline">\(n^{p/2} \to \infty\)</span> quando <span class="math inline">\(n \to \infty\)</span>. Portanto, <span class="math inline">\(\lim_{n \to \infty} \frac{\sigma^p}{n^{p/2}} = 0\)</span>. Assim, <span class="math inline">\(\lim_{n \to \infty} E[|X - \mu|^p] = 0\)</span>. Conclusão: A média amostral <span class="math inline">\(X = \frac{1}{n} \sum_{i=1}^n X_i\)</span> converge em <span class="math inline">\(L_p\)</span> para <span class="math inline">\(\mu\)</span> para todo <span class="math inline">\(p &gt; 1\)</span>.</td>
+</tr>
+</tbody>
+</table>
+<ol start="16" type="1">
+<li>Para k &gt; 1, Xk ∼Bernoulli(pk) são variáveis aleatórias independentes. Defina Yn como o número de sucessos, nas primeiras n realizações. Verifique que (a) ( Yn − ∑n i=1 pi ) / n P−→ 0. (b) ( Yn − ∑n i=1 pi ) / n L2−→ 0. Explicação e Resolução: <span class="math inline">\(Y_n = \sum_{i=1}^n X_i\)</span> é o número de sucessos, onde <span class="math inline">\(X_i \sim \text{Bernoulli}(p_i)\)</span> são independentes. A esperança de <span class="math inline">\(X_i\)</span> é <span class="math inline">\(E[X_i] = p_i\)</span>. A esperança de <span class="math inline">\(Y_n\)</span> é <span class="math inline">\(E[Y_n] = E\left[\sum_{i=1}^n X_i\right] = \sum_{i=1}^n E[X_i] = \sum_{i=1}^n p_i\)</span>. A variância de <span class="math inline">\(X_i\)</span> é <span class="math inline">\(\text{Var}(X_i) = p_i(1-p_i)\)</span>. Como <span class="math inline">\(X_i\)</span> são independentes, a variância de <span class="math inline">\(Y_n\)</span> é <span class="math inline">\(\text{Var}(Y_n) = \text{Var}\left(\sum_{i=1}^n X_i\right) = \sum_{i=1}^n \text{Var}(X_i) = \sum_{i=1}^n p_i(1-p_i)\)</span>. A expressão a ser verificada é <span class="math inline">\(Z_n = \frac{Y_n - \sum_{i=1}^n p_i}{n}\)</span>. Note que <span class="math inline">\(\sum_{i=1}^n p_i = E[Y_n]\)</span>. Então, <span class="math inline">\(Z_n = \frac{Y_n - E[Y_n]}{n}\)</span>. Parte (a): Verificar <span class="math inline">\(Z_n \overset{P}{\rightarrow} 0\)</span> (Convergência em Probabilidade). Para <span class="math inline">\(Z_n \overset{P}{\rightarrow} 0\)</span>, precisamos mostrar que <span class="math inline">\(E[Z_n] \to 0\)</span> e <span class="math inline">\(\text{Var}(Z_n) \to 0\)</span> (pelo Exercício 2, que usa Desigualdade de Markov). • Esperança de <span class="math inline">\(Z_n\)</span>: <span class="math inline">\(E[Z_n] = E\left[\frac{Y_n - E[Y_n]}{n}\right] = \frac{1}{n}(E[Y_n] - E[Y_n]) = 0\)</span>. Assim, <span class="math inline">\(\lim_{n \to \infty} E[Z_n] = 0\)</span>. • Variância de <span class="math inline">\(Z_n\)</span>: <span class="math inline">\(\text{Var}(Z_n) = \text{Var}\left(\frac{Y_n - E[Y_n]}{n}\right) = \frac{1}{n^2} \text{Var}(Y_n - E[Y_n]) = \frac{1}{n^2} \text{Var}(Y_n)\)</span>. <span class="math inline">\(\text{Var}(Z_n) = \frac{1}{n^2} \sum_{i=1}^n p_i(1-p_i)\)</span>. Para qualquer <span class="math inline">\(p_i \in\)</span>, o valor máximo de <span class="math inline">\(p_i(1-p_i)\)</span> é <span class="math inline">\(1/4\)</span> (ocorre quando <span class="math inline">\(p_i=1/2\)</span>). Então, <span class="math inline">\(\sum_{i=1}^n p_i(1-p_i) \le \sum_{i=1}^n \frac{1}{4} = \frac{n}{4}\)</span>. Portanto, <span class="math inline">\(\text{Var}(Z_n) \le \frac{1}{n^2} \cdot \frac{n}{4} = \frac{1}{4n}\)</span>. Quando <span class="math inline">\(n \to \infty\)</span>, <span class="math inline">\(\lim_{n \to \infty} \text{Var}(Z_n) = \lim_{n \to \infty} \frac{1}{4n} = 0\)</span>. Como <span class="math inline">\(E[Z_n] \to 0\)</span> e <span class="math inline">\(\text{Var}(Z_n) \to 0\)</span>, pelo Exercício 2, <span class="math inline">\(\frac{Y_n - \sum_{i=1}^n p_i}{n} \overset{P}{\rightarrow} 0\)</span>. Parte (b): Verificar <span class="math inline">\(Z_n \overset{L_2}{\rightarrow} 0\)</span> (Convergência em <span class="math inline">\(L_2\)</span>). Para <span class="math inline">\(Z_n \overset{L_2}{\rightarrow} 0\)</span>, precisamos mostrar que <span class="math inline">\(\lim_{n \to \infty} E[|Z_n - 0|^2] = 0\)</span>. <span class="math inline">\(E[|Z_n|^2] = \text{Var}(Z_n) + (E[Z_n])^2\)</span>. Já calculamos <span class="math inline">\(E[Z_n] = 0\)</span> e <span class="math inline">\(\text{Var}(Z_n) \le \frac{1}{4n}\)</span>. Então, <span class="math inline">\(E[|Z_n|^2] = \text{Var}(Z_n) \le \frac{1}{4n}\)</span>. Quando <span class="math inline">\(n \to \infty\)</span>, <span class="math inline">\(\lim_{n \to \infty} E[|Z_n|^2] = 0\)</span>. Portanto, <span class="math inline">\(\frac{Y_n - \sum_{i=1}^n p_i}{n} \overset{L_2}{\rightarrow} 0\)</span>.</li>
+</ol>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 100%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>17. A variável aleatória Y é tal que P(−1 &lt; Y 6 1) = 1. Defina, para n &gt; 1, uma nova variável Xn = ∑n i=1(−1)i+1Y i/i. Verifique que Xn q.c.−→ X, com X = log(1 + Y ). Rpt. Use a convergência pontual. Explicação e Resolução: O problema pede para verificar a convergência quase certa de uma série. A convergência quase certa de <span class="math inline">\(X_n\)</span> para <span class="math inline">\(X\)</span> significa que <span class="math inline">\(P(\omega : X_n(\omega) \to X(\omega)) = 1\)</span>. A expressão para <span class="math inline">\(X_n\)</span> é uma soma parcial: <span class="math inline">\(X_n = \sum_{i=1}^n (-1)^{i+1} \frac{Y^i}{i}\)</span>. Esta soma é a série de Taylor (ou série de Maclaurin) para <span class="math inline">\(\log(1+x)\)</span> centrada em <span class="math inline">\(x=0\)</span>. A expansão da série de Taylor para <span class="math inline">\(\log(1+x)\)</span> é: <span class="math inline">\(\log(1+x) = x - \frac{x^2}{2} + \frac{x^3}{3} - \frac{x^4}{4} + \dots = \sum_{i=1}^{\infty} (-1)^{i+1} \frac{x^i}{i}\)</span>. Esta série converge para <span class="math inline">\(\log(1+x)\)</span> para valores de <span class="math inline">\(x\)</span> no intervalo de convergência <span class="math inline">\((-1, 1]\)</span>. O problema afirma que <span class="math inline">\(P(-1 &lt; Y \le 1) = 1\)</span>. Isso significa que, para quase todo <span class="math inline">\(\omega\)</span> no espaço de probabilidade, o valor de <span class="math inline">\(Y(\omega)\)</span> está no intervalo <span class="math inline">\((-1, 1]\)</span>. Para cada <span class="math inline">\(Y(\omega)\)</span> tal que <span class="math inline">\(-1 &lt; Y(\omega) \le 1\)</span>, a série numérica <span class="math inline">\(\sum_{i=1}^{\infty} (-1)^{i+1} \frac{(Y(\omega))^i}{i}\)</span> converge para <span class="math inline">\(\log(1+Y(\omega))\)</span>. Portanto, para quase todo <span class="math inline">\(\omega\)</span>, a sequência de somas parciais <span class="math inline">\(X_n(\omega) = \sum_{i=1}^n (-1)^{i+1} \frac{(Y(\omega))^i}{i}\)</span> converge para <span class="math inline">\(\log(1+Y(\omega))\)</span>. Isso é precisamente a definição de convergência pontual (ou pointwise convergence) para funções da variável aleatória <span class="math inline">\(Y\)</span>. Conclusão: Como <span class="math inline">\(X_n(\omega) \to \log(1+Y(\omega))\)</span> para quase todo <span class="math inline">\(\omega\)</span> (i.e., para todos os <span class="math inline">\(\omega\)</span> no conjunto de probabilidade 1 onde <span class="math inline">\(-1 &lt; Y(\omega) \le 1\)</span>), <span class="math inline">\(X_n \overset{q.c.}{\rightarrow} \log(1+Y)\)</span>. Nota: A expansão da série de Taylor para <span class="math inline">\(\log(1+x)\)</span> não é fornecida diretamente nas fontes, sendo um conhecimento matemático externo que é implicitamente esperado para resolver este problema.</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>18. As variáveis aleatórias X1, X2, . . . , Xn são i.i.d. com média µ e variância σ2, ambas finitas. Sendo X a média amostral, verifique que X L2−→ µ. Explicação e Resolução: O problema pede para verificar que a média amostral <span class="math inline">\(X = \frac{1}{n} \sum_{i=1}^n X_i\)</span> converge para <span class="math inline">\(\mu\)</span> no sentido <span class="math inline">\(L_2\)</span>. A convergência em <span class="math inline">\(L_2\)</span> de uma sequência <span class="math inline">\(Y_n\)</span> para <span class="math inline">\(Y\)</span> é definida como <span class="math inline">\(\lim_{n \to \infty} E[|Y_n - Y|^2] = 0\)</span>. Neste caso, queremos mostrar <span class="math inline">\(\lim_{n \to \infty} E[|X - \mu|^2] = 0\)</span>. Primeiro, calculamos a esperança de <span class="math inline">\(X\)</span>: <span class="math inline">\(E[X] = E\left[\frac{1}{n} \sum_{i=1}^n X_i\right]\)</span>. Pela linearidade da esperança: <span class="math inline">\(E[X] = \frac{1}{n} \sum_{i=1}^n E[X_i]\)</span>. Como <span class="math inline">\(X_i\)</span> são i.i.d. com <span class="math inline">\(E[X_i] = \mu\)</span>: <span class="math inline">\(E[X] = \frac{1}{n} \sum_{i=1}^n \mu = \frac{1}{n} (n\mu) = \mu\)</span>. Agora, <span class="math inline">\(E[|X - \mu|^2] = E[|X - E[X]|^2]\)</span>, que por definição é a variância de <span class="math inline">\(X\)</span>, <span class="math inline">\(\text{Var}(X)\)</span>. <span class="math inline">\(\text{Var}(X) = \text{Var}\left(\frac{1}{n} \sum_{i=1}^n X_i\right)\)</span>. Usando a propriedade que <span class="math inline">\(\text{Var}(cY) = c^2 \text{Var}(Y)\)</span> e que a variância de uma soma de variáveis independentes é a soma das variâncias: <span class="math inline">\(\text{Var}(X) = \frac{1}{n^2} \text{Var}\left(\sum_{i=1}^n X_i\right) = \frac{1}{n^2} \sum_{i=1}^n \text{Var}(X_i)\)</span>. Como <span class="math inline">\(X_i\)</span> são i.i.d. com <span class="math inline">\(\text{Var}(X_i) = \sigma^2\)</span>: <span class="math inline">\(\text{Var}(X) = \frac{1}{n^2} \sum_{i=1}^n \sigma^2 = \frac{1}{n^2} (n\sigma^2) = \frac{\sigma^2}{n}\)</span>. Finalmente, calculamos o limite quando <span class="math inline">\(n \to \infty\)</span>: <span class="math inline">\(\lim_{n \to \infty} E[|X - \mu|^2] = \lim_{n \to \infty} \frac{\sigma^2}{n}\)</span>. Como <span class="math inline">\(\sigma^2\)</span> é finito, <span class="math inline">\(\lim_{n \to \infty} \frac{\sigma^2}{n} = 0\)</span>. Conclusão: Como <span class="math inline">\(\lim_{n \to \infty} E[|X - \mu|^2] = 0\)</span>, <span class="math inline">\(X \overset{L_2}{\rightarrow} \mu\)</span> está verificado.</td>
+</tr>
+</tbody>
+</table>
+<ol start="19" type="1">
+<li>Seja (Xn)n&gt;1 uma sequencia de variáveis aleatórias com P(Xn = x) = {1, x = 2 + 1/n; 0, outro caso. Verifique que Xn D−→ X, onde X é uma variável tal que P(X = 2) = 1. Explicação e Resolução: Para verificar a convergência em distribuição (<span class="math inline">\(X_n \overset{D}{\rightarrow} X\)</span>), precisamos mostrar que a função de distribuição cumulativa (CDF) de <span class="math inline">\(X_n\)</span>, <span class="math inline">\(F_{X_n}(x) = P(X_n \le x)\)</span>, converge para a CDF de <span class="math inline">\(X\)</span>, <span class="math inline">\(F_X(x) = P(X \le x)\)</span>, em todos os pontos de continuidade de <span class="math inline">\(F_X(x)\)</span>.</li>
+<li>Determinar <span class="math inline">\(F_{X_n}(x)\)</span>: A variável <span class="math inline">\(X_n\)</span> assume apenas o valor <span class="math inline">\(2 + 1/n\)</span> com probabilidade 1. Portanto, a CDF de <span class="math inline">\(X_n\)</span> é: <span class="math inline">\(F_{X_n}(x) = P(X_n \le x) = \begin{cases} 0, &amp; \text{se } x &lt; 2 + 1/n \ 1, &amp; \text{se } x \ge 2 + 1/n \end{cases}\)</span>.</li>
+<li>Determinar <span class="math inline">\(F_X(x)\)</span>: A variável <span class="math inline">\(X\)</span> assume apenas o valor <span class="math inline">\(2\)</span> com probabilidade 1. Portanto, a CDF de <span class="math inline">\(X\)</span> é: <span class="math inline">\(F_X(x) = P(X \le x) = \begin{cases} 0, &amp; \text{se } x &lt; 2 \ 1, &amp; \text{se } x \ge 2 \end{cases}\)</span>. Os pontos de continuidade de <span class="math inline">\(F_X(x)\)</span> são todos os valores <span class="math inline">\(x \ne 2\)</span>.</li>
+<li>Verificar o limite <span class="math inline">\(\lim_{n \to \infty} F_{X_n}(x)\)</span> para <span class="math inline">\(x \ne 2\)</span>: • Caso 1: <span class="math inline">\(x &lt; 2\)</span>. Para um <span class="math inline">\(x\)</span> fixo menor que 2, à medida que <span class="math inline">\(n\)</span> cresce, <span class="math inline">\(2 + 1/n\)</span> se aproxima de 2 por valores maiores que 2. Portanto, para <span class="math inline">\(n\)</span> grande o suficiente (tal que <span class="math inline">\(2+1/n &gt; x\)</span>), teremos <span class="math inline">\(F_{X_n}(x) = 0\)</span>. Assim, <span class="math inline">\(\lim_{n \to \infty} F_{X_n}(x) = 0\)</span>. Este limite é igual a <span class="math inline">\(F_X(x)\)</span> para <span class="math inline">\(x &lt; 2\)</span>. • Caso 2: <span class="math inline">\(x &gt; 2\)</span>. Para um <span class="math inline">\(x\)</span> fixo maior que 2, à medida que <span class="math inline">\(n\)</span> cresce, <span class="math inline">\(2 + 1/n\)</span> se aproxima de 2 por valores maiores que 2. Portanto, para <span class="math inline">\(n\)</span> grande o suficiente (tal que <span class="math inline">\(2+1/n &lt; x\)</span>), teremos <span class="math inline">\(F_{X_n}(x) = 1\)</span>. Assim, <span class="math inline">\(\lim_{n \to \infty} F_{X_n}(x) = 1\)</span>. Este limite é igual a <span class="math inline">\(F_X(x)\)</span> para <span class="math inline">\(x &gt; 2\)</span>. Como <span class="math inline">\(F_{X_n}(x)\)</span> converge para <span class="math inline">\(F_X(x)\)</span> em todos os pontos de continuidade de <span class="math inline">\(F_X(x)\)</span>, a convergência em distribuição está verificada. Portanto, <span class="math inline">\(X_n \overset{D}{\rightarrow} X\)</span>, onde <span class="math inline">\(P(X = 2) = 1\)</span>.</li>
+</ol>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 100%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">20. É válida a Lei Fraca dos Grandes Números para as variáveis aleatórias independentes Xn, n &gt; 1, com Xn ∼ exp(2n/2)? Justifique! Rpt. Sim! Explicação e Resolução: O problema pergunta se a Lei Fraca dos Grandes Números (LFG) é válida para a sequência de variáveis aleatórias independentes <span class="math inline">\(X_n \sim \text{Exp}(2n/2)\)</span>. A notação <span class="math inline">\(2n/2\)</span> é equivalente a <span class="math inline">\(n\)</span>. Então, <span class="math inline">\(X_n \sim \text{Exp}(n)\)</span>, o que significa que o parâmetro <span class="math inline">\(\lambda_n = n\)</span>. Para uma variável <span class="math inline">\(X \sim \text{Exp}(\lambda)\)</span>, a esperança é <span class="math inline">\(E[X] = 1/\lambda\)</span> e a variância é <span class="math inline">\(\text{Var}(X) = 1/\lambda^2\)</span>. Para <span class="math inline">\(X_n \sim \text{Exp}(n)\)</span>: • <span class="math inline">\(E[X_n] = 1/n\)</span>. • <span class="math inline">\(\text{Var}(X_n) = 1/n^2\)</span>. Seja <span class="math inline">\(S_n = \sum_{k=1}^n X_k\)</span>. A LFG para variáveis independentes (não necessariamente i.i.d.) geralmente se aplica se a variância da média amostral <span class="math inline">\(\frac{S_n}{n}\)</span> converge para zero. Se <span class="math inline">\(\text{Var}\left(\frac{S_n}{n}\right) \to 0\)</span> e <span class="math inline">\(E\left[\frac{S_n}{n}\right] \to \mu\)</span>, então <span class="math inline">\(\frac{S_n}{n} \overset{P}{\rightarrow} \mu\)</span> (pelo Exercício 2, que usa Desigualdade de Markov). 1. Esperança da Média Amostral: <span class="math inline">\(E\left[\frac{S_n}{n}\right] = \frac{1}{n} \sum_{k=1}^n E[X_k] = \frac{1}{n} \sum_{k=1}^n \frac{1}{k}\)</span>. A soma <span class="math inline">\(\sum_{k=1}^n \frac{1}{k}\)</span> é a série harmônica <span class="math inline">\(H_n\)</span>, que se aproxima de <span class="math inline">\(\log(n) + \gamma\)</span> para <span class="math inline">\(n\)</span> grande (onde <span class="math inline">\(\gamma\)</span> é a constante de Euler-Mascheroni). Então, <span class="math inline">\(E\left[\frac{S_n}{n}\right] \approx \frac{\log(n) + \gamma}{n}\)</span>. <span class="math inline">\(\lim_{n \to \infty} \frac{\log(n) + \gamma}{n} = 0\)</span>. 2. Variância da Média Amostral: Como <span class="math inline">\(X_k\)</span> são independentes, a variância da soma é a soma das variâncias: <span class="math inline">\(\text{Var}\left(\frac{S_n}{n}\right) = \frac{1}{n^2} \text{Var}\left(\sum_{k=1}^n X_k\right) = \frac{1}{n^2} \sum_{k=1}^n \text{Var}(X_k) = \frac{1}{n^2} \sum_{k=1}^n \frac{1}{k^2}\)</span>. A série <span class="math inline">\(\sum_{k=1}^\infty \frac{1}{k^2}\)</span> é uma p-série com <span class="math inline">\(p=2\)</span>, que converge para <span class="math inline">\(\pi^2/6\)</span> (uma constante finita). Então, <span class="math inline">\(\lim_{n \to \infty} \text{Var}\left(\frac{S_n}{n}\right) = \lim_{n \to \infty} \frac{1}{n^2} \left(\sum_{k=1}^n \frac{1}{k^2}\right) = 0 \cdot \frac{\pi^2}{6} = 0\)</span>. Conclusão: Como <span class="math inline">\(\lim_{n \to \infty} E\left[\frac{S_n}{n}\right] = 0\)</span> e <span class="math inline">\(\lim_{n \to \infty} \text{Var}\left(\frac{S_n}{n}\right) = 0\)</span>, as condições do Exercício 2 são satisfeitas. Portanto, a Lei Fraca dos Grandes Números é válida para a sequência dada, e <span class="math inline">\(\frac{S_n}{n} \overset{P}{\rightarrow} 0\)</span>.</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">21. Seja (Xn)n&gt;2 uma sequencia de variáveis aleatórias independentes com P(Xn = 0) = 1− 1/log(n) e P(Xn = n) = 1/log(n) , ∀n &gt; 2. Verifique que Xn P−→ 0, mas Xn não converge em média r, para qualquer r &gt; 0. Explicação e Resolução: Parte 1: Verificar <span class="math inline">\(X_n \overset{P}{\rightarrow} 0\)</span> (Convergência em Probabilidade). Para <span class="math inline">\(X_n \overset{P}{\rightarrow} 0\)</span>, precisamos mostrar que para qualquer <span class="math inline">\(\epsilon &gt; 0\)</span>, <span class="math inline">\(\lim_{n \to \infty} P(|X_n - 0| &gt; \epsilon) = 0\)</span>. A variável <span class="math inline">\(X_n\)</span> pode assumir os valores 0 ou <span class="math inline">\(n\)</span>. Então, o evento <span class="math inline">\(|X_n - 0| &gt; \epsilon\)</span> é equivalente a <span class="math inline">\(X_n &gt; \epsilon\)</span>. Se <span class="math inline">\(n &gt; \epsilon\)</span>, o evento <span class="math inline">\(X_n &gt; \epsilon\)</span> ocorre se e somente se <span class="math inline">\(X_n = n\)</span>. Então, para <span class="math inline">\(n &gt; \epsilon\)</span>: <span class="math inline">\(P(|X_n - 0| &gt; \epsilon) = P(X_n = n) = \frac{1}{\log(n)}\)</span>. Calculando o limite quando <span class="math inline">\(n \to \infty\)</span>: <span class="math inline">\(\lim_{n \to \infty} \frac{1}{\log(n)} = 0\)</span>. Portanto, <span class="math inline">\(X_n \overset{P}{\rightarrow} 0\)</span> está verificado. Parte 2: Verificar que <span class="math inline">\(X_n\)</span> não converge em média r para qualquer <span class="math inline">\(r &gt; 0\)</span> (Convergência em <span class="math inline">\(L_r\)</span>). A convergência em <span class="math inline">\(L_r\)</span> de <span class="math inline">\(X_n\)</span> para 0 significa que <span class="math inline">\(\lim_{n \to \infty} E[|X_n - 0|^r] = 0\)</span>. Vamos calcular <span class="math inline">\(E[|X_n|^r]\)</span>: <span class="math inline">\(E[|X_n|^r] = |0|^r \cdot P(X_n = 0) + |n|^r \cdot P(X_n = n)\)</span> <span class="math inline">\(E[|X_n|^r] = 0 \cdot \left(1 - \frac{1}{\log(n)}\right) + n^r \cdot \frac{1}{\log(n)} = \frac{n^r}{\log(n)}\)</span>. Para qualquer <span class="math inline">\(r &gt; 0\)</span> fixo, precisamos avaliar o limite <span class="math inline">\(\lim_{n \to \infty} \frac{n^r}{\log(n)}\)</span>. O crescimento de uma função polinomial <span class="math inline">\(n^r\)</span> é sempre mais rápido do que o crescimento de uma função logarítmica <span class="math inline">\(\log(n)\)</span> quando <span class="math inline">\(n \to \infty\)</span>. Portanto, <span class="math inline">\(\lim_{n \to \infty} \frac{n^r}{\log(n)} = \infty\)</span>. Como <span class="math inline">\(E[|X_n|^r]\)</span> não converge para 0, <span class="math inline">\(X_n\)</span> não converge em média r para 0 para qualquer <span class="math inline">\(r &gt; 0\)</span>. Conclusão Final: A sequência <span class="math inline">\(X_n\)</span> converge em probabilidade para 0, mas não converge em média r para 0 para qualquer <span class="math inline">\(r &gt; 0\)</span>. Este problema ilustra um caso em que a convergência em probabilidade não implica a convergência em <span class="math inline">\(L_r\)</span>.</td>
+</tr>
+</tbody>
+</table>
+<ol start="22" type="1">
+<li>Suponha que Xn, para n &gt; 1, tem a seguinte função de distribuição: Fn(x) = {0, se x 6 0; xn, se 0 &lt; x 6 1; 1, se x &gt; 1. Determine o limite em distribuição para a sequencia (Xn)n&gt;1. Rpt. Xn D−→ X, onde P(X = 1) = 1. Explicação e Resolução: Para determinar o limite em distribuição de uma sequência <span class="math inline">\((X_n){n \ge 1}\)</span>, precisamos encontrar uma função de distribuição cumulativa (CDF) <span class="math inline">\(F_X(x)\)</span> tal que <span class="math inline">\(\lim{n \to \infty} F_{X_n}(x) = F_X(x)\)</span> em todos os pontos <span class="math inline">\(x\)</span> onde <span class="math inline">\(F_X(x)\)</span> é contínua. A CDF de <span class="math inline">\(X_n\)</span> é dada por: <span class="math inline">\(F_{X_n}(x) = \begin{cases} 0, &amp; \text{se } x \le 0 \ x^n, &amp; \text{se } 0 &lt; x \le 1 \ 1, &amp; \text{se } x &gt; 1 \end{cases}\)</span>. Vamos analisar o limite de <span class="math inline">\(F_{X_n}(x)\)</span> quando <span class="math inline">\(n \to \infty\)</span> para diferentes intervalos de <span class="math inline">\(x\)</span>: • Caso 1: <span class="math inline">\(x \le 0\)</span>. <span class="math inline">\(\lim_{n \to \infty} F_{X_n}(x) = \lim_{n \to \infty} 0 = 0\)</span>. • Caso 2: <span class="math inline">\(0 &lt; x &lt; 1\)</span>. <span class="math inline">\(\lim_{n \to \infty} F_{X_n}(x) = \lim_{n \to \infty} x^n = 0\)</span>, pois <span class="math inline">\(x\)</span> é uma fração entre 0 e 1. • Caso 3: <span class="math inline">\(x = 1\)</span>. <span class="math inline">\(\lim_{n \to \infty} F_{X_n}(1) = \lim_{n \to \infty} 1^n = 1\)</span>. • Caso 4: <span class="math inline">\(x &gt; 1\)</span>. <span class="math inline">\(\lim_{n \to \infty} F_{X_n}(x) = \lim_{n \to \infty} 1 = 1\)</span>. Com base nesses limites, podemos definir a função de distribuição cumulativa limite <span class="math inline">\(F_X(x)\)</span>: <span class="math inline">\(F_X(x) = \begin{cases} 0, &amp; \text{se } x &lt; 1 \ 1, &amp; \text{se } x \ge 1 \end{cases}\)</span>. Esta é a CDF de uma variável aleatória degenerada <span class="math inline">\(X\)</span> que assume o valor 1 com probabilidade 1, ou seja, <span class="math inline">\(P(X=1) = 1\)</span>. Os pontos de continuidade de <span class="math inline">\(F_X(x)\)</span> são todos os valores <span class="math inline">\(x \ne 1\)</span>. Verificamos que <span class="math inline">\(F_{X_n}(x)\)</span> converge para <span class="math inline">\(F_X(x)\)</span> em todos esses pontos: • Se <span class="math inline">\(x &lt; 1\)</span>, <span class="math inline">\(\lim_{n \to \infty} F_{X_n}(x) = 0\)</span>, que é <span class="math inline">\(F_X(x)\)</span>. • Se <span class="math inline">\(x &gt; 1\)</span>, <span class="math inline">\(\lim_{n \to \infty} F_{X_n}(x) = 1\)</span>, que é <span class="math inline">\(F_X(x)\)</span>. Conclusão: Portanto, <span class="math inline">\(X_n \overset{D}{\rightarrow} X\)</span>, onde <span class="math inline">\(X\)</span> é uma variável aleatória tal que <span class="math inline">\(P(X=1) = 1\)</span>.</li>
+</ol>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 100%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>23. Se Xn ∼ N(n, σ2), as variáveis Xn’s convergem em distribuição? Justifique! Rpt. Não! Explicação e Resolução: Para verificar se uma sequência de variáveis aleatórias <span class="math inline">\(X_n\)</span> converge em distribuição para uma variável aleatória <span class="math inline">\(X\)</span>, precisamos que a sequência de suas funções de distribuição cumulativa (CDFs) <span class="math inline">\(F_{X_n}(x)\)</span> convirja para a CDF <span class="math inline">\(F_X(x)\)</span> em todos os pontos de continuidade de <span class="math inline">\(F_X(x)\)</span>. A variável <span class="math inline">\(X_n\)</span> tem distribuição normal <span class="math inline">\(N(n, \sigma^2)\)</span>. A CDF de <span class="math inline">\(X_n\)</span> é dada por: <span class="math inline">\(F_{X_n}(x) = P(X_n \le x) = P\left(\frac{X_n - n}{\sigma} \le \frac{x - n}{\sigma}\right)\)</span>. Como <span class="math inline">\(\frac{X_n - n}{\sigma}\)</span> tem distribuição normal padrão <span class="math inline">\(N(0,1)\)</span>, podemos escrever: <span class="math inline">\(F_{X_n}(x) = \Phi\left(\frac{x - n}{\sigma}\right)\)</span>, onde <span class="math inline">\(\Phi(z)\)</span> é a CDF da normal padrão. Agora, vamos analisar o limite de <span class="math inline">\(F_{X_n}(x)\)</span> quando <span class="math inline">\(n \to \infty\)</span> para um <span class="math inline">\(x\)</span> fixo: <span class="math inline">\(\lim_{n \to \infty} F_{X_n}(x) = \lim_{n \to \infty} \Phi\left(\frac{x - n}{\sigma}\right)\)</span>. Como <span class="math inline">\(x\)</span> e <span class="math inline">\(\sigma\)</span> são fixos, e <span class="math inline">\(n \to \infty\)</span>, o termo <span class="math inline">\(\frac{x - n}{\sigma} \to -\infty\)</span>. Sabemos que <span class="math inline">\(\lim_{z \to -\infty} \Phi(z) = 0\)</span>. Portanto, para qualquer <span class="math inline">\(x\)</span> fixo, <span class="math inline">\(\lim_{n \to \infty} F_{X_n}(x) = 0\)</span>. Se a sequência <span class="math inline">\(X_n\)</span> convergisse em distribuição para alguma <span class="math inline">\(X\)</span>, sua CDF limite <span class="math inline">\(F_X(x)\)</span> deveria ser 0 para todo <span class="math inline">\(x\)</span>. No entanto, uma CDF válida deve satisfazer <span class="math inline">\(F_X(x) \to 1\)</span> quando <span class="math inline">\(x \to \infty\)</span>. Uma CDF que é sempre 0 não é uma CDF válida. Intuitivamente, a distribuição de <span class="math inline">\(X_n\)</span> está “deslocando-se” para <span class="math inline">\(+\infty\)</span> à medida que <span class="math inline">\(n\)</span> aumenta (a média é <span class="math inline">\(n\)</span>), o que significa que a massa de probabilidade se afasta de qualquer ponto fixo no eixo real. Portanto, não há uma distribuição limite para a qual a massa de probabilidade se concentre. Conclusão: As variáveis <span class="math inline">\(X_n\)</span> não convergem em distribuição, pois sua massa de probabilidade se desloca para o infinito.</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>24. Se Xn ∼ N(a, 1/n), onde a ∈ R e n &gt; 1, determine seu limite em distribuição. Resposta: Xn D−→ X, onde P(X = a) = 1. Para compreender este resultado, é importante analisar a natureza da distribuição normal e o conceito de convergência em distribuição: • Variável Aleatória Normal Xn ∼ N(a, 1/n): Uma variável aleatória Xn que segue uma distribuição normal N(a, 1/n) tem média ‘a’ e variância ‘1/n’. A distribuição normal é um tipo fundamental de distribuição de variáveis aleatórias contínuas, amplamente discutida nas fontes, por exemplo, nas páginas 40, 45, 63, 144, 145, 146, 277, 278, 279, 280, 281 do livro-texto. A notação N(μ, σ²) é comumente usada para indicar uma distribuição normal com média μ e variância σ². • Convergência em Distribuição (Xn D−→ X): A convergência em distribuição é um conceito fundamental na teoria da probabilidade, definida no Capítulo 6, Seção 6.2 do livro-texto. Uma sequência de variáveis aleatórias (Xn) converge em distribuição para uma variável aleatória X (notação Xn D−→ X) se a função de distribuição acumulada de Xn, F_Xn(x), converge para a função de distribuição acumulada de X, F_X(x), em todos os pontos x onde F_X(x) é contínua. Ou seja, lim (n→∞) F_Xn(x) = F_X(x). • Interpretação da Solução (Xn D−→ X, onde P(X = a) = 1): A solução indica que a sequência de variáveis aleatórias Xn, cada uma normalmente distribuída com média a e variância 1/n, converge em distribuição para uma variável aleatória X que toma o valor a com probabilidade 1. Isso significa que X é uma variável aleatória degenerada (ou uma massa de probabilidade concentrada em um único ponto). • Este resultado é intuitivo: 1. À medida que n → ∞, a variância da distribuição Xn, que é 1/n, tende a zero (σ² → 0). 2. Quando a variância de uma distribuição normal se aproxima de zero, a probabilidade se concentra cada vez mais em torno da média. 3. No limite, toda a massa de probabilidade se acumula no ponto da média a, resultando em uma distribuição onde P(X = a) = 1. • Para demonstrar formalmente a convergência, pode-se usar as funções de distribuição acumulada. A F.D.A. de Xn é F_Xn(x) = Φ(√n(x - a)), onde Φ é a F.D.A. da normal padrão N(0,1). ◦ Se x &lt; a, então (x - a) é negativo. Quando n → ∞, √n(x - a) → -∞, e Φ(√n(x - a)) → Φ(-∞) = 0. ◦ Se x &gt; a, então (x - a) é positivo. Quando n → ∞, √n(x - a) → +∞, e Φ(√n(x - a)) → Φ(+∞) = 1. ◦ A função de distribuição limite F_X(x) é 0 para x &lt; a e 1 para x &gt; a. Esta é, de fato, a F.D.A. de uma variável aleatória que assume o valor a com probabilidade 1. Note que x=a é um ponto de descontinuidade para F_X(x).</td>
+</tr>
+</tbody>
+</table>
+<p>Exercício 25: Se Xn, para n &gt; 1, são variáveis aleatórias i.i.d. com média µ e variância σ², determine o tamanho da amostra n para que P(|X − µ| ≤ σ/10) ≈ 0,95, utilizando o Teorema do Limite Central. Resposta: n = 384. Explicação Detalhada: Este exercício pede para determinar o tamanho mínimo da amostra (n) necessário para que a média amostral (X̄n) esteja próxima da média populacional (µ) com uma certa probabilidade, usando o Teorema do Limite Central (TLC). 1. Definição da Média Amostral e suas Propriedades: ◦ Seja X̄n = (X1 + … + Xn) / n a média amostral. ◦ Para variáveis aleatórias independentes e identicamente distribuídas (i.i.d.) com média µ e variância σ², sabemos que: ▪ E[X̄n] = µ (a média da média amostral é a média populacional). ▪ Var(X̄n) = σ²/n (a variância da média amostral diminui com n). 2. Aplicação do Teorema do Limite Central (TLC): ◦ O TLC afirma que, para n suficientemente grande, a distribuição padronizada da média amostral converge em distribuição para uma distribuição normal padrão N(0, 1). Matematicamente: Zn = (X̄n - µ) / (σ/√n) D−→ N(0, 1). 3. Configuração da Probabilidade Desejada: ◦ Queremos encontrar n tal que P(|X̄n - µ| ≤ σ/10) ≈ 0,95. ◦ Isso pode ser reescrito como P(-σ/10 ≤ X̄n - µ ≤ σ/10) ≈ 0,95. 4. Padronização da Expressão: ◦ Para usar a distribuição normal padrão, dividimos cada termo da desigualdade pelo desvio padrão de X̄n (que é σ/√n): P( (-σ/10) / (σ/√n) ≤ (X̄n - µ) / (σ/√n) ≤ (σ/10) / (σ/√n) ) ≈ 0,95 P( -√n/10 ≤ Zn ≤ √n/10 ) ≈ 0,95, onde Zn ∼ N(0, 1) para n grande. 5. Utilização da Tabela da Normal Padrão: ◦ Devido à simetria da distribuição normal padrão, P(-c ≤ Zn ≤ c) = 2 * Φ(c) - 1, onde Φ(c) é a Função de Distribuição Acumulada (FDA) da N(0, 1). ◦ Assim, 2 * Φ(√n/10) - 1 ≈ 0,95. ◦ 2 * Φ(√n/10) ≈ 1,95. ◦ Φ(√n/10) ≈ 0,975. ◦ Consultando uma tabela da distribuição normal padrão (ou utilizando conhecimento comum), o valor c para o qual Φ(c) = 0,975 é c ≈ 1,96. 6. Cálculo de n: ◦ Igualando os valores: √n/10 ≈ 1,96. ◦ √n ≈ 19,6. ◦ n ≈ (19,6)² = 384,16. ◦ Como n deve ser um número inteiro (tamanho da amostra), arredondamos para cima para garantir a probabilidade desejada: n = 385. No entanto, a resposta fornecida na lista é n = 384, o que sugere um arredondamento para o inteiro mais próximo ou o uso de um valor ligeiramente menos conservador. Para fins práticos em estatística, geralmente arredondamos para cima. Mas seguindo a resposta fornecida, n=384 é aceito.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 100%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Exercício 26: Sejam Xn ∈ {0, 1}, para n &gt; 1, variáveis independentes tais que Xn ∼ Bernoulli(1/n). Defina a variável Yn como o número de sucessos nas primeiras n realizações. Verifique que (1/√log(n)) [Yn - log(n)] D−→ N(0, 1). Resposta: Use o Teorema de Slutsky; Use que: lim (n→∞) [∑(de k=1 até n) 1/k − log(n)] = γ (constante de Euler) e lim (n→∞) (1/log(n)) ∑(de k=1 até n) 1/k = 1; Use o Teorema do Limite Central de Lyapunov. Para verificar a condição de Lyapunov, tome δ = 1 e use o fato de que lim (n→∞) ∑(de k=1 até n) (1/k)(1 − 1/k) = ∞. Lema técnico: Para α &gt; 0, lim (n→∞) (1/(n^(α+1))) ∑(de k=1 até n) k^α = 1/(α + 1). Explicação Detalhada: Este exercício trata da convergência em distribuição de uma soma de variáveis aleatórias independentes, mas não identicamente distribuídas (pois pk = 1/k varia com k). Isso exige o uso de uma versão mais geral do Teorema do Limite Central, como o TLC de Lyapunov. 1. Definição de Yn e Propriedades de Xk: ◦ Yn = ∑(de k=1 até n) Xk. ◦ Cada Xk segue uma distribuição de Bernoulli com parâmetro pk = 1/k. ◦ Média de Xk: E[Xk] = pk = 1/k. ◦ Variância de Xk: Var(Xk) = pk(1-pk) = (1/k)(1 - 1/k) = (k-1)/k². 2. Média e Variância de Yn: ◦ A média de Yn é a soma das médias (pela linearidade da esperança): E[Yn] = ∑(de k=1 até n) E[Xk] = ∑(de k=1 até n) 1/k. ◦ A variância de Yn é a soma das variâncias (pela independência de Xk): Var(Yn) = ∑(de k=1 até n) Var(Xk) = ∑(de k=1 até n) (k-1)/k² = ∑(de k=1 até n) (1/k - 1/k²). 3. Verificação da Condição de Lyapunov para o TLC: ◦ O Teorema do Limite Central de Lyapunov é aplicável para variáveis aleatórias independentes. A condição de Lyapunov requer que, para algum δ &gt; 0 (o exercício sugere δ = 1): lim (n→∞) [ ∑(de k=1 até n) E[|Xk - E[Xk]|^(2+δ)] / (Var(Yn))^(1+δ/2) ] = 0. ◦ Vamos calcular E[|Xk - E[Xk]|³] (para δ = 1): ▪ Xk toma os valores 0 e 1. E[Xk] = 1/k. ▪ |Xk - E[Xk]|³: • Se Xk = 0: |0 - 1/k|³ = |-1/k|³ = 1/k³. • Se Xk = 1: |1 - 1/k|³ = |(k-1)/k|³. ▪ E[|Xk - E[Xk]|³] = (1/k³) * P(Xk=0) + ((k-1)/k)³ * P(Xk=1) = (1/k³) * (1 - 1/k) + ((k-1)/k)³ * (1/k) = (k-1)/k⁴ + (k-1)³/k⁴ = [ (k-1) + (k-1)³ ] / k⁴. À medida que k cresce, [ (k-1) + (k-1)³ ] / k⁴ se comporta aproximadamente como k³/k⁴ = 1/k. ◦ O numerador da condição de Lyapunov é ∑(de k=1 até n) E[|Xk - E[Xk]|³] ≈ ∑(de k=1 até n) 1/k ≈ log(n) (para n grande). ◦ O denominador da condição de Lyapunov é (Var(Yn))^(3/2). Sabemos que Var(Yn) = ∑(de k=1 até n) (1/k - 1/k²). A fonte afirma explicitamente que lim (n→∞) Var(Yn) = ∞. Isso ocorre porque ∑(1/k) diverge e ∑(1/k²) converge. ◦ Portanto, a razão [ ∑ E[|Xk - E[Xk]|³] / (Var(Yn))^(3/2) ] tende a 0 quando n → ∞, já que o numerador cresce como log(n) e o denominador como (log(n))^(3/2), e log(n) / (log(n))^(3/2) = 1/√log(n) → 0. ◦ Como a condição de Lyapunov é satisfeita, podemos aplicar o TLC: (Yn - E[Yn]) / √Var(Yn) D−→ N(0, 1). Isto é, (Yn - ∑(de k=1 até n) 1/k) / √(∑(de k=1 até n) (1/k - 1/k²)) D−→ N(0, 1). 4. Manipulação da Expressão e Uso dos Limites Fornecidos (Teorema de Slutsky): ◦ O exercício pede o limite em distribuição de Z_n = (Yn - log(n)) / √log(n). ◦ Sabemos, pelos dados fornecidos: ▪ lim (n→∞) [∑(de k=1 até n) 1/k − log(n)] = γ (constante de Euler). Isso implica que ∑(de k=1 até n) 1/k = log(n) + γ + o(1), onde o(1) → 0. ▪ lim (n→∞) (∑(de k=1 até n) (1/k)(1 − 1/k)) / log(n) = 1. Isso implica que Var(Yn) ≈ log(n) para n grande. ◦ Vamos reescrever Zn: Zn = (Yn - ∑(1/k) + ∑(1/k) - log(n)) / √log(n) Zn = [ (Yn - ∑(1/k)) / √(∑(1/k - 1/k²)) ] * [ √(∑(1/k - 1/k²)) / √log(n) ] + [ (∑(1/k) - log(n)) / √log(n) ]. ◦ Seja An = (Yn - ∑(1/k)) / √(∑(1/k - 1/k²)). Pelo TLC de Lyapunov, sabemos que An D−→ N(0, 1). ◦ Seja Bn = √(∑(1/k - 1/k²)) / √log(n). Pelos limites fornecidos, sabemos que lim (n→∞) Bn = √1 = 1. Portanto, Bn P−→ 1 (convergência em probabilidade para uma constante). ◦ Seja Cn = (∑(1/k) - log(n)) / √log(n). Sabemos que lim (n→∞) (∑(1/k) - log(n)) = γ (uma constante). Como √log(n) → ∞, então lim (n→∞) Cn = γ / ∞ = 0. Portanto, Cn P−→ 0. ◦ Pelo Teorema de Slutsky, se An D−→ N(0, 1), Bn P−→ 1 e Cn P−→ 0, então: Zn = An * Bn + Cn D−→ N(0, 1) * 1 + 0 = N(0, 1). ◦ Isso verifica a convergência em distribuição para N(0, 1).</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Exercício 27: Seja (Xn)n&gt;1 uma sequência de variáveis aleatórias independentes com P(Xn = −n) = P(Xn = n) = 1/2. Verifique que não vale a Lei Fraca dos Grandes Números, mas a sequência satisfaz o Teorema do Limite Central (de Lyapunov). Resposta: Para a primeira parte, use o Teorema da Continuidade de Paul Lèvy junto com a identidade lim (n→∞) Π cos(πk/n) = 0. Para a segunda parte, use o Lema técnico. Explicação Detalhada: Este exercício é um exemplo importante de uma sequência de variáveis aleatórias independentes que não satisfaz a Lei Fraca dos Grandes Números (LFGN), mas satisfaz o Teorema do Limite Central (TLC). 1. Cálculo da Média e Variância de Xk: ◦ E[Xk] = (-k)<em>(1/2) + (k)</em>(1/2) = 0. ◦ Var(Xk) = E[Xk²] - (E[Xk])² = E[Xk²] = (-k)²<em>(1/2) + (k)²</em>(1/2) = k²/2 + k²/2 = k². 2. Verificação da Lei Fraca dos Grandes Números (LFGN): ◦ A LFGN geralmente afirma que a média amostral X̄n = (∑ Xk) / n converge em probabilidade para a média populacional E[X1]. Neste caso, E[Xk] = 0 para todo k, então esperamos X̄n P−→ 0. ◦ Para verificar a LFGN, podemos usar a desigualdade de Chebyshev (que requer variância finita). P(|X̄n - E[X̄n]| &gt; ε) ≤ Var(X̄n) / ε². ◦ E[X̄n] = E[(∑ Xk)/n] = (1/n) ∑ E[Xk] = (1/n) ∑ 0 = 0. ◦ Var(X̄n) = Var((∑ Xk)/n) = (1/n²) Var(∑ Xk). Como as Xk são independentes, Var(∑ Xk) = ∑ Var(Xk). ◦ Var(X̄n) = (1/n²) ∑(de k=1 até n) k² = (1/n²) * [n(n+1)(2n+1)/6]. ◦ À medida que n → ∞, Var(X̄n) = (n+1)(2n+1) / (6n) que tende a (2n²) / (6n) = n/3 → ∞. ◦ Como Var(X̄n) não converge para 0, a desigualdade de Chebyshev não garante a convergência. ◦ A sugestão do exercício é usar o Teorema da Continuidade de Paul Lévy através da função característica. ▪ Função Característica de Xk: ϕXk(t) = E[e^(itXk)] = e^(it(-k)) * (1/2) + e^(itk) * (1/2) = (e^(-itk) + e^(itk))/2 = cos(kt). ▪ Função Característica de X̄n = (∑ Xk)/n: ϕX̄n(t) = ϕ∑Xk(t/n) = Π(de k=1 até n) ϕXk(t/n) (pela independência). ▪ ϕX̄n(t) = Π(de k=1 até n) cos(kt/n). ▪ A resposta menciona a identidade lim (n→∞) Π cos(πk/n) = 0. Isso implica que o limite da função característica para t = π é 0. ▪ Para a LFGN valer (X̄n P−→ 0), a função característica de X̄n deve convergir pontualmente para e^(it<em>0) = 1. ▪ Se ϕX̄n(π) → 0, isso significa que ϕX̄n(t) não converge para 1 para todo t, e, portanto, a LFGN não vale. A LFGN não se aplica aqui porque a variância das Xn é infinita no limite (embora E[Xn] seja finito). 3. Verificação do Teorema do Limite Central (TLC) de Lyapunov: ◦ Consideramos a sequência padronizada Zn = (∑ Xk - E[∑ Xk]) / √Var(∑ Xk) = (∑ Xk) / √Var(∑ Xk). ◦ Precisamos verificar a condição de Lyapunov para δ = 1: lim (n→∞) [ ∑(de k=1 até n) E[|Xk - E[Xk]|³] / (Var(∑ Xk))^(3/2) ] = 0. ◦ E[|Xk - E[Xk]|³] = E[|Xk|³] (já que E[Xk] = 0). E[|Xk|³] = |-k|³</em>(1/2) + |k|³<em>(1/2) = k³</em>(1/2) + k³<em>(1/2) = k³. ◦ O numerador da condição de Lyapunov é ∑(de k=1 até n) k³ = [n(n+1)/2]². ◦ O denominador é (Var(∑ Xk))^(3/2). Var(∑ Xk) = ∑(de k=1 até n) k² = n(n+1)(2n+1)/6. ◦ A razão é: [n(n+1)/2]² / [n(n+1)(2n+1)/6]^(3/2). ◦ Usando o Lema Técnico: ∑ k^α ≈ n^(α+1) / (α+1). ▪ Numerador: ∑ k³ ≈ n⁴/4. ▪ Denominador: (∑ k²)^(3/2) ≈ (n³/3)^(3/2) = n^(9/2) / (3^(3/2)). ◦ A razão se comporta assintoticamente como (n⁴/4) / (n^(9/2) / (3^(3/2))) = C </em> (n⁴ / n^(9/2)) = C * (1 / n^(1/2)) = C / √n. ◦ Como C/√n → 0 quando n → ∞, a condição de Lyapunov é satisfeita. ◦ Portanto, o TLC de Lyapunov se aplica, e Zn D−→ N(0, 1).</td>
+</tr>
+</tbody>
+</table>
+<p>Exercício 28: Sejam Xn, n &gt; 1 variáveis aleatórias independentes definidas como segue: Xn = { −1/√n, com probabilidade 1/2; 1/√n, com probabilidade 1/2. }. Verifique que a sequência (Xn)n&gt;1 satisfaz o Teorema do Limite Central (de Lyapunov). Resposta: Use o Lema técnico. Explicação Detalhada: Similar ao exercício anterior, este problema envolve variáveis independentes mas não identicamente distribuídas, exigindo o TLC de Lyapunov. 1. Cálculo da Média e Variância de Xk: ◦ E[Xk] = (-1/√k)<em>(1/2) + (1/√k)</em>(1/2) = 0. ◦ Var(Xk) = E[Xk²] - (E[Xk])² = E[Xk²] = (-1/√k)²<em>(1/2) + (1/√k)²</em>(1/2) = (1/k)<em>(1/2) + (1/k)</em>(1/2) = 1/k. 2. Média e Variância da Soma Sn = ∑ Xk: ◦ E[Sn] = ∑(de k=1 até n) E[Xk] = ∑ 0 = 0. ◦ Var(Sn) = ∑(de k=1 até n) Var(Xk) = ∑(de k=1 até n) 1/k (Esta é a n-ésima soma harmônica, Hn). 3. Verificação da Condição de Lyapunov para o TLC: ◦ Tomamos δ = 1. A condição é: lim (n→∞) [ ∑(de k=1 até n) E[|Xk - E[Xk]|³] / (Var(Sn))^(3/2) ] = 0. ◦ E[|Xk - E[Xk]|³] = E[|Xk|³] (já que E[Xk] = 0). E[|Xk|³] = |-1/√k|³<em>(1/2) + |1/√k|³</em>(1/2) = (1/k^(3/2))<em>(1/2) + (1/k^(3/2))</em>(1/2) = 1/k^(3/2). ◦ O numerador da condição de Lyapunov é ∑(de k=1 até n) 1/k^(3/2). Esta é uma série p-série com p = 3/2 &gt; 1, o que significa que ela converge para um valor finito à medida que n → ∞. ◦ O denominador é (Var(Sn))^(3/2) = (∑(de k=1 até n) 1/k)^(3/2). Sabemos que a série harmônica ∑(1/k) diverge para infinito. ◦ Portanto, o numerador converge para um valor finito, enquanto o denominador diverge para infinito. ◦ Assim, a razão [ ∑ E[|Xk|³] / (Var(Sn))^(3/2) ] tende a 0 quando n → ∞. ◦ Como a condição de Lyapunov é satisfeita, o Teorema do Limite Central se aplica, e Sn / √Var(Sn) D−→ N(0, 1).</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 100%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Exercício 29: As sequências (Xn)n&gt;1 e (Yn)n&gt;1 são de variáveis aleatórias i.i.d. com médias µX e µY, respectivamente, e variâncias finitas σ²X e σ²Y, respectivamente. Assuma que as sequências são independentes entre si e que µX ≠ 0. Obtenha o limite em distribuição de √n ( Ȳn / X̄n - µY / µX ). Resposta: D−→ N(0, σ²), onde σ² = (µX²σ²Y + µY²σ²X) / µX⁴. Explicação Detalhada: Este exercício é um caso clássico de aplicação do Método Delta (Delta Method) para encontrar a distribuição assintótica de uma função de estimadores que convergem para uma normal. 1. Convergência pelo Teorema do Limite Central (TLC): ◦ Pelo TLC, para as médias amostrais X̄n e Ȳn: ▪ √n (X̄n - µX) D−→ N(0, σ²X). ▪ √n (Ȳn - µY) D−→ N(0, σ²Y). ◦ Como (Xn) e (Yn) são sequências independentes, as médias amostrais X̄n e Ȳn também são assintoticamente independentes. Podemos expressar a convergência conjunta como: √n ( (X̄n, Ȳn) - (µX, µY) ) D−→ N( (0, 0), Σ ), onde Σ = diag(σ²X, σ²Y) (matriz de covariância diagonal devido à independência). 2. Definição da Função g: ◦ Estamos interessados na transformação g(x, y) = y/x. ◦ O ponto em torno do qual linearizamos a função é (µX, µY). 3. Cálculo das Derivadas Parciais de g: ◦ A matriz Jacobiana (ou vetor gradiente) de g(x, y) é ∇g = [∂g/∂x, ∂g/∂y]. ◦ ∂g/∂x = ∂/∂x (y/x) = -y/x². ◦ ∂g/∂y = ∂/∂y (y/x) = 1/x. 4. Avaliação das Derivadas no Ponto (µX, µY): ◦ ∂g/∂x |<em>(µX, µY) = -µY / µX². ◦ ∂g/∂y |</em>(µX, µY) = 1 / µX. 5. Aplicação do Método Delta Multivariado: ◦ O Método Delta generalizado afirma que se √n (T_n - θ) D−→ N(0, Σ_T) para um vetor de estimadores T_n e um vetor de parâmetros θ, e g é uma função diferenciável, então √n (g(T_n) - g(θ)) D−→ N(0, (∇g(θ))’ Σ_T (∇g(θ))). ◦ Neste caso, T_n = (X̄n, Ȳn), θ = (µX, µY), e Σ_T = diag(σ²X, σ²Y). ◦ A variância assintótica (σ² na resposta) é: σ² = [-µY/µX², 1/µX] * [ σ²X 0 ] * [-µY/µX²] [ 0 σ²Y ] [ 1/µX ] σ² = [-µY/µX² * σ²X, 1/µX * σ²Y] * [-µY/µX²] [ 1/µX ] σ² = (-µY/µX²) * (-µY/µX² * σ²X) + (1/µX) * (1/µX * σ²Y) σ² = (µY²σ²X / µX⁴) + (σ²Y / µX²) σ² = (µY²σ²X + µX²σ²Y) / µX⁴. ◦ Portanto, √n ( Ȳn / X̄n - µY / µX ) D−→ N(0, (µY²σ²X + µX²σ²Y) / µX⁴).</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Exercício 30: (a) Se X ∼ binomial(n, p), qual a função característica de X? (b) Verifique, usando funções características, que se X ∼ binomial(m, p), Y ∼ binomial(n, p), e X e Y são independentes, então X + Y ∼ binomial(m+n, p). Resposta: (a) (pe^(it) + 1 − p)^n, (b) Imediato! Segue por combinar o Item (a) com o Teorema da Unicidade. Explicação Detalhada: Este exercício aborda as funções características e suas propriedades, em particular a soma de variáveis binomiais independentes. 1. (a) Função Característica de X ∼ binomial(n, p): ◦ A função característica ϕX(t) de uma variável aleatória X é definida como E[e^(itX)]. ◦ Para uma variável binomial X, a sua função de probabilidade é P(X=k) = (n choose k) p^k (1-p)^(n-k) para k = 0, 1, …, n. ◦ Então, ϕX(t) = ∑(de k=0 até n) e^(itk) * P(X=k) = ∑(de k=0 até n) e^(itk) * (n choose k) p^k (1-p)^(n-k) = ∑(de k=0 até n) (n choose k) (p e<sup>(it))</sup>k (1-p)^(n-k). ◦ Esta é a expansão binomial de (p e^(it) + (1-p))^n (pelo teorema binomial). ◦ Portanto, ϕX(t) = (p e^(it) + 1 - p)^n. 2. (b) Soma de Variáveis Binomiais Independentes: ◦ Dadas X ∼ binomial(m, p) e Y ∼ binomial(n, p) independentes. ◦ Pelo item (a), suas funções características são: ▪ ϕX(t) = (p e^(it) + 1 - p)^m. ▪ ϕY(t) = (p e^(it) + 1 - p)^n. ◦ Para variáveis aleatórias independentes, a função característica da soma é o produto das funções características individuais: ϕX+Y(t) = ϕX(t) * ϕY(t) = (p e^(it) + 1 - p)^m * (p e^(it) + 1 - p)^n = (p e^(it) + 1 - p)^(m+n). ◦ Esta é exatamente a função característica de uma distribuição binomial com parâmetros (m+n, p). ◦ Pelo Teorema da Unicidade das Funções Características, se duas variáveis aleatórias têm a mesma função característica, elas têm a mesma distribuição. ◦ Consequentemente, X + Y ∼ binomial(m+n, p).</td>
+</tr>
+</tbody>
+</table>
+<p>Exercício 31: Seja ϕ uma função característica. Verifique que ψ(t) = e^(λ[ϕ(t)−1]), onde λ &gt; 0, também é função característica. Resposta: Determine a função característica da variável aleatória SN = ∑(de i=1 até N) Xi, com N ∼ Poisson(λ), X1, X2, . . . i.i.d. e ϕXi(t) = ϕ(t), de tal forma que a sequência (Xn)n&gt;1 é independente de N. Explicação Detalhada: Este exercício demonstra que a função ψ(t) é uma função característica, construindo uma variável aleatória cuja função característica é ψ(t). A construção envolve uma soma aleatória de variáveis aleatórias, conhecida como uma distribuição Poisson composta (Compound Poisson distribution). 1. Definição da Variável Aleatória SN: ◦ Considere uma variável aleatória N que segue uma distribuição de Poisson com parâmetro λ, ou seja, N ∼ Poisson(λ). A função de probabilidade de N é P(N=k) = e^(-λ) λ^k / k! para k = 0, 1, 2, …. ◦ Considere uma sequência infinita de variáveis aleatórias X1, X2, … que são independentes e identicamente distribuídas (i.i.d.). ◦ Seja ϕ(t) a função característica comum a cada Xi (ou seja, ϕXi(t) = ϕ(t) para todo i). ◦ Assuma que a sequência (Xn) é independente de N. ◦ Definimos a variável aleatória SN como a soma aleatória: SN = ∑(de i=1 até N) Xi, onde S0 = 0 se N=0. 2. Cálculo da Função Característica de SN: ◦ Por definição, ϕSN(t) = E[e^(itSN)]. ◦ Podemos usar a Lei da Expectância Total (ou Lei da Probabilidade Total para funções características) condicionando em N: ϕSN(t) = E[E[e^(itSN) | N]]. ◦ Para um dado N = k (onde k é um valor específico): E[e^(itSN) | N=k] = E[e^(it(X1+…+Xk)) | N=k]. Como (Xn) é independente de N, isso se torna E[e^(it(X1+…+Xk))]. Pela propriedade de que a função característica de uma soma de variáveis independentes é o produto de suas funções características, e como Xi são i.i.d. com função característica ϕ(t): E[e^(it(X1+…+Xk))] = (ϕ(t))^k. (Note que se k=0, a soma é 0, e (ϕ(t))^0 = 1 = e^(it<em>0)). ◦ Agora, somamos sobre todas as possibilidades de N, usando a função de probabilidade de Poisson: ϕSN(t) = ∑(de k=0 até ∞) (ϕ(t))^k </em> P(N=k) = ∑(de k=0 até ∞) (ϕ(t))^k * (e^(-λ) λ^k / k!) = e^(-λ) * ∑(de k=0 até ∞) (λϕ(t))^k / k!. ◦ A série ∑(z^k / k!) é a expansão de Taylor para e^z. Substituindo z = λϕ(t): ϕSN(t) = e^(-λ) * e^(λϕ(t)) = e^(λϕ(t) - λ) = e^(λ[ϕ(t)-1]). 3. Conclusão: ◦ Como ψ(t) = e^(λ[ϕ(t)-1]) é a função característica de uma variável aleatória SN que pode ser construída, e ϕ(t) é uma função característica por hipótese, então ψ(t) é necessariamente uma função característica.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 100%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Exercício 32: (a) Suponha que X ∼ exp(λ) e verifique que a função característica de X é ϕ(x) = λ / (λ − it). (b) Seja Y exponencial dupla com densidade fY(y) = (λ/2)e^(-λ|y|), y ∈ R. Determine a função característica de Y. (c) Verifique que, se Z e W são independentes e i.i.d. com Z ∼ exp(λ), então Z − W é exponencial dupla. Resposta: (b) λ²/(λ² + t²), (c) Use o Teorema da Unicidade. Explicação Detalhada: Este exercício explora funções características para distribuições exponencial e exponencial dupla (Laplace), e a relação entre elas. 1. (a) Função Característica de X ∼ exp(λ): ◦ A densidade de probabilidade (f.d.p.) da distribuição exponencial exp(λ) é fX(x) = λe^(-λx) para x ≥ 0 e 0 caso contrário. ◦ A função característica ϕX(t) é E[e^(itX)] = ∫(de -∞ até ∞) e^(itx) fX(x) dx. ◦ ϕX(t) = ∫(de 0 até ∞) e^(itx) λe^(-λx) dx = λ ∫(de 0 até ∞) e^((it-λ)x) dx. ◦ Para que a integral convirja, a parte real de (it-λ) deve ser negativa, o que é −λ &lt; 0. Como λ &gt; 0, isso é sempre verdade. ◦ = λ [ e^((it-λ)x) / (it-λ) ] (de 0 até ∞) = λ [ 0 - e^0 / (it-λ) ] = λ [ -1 / (it-λ) ] = -λ / (it-λ) = λ / (λ - it). ◦ Isso verifica a função característica para a distribuição exponencial. 2. (b) Função Característica de Y com densidade fY(y) = (λ/2)e^(-λ|y|) (Exponencial Dupla ou Laplace): ◦ ϕY(t) = ∫(de -∞ até ∞) e^(ity) (λ/2)e^(-λ|y|) dy. ◦ Dividimos a integral em duas partes devido ao |y|: ϕY(t) = (λ/2) [ ∫(de -∞ até 0) e<sup>(ity)e</sup>(λy) dy + ∫(de 0 até ∞) e<sup>(ity)e</sup>(-λy) dy ] = (λ/2) [ ∫(de -∞ até 0) e^((it+λ)y) dy + ∫(de 0 até ∞) e^((it-λ)y) dy ]. ◦ Avaliando as integrais: ▪ ∫(de -∞ até 0) e^((it+λ)y) dy = [ e^((it+λ)y) / (it+λ) ] (de -∞ até 0) = [ 1 / (it+λ) - 0 ] = 1 / (it+λ). (Pois e^(λy) → 0 quando y → -∞). ▪ ∫(de 0 até ∞) e^((it-λ)y) dy = [ e^((it-λ)y) / (it-λ) ] (de 0 até ∞) = [ 0 - 1 / (it-λ) ] = -1 / (it-λ). (Pois e^(-λy) → 0 quando y → ∞). ◦ Substituindo de volta na expressão para ϕY(t): ϕY(t) = (λ/2) [ 1/(it+λ) - 1/(it-λ) ] = (λ/2) [ (it-λ - (it+λ)) / ((it+λ)(it-λ)) ] = (λ/2) [ (-2λ) / (-t² - λ²) ] = (λ/2) [ 2λ / (t² + λ²) ] = λ² / (λ² + t²). ◦ Isso corresponde à resposta fornecida. 3. (c) Relação entre Z − W e Exponencial Dupla: ◦ Se Z ∼ exp(λ), sua função característica é ϕZ(t) = λ / (λ - it) (do item a). ◦ Se W é i.i.d. de Z, então W ∼ exp(λ), e ϕW(t) = λ / (λ - it). ◦ Para a diferença Z - W, a função característica é ϕZ-W(t) = E[e^(it(Z-W))] = E[e^(itZ) * e^(-itW)]. ◦ Como Z e W são independentes, ϕZ-W(t) = E[e^(itZ)] * E[e^(-itW)] = ϕZ(t) * ϕW(-t). ◦ ϕW(-t) = λ / (λ - i(-t)) = λ / (λ + it). ◦ Então, ϕZ-W(t) = [λ / (λ - it)] * [λ / (λ + it)] = λ² / ((λ - it)(λ + it)) = λ² / (λ² - (it)²) = λ² / (λ² + t²). ◦ Esta função característica é idêntica à que foi calculada no item (b) para a distribuição exponencial dupla. ◦ Pelo Teorema da Unicidade das Funções Características, se duas variáveis aleatórias têm a mesma função característica, elas têm a mesma distribuição. ◦ Portanto, Z − W segue uma distribuição exponencial dupla com parâmetro λ.</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Exercício 33: Use a função característica do exercício anterior para verificar que se X ∼ Gama(n, β), então ϕX(t) = (β/(β − it))^n.&nbsp;Resposta: Use o fato de que, se X1, X2, . . . são independentes e identicamente distribuídas, com Xn ∼ exp(β) para todo n &gt; 1, então ∑(de k=1 até n) Xk ∼ Gama(n, β). Explicação Detalhada: Este exercício estabelece uma ligação fundamental entre as distribuições exponencial e Gama usando funções características. 1. Definição da Distribuição Gama a partir da Exponencial: ◦ A distribuição Gama Gama(n, β) (com n sendo o parâmetro de forma e β o parâmetro de taxa, onde 1/β seria o parâmetro de escala) pode ser definida como a soma de n variáveis aleatórias independentes e identicamente distribuídas (i.i.d.), cada uma seguindo uma distribuição exponencial com parâmetro β. ◦ Seja X1, X2, …, Xn uma sequência de variáveis aleatórias i.i.d. tal que Xk ∼ exp(β) para todo k. ◦ Então, a variável aleatória X = ∑(de k=1 até n) Xk segue uma distribuição Gama(n, β). 2. Função Característica da Distribuição Exponencial: ◦ Pelo Exercício 32(a), a função característica de uma variável exp(β) é ϕexp(β)(t) = β / (β - it). 3. Função Característica da Soma: ◦ Como X1, X2, …, Xn são variáveis aleatórias independentes, a função característica de sua soma X é o produto de suas funções características individuais: ϕX(t) = ϕX1(t) * ϕX2(t) * … * ϕXn(t) = [β / (β - it)] * [β / (β - it)] * … * [β / (β - it)] (n vezes) = (β / (β - it))^n. ◦ Isso verifica a fórmula da função característica para uma distribuição Gama(n, β).</td>
+</tr>
+</tbody>
+</table>
+<p>Exercício 34: Encontre a variável aleatória associada à função característica definida por ϕ(t) = cos²(t). Resposta: X + Y, onde X e Y são independentes e P(X = 1) = P(X = −1) = 1/2 e P(Y = 1) = P(Y = −1) = 1/2. A distribuição de X+Y é: pX+Y(z): z = -2, pX+Y(z) = 1/4 z = 0, pX+Y(z) = 1/2 z = 2, pX+Y(z) = 1/4. Explicação Detalhada: Este exercício exige o reconhecimento da função característica de uma distribuição discreta. 1. Reescrita da Função Característica: ◦ Sabemos que cos(t) = (e^(it) + e^(-it))/2. ◦ Então, ϕ(t) = cos²(t) = [(e^(it) + e^(-it))/2]² = (1/4) * (e^(it))² + (2/4) * e<sup>(it)e</sup>(-it) + (1/4) * (e^(-it))² = (1/4) * e^(i(2)t) + (1/2) * e^(i(0)t) + (1/4) * e^(i(-2)t). 2. Identificação da Distribuição da Variável Aleatória: ◦ A forma geral da função característica de uma variável aleatória discreta Z que assume valores z_j com probabilidades P(Z=z_j) é ϕZ(t) = ∑ e^(itz_j) P(Z=z_j). ◦ Comparando a expressão obtida para ϕ(t) com a forma geral, podemos identificar que ϕ(t) é a função característica de uma variável aleatória Z que assume os seguintes valores com as respectivas probabilidades: ▪ P(Z = -2) = 1/4 ▪ P(Z = 0) = 1/2 ▪ P(Z = 2) = 1/4 ◦ Isso já é uma resposta completa para a variável aleatória associada. 3. Construção da Variável Aleatória a partir de X e Y (como sugerido na resposta): ◦ Considere uma variável aleatória X tal que P(X = 1) = 1/2 e P(X = -1) = 1/2. ◦ Sua função característica é ϕX(t) = e^(it<em>1)</em>(1/2) + e^(it<em>(-1))</em>(1/2) = (e^(it) + e^(-it))/2 = cos(t). ◦ Considere outra variável aleatória Y independente de X e com a mesma distribuição de X. Então P(Y = 1) = 1/2, P(Y = -1) = 1/2, e ϕY(t) = cos(t). ◦ Como X e Y são independentes, a função característica de sua soma X+Y é o produto de suas funções características: ϕX+Y(t) = ϕX(t) * ϕY(t) = cos(t) * cos(t) = cos²(t). ◦ Pelo Teorema da Unicidade das Funções Características, a variável aleatória associada a cos²(t) é X+Y. ◦ Os valores possíveis para X+Y e suas probabilidades são: ▪ X=-1, Y=-1 ⇒ X+Y = -2. P(X+Y=-2) = P(X=-1)P(Y=-1) = (1/2)<em>(1/2) = 1/4. ▪ X=-1, Y=1 ⇒ X+Y = 0. P(X+Y=0, caso 1) = P(X=-1)P(Y=1) = (1/2)</em>(1/2) = 1/4. ▪ X=1, Y=-1 ⇒ X+Y = 0. P(X+Y=0, caso 2) = P(X=1)P(Y=-1) = (1/2)<em>(1/2) = 1/4. ▪ X=1, Y=1 ⇒ X+Y = 2. P(X+Y=2) = P(X=1)P(Y=1) = (1/2)</em>(1/2) = 1/4. ◦ Somando as probabilidades para X+Y=0: P(X+Y=0) = 1/4 + 1/4 = 1/2. ◦ A distribuição de X+Y é, portanto: P(X+Y = -2) = 1/4, P(X+Y = 0) = 1/2, P(X+Y = 2) = 1/4.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: center;">Exercício 35: Sejam Xn, n &gt; 1 variáveis aleatórias i.i.d. com distribuição comum U. Sejam Yn = min{X1, . . . , Xn}, Zn = max{X1, . . . , Xn}, Un = nYn, Vn = n(1 − Zn). Verifique que, quando n→∞: (a) Yn P−→ 0 e Zn P−→ 1. (b) Un D−→ W e Vn D−→ W, onde W tem distribuição exponencial de parâmetro 1. Explicação Detalhada: Este exercício explora a convergência de estatísticas de ordem (mínimo e máximo) de variáveis uniformes, bem como suas normalizações. 1. Propriedades da U: ◦ A função de distribuição acumulada (FDA) de Xk ∼ U é F_X(x) = x para 0 ≤ x ≤ 1. ◦ A função de sobrevivência é P(Xk &gt; x) = 1 - x. 2. (a) Convergência em Probabilidade de Yn e Zn: ◦ Para Yn = min{X1, . . . , Xn}: ▪ Yn converge em probabilidade para 0 (Yn P−→ 0) se lim (n→∞) P(|Yn - 0| &gt; ε) = 0 para todo ε &gt; 0. ▪ P(|Yn - 0| &gt; ε) = P(Yn &gt; ε) (já que Yn ≥ 0). ▪ P(Yn &gt; ε) = P(X1 &gt; ε, X2 &gt; ε, . . . , Xn &gt; ε). ▪ Pela independência e identicidade de Xk: P(Yn &gt; ε) = [P(X1 &gt; ε)]^n = (1 - F_X(ε))^n. ▪ Para 0 &lt; ε &lt; 1, (1 - F_X(ε))^n = (1 - ε)^n. ▪ Como 0 &lt; 1 - ε &lt; 1, lim (n→∞) (1 - ε)^n = 0. ▪ Portanto, Yn P−→ 0. ◦ Para Zn = max{X1, . . . , Xn}: ▪ Zn converge em probabilidade para 1 (Zn P−→ 1) se lim (n→∞) P(|Zn - 1| &gt; ε) = 0 para todo ε &gt; 0. ▪ P(|Zn - 1| &gt; ε) = P(Zn &lt; 1 - ε) (já que Zn ≤ 1, então P(Zn &gt; 1 + ε) = 0). ▪ P(Zn &lt; 1 - ε) = P(X1 &lt; 1 - ε, X2 &lt; 1 - ε, . . . , Xn &lt; 1 - ε). ▪ Pela independência e identicidade de Xk: P(Zn &lt; 1 - ε) = [P(X1 &lt; 1 - ε)]^n = (F_X(1 - ε))^n. ▪ Para 0 &lt; ε &lt; 1, (F_X(1 - ε))^n = (1 - ε)^n. ▪ Como 0 &lt; 1 - ε &lt; 1, lim (n→∞) (1 - ε)^n = 0. ▪ Portanto, Zn P−→ 1. 3. (b) Convergência em Distribuição de Un e Vn: ◦ Para Un = nYn: ▪ Calculamos a FDA de Un: F_Un(u) = P(Un ≤ u) = P(nYn ≤ u) = P(Yn ≤ u/n). ▪ Se u &lt; 0, F_Un(u) = 0. ▪ Se u ≥ 0: F_Un(u) = 1 - P(Yn &gt; u/n) = 1 - [P(X1 &gt; u/n)]^n = 1 - (1 - u/n)^n. ▪ À medida que n → ∞, sabemos que (1 - x/n)^n → e^(-x). ▪ Então, lim (n→∞) F_Un(u) = 1 - e^(-u) para u ≥ 0. ▪ Esta é a FDA de uma distribuição exponencial com parâmetro λ=1 (Exp(1)). ▪ Portanto, Un D−→ W, onde W ∼ Exp(1). ◦ Para Vn = n(1 - Zn): ▪ Calculamos a FDA de Vn: F_Vn(v) = P(Vn ≤ v) = P(n(1 - Zn) ≤ v) = P(1 - Zn ≤ v/n) = P(Zn ≥ 1 - v/n). ▪ Se v &lt; 0, F_Vn(v) = 0. ▪ Se v ≥ 0: F_Vn(v) = 1 - P(Zn &lt; 1 - v/n) = 1 - [P(X1 &lt; 1 - v/n)]^n = 1 - (F_X(1 - v/n))^n. ▪ = 1 - (1 - v/n)^n. ▪ À medida que n → ∞, lim (n→∞) F_Vn(v) = 1 - e^(-v) para v ≥ 0. ▪ Esta é novamente a FDA de uma distribuição exponencial com parâmetro λ=1 (Exp(1)). ▪ Portanto, Vn D−→ W, onde W ∼ Exp(1).</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Exercício 36: Seja (Xn)n&gt;1 uma sequência de variáveis aleatórias i.i.d. com P(Xn = 1) = P(Xn = −1) = 1/2. Seja Yn = ∑(de k=1 até n) (1/2^k) Xk. Verifique que Yn D−→ U[−1, 1]. Resposta: Use a identidade Π(de k=1 até ∞) cos(t/2^k) = sin(t)/t. Explicação Detalhada: Este exercício demonstra a convergência em distribuição de uma soma ponderada de variáveis aleatórias para uma distribuição uniforme, utilizando funções características e uma identidade trigonométrica. 1. Função Característica de Xk: ◦ Xk assume valores 1 e -1 com probabilidade 1/2 cada. ◦ A função característica de Xk é ϕXk(t) = E[e^(itXk)] = e^(it<em>1)</em>(1/2) + e^(it<em>(-1))</em>(1/2) = (e^(it) + e^(-it))/2 = cos(t). 2. Função Característica de (1/2^k)Xk: ◦ Seja Zk = (1/2^k)Xk. ◦ A função característica de Zk é ϕZk(t) = E[e^(itZk)] = E[e<sup>(itXk/2</sup>k)]. ◦ Pela propriedade ϕ(cX)(t) = ϕX(ct), temos ϕZk(t) = ϕXk(t/2^k) = cos(t/2^k). 3. Função Característica de Yn = ∑(de k=1 até n) (1/2^k)Xk: ◦ Como Xk são independentes, Zk também são independentes. ◦ A função característica de uma soma de variáveis independentes é o produto das suas funções características: ϕYn(t) = Π(de k=1 até n) ϕZk(t) = Π(de k=1 até n) cos(t/2^k). 4. Limite da Função Característica de Yn: ◦ Para encontrar o limite em distribuição de Yn, precisamos encontrar o limite da sua função característica quando n → ∞: lim (n→∞) ϕYn(t) = lim (n→∞) Π(de k=1 até n) cos(t/2^k). ◦ O exercício fornece a identidade crucial: Π(de k=1 até ∞) cos(t/2^k) = sin(t)/t. ◦ Portanto, lim (n→∞) ϕYn(t) = sin(t)/t. 5. Identificação da Distribuição Limite: ◦ A função característica da distribuição uniforme U[a, b] é ϕU<a href="t">a,b</a> = (e^(itb) - e^(ita)) / (it(b-a)). ◦ Para a distribuição U[-1, 1], temos a=-1 e b=1. ◦ ϕU<a href="t">-1,1</a> = (e^(it<em>1) - e^(it</em>(-1))) / (it(1 - (-1))) = (e^(it) - e^(-it)) / (2it). ◦ Sabemos que (e^(it) - e^(-it)) / (2i) = sin(t). ◦ Portanto, ϕU<a href="t">-1,1</a> = (2i sin(t)) / (2it) = sin(t)/t. ◦ Uma vez que o limite da função característica de Yn é a função característica da distribuição U[-1, 1], pelo Teorema da Unicidade das Funções Características, concluímos que Yn D−→ U[−1, 1].</td>
+</tr>
+</tbody>
+</table>
+<p>Exercício 37: Sejam X1, X2, . . . variáveis aleatórias i.i.d. com distribuição comum U[0, θ], onde θ &gt; 0. Verifique que Yn = √n [log(2X̄n) − log(θ)] converge em distribuição para N(0, 1/3). Resposta: Use o Método Delta. Explicação Detalhada: Este exercício é uma aplicação direta do Método Delta para encontrar a distribuição assintótica de uma função de uma média amostral. 1. Propriedades da Distribuição U[0, θ]: ◦ Para Xk ∼ U[0, θ]: ▪ Média: E[Xk] = θ/2. ▪ Variância: Var(Xk) = (θ - 0)² / 12 = θ²/12. 2. Convergência da Média Amostral pelo TLC: ◦ Pelo Teorema do Limite Central (TLC), a média amostral X̄n converge em distribuição da seguinte forma: √n (X̄n - E[X1]) D−→ N(0, Var(X1)). √n (X̄n - θ/2) D−→ N(0, θ²/12). 3. Definição da Função g: ◦ A expressão dentro dos parênteses da raiz quadrada é log(2X̄n) − log(θ). ◦ Isso pode ser visto como g(X̄n) - g(θ/2), onde g(x) = log(2x). Note que g(θ/2) = log(2 * θ/2) = log(θ). ◦ Então, a expressão Yn é da forma √n [g(X̄n) - g(θ/2)]. 4. Cálculo da Derivada de g(x): ◦ A função g(x) = log(2x) é diferenciável para x &gt; 0. ◦ g’(x) = d/dx (log(2x)) = (1 / (2x)) * 2 = 1/x. 5. Avaliação da Derivada no Ponto da Média (µ = θ/2): ◦ g’(θ/2) = 1 / (θ/2) = 2/θ. 6. Aplicação do Método Delta: ◦ O Método Delta afirma que se √n (Tn - c) D−→ N(0, σ²_T), e g é uma função diferenciável em c, então √n (g(Tn) - g(c)) D−→ N(0, (g’(c))² σ²_T). ◦ Neste caso, Tn = X̄n, c = θ/2, e σ²_T = Var(X1) = θ²/12. ◦ Portanto, Yn D−→ N(0, (g’(θ/2))² * Var(X1)) = N(0, (2/θ)² * (θ²/12)) = N(0, (4/θ²) * (θ²/12)) = N(0, 4/12) = N(0, 1/3). ◦ Isso verifica a convergência em distribuição para N(0, 1/3).</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 100%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Exercício 38: Sejam X1, X2, . . . variáveis aleatórias i.i.d. com E[X1] = 0. Encontre o limite, quando n→∞, da função característica de Yn = cos(X̄n). Resposta: e^(it). Explicação Detalhada: Este exercício combina a Lei dos Grandes Números e o Teorema da Aplicação Contínua (Continuous Mapping Theorem) com funções características. 1. Convergência da Média Amostral (X̄n): ◦ As variáveis X1, X2, . . . são i.i.d. e E[X1] = 0. ◦ Pela Lei Fraca dos Grandes Números (LFGN), a média amostral X̄n converge em probabilidade para a média populacional: X̄n P−→ E[X1] = 0. ◦ Convergência em probabilidade implica convergência em distribuição. Portanto, X̄n D−→ 0 (onde 0 é uma variável aleatória degenerada, que assume o valor 0 com probabilidade 1). 2. Aplicação do Teorema da Aplicação Contínua (CMT): ◦ A função g(x) = cos(x) é uma função contínua para todo x ∈ R. ◦ O Teorema da Aplicação Contínua afirma que se uma sequência de variáveis aleatórias Zn converge em distribuição para Z, e g é uma função contínua, então g(Zn) converge em distribuição para g(Z). ◦ Aplicando o CMT: como X̄n D−→ 0 e g(x) = cos(x) é contínua, temos: Yn = cos(X̄n) D−→ cos(0) = 1. ◦ Isso significa que Yn converge em distribuição para uma variável aleatória degenerada que toma o valor 1 com probabilidade 1. 3. Limite da Função Característica de Yn: ◦ Se uma sequência de variáveis aleatórias Zn converge em distribuição para uma variável aleatória Z (degenerada ou não), então suas funções características convergem pontualmente. ◦ Neste caso, Yn D−→ 1. A função característica de uma variável aleatória que assume o valor constante c é e^(itc). ◦ Portanto, o limite da função característica de Yn é e^(it*1) = e^(it).</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Exercício 39: Sejam X1, X2, . . . variáveis aleatórias i.i.d. com E[X1] = 0 e E[X1²] = 2. Encontre o limite em distribuição das seguintes sequências: (a) Yn = √n(X1 + · · ·+Xn) / (X2 1 + · · ·+X2 n). (b) Zn = (X1 + · · ·+Xn) / √X2 1 + · · ·+X2 n.&nbsp;Resposta: (a) N(0, 1/2), (b) N(0, 1). Explicação Detalhada: Este exercício é uma aplicação do Teorema do Limite Central (TLC) e da Lei dos Grandes Números (LGN) em conjunto com o Teorema de Slutsky para quocientes de variáveis aleatórias. 1. Propriedades de Xk e Definição das Somas: ◦ Xk são i.i.d. com E[X1] = 0 e E[X1²] = 2. ◦ Variância de X1: Var(X1) = E[X1²] - (E[X1])² = 2 - 0² = 2. ◦ Seja Sn = X1 + . . . + Xn. ◦ Seja Tn = X1² + . . . + Xn². 2. Convergência de Sn pelo TLC: ◦ Pelo TLC, a soma padronizada de Xk converge para uma normal padrão: (Sn - E[Sn]) / √Var(Sn) D−→ N(0, 1). ◦ E[Sn] = ∑ E[Xk] = ∑ 0 = 0. ◦ Var(Sn) = ∑ Var(Xk) = ∑ 2 = 2n. ◦ Então, Sn / √2n D−→ N(0, 1). Isso pode ser reescrito como (1/√n)Sn D−→ N(0, 2). 3. Convergência de Tn pela LGN: ◦ As variáveis Xk² são i.i.d. com E[Xk²] = E[X1²] = 2. ◦ Pela Lei Forte dos Grandes Números (LFGN), a média amostral de Xk² converge quase certamente (e, portanto, em probabilidade) para a média populacional: Tn / n = (∑ Xk²) / n P−→ E[X1²] = 2. 4. (a) Limite em Distribuição de Yn = √n(X1 + · · ·+Xn) / (X2 1 + · · ·+X2 n): ◦ Yn = (√n Sn) / Tn. ◦ Podemos reescrever Yn para aplicar o Teorema de Slutsky: Yn = (√n Sn) / (n * (Tn/n)) = (Sn / √n) * (1 / (Tn/n)). ◦ Vamos analisar os termos: ▪ A_n = Sn / √n.&nbsp;Pela análise do TLC acima, Sn / √n D−→ N(0, 2). ▪ B_n = 1 / (Tn/n). Pela LGN, Tn/n P−→ 2. Como f(x) = 1/x é contínua para x ≠ 0, pelo Teorema da Aplicação Contínua, B_n P−→ 1/2. ◦ Pelo Teorema de Slutsky, se A_n D−→ N(0, 2) e B_n P−→ 1/2, então Yn = A_n * B_n D−→ N(0, 2) * (1/2). ◦ A variância de N(0, 2) * (1/2) é (1/2)² * 2 = 1/4 * 2 = 1/2. ◦ Portanto, Yn D−→ N(0, 1/2). 5. (b) Limite em Distribuição de Zn = (X1 + · · ·+Xn) / √X2 1 + · · ·+X2 n: ◦ Zn = Sn / √Tn. ◦ Podemos reescrever Zn: Zn = Sn / √(n * (Tn/n)) = (Sn / √n) / √(Tn/n). ◦ Vamos analisar os termos: ▪ C_n = Sn / √n.&nbsp;Pela análise do TLC acima, C_n D−→ N(0, 2). ▪ D_n = √(Tn/n). Pela LGN, Tn/n P−→ 2. Como f(x) = √x é contínua para x &gt; 0, pelo Teorema da Aplicação Contínua, D_n P−→ √2. ◦ Pelo Teorema de Slutsky, se C_n D−→ N(0, 2) e D_n P−→ √2, então Zn = C_n / D_n D−→ N(0, 2) / √2. ◦ A variância de N(0, 2) / √2 é (1/√2)² * 2 = (1/2) * 2 = 1. ◦ Portanto, Zn D−→ N(0, 1).</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
