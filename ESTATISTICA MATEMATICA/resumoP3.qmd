@@ -11,6 +11,69 @@ format: html
 
 # Content
 
+1. Tipos de Convergência
+• Convergência em Probabilidade (LFLN): A sequência de variáveis aleatórias $X_n$ converge para $X$ em probabilidade ($X_n \xrightarrow{P} X$) se, para todo $\epsilon > 0$, $$ \lim_{n \to \infty} P(|X_n - X| \ge \epsilon) = 0 $$
+    ◦ Implicação: Se $X_n \xrightarrow{L_2} X$, então $X_n \xrightarrow{P} X$.
+    ◦ Critério com Média e Variância (Exercício 2): Se $\lim_{n \to \infty} E(X_n) = \alpha$ e $\lim_{n \to \infty} Var(X_n) = 0$, então $X_n \xrightarrow{P} \alpha$.
+• Convergência Quase Certa (LFGN): A sequência de variáveis aleatórias $X_n$ converge para $X$ quase certamente ($X_n \xrightarrow{q.c.} X$) se a probabilidade do conjunto de resultados onde $X_n$ não converge para $X$ é zero, ou seja, $$ P(\lim_{n \to \infty} X_n = X) = 1 $$
+    ◦ Implicação: Se $X_n \xrightarrow{q.c.} X$, então $X_n \xrightarrow{P} X$.
+• Convergência em Média Quadrática (L2): A sequência de variáveis aleatórias $X_n$ converge para $X$ em média quadrática ($X_n \xrightarrow{L_2} X$) se $$ \lim_{n \to \infty} E((X_n - X)^2) = 0 $$
+• Convergência em Distribuição: A sequência de variáveis aleatórias $X_n$ converge para $X$ em distribuição ($X_n \xrightarrow{D} X$) se $$ \lim_{n \to \infty} F_n(x) = F(x) $$ para todo ponto $x$ onde $F(x)$ é contínua.
+2. Leis dos Grandes Números
+• Lei Fraca dos Grandes Números (LFLN): Se $X_1, X_2, \ldots$ são variáveis aleatórias independentes e identicamente distribuídas (i.i.d.) com média $E(X_1) = \mu$ (finita), então a média amostral $\bar{X}n = \frac{1}{n}\sum{i=1}^n X_i$ converge para $\mu$ em probabilidade: $$ \frac{1}{n}\sum_{i=1}^n X_i \xrightarrow{P} \mu $$
+    ◦ Condição Comum: Geralmente exige que a variância $\mathrm{Var}(X_1)$ seja finita.
+• Lei Forte dos Grandes Números (LFGN): Se $X_1, X_2, \ldots$ são variáveis aleatórias independentes e identicamente distribuídas (i.i.d.) com $E(|X_1|) < \infty$ (média finita), então a média amostral $\bar{X}n = \frac{1}{n}\sum{i=1}^n X_i$ converge para $\mu$ quase certamente: $$ \frac{1}{n}\sum_{i=1}^n X_i \xrightarrow{q.c.} \mu $$
+    ◦ Observação: A LFGN é mais forte que a LFLN; se a LFGN se aplica, a LFLN também se aplica.
+    ◦ Lei Forte de Kolmogorov para não i.i.d. (relevante para Exercício 8): Para variáveis independentes com $E(X_k) = 0$, se $\sum_{k=1}^\infty \frac{\mathrm{Var}(X_k)}{k^2} < \infty$, então $\frac{1}{n}\sum_{k=1}^n X_k \xrightarrow{q.c.} 0$.
+3. Desigualdades Fundamentais
+• Desigualdade de Chebyshev: Para uma variável aleatória $X$ com média $\mu$ e variância $\sigma^2$ (finita), para qualquer $\epsilon > 0$: $$ P(|X - \mu| \ge \epsilon) \le \frac{\sigma^2}{\epsilon^2} $$
+    ◦ Aplicação: Crucial para provar a Lei Fraca dos Grandes Números e para o Exercício 2 da Lista 5.
+• Desigualdade de Markov: Para uma variável aleatória $X \ge 0$ (não-negativa) com média $E(X)$ finita, para qualquer $a > 0$: $$ P(X \ge a) \le \frac{E(X)}{a} $$
+4. Lema de Borel-Cantelli (para Convergência Quase Certa)
+• Primeira Parte: Se $A_1, A_2, \ldots$ é uma sequência de eventos e $\sum_{n=1}^\infty P(A_n) < \infty$, então $P(A_n \text{ ocorre infinitas vezes}) = 0$.
+• Segunda Parte (para eventos independentes): Se $A_1, A_2, \ldots$ é uma sequência de eventos independentes e $\sum_{n=1}^\infty P(A_n) = \infty$, então $P(A_n \text{ ocorre infinitas vezes}) = 1$.
+    ◦ Aplicação: Essencial para o Exercício 4 e o Exercício 11 da Lista 5.
+5. Teorema Central do Limite (TCL)
+• Teorema Central do Limite (Lindeberg-Lévy): Se $X_1, X_2, \ldots$ são variáveis aleatórias i.i.d. com média $E(X_1) = \mu$ e variância $\mathrm{Var}(X_1) = \sigma^2$ (ambas finitas), então a sequência de variáveis padronizadas converge em distribuição para uma distribuição normal padrão: $$ \frac{\sqrt{n}(\bar{X}_n - \mu)}{\sigma} \xrightarrow{D} N(0,1) $$ onde $\bar{X}n = \frac{1}{n}\sum{i=1}^n X_i$.
+    ◦ Aplicação: Fundamental para o Exercício 25 e 39 da Lista 5.
+• Teorema Central do Limite de Lyapunov (para não i.i.d. variáveis): Para variáveis independentes $X_1, X_2, \ldots$ com $E(X_k) = \mu_k$ e $\mathrm{Var}(X_k) = \sigma_k^2$ finitas. Seja $S_n = \sum_{k=1}^n X_k$ e $s_n^2 = \sum_{k=1}^n \sigma_k^2$. Se existe $\delta > 0$ tal que $$ \lim_{n \to \infty} \frac{1}{s_n^{2+\delta}} \sum_{k=1}^n E[|X_k - \mu_k|^{2+\delta}] = 0 $$ então $$ \frac{S_n - E(S_n)}{s_n} \xrightarrow{D} N(0,1) $$
+    ◦ Aplicação: Relevante para o Exercício 26, 27 e 28 da Lista 5.
+6. Teorema de Slutsky
+• Teorema de Slutsky (usado nas soluções, não formalizado explicitamente no texto geral): Se $X_n \xrightarrow{D} X$ e $Y_n \xrightarrow{P} c$ (onde $c$ é uma constante), então:
+    1. $X_n + Y_n \xrightarrow{D} X + c$
+    2. $X_n Y_n \xrightarrow{D} X c$
+    3. $X_n / Y_n \xrightarrow{D} X / c$ (se $c \ne 0$)
+    ◦ Aplicação: Usado para combinar a convergência de partes de uma expressão (e.g., de TCL e LFLN) para determinar a convergência em distribuição da expressão completa (Exercício 26, 29, 39, 40).
+7. Método Delta
+• Método Delta (usado nas soluções, não formalizado explicitamente no texto geral): Se $\sqrt{n}(T_n - \theta) \xrightarrow{D} N(0, \sigma^2)$ e $g$ é uma função diferenciável em $\theta$ com $g'(\theta) \ne 0$, então $$ \sqrt{n}(g(T_n) - g(\theta)) \xrightarrow{D} N(0, (g'(\theta))^2 \sigma^2) $$
+    ◦ Para o caso multivariado (Exercício 29): Se $\sqrt{n}(\mathbf{T}_n - \boldsymbol{\theta}) \xrightarrow{D} N(0, \mathbf{\Sigma})$ e $g$ é uma função diferenciável em $\boldsymbol{\theta}$, então $$ \sqrt{n}(g(\mathbf{T}_n) - g(\boldsymbol{\theta})) \xrightarrow{D} N(0, (\nabla g(\boldsymbol{\theta}))^T \mathbf{\Sigma} \nabla g(\boldsymbol{\theta})) $$ onde $\nabla g(\boldsymbol{\theta})$ é o vetor gradiente de $g$ em $\boldsymbol{\theta}$.
+    ◦ Aplicação: Essencial para o Exercício 29 e 37 da Lista 5.
+8. Funções Características (FCs)
+• Definição: A função característica de uma variável aleatória $X$ é $\phi_X(t) = E(e^{itX})$.
+• Propriedades:
+    ◦ Se $X$ e $Y$ são independentes, $\phi_{X+Y}(t) = \phi_X(t)\phi_Y(t)$.
+    ◦ $\phi_{aX+b}(t) = e^{ibt}\phi_X(at)$.
+• Teorema da Unicidade: Se $\phi_X(t) = \phi_Y(t)$ para todo $t \in \mathbb{R}$, então $X$ e $Y$ têm a mesma distribuição.
+• Teorema da Continuidade de Lévy: A sequência $X_n$ converge para $X$ em distribuição ($X_n \xrightarrow{D} X$) se e somente se $\phi_{X_n}(t)$ converge para $\phi_X(t)$ para todo $t \in \mathbb{R}$.
+    ◦ Aplicação: Crucial para os Exercícios 30, 31, 32, 33, 34, 36 da Lista 5.
+9. Propriedades de Esperança e Variância
+• Definição de Esperança: Para uma variável aleatória discreta $X$ com função de probabilidade $p(x_i)$: $E(X) = \sum_i x_i p(x_i)$. Para uma variável aleatória contínua $X$ com densidade $f(x)$: $E(X) = \int_{-\infty}^\infty x f(x) dx$.
+• Linearidade da Esperança: $E(aX+bY) = aE(X) + bE(Y)$.
+• Variância: $\mathrm{Var}(X) = E((X - E(X))^2) = E(X^2) - (E(X))^2$.
+• Variância da Soma de Variáveis Aleatórias Independentes: Se $X$ e $Y$ são independentes, $\mathrm{Var}(X+Y) = \mathrm{Var}(X) + \mathrm{Var}(Y)$.
+• Esperança e Variância de Distribuições Comuns:
+    ◦ Poisson($\lambda$): $E(X) = \lambda$, $\mathrm{Var}(X) = \lambda$.
+    ◦ Bernoulli($p$): $E(X) = p$, $\mathrm{Var}(X) = p(1-p)$.
+    ◦ Normal($\mu, \sigma^2$): $E(X) = \mu$, $\mathrm{Var}(X) = \sigma^2$.
+    ◦ Exponencial($\lambda$): $E(X) = 1/\lambda$, $\mathrm{Var}(X) = 1/\lambda^2$.
+    ◦ Uniforme($a,b$): $E(X) = (a+b)/2$, $\mathrm{Var}(X) = (b-a)^2/12$.
+    ◦ Gama($\alpha, \beta$): $E(X) = \alpha/\beta$, $\mathrm{Var}(X) = \alpha/\beta^2$.
+Observações sobre Exercícios Ambíguos ou Específicos da Lista 5:
+• Exercício 5: A notação n-Xn para $X_n \sim U$ é incomum e pode ser um erro de digitação. Se $X_n$ representa a $n$-ésima variável da sequência i.i.d. $U$, então $n-X_n$ divergiria. Uma interpretação mais comum em problemas de Lei dos Grandes Números seria algo envolvendo a média amostral $\bar{X}_n$ ou transformações de mínimos/máximos, mas a forma exata da expressão não é clara na fonte. A Lei Fraca dos Grandes Números para $U$ garante que $\bar{X}_n \xrightarrow{P} 1/2$.
+• Exercício 9: Com a função de densidade dada $f(x) = e^{-(x+1/2)}$ para $x > -1/2$, a esperança $E(X_1)$ é finita e igual a $1/2$. Pela Lei Forte dos Grandes Números, $\frac{1}{n}\sum_{i=1}^n X_i \xrightarrow{q.c.} 1/2$. O resultado esperado na lista de exercícios ($q.c. \to \infty$) parece ser inconsistente com a densidade fornecida. Pode haver um erro na formulação do problema ou na densidade.
+• Exercício 13: A notação "variáveis aleatórias independentes com $X_n \sim \text{Poisson}(\sqrt{n})$, para cada $n > 1$" é interpretada como $X_1, \ldots, X_n$ sendo $n$ variáveis i.i.d. para um dado $n$, cada uma com distribuição Poisson($\sqrt{n}$). Com essa interpretação, o problema pode ser resolvido com as propriedades de Esperança e Variância e a definição de convergência $L_2$.
+• Exercício 38: A notação "Yn = cos(X)" onde $X_1, X_2, \ldots$ são i.i.d. e $E(X_1)=0$ é ambígua. Se $Y_n$ se refere a $Y_n = \cos(X_n)$ onde $X_n$ é a $n$-ésima variável da sequência, e $X_n$ são i.i.d. com $E(X_1)=0$, não é geralmente verdade que $\cos(X_n) \xrightarrow{D} 1$. A solução fornecida $e^{it}$ (que corresponde à função característica de uma variável aleatória degenerada em 1) sugere que $Y_n \xrightarrow{D} 1$. Este é um resultado específico que pode não ser diretamente óbvio das propriedades gerais fornecidas, a menos que $X_n$ sejam triviais ($P(X_n=0)=1$).
+
 # Lista 5
 
 Disclaimer: Feito com NotebookLm, ferramenta de inteligência artificial do Google.

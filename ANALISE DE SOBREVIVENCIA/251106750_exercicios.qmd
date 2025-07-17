@@ -1,0 +1,139 @@
+---
+title: "Lista de Exercícios"
+subtitle: "Análise de Sobrevivência"
+author: "Tailine J. S. Nonato"
+date: today
+date-format: long
+format: pdf
+---
+
+# Orientações
+
+Para cada um dos modelos especificados abaixo:
+
+(i) Ajuste o modelo solicitado, apresentando as estimativas dos parâmetros do modelo escolhido e coeficientes de regressão com seus respectivos intervalos de confiança. Para os parâmetros positivos, apresente o intervalo do tipo log e para os parâmetros limitados em [0-1] o intervalo do tipo log-log.
+
+(ii) Segundo o modelo ajustado no item (i), estime a função de sobrevivência de um indivíduo do grupo Ag+ que apresente WBC=5.000. Calcule um intervalo de confiança com uma transformação que garanta que os limites do intervalo não ultrapassem o intervalo [0-1] para função de sobrevivência obtida.
+
+(iii) Segundo o modelo ajustado no item (i), calcule a estimativa da média e da mediana do tempo de sobrevivência de um indivíduo do grupo Ag+ que apresente WBC=5.000. Calcule o intervalo de confiança do tipo log para essas estimativas (média e mediana).
+
+(iv) Segundo o modelo ajustado no item (i), qual é a estimativa da vida média residual em T=50 de um indivíduo do grupo Ag+ que apresente WBC=5.000?
+
+(v) Verifique graficamente a qualidade do ajuste do modelo ajustado confrontando a função de sobrevivência estimada empírica com a ajustada pelo modelo (dica: categorize a covariável numérica).
+
+Nota: Caso adote um conjunto de dados diferente da Giolo, considere T = t ̅  um valor arbitrário para cada uma das duas covariáveis nos itens (ii, iii e iv).
+
+
+**Exercício 1.** O modelo semi-paramétrico de riscos proporcionais de Cox
+
+**Exercício 2.** Um modelo de regressão paramétrico
+
+Nota: Ajuste ao menos dois modelos de regressão (que não seja exponencial) paramétricos para esse conjunto de dados e decida pela utilização de um deles.
+
+**Exercício 3.** “Discretize” os tempos de sobrevivência e ajuste um modelo de regressão discreto
+
+Nota: Ajuste um modelo de regressão discreto correspondente ao modelo contínuo adotado como melhor modelo no Exercício 2.  Como discretizar: transforme os tempos para meses completos (“floor(t*7/30)”). Por exemplo. Se t=4, considere que t*=0 mês completo; se t=5, considere que t*=1 mês completo e assim sucessivamente. Caso adote um conjunto de dados diferente da Giolo, proponha um procedimento para discretizar os tempos.
+
+**Exercício 4.** Um modelo chances de sobrevivência proporcionais
+
+Nota: Ajuste um modelo de regressão Chance de Sobrevivências Proporcionais correspondente ao modelo adotado como melhor modelo no Exercício 2.
+
+# Pacotes necessários
+
+```{r}
+pacman::p_load(tidyverse, survival, survminer)
+```
+
+# Entrada de dados
+
+```{r}
+t <- c(65, 156, 100, 134, 16, 108, 121, 4, 39, 143, 56, 26, 22, 1, 1, 5, 
+65,56, 65, 17, 7, 16, 22, 3, 4, 2, 3, 8, 4, 3, 30, 4, 43)
+
+status <- rep(1, 33)
+
+WBC <- c(2300,750,4300,2600,6000,10000,10000,17000,5400,7000,9400,32000,35000,
+100000,100000,52000,100000,4400,3000,4000,1500,9000,5300,10000,19000,27000,
+28000,31000,26000,21000,79000,100000,100000)
+
+logWBC <- log(WBC)
+
+grupo <- c(rep("Ag+", 17),rep("Ag-", 16))
+
+dados <- data.frame(t, WBC, logWBC, grupo, status)
+dados$grupo <- factor(dados$grupo, levels = c("Ag+", "Ag-"))
+
+head(dados)
+```
+
+# Exercício 1: Modelo de Cox
+
+## (i) Ajuste do modelo de Cox
+
+```{r}
+modelo_cox <- coxph(Surv(t) ~ log(WBC) + grupo, data = dados)
+summary(modelo_cox)
+```
+
+Sejam $\beta_1$ o coeficiente de $\log(\text{WBC})$ e $\beta_2$ o coeficiente para o grupo $\text{AGAg+}$. A função de risco estimada é:
+
+$$
+h(t \mid \log(\text{WBC}), grupo) = h_0(t) \cdot \exp\left( \beta_1 \log(\text{WBC}) + \beta_2 \cdot \text{AGAg+} \right)
+$$
+
+
+## (ii) Estimativas das razões de risco (HR)
+
+```{r}
+exp(coef(modelo_cox))       
+exp(confint(modelo_cox)) 
+```
+
+As razões de risco estimadas são:
+
+- Para cada aumento unitário em $\log(\text{WBC})$, a HR é dada por $\exp(\beta_1)$.
+- Para o grupo $\text{Ag+}$, a HR é dada por $\exp(\beta_2)$, em relação ao grupo $\text{Ag-}$.
+
+
+## (iii) Teste da hipótese de proporcionalidade dos riscos
+
+```{r}
+cox.zph(modelo_cox)
+```
+
+Esse teste verifica se os resíduos de Schoenfeld estão associados ao tempo. Se o valor-p for alto (por exemplo, $p > 0{,}05$), então não há evidência contra a suposição de riscos proporcionais.
+
+
+## (iv) Teste da significância global do modelo
+
+```{r}
+summary(modelo_cox)$logtest
+```
+
+Esse teste avalia se o modelo com covariáveis é significativamente melhor que o modelo nulo (sem covariáveis). A estatística de teste é baseada no log da verossimilhança.
+
+
+## (v) Interpretação dos coeficientes
+
+- $\beta_1 < 0$ indica que maiores valores de $\log(\text{WBC})$ estão associados a menor risco de sobrevivência (HR < 1).
+- $\beta_2 < 0$ indica que pacientes do grupo $\text{Ag+}$ têm menor risco de morte em comparação ao grupo $\text{Ag-}$, se $\exp(\beta_2) < 1$.
+
+
+## (vi) Curvas de sobrevivência ajustadas para os dois grupos
+
+```{r}
+wbc_medio <- mean(dados$WBC)
+
+novos_dados <- data.frame(
+  WBC = rep(wbc_medio, 2),
+  grupo = c("Ag-", "Ag+")
+)
+
+ajuste_surv <- survfit(modelo_cox, newdata = novos_dados)
+
+plot(ajuste_surv, col = c("red", "blue"), lty = 1:2,
+     xlab = "Dias", ylab = "Probabilidade de Sobrevivência",
+     main = "Curvas de Sobrevivência Ajustadas")
+legend("bottomleft", legend = c("Ag-", "Ag+"), col = c("red", "blue"), lty = 1:2)
+```
+
