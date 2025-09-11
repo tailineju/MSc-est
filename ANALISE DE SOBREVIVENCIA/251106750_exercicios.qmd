@@ -4,10 +4,21 @@ subtitle: "Análise de Sobrevivência"
 author: "Tailine J. S. Nonato"
 date: today
 date-format: long
-format: pdf
+format:
+  pdf:
+    toc: true
+    number-sections: false
+    fig-cap-location: bottom
+    documentclass: report
+    classoption: [12pt]
+    geometry: margin=2.5cm
+    colorlinks: true
+lang: pt
+locale: pt_BR
 ---
 
-# Orientações
+
+# Orientações      
 
 Para cada um dos modelos especificados abaixo:
 
@@ -38,102 +49,277 @@ Nota: Ajuste um modelo de regressão discreto correspondente ao modelo contínuo
 
 Nota: Ajuste um modelo de regressão Chance de Sobrevivências Proporcionais correspondente ao modelo adotado como melhor modelo no Exercício 2.
 
-# Pacotes necessários
+# Entrada dos dados
 
 ```{r}
-pacman::p_load(tidyverse, survival, survminer)
-```
+#| label: entrada_dados
+#| echo: false
 
-# Entrada de dados
+pacman::p_load(tidyverse, survival, survminer, knitr, flexsurv)
 
-```{r}
 t <- c(65, 156, 100, 134, 16, 108, 121, 4, 39, 143, 56, 26, 22, 1, 1, 5, 
 65,56, 65, 17, 7, 16, 22, 3, 4, 2, 3, 8, 4, 3, 30, 4, 43)
 
-status <- rep(1, 33)
+censura <- rep(1, 33)
 
 WBC <- c(2300,750,4300,2600,6000,10000,10000,17000,5400,7000,9400,32000,35000,
 100000,100000,52000,100000,4400,3000,4000,1500,9000,5300,10000,19000,27000,
 28000,31000,26000,21000,79000,100000,100000)
 
-logWBC <- log(WBC)
+logWBC <- log10(WBC)
 
 grupo <- c(rep("Ag+", 17),rep("Ag-", 16))
 
-dados <- data.frame(t, WBC, logWBC, grupo, status)
+dados <- data.frame(t, WBC, logWBC, grupo, censura)
 dados$grupo <- factor(dados$grupo, levels = c("Ag+", "Ag-"))
 
-head(dados)
+kable(dados, 
+      caption = "Primeiras linhas do conjunto de dados")
 ```
 
 # Exercício 1: Modelo de Cox
 
-## (i) Ajuste do modelo de Cox
+## (i) Ajuste do modelo
 
 ```{r}
-modelo_cox <- coxph(Surv(t) ~ log(WBC) + grupo, data = dados)
-summary(modelo_cox)
+#| label: ajuste_modelo_cox
+#| echo: false
+modelo_cox <- coxph(Surv(t, censura) ~ logWBC + grupo, data = dados)
+
+kable(summary(modelo_cox)$coefficients, 
+      caption = "Estimativas dos parâmetros do modelo de Cox")
+
+exp_coef <- exp(coef(modelo_cox))               
+IC_log <- confint(modelo_cox)                
+IC_exp <- exp(IC_log)                      
+
+resultados <- cbind(
+  RR = exp_coef,
+  IC_inf = IC_exp[,1],
+  IC_sup = IC_exp[,2])
+
+kable(round(resultados, 3), 
+      caption = "Razões de risco e ICs para o modelo de Cox")
 ```
 
-Sejam $\beta_1$ o coeficiente de $\log(\text{WBC})$ e $\beta_2$ o coeficiente para o grupo $\text{AGAg+}$. A função de risco estimada é:
-
-$$
-h(t \mid \log(\text{WBC}), grupo) = h_0(t) \cdot \exp\left( \beta_1 \log(\text{WBC}) + \beta_2 \cdot \text{AGAg+} \right)
-$$
-
-
-## (ii) Estimativas das razões de risco (HR)
+## (ii) Estimativa da função de sobrevivência
 
 ```{r}
-exp(coef(modelo_cox))       
-exp(confint(modelo_cox)) 
+#| label: estimativa_sobrevivencia
+#| fig-height: 5
+#| echo: false
+#| 
+newdata <- data.frame(
+  logWBC = log10(5000),
+  grupo = factor("Ag+", levels = c("Ag+", "Ag-")))
+
+
+estimativaSt <- survfit(modelo_cox, newdata = newdata, conf.type = "log-log")
+
+resultadoSt <-data.frame(
+  Tempo = summary(estimativaSt)$time,
+  Sobrevivencia = summary(estimativaSt)$surv,
+  SE = summary(estimativaSt)$std.err,
+  IC_inf = summary(estimativaSt)$lower,
+  IC_sup = summary(estimativaSt)$upper)
+
+kable(round(resultadoSt, 3),
+      caption = "Estimativa da função de sobrevivência para WBC=5000")
+
+plot(estimativaSt, 
+     xlab = "Tempo", 
+     ylab = "Probabilidade de Sobrevivência", 
+     main = "Função de Sobrevivência Estimada WBC=5000",
+     conf.int = TRUE, 
+     col = "blue")
+legend("topright", 
+        legend = c("Estimativa", "IC"), 
+        col = c("blue", "lightblue"), 
+        lty = 1:2)
 ```
 
-As razões de risco estimadas são:
-
-- Para cada aumento unitário em $\log(\text{WBC})$, a HR é dada por $\exp(\beta_1)$.
-- Para o grupo $\text{Ag+}$, a HR é dada por $\exp(\beta_2)$, em relação ao grupo $\text{Ag-}$.
-
-
-## (iii) Teste da hipótese de proporcionalidade dos riscos
+## (iii) Estimativa da média e mediana do tempo de sobrevivência
 
 ```{r}
-cox.zph(modelo_cox)
+#| label: estimativa_media_mediana
+#| echo: false
+
+media <- mean(estimativaSt$time)
+IC_media <- exp(log(media) + c(-1.96, 1.96) * summary(estimativaSt)$std.err)
+
+mediana <- as.numeric(quantile(estimativaSt$time, probs = 0.5))
+idx_mediana <- which.min(abs(resultadoSt$Sobrevivencia - 0.5))
+se_mediana <- resultadoSt$SE[which.min(abs(resultadoSt$Sobrevivencia - 0.5))]
+IC_mediana <- exp(log(mediana) + c(-1.96, 1.96) * se_mediana)
+
+resultado_media_mediana <- data.frame(
+  Item = c("Média", "Mediana"),
+  Estimativa = round(c(media, mediana), 3),
+  IC_inf = round(c(min(IC_media), IC_mediana[1]), 3),
+  IC_sup = round(c(max(IC_media), IC_mediana[2]), 3))
+
+kable(resultado_media_mediana,
+      caption = "Estimativas da média e mediana do tempo de sobrevivência com ICs")
 ```
 
-Esse teste verifica se os resíduos de Schoenfeld estão associados ao tempo. Se o valor-p for alto (por exemplo, $p > 0{,}05$), então não há evidência contra a suposição de riscos proporcionais.
-
-
-## (iv) Teste da significância global do modelo
+## (iv) Estimativa da vida média residual em T=50
 
 ```{r}
-summary(modelo_cox)$logtest
+#| label: estimativa_vida_media_residual
+#| echo: false
+
+idx <- which(resultadoSt$Tempo >= 50)
+t_acima50 <- resultadoSt$Tempo[idx]
+sobrev_acima50 <- resultadoSt$Sobrevivencia[idx]
+area_acima50 <- sum(diff(t_acima50) * head(sobrev_acima50, -1))
+
+sobrev50aprox <- approx(t_acima50, sobrev_acima50, xout = 50, rule=2)$y
+
+vt <- area_acima50 / sobrev50aprox 
+vt <- vt - 50
+
+resultado_vt <- data.frame(
+  Tempo = 50,
+  VMR= round(vt, 3))
+
+kable(resultado_vt,
+      caption = "Estimativa da vida média residual em T=50, dado que já se passaram 50 semanas")
 ```
 
-Esse teste avalia se o modelo com covariáveis é significativamente melhor que o modelo nulo (sem covariáveis). A estatística de teste é baseada no log da verossimilhança.
-
-
-## (v) Interpretação dos coeficientes
-
-- $\beta_1 < 0$ indica que maiores valores de $\log(\text{WBC})$ estão associados a menor risco de sobrevivência (HR < 1).
-- $\beta_2 < 0$ indica que pacientes do grupo $\text{Ag+}$ têm menor risco de morte em comparação ao grupo $\text{Ag-}$, se $\exp(\beta_2) < 1$.
-
-
-## (vi) Curvas de sobrevivência ajustadas para os dois grupos
+## (v) Verificação gráfica da qualidade do ajuste
 
 ```{r}
-wbc_medio <- mean(dados$WBC)
+#| label: qualidade_ajuste
+#| fig-height: 5
+#| echo: false
 
-novos_dados <- data.frame(
-  WBC = rep(wbc_medio, 2),
-  grupo = c("Ag-", "Ag+")
-)
+km_global <- survfit(Surv(t, censura) ~ 1, data = dados)
 
-ajuste_surv <- survfit(modelo_cox, newdata = novos_dados)
+# Perfil 1: Ag+, logWBC baixo (3.5)
+pos_baixo <- data.frame(grupo = "Ag+", logWBC = 3.5)
+s_pos_baixo <- survfit(modelo_cox, newdata = pos_baixo)
 
-plot(ajuste_surv, col = c("red", "blue"), lty = 1:2,
-     xlab = "Dias", ylab = "Probabilidade de Sobrevivência",
-     main = "Curvas de Sobrevivência Ajustadas")
-legend("bottomleft", legend = c("Ag-", "Ag+"), col = c("red", "blue"), lty = 1:2)
+# Perfil 2: Ag+, logWBC alto (4.5)
+pos_alto <- data.frame(grupo = "Ag+", logWBC = 4.5)
+s_pos_alto <- survfit(modelo_cox, newdata = pos_alto)
+
+# Perfil 3: Ag-, logWBC baixo (3.5)
+neg_baixo <- data.frame(grupo = "Ag-", logWBC = 3.5)
+s_neg_baixo <- survfit(modelo_cox, newdata = neg_baixo)
+
+# Perfil 4: Ag-, logWBC alto (4.5)
+neg_alto <- data.frame(grupo = "Ag-", logWBC = 4.5)
+s_neg_alto <- survfit(modelo_cox, newdata = neg_alto)
+
+
+plot(km_global,
+     main = "S(t) Empírica (Kaplan-Meier) vs. Cox (Grupo Ag+)",
+     xlab = "Tempo (semanas)",
+     ylab = "S(t)",
+     col = "black",
+     lty = 1,
+     lwd = 2)
+lines(s_pos_baixo, col = "red", lty = 2)
+lines(s_pos_alto, col = "blue", lty = 3)
+legend("topright",
+       legend = c("KM Global", "Cox (Ag+, logWBC=3.5)", "Cox (Ag+, logWBC=4.5)"),
+       col = c("black", "red", "blue"),
+       lty = c(1, 2, 3),
+       bty = "n")
+
+plot(km_global,
+     main = "S(t) Empírica (Kaplan-Meier) vs. Cox (Grupo Ag-)",
+     xlab = "Tempo (semanas)",
+     ylab = "S(t)",
+     col = "black",
+     lty = 1,
+     lwd = 2)
+lines(s_neg_baixo, col = "red", lty = 2)
+lines(s_neg_alto, col = "blue", lty = 3)
+legend("topright",
+       legend = c("KM Global", "Cox (Ag-, logWBC=3.5)", "Cox (Ag-, logWBC=4.5)"),
+       col = c("black", "red", "blue"),
+       lty = c(1, 2, 3),
+       bty = "n")
 ```
 
+# Exercício 2: Ajuste de modelo paramétrico
+
+## Análise Preliminar
+
+```{r}
+#| label: analise_preliminar
+#| fig-height: 5
+#| echo: false
+
+# Curva TTT
+t_sorted <- sort(dados$t)
+n <- length(t_sorted)
+A <- (1:n) / n
+G <- numeric(n)
+for (i in 1:n) {
+  G[i] <- (sum(t_sorted[1:i]) + (n - i) * t_sorted[i]) / sum(t_sorted)}
+
+# Plot TTT
+plot(A, G, type = "l", main = "TTT plot para os dados", xlab = "A = r/n", ylab = "G(r/n)", col = "blue", lwd = 2)
+lines(c(0, 1), c(0, 1), type = "l", lty = 3, col = "gray") 
+
+surv_obj <- Surv(dados$t, dados$censura)
+na_fit <- survfit(surv_obj ~ 1, type = "fleming-harrington")
+h_emp <- -log(na_fit$surv)
+
+plot(na_fit$time, h_emp, type = "s", main = "Estimativa de H(t) (Nelson-Aalen)", xlab = "Tempo (Semanas)", ylab = "H(t)", col = "red", lwd = 2)
+abline(0, max(h_emp, na.rm = TRUE) / max(na_fit$time, na.rm = TRUE), lty = 3, col = "gray") 
+```
+
+
+## Modelos paramétricos (Weibull e Log-Normal)
+
+### (i.1) Ajuste do modelo
+```{r}
+#| label: ajuste_modelo_weibull
+#| echo: false
+
+fit_weibull <- flexsurvreg(Surv(t, censura) ~ grupo + logWBC, data = dados, dist = "weibull")
+
+fit_lognormal <- flexsurvreg(Surv(t, censura) ~ grupo + logWBC, data = dados, dist = "lnorm")
+
+cat("--- Sumário do Modelo Weibull de Regressão ---\n")
+print(summary(fit_weibull))
+cat("\n--- Sumário do Modelo Log-Normal de Regressão ---\n")
+print(summary(fit_lognormal))
+
+kable(data.frame(
+  Modelo = c("Weibull", "Log-Normal"),
+  LogVerossimilhança = c(fit_weibull$loglik, fit_lognormal$loglik)), caption = "Log-Verossimilhança dos Modelos Ajustados")
+
+kable(data.frame(
+  Modelo = c("Weibull", "Log-Normal"),
+  AIC = c(AIC(fit_weibull), AIC(fit_lognormal)),
+  BIC = c(BIC(fit_weibull), BIC(fit_lognormal)),
+  row.names = NULL), 
+      caption = "AIC e BIC dos Modelos Ajustados")
+```
+
+Assim, o modelo Log-Normal apresentou melhor ajuste, pois possui menor AIC e BIC.
+
+### (ii) Estimativa da função de sobrevivência
+```{r}
+#| label: estimativa_sobrevivencia_parametrico
+#| echo: false
+
+tempos <- seq(0, max(dados$t) + 10, by = 1)
+
+s_pred <- summary(fit_lognormal, newdata = newdata, type = "survival", t = tempos, ci = TRUE)[[1]]
+
+
+plot(s_pred$time, s_pred$est, type = "l", ylim = c(0, 1), main = paste0("Função de Sobrevivência Estimada (Modelo Log-Normal)", "\nIndivíduo: Ag+, WBC=5.000"), xlab = "Tempo (Semanas)", ylab = "S(t)", col = "blue", lwd = 2)
+lines(s_pred$time, s_pred$lcl, lty = 2, col = "darkblue")
+lines(s_pred$time, s_pred$ucl, lty = 2, col = "darkblue")
+legend("topright", legend = c("S(t) Estimada", "IC 95% (log-log)"),col = c("blue", "darkblue"), lty = c(1, 2), lwd = 2, bty = "n")
+
+# Para um ponto específico, por exemplo, t=50 (usado em vmr):
+s_at_t50 <- s_pred %>% filter(time == 50)
+cat(paste0("\nEstimativa de S(t=50) para um indivíduo Ag+ com WBC=5000: ", round(s_at_t50$est, 4), "\n"))
+cat(paste0("Intervalo de Confiança 95% (log-log) em t=50: [", round(s_at_t50$lcl, 4), "; ", round(s_at_t50$ucl, 4), "]\n"))
+```

@@ -1,0 +1,166 @@
+---
+title: "Lista 1"
+subtitle: "Modelagem com Apoio Computacional"
+author: "Tailine J. S. Nonato"
+date: today
+date-format: long
+format: pdf
+---
+
+```{r}
+#| label: setup
+#pacman::p_load()
+```
+
+```{r}
+#| label: data
+fatigue_df <- data.frame(
+work_MJ_m3 = c(
+11.5,13.0,14.3,15.6,16.0,17.3,19.3,21.1,21.5,22.6,22.6,24.0,
+24.0,24.6,25.2,25.5,26.3,27.9,28.3,28.4,28.6,30.9,31.9,34.5,
+40.1,40.1,43.0,44.1,46.5,47.3,48.7,52.9,56.6,59.9,60.2,
+60.3,60.5,62.1,62.8,66.5,67.0,67.1,67.9,68.8,75.4,100.5
+),
+life_cycles = c(
+3280,5046,1563,4707,977,2834,2266,2208,1040,700,1583,482,
+804,1093,1125,884,1300,852,580,1066,1114,386,745,736,
+750,316,456,552,355,242,190,127,185,255,195,
+283,212,327,373,125,187,135,245,137,200,190
+)
+)
+# quick check
+head(fatigue_df)
+```
+
+```{r}
+#| label: model
+mle_unc <- function(x, t, v, kernel = "normal") {
+    x <- as.matrix(x)
+    t <- as.matrix(t)
+    y <- as.matrix(log(t))
+    fit <- lm.fit(x, y)
+    beta <- c(fit$coef)
+    k <- length(beta)
+    n <- length(y)
+    mu <- x %*% beta
+    alpha <- sqrt((4 / n) * sum((sinh((y - mu) / 2)) ^ 2))
+    thetaStar <- c(beta, alpha)
+    loglik <- function(par) {
+        z1 <- par[1:k]
+        z2 <- par[k + 1]
+        mu <- (x %*% z1)
+        xi1 <- (2 / z2) * cosh((y - mu) / 2)
+        xi2 <- (2 / z2) * sinh((y - mu) / 2)
+        g <- switch(
+            kernel,
+            "normal" = exp(-(xi2 ^ 2) / 2),
+            "t" = (v + (xi2 ^ 2)) ^ (-(v + 1) / 2)
+        )
+        const <- switch(
+            kernel,
+            "normal" = 1 / (sqrt(2 * pi)),
+            "t" = (gamma((v + 1) / 2) * v ^ (v / 2)) /
+                (sqrt(pi) * gamma(v / 2))
+        )
+        result <- switch(
+            kernel,
+            "normal" = sum(log(const / 2) + log(xi1) + log(g)),
+            "t" = sum(log(const / 2) + log(xi1) + log(g))
+        )
+        return(-result)
+    }
+    loglikplus <- function(par) {
+        z1 <- par[1:k]
+        z2 <- par[k + 1]
+        mu <- (x %*% z1)
+        xi1 <- (2 / z2) * cosh((y - mu) / 2)
+        xi2 <- (2 / z2) * sinh((y - mu) / 2)
+        result <- log(dnorm(xi2)) + log(xi1 / 2)
+        return(sum(result))
+    }
+    score <- function(par) {
+        z1 <- par[1:k]
+        z2 <- par[k + 1]
+        mu <- (x %*% z1)
+        xi1 <- (2 / z2) * cosh((y - mu) / 2)
+        xi2 <- (2 / z2) * sinh((y - mu) / 2)
+        status <- 1
+        const <- switch(
+            kernel,
+            "normal" = 1 / (sqrt(2 * pi)),
+            "t" = (gamma((v + 1
+                .0) / 2) * v ^ (v / 2)) /
+                (sqrt(pi) * gamma(v / 2))
+        )
+        derivativeF <- switch(
+            kernel,
+            "normal" = -(const) * xi2 * exp(-(xi2 ^ 2) / 2),
+            "t" = -(const) * (v + 1) * xi2 * ((v + (xi2 ^ 2)) ^ (-(v + 3) / 2))
+        )
+        h <- switch(
+            kernel,
+            "normal" = dnorm(xi2) / (1 - pnorm(xi2)),
+            "t" = dt(xi2, df = v) / (1 - pt(xi2, df = v))
+        )
+        wg <- switch(
+            kernel,
+            "normal" = -(1 / 2),
+            "t" = -(v + 1) / (2 * (v + (xi2 ^ 2)))
+        )
+        Ubeta <- switch(
+            kernel,
+            "normal" = -status * ((2 / (z2 ^ 2)) * sinh(y - mu) * wg +
+                (1 / 2) * tanh((y - mu) / 2)) +
+                ((1 - status) / 2) * xi1 * h,
+            "t" = -status * ((2 / (z2 ^ 2)) * sinh(y - mu) * wg +
+                (1 / 2) * tanh((y - mu) / 2)) +
+                ((1 - status) / 2) * xi1 * h
+        )
+        Ualpha <- switch(
+            kernel,
+            "normal" = -sum((status / z2) *
+                (((xi2 ^ 2) * 2 * wg) + 1) -
+                ((1 - status) / z2) * h * xi2),
+            "t" = -sum((status / z2) * (((xi2 ^ 2) * 2 * wg) + 1) -
+                ((1 - status) / z2) * h * xi2)
+        )
+        result <- c(t(x) %*% Ubeta, Ualpha)
+        return(result)
+    }
+    # est <- optim(thetaStar, loglik, method = "BFGS", hessian = TRUE)
+    est <- optim(thetaStar, loglik, method = "BFGS", hessian = TRUE)
+    # control = list(fnscale = -1, maxit = 2000, reltol = 1e-12))
+    if (est$conv != 0)
+        warning("FUNCTION DID NOT CONVERGE!")
+    coef <- (est$par)[1:k]
+    alphaest <- est$par[k + 1]
+    muhat <- x %*% coef
+    muhat <- as.vector(muhat)
+    etahat <- exp(muhat)
+    SHess = solve(est$hessian)
+    SE = sqrt(diag(SHess))
+    se.coef = SE
+    tval = c(coef, alphaest) / se.coef
+    matcoef = cbind(c(coef, alphaest), se.coef, tval, 2 * (1 - pnorm(abs(tval))))
+    AIC <- 2 * loglik(c(coef, alphaest)) + 2 * (length(coef) + 1)
+    BIC = 2 * loglik(c(coef, alphaest)) + (length(coef) + 1) * log(length(y))
+    result <- list(
+        alphaHat = alphaest,
+        betaHat = coef,
+        muHat = muhat,
+        AIC = AIC,
+        BIC = BIC,
+        matcoef = matcoef
+    )
+    return(result)
+}
+```
+
+```{r}
+#| label: fit
+
+Zx <- model.matrix(~ log(fatigue_df$work_MJ_m3))
+Zy <- fatigue_df$life_cycles
+fit_logbs1 <- mle_unc (x = Zx , t = Zy , kernel = "normal")
+fit_logbs1$matcoef
+```
