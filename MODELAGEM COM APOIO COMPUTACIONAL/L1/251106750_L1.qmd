@@ -7,7 +7,7 @@ date-format: long
 format: pdf
 ---
 
-## Carregamento dos dados
+# Carregamento dos dados
 
 ```{r}
 #| label: data
@@ -22,7 +22,7 @@ fatigue_df <- data.frame(work_MJ_m3 = c(11.5,13.0,14.3,15.6,16.0,17.3,19.3,
 head(fatigue_df)
 ```
 
-## Função para ajuste do modelo de moda (log-BS)
+# Ajuste do modelo com base na moda
 
 ```{r}
 #| label: model_moda
@@ -49,19 +49,22 @@ mle_moda_bs <- function(x, t) {
     if (phi_param <= 0 || phi_param >= 1) {
       return(NA)}
 
-    alpha_orig <- sqrt(phi_param)
-    beta_orig <- exp(log_moda_Y) / (1 - phi_param)
+    alpha_orig <- sqrt(phi_param) #proposta do artifo
+    beta_orig <- exp(log_moda_Y) / (1 - phi_param) #proposta do artigo
     terms <- log(t)
 
     #pdf da distribuição log-BS
     z <- (sqrt(t/beta_orig) - sqrt(beta_orig/t))/alpha_orig
-    pdf_bs <- (1/(alpha_orig*sqrt(t)))*(sqrt(t/beta_orig) + sqrt(beta_orig/t))*dnorm(z)
-    pdf_bs[pdf_bs <= 0] <- .Machine$double.xmin #substitui val menor ou igual a 0 por um número muito pequeno
+    pdf_bs <- (1/(alpha_orig*sqrt(t)))*(sqrt(t/beta_orig) + 
+    sqrt(beta_orig/t))*dnorm(z)
+    pdf_bs[pdf_bs <= 0] <- .Machine$double.xmin 
+    #substitui valor menor ou igual a 0 por um número muito pequeno
     
     #log-verossimilhança
     l_i <- log(pdf_bs)
     if (any(!is.finite(l_i))) {
-      return(.Machine$double.xmax)} #retorna um valor muito grande se algum log for infinito
+      return(.Machine$double.xmax)} 
+      #retorna um valor muito grande se algum log for infinito
     
     #verossimilhança total (loglik-plus)
     return(-sum(l_i))}
@@ -98,11 +101,11 @@ mle_moda_bs <- function(x, t) {
     AIC = AIC,
     BIC = BIC,
     matcoef = matcoef)
-    
+
   return(result)}
 ```
 
-## Estimativas do modelo com base na moda
+## Estimativas do modelo
 
 ```{r}
 #| label: fit_moda_bs
@@ -123,7 +126,7 @@ legend("topright",
     col = c("black", "red"), pch = c(1, 16))
 ```
 
-## Ajuste do modelo com base na moda
+## Verificação de ajuste do modelo
 
 ```{r}
 #| label: residuos_moda
@@ -160,16 +163,16 @@ qqnorm(res_moda$quantile); qqline(res_moda$quantile, col=2)
 
 Os dois gráficos são bem similares aos gráficos para o modelo baseado na média. Indicando também adequação do modelo com base na moda.
 
-## Comparação com o modelo com base na média
+# Comparação dos modelos
 
-### Moda
+## Moda
 ```{r}
 #| label: model_mode
 #| echo: false
 fit_moda$matcoef
 ```
 
-### Média
+## Média
 ```{r}
 #| label: model_mean
 #| echo: false

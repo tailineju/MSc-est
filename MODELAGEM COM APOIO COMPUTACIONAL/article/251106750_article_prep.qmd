@@ -1,0 +1,87 @@
+---
+title: "Projeto - Rascunho"
+subtitle: "Modelagem com Apoio Computacional"
+author: "Tailine J. S. Nonato"
+date: today
+date-format: long
+format: html
+---
+
+# The dataset
+
+Castor seed germination dataset shared by Doctor Liv Soares Severino from Embrapa Algodão. 
+
+Fonte: <a href="https://scholar.google.com/citations?view_op=view_citation&hl=pt-BR&user=a3xnkxkAAAAJ&sortby=pubdate&citation_for_view=a3xnkxkAAAAJ:1taIhTC69MYC" target="_blank">Castor seed hydration and germination influenced by temperature and puncture</a>
+
+```{r}
+#| label: data
+#| echo: false
+
+pacman::p_load(tidyverse, knitr, extraDistr, MASS)
+
+castor <- read.csv2("C:/Users/User/Documents/GitHub/MSc-est/MODELAGEM COM APOIO COMPUTACIONAL/article/castorseed.csv")
+
+#phase="Germinated"
+castor <- castor %>%
+  filter(phase == "Germinated")
+
+kable(head(castor))
+```
+
+# Exploration
+
+```{r}
+#| label: histogram
+
+#interesse na variável time
+
+ggplot(castor, aes(x = time)) +
+  geom_histogram(bins = 30, fill = "lightblue", color = "black") +
+  labs(title = "Time", x = "Time", y = "Frequency") +
+  theme_minimal()
+
+  # com a densidade
+
+ggplot(castor, aes(x = time)) +
+  geom_histogram(aes(y = after_stat(density)), bins = 30,
+                 fill = "lightblue", color = "black") +
+  geom_density(color = "red", linewidth = 1.2) +
+  labs(title = "Time with Density", x = "Time", y = "Density") +
+  theme_minimal()
+```
+
+# Birnbaum-Saunders distribution
+
+```{r}
+#| label: bs-plot
+
+#plotar a densidade da distribuição Birnbaum-Saunders em cima do histograma dos dados
+
+fit <- fitdistr(
+  castor$time,
+  densfun = function(x, alpha, beta) dfatigue(x, alpha = alpha, beta = beta, mu = 0),
+  start = list(alpha = 1, beta = mean(castor$time)))
+
+fit
+
+alpha0 <- fit$estimate["alpha"]
+beta0 <- fit$estimate["beta"]
+
+# grade de valores para a curva
+x_grid <- seq(min(castor$time), max(castor$time), length.out = 200)
+
+# densidade BS com esses parâmetros
+dens_bs <- dfatigue(x_grid, alpha = alpha0, beta = beta0, mu = 0)
+
+df_bs <- data.frame(x = x_grid, y = dens_bs)
+
+# plot histograma + curva
+ggplot(castor, aes(x = time)) +
+  geom_histogram(aes(y = after_stat(density)), bins = 30,
+                 fill = "lightblue", color = "black") +
+  geom_line(data = df_bs, aes(x = x, y = y),
+            color = "red", linewidth = 1.2) +
+  labs(title = "Histogram with Birnbaum-Saunders Density",
+       x = "Time for germination", y = "Density") +
+  theme_minimal()
+```
