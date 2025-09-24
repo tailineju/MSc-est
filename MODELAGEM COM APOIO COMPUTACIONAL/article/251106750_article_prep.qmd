@@ -11,7 +11,7 @@ format: html
 
 Castor seed germination dataset shared by Doctor Liv Soares Severino from Embrapa Algodão. 
 
-Fonte: <a href="https://scholar.google.com/citations?view_op=view_citation&hl=pt-BR&user=a3xnkxkAAAAJ&sortby=pubdate&citation_for_view=a3xnkxkAAAAJ:1taIhTC69MYC" target="_blank">Castor seed hydration and germination influenced by temperature and puncture</a>
+Link: <a href="https://scholar.google.com/citations?view_op=view_citation&hl=pt-BR&user=a3xnkxkAAAAJ&sortby=pubdate&citation_for_view=a3xnkxkAAAAJ:1taIhTC69MYC" target="_blank">Castor seed hydration and germination influenced by temperature and puncture</a>
 
 ```{r}
 #| label: data
@@ -28,7 +28,7 @@ castor <- castor %>%
 kable(head(castor))
 ```
 
-# Exploration
+# Exploratory Data Analysis (EDA)
 
 ```{r}
 #| label: histogram
@@ -37,7 +37,7 @@ kable(head(castor))
 
 ggplot(castor, aes(x = time)) +
   geom_histogram(bins = 30, fill = "lightblue", color = "black") +
-  labs(title = "Time", x = "Time", y = "Frequency") +
+  labs(title = "Time for germination (Frequency)", x = "Time", y = "Frequency") +
   theme_minimal()
 
   # com a densidade
@@ -46,7 +46,7 @@ ggplot(castor, aes(x = time)) +
   geom_histogram(aes(y = after_stat(density)), bins = 30,
                  fill = "lightblue", color = "black") +
   geom_density(color = "red", linewidth = 1.2) +
-  labs(title = "Time with Density", x = "Time", y = "Density") +
+  labs(title = "Time for germination (Density)", x = "Time", y = "Density") +
   theme_minimal()
 ```
 
@@ -83,5 +83,24 @@ ggplot(castor, aes(x = time)) +
             color = "red", linewidth = 1.2) +
   labs(title = "Histogram with Birnbaum-Saunders Density",
        x = "Time for germination", y = "Density") +
+  theme_minimal()
+```
+
+```{r}
+#| label: qq-plot
+
+# QQ-plot para avaliar o ajuste da distribuição Birnbaum-Saunders
+# quantis teóricos
+theoretical_quantiles <- qfatigue(ppoints(length(castor$time)), alpha = alpha0, beta = beta0, mu = 0)
+# quantis amostrais
+sample_quantiles <- sort(castor$time)
+# data frame para o ggplot
+df_qq <- data.frame(Theoretical = theoretical_quantiles, Sample = sample_quantiles)
+# plot QQ
+ggplot(df_qq, aes(x = Theoretical, y = Sample)) +
+  geom_point(color = "blue") +
+  geom_abline(slope = 1, intercept = 0, color = "red", linetype = "dashed") +
+  labs(title = "QQ-Plot for Birnbaum-Saunders Distribution",
+       x = "Theoretical Quantiles", y = "Sample Quantiles") +
   theme_minimal()
 ```

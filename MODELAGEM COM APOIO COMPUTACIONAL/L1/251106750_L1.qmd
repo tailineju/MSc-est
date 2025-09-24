@@ -49,14 +49,13 @@ mle_moda_bs <- function(x, t) {
     if (phi_param <= 0 || phi_param >= 1) {
       return(NA)}
 
-    alpha_orig <- sqrt(phi_param) #proposta do artifo
-    beta_orig <- exp(log_moda_Y) / (1 - phi_param) #proposta do artigo
-    terms <- log(t)
+    alpha_art <- sqrt(phi_param) #proposta do artifo
+    beta_art <- exp(log_moda_Y) / (1 - phi_param) #proposta do artigo
 
     #pdf da distribuição log-BS
-    z <- (sqrt(t/beta_orig) - sqrt(beta_orig/t))/alpha_orig
-    pdf_bs <- (1/(alpha_orig*sqrt(t)))*(sqrt(t/beta_orig) + 
-    sqrt(beta_orig/t))*dnorm(z)
+    z <- (sqrt(t/beta_art) - sqrt(beta_art/t))/alpha_art
+    pdf_bs <- (1/(alpha_art*sqrt(t)))*(sqrt(t/beta_art) + 
+    sqrt(beta_art/t))*dnorm(z)
     pdf_bs[pdf_bs <= 0] <- .Machine$double.xmin 
     #substitui valor menor ou igual a 0 por um número muito pequeno
     

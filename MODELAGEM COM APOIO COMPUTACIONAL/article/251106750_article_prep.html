@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Tailine J. S. Nonato">
-<meta name="dcterms.date" content="2025-09-22">
+<meta name="dcterms.date" content="2025-09-23">
 
 <title>Projeto - Rascunho</title>
 <style>
@@ -101,7 +101,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">September 22, 2025</p>
+      <p class="date">September 23, 2025</p>
     </div>
   </div>
   
@@ -116,7 +116,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="the-dataset" class="level1">
 <h1>The dataset</h1>
 <p>Castor seed germination dataset shared by Doctor Liv Soares Severino from Embrapa Algodão.</p>
-<p>Fonte: <a href="https://scholar.google.com/citations?view_op=view_citation&amp;hl=pt-BR&amp;user=a3xnkxkAAAAJ&amp;sortby=pubdate&amp;citation_for_view=a3xnkxkAAAAJ:1taIhTC69MYC" target="_blank">Castor seed hydration and germination influenced by temperature and puncture</a></p>
+<p>Link: <a href="https://scholar.google.com/citations?view_op=view_citation&amp;hl=pt-BR&amp;user=a3xnkxkAAAAJ&amp;sortby=pubdate&amp;citation_for_view=a3xnkxkAAAAJ:1taIhTC69MYC" target="_blank">Castor seed hydration and germination influenced by temperature and puncture</a></p>
 <div class="cell">
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
@@ -216,14 +216,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="exploration" class="level1">
-<h1>Exploration</h1>
+<section id="exploratory-data-analysis-eda" class="level1">
+<h1>Exploratory Data Analysis (EDA)</h1>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#interesse na variável time</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(castor, <span class="fu">aes</span>(<span class="at">x =</span> time)) <span class="sc">+</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">30</span>, <span class="at">fill =</span> <span class="st">"lightblue"</span>, <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Time"</span>, <span class="at">x =</span> <span class="st">"Time"</span>, <span class="at">y =</span> <span class="st">"Frequency"</span>) <span class="sc">+</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Time for germination (Frequency)"</span>, <span class="at">x =</span> <span class="st">"Time"</span>, <span class="at">y =</span> <span class="st">"Frequency"</span>) <span class="sc">+</span></span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
@@ -238,7 +238,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="fu">after_stat</span>(density)), <span class="at">bins =</span> <span class="dv">30</span>,</span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>                 <span class="at">fill =</span> <span class="st">"lightblue"</span>, <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">color =</span> <span class="st">"red"</span>, <span class="at">linewidth =</span> <span class="fl">1.2</span>) <span class="sc">+</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Time with Density"</span>, <span class="at">x =</span> <span class="st">"Time"</span>, <span class="at">y =</span> <span class="st">"Density"</span>) <span class="sc">+</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Time for germination (Density)"</span>, <span class="at">x =</span> <span class="st">"Time"</span>, <span class="at">y =</span> <span class="st">"Density"</span>) <span class="sc">+</span></span>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
@@ -295,6 +295,29 @@ Warning in cpp_dfatigue(x, alpha, beta, mu, log[1L]): NaNs produced</code></pre>
 <div>
 <figure class="figure">
 <p><img src="251106750_article_prep_files/figure-html/bs-plot-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># QQ-plot para avaliar o ajuste da distribuição Birnbaum-Saunders</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co"># quantis teóricos</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>theoretical_quantiles <span class="ot">&lt;-</span> <span class="fu">qfatigue</span>(<span class="fu">ppoints</span>(<span class="fu">length</span>(castor<span class="sc">$</span>time)), <span class="at">alpha =</span> alpha0, <span class="at">beta =</span> beta0, <span class="at">mu =</span> <span class="dv">0</span>)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># quantis amostrais</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>sample_quantiles <span class="ot">&lt;-</span> <span class="fu">sort</span>(castor<span class="sc">$</span>time)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co"># data frame para o ggplot</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>df_qq <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Theoretical =</span> theoretical_quantiles, <span class="at">Sample =</span> sample_quantiles)</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="co"># plot QQ</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df_qq, <span class="fu">aes</span>(<span class="at">x =</span> Theoretical, <span class="at">y =</span> Sample)) <span class="sc">+</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">"blue"</span>) <span class="sc">+</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">slope =</span> <span class="dv">1</span>, <span class="at">intercept =</span> <span class="dv">0</span>, <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"QQ-Plot for Birnbaum-Saunders Distribution"</span>,</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Theoretical Quantiles"</span>, <span class="at">y =</span> <span class="st">"Sample Quantiles"</span>) <span class="sc">+</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="251106750_article_prep_files/figure-html/qq-plot-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
