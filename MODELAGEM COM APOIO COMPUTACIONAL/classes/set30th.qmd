@@ -1,0 +1,162 @@
+---
+title: "Modelos GAM"
+subtitle: "Modelagem com Apoio Computacional"
+author: "Tailine J. S. Nonato"
+date: today
+date-format: long
+format: html
+---
+
+```{r}
+#| label: data
+
+pacman::p_load(tidyverse, gamlss, gamlss.data)
+
+data(rent)
+head(rent)
+
+# resposta: R (aluguel liquido)
+# preditoras: 
+# Fl (área m2), 
+# A (ano construção), 
+# H (central de aquecimento sim/nao), 
+# loc (abaixo da media/media/acima da media)
+```
+
+# Análise Exploratória de Dados (EDA)
+
+```{r}
+#| label: eda
+
+hist(rent$R, col="gray")
+plot(R~Fl, data = rent, col=gray(0.7), pch=16, cex=0.5)
+plot(R~A, data = rent, col=gray(0.7), pch=16, cex=0.5)
+plot(R~H, data = rent, col=gray(0.7), pch=16, cex=0.5)
+plot(R~loc, data = rent, col=gray(0.7), pch=16, cex=0.5)
+```
+
+# Modelos
+
+## Modelo LM (linear model)
+
+$$
+Y_i \sim \epsilon(\mu_i, 0)
+$$
+
+$$
+\eta_i = g(\mu_i) = X_i \beta
+$$
+
+```{r}
+#| label: linear
+
+m1 <- lm(R ~ Fl + A + H + loc, data = rent)
+summary(m1)
+
+r1 <- gamlss(R ~ Fl + A + H + loc, data = rent, family = NO, trace=FALSE)
+summary(r1)
+plot(r1)
+```
+
+## Modelo GLM (generalized linear model)
+
+$$
+Y_i \sim \text{Exp}(\mu_i, 0)
+$$
+
+$$
+\eta_i = g(\mu_i) = X_i \beta
+$$
+
+
+```{r}
+#| label: glm
+
+r2 <- gamlss(R ~ Fl + A + H + loc, data = rent, family = GA)
+cbind(coef(r2))
+summary(r2)
+plot(r2)
+```
+
+## Modelo GAM (generalized additive model)
+
+$$
+Y_i \sim \epsilon(\mu_i, 0)
+$$
+
+$$
+\eta_i = g(\mu_i) = X_i \beta + \sum_{j=1}^{p} S_j(X_{ij})
+$$
+
+Em que $S_j(\cdot)$ é uma função de suavização não-paramétrica aplicada a covariável $X_{ij}$.
+
+
+```{r}
+#| label: gam
+
+r3 <- gamlss(R ~ pb(Fl) + pb(A) + H + loc, data = rent, family = GA)
+summary(r3)
+plot(r3)
+drop1(r3)
+
+term.plot(r3, pages=1, ask=FALSE)
+```
+
+
+## Covariáveis para $\sigma$
+
+```{r}
+#| label: sigma
+
+r4 <- gamlss(R ~ pb(Fl) + pb(A) + H + loc,
+             sigma.formula = ~ pb(Fl) + pb(A) + H + loc,
+             data = rent, family = GA)
+summary(r4)
+plot(r4)
+
+r5 <-  gamlss(R ~ pb(Fl) + pb(A) + H + loc,
+             sigma.formula = ~ pb(Fl) + pb(A) + H + loc,
+             data = rent, family = IG)
+
+summary(r5)
+plot(r5)
+```
+
+
+# Estrutura GAMLSS
+
+$$
+Y_i \sim F(\mu_i, \sigma_i, \nu_i, \tau_i)
+$$
+
+$$
+\eta_{1i} = g_1(\mu_i) = X_i \beta + \sum_{j=1}^{p} S_j(X_{ij})
+$$
+
+```{r}
+#| label: gamlss
+
+r6 <- gamlss(R ~ pb(Fl) + pb(A) + H + loc,
+             sigma.formula = ~ pb(Fl) + pb(A) + H + loc,
+             nu.formula = ~1,
+             data = rent, family = BCCGo)
+summary(r6)
+plot(r6)
+wp(r6, ylim.all = 0.6)
+
+r7 <- gamlss(R ~ pb(Fl) + pb(A) + H + loc,
+             sigma.formula = ~ pb(Fl) + pb(A) + H + loc,
+             nu.formula = ~ pb(Fl) + pb(A) + H + loc,
+             data = rent, family = BCCGo)
+summary(r7)
+plot(r7)
+```
+
+# Comparação dos modelos
+
+```{r}
+#| label: comparison
+
+AIC(r1, r2, r3, r4, r5, r6, r7)
+BIC(r1, r2, r3, r4, r5, r6, r7)
+```
