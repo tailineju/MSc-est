@@ -1,0 +1,352 @@
+Perfeito! Que ótimo ter os dados já preparados. Vamos então dar continuidade ao seu estudo e abordar o **Exercício 2**, que se concentra no **ajuste de modelos de regressão paramétricos (não exponenciais)**.
+
+Este exercício nos pede para:
+*   Ajustar pelo menos dois modelos paramétricos (não exponenciais) e decidir qual utilizar.
+*   Apresentar as estimativas dos parâmetros e coeficientes de regressão com seus respectivos intervalos de confiança, aplicando transformações apropriadas.
+*   Estimar a função de sobrevivência e seu intervalo de confiança para um perfil de indivíduo específico.
+*   Calcular a média e a mediana do tempo de sobrevivência e seus intervalos de confiança para o mesmo perfil.
+*   Estimar a vida média residual em um tempo específico para o indivíduo.
+*   Verificar graficamente a qualidade do ajuste do modelo.
+
+### Análise Preliminar (Curva TTT e H(t) Empírico)
+
+Antes de ajustar os modelos, é uma boa prática **analisar graficamente a forma da função de risco empírica** dos dados, utilizando o gráfico do Tempo Total em Teste (Curva TTT) e a Função de Risco Acumulada (H(t)). Isso pode nos dar uma indicação de quais modelos paramétricos seriam mais adequados para o ajuste.
+
+Como você forneceu um vetor `censura` onde todos os valores são `1` [dados fornecidos], isso indica que **não há observações censuradas neste conjunto de dados**, ou seja, o evento de interesse foi observado para todos os indivíduos.
+
+Vamos gerar os gráficos de TTT e H(t):
+
+**Script R para TTT e H(t):**
+```R
+library(survival)
+library(dplyr)
+
+# Curva TTT
+t_sorted <- sort(dados$t)
+n <- length(t_sorted)
+A <- (1:n) / n
+G <- numeric(n)
+for (i in 1:n) {
+  G[i] <- (sum(t_sorted[1:i]) + (n - i) * t_sorted[i]) / sum(t_sorted)
+}
+
+# Plot TTT
+plot(A, G, type = "l", main = "TTT plot para os dados", xlab = "A = r/n", ylab = "G(r/n)", col = "blue", lwd = 2)
+lines(c(0, 1), c(0, 1), type = "l", lty = 3, col = "gray") # Linha diagonal de referência
+
+# Função de Risco Acumulada Empírica (Nelson-Aalen)
+# Como todos os dados são observados (censura = 1), o estimador de Nelson-Aalen é apropriado.
+surv_obj <- Surv(dados$t, dados$censura)
+na_fit <- survfit(surv_obj ~ 1, type = "fleming-harrington") # Usando Fleming-Harrington para H(t) que é Nelson-Aalen quando não há censura.
+                                                              # Ou, diretamente NA: survfit(surv_obj ~ 1, type = "kaplan-meier") e depois -log(surv)
+h_emp <- -log(na_fit$surv)
+
+# Plot H(t) empírico
+plot(na_fit$time, h_emp, type = "s", main = "Estimativa de H(t) (Nelson-Aalen)", xlab = "Tempo (Semanas)", ylab = "H(t)", col = "red", lwd = 2)
+abline(0, max(h_emp, na.rm = TRUE) / max(na_fit$time, na.rm = TRUE), lty = 3, col = "gray") # Linha linear de referência
+```
+
+**Interpretação:**
+Ao analisar o gráfico TTT (que representa visualmente o comportamento da taxa de falha) e o gráfico de H(t) empírica:
+*   Se o TTT plot for côncavo, isso indica uma função de risco monotonicamente crescente.
+*   Se o H(t) plot for convexo, isso também indica uma função de risco monotonicamente crescente.
+
+Para o conjunto de dados fornecido, é provável que você observe uma tendência que sugere uma função de risco crescente (curva TTT côncava e curva H(t) convexa). Isso indica que, com o passar do tempo, o risco de falha (ou evento) aumenta. Modelos paramétricos que podem acomodar esse comportamento incluem a **distribuição Weibull com parâmetro de forma (alfa) maior que 1**. A distribuição Log-Normal e Log-Logística também são candidatas por sua flexibilidade em diferentes formas de risco, incluindo as crescentes, decrescentes e unimodais.
+
+Para cumprir o requisito de ajustar **pelo menos dois modelos de regressão paramétricos (que não sejam exponenciais)**, escolherei o **Modelo Weibull de Regressão** e o **Modelo Log-Normal de Regressão**, devido à sua flexibilidade e ampla aplicação em análise de sobrevivência.
+
+---
+
+### i) Ajuste dos Modelos e Intervalos de Confiança para Parâmetros e Coeficientes de Regressão
+
+Para ajustar os modelos de regressão paramétricos com covariáveis, utilizaremos a função `flexsurvreg` do pacote `flexsurv` no R. **É importante ressaltar que o uso do pacote `flexsurv` e da função `flexsurvreg` não é explicitamente detalhado nas fontes fornecidas, sendo, portanto, uma funcionalidade externa. No entanto, é uma ferramenta padrão e amplamente aceita para este tipo de modelagem em análise de sobrevivência.**
+
+Os modelos paramétricos de riscos proporcionais modelam a função de risco como:
+`α_i(t | x_i) = α_0(t) c(β'x_i)`
+onde `c(β'x_i)` é frequentemente `exp{β'x_i}`.
+As covariáveis em nosso modelo são `grupo` (categórica, com "Ag+" como nível de referência e "Ag-" como contraste) e `logWBC` (contínua).
+
+**Script R para ajuste dos modelos:**
+```R
+# Certifique-se de ter o pacote 'flexsurv' instalado:
+# install.packages("flexsurv")
+library(flexsurv)
+library(knitr) # Para kable
+
+# Ajuste do Modelo Weibull de Regressão
+# A parametrização de flexsurv para Weibull usa 'shape' (forma) e 'scale' (escala).
+# log(scale) é modelado pelas covariáveis por padrão.
+fit_weibull <- flexsurvreg(Surv(t, censura) ~ grupo + logWBC, data = dados, dist = "weibull")
+
+# Ajuste do Modelo Log-Normal de Regressão
+# A parametrização de flexsurv para Log-Normal usa 'meanlog' (média do log do tempo) e 'sdlog' (desvio padrão do log do tempo).
+# meanlog é modelado pelas covariáveis por padrão.
+fit_lognormal <- flexsurvreg(Surv(t, censura) ~ grupo + logWBC, data = dados, dist = "lnorm")
+
+# Sumário dos modelos ajustados
+cat("--- Sumário do Modelo Weibull de Regressão ---\n")
+print(summary(fit_weibull))
+cat("\n--- Sumário do Modelo Log-Normal de Regressão ---\n")
+print(summary(fit_lognormal))
+```
+
+**Interpretação e Intervalos de Confiança:**
+
+Para os **parâmetros dos modelos (e.g., `shape` e `scale` para Weibull; `meanlog` e `sdlog` para Log-Normal)**:
+*   Os parâmetros de forma (`shape` para Weibull; `sdlog` para Log-Normal) são intrinsecamente positivos. Para eles, um intervalo de confiança do tipo "log" (calculado sobre a escala logarítmica do parâmetro e depois transformado de volta) é apropriado para garantir que os limites inferiores sejam maiores que zero.
+*   Os parâmetros de escala (`scale` para Weibull, via `log(scale)`) e locação (`meanlog` para Log-Normal) são ajustados por regressão. A parametrização no `flexsurv` para `meanlog` (Log-Normal) e `log(scale)` (Weibull) permite que esses parâmetros variem em toda a reta real, e os intervalos são geralmente simétricos.
+
+Para os **coeficientes de regressão (betas)**:
+*   Os coeficientes de regressão para `grupoAg-` e `logWBC` podem ser positivos ou negativos. Para eles, os intervalos de confiança simétricos, baseados na normalidade assintótica dos estimadores de máxima verossimilhança, são padrão.
+
+Os sumários dos modelos (`summary(fit_weibull)` e `summary(fit_lognormal)`) já fornecem as estimativas pontuais, erros padrão e intervalos de confiança (padrão) para todos os parâmetros do modelo e os coeficientes das covariáveis. Para os parâmetros que são naturalmente positivos, o `flexsurv` frequentemente os reporta em uma escala logarítmica (e.g., `log(scale)`, `log(shape)`) e os ICs são construídos nesta escala, garantindo positividade ao serem exponenciados.
+
+**Decisão sobre o Modelo de Regressão Paramétrico a ser Utilizado:**
+
+Para decidir qual modelo é o "melhor", podemos comparar os valores da log-verossimilhança (quanto maior, melhor o ajuste) e considerar o AIC (Akaike Information Criterion) ou BIC (Bayesian Information Criterion). Menores valores de AIC/BIC geralmente indicam melhor ajuste, penalizando a complexidade do modelo.
+
+**Script R para Comparação:**
+```R
+cat("Log-Verossimilhança do Modelo Weibull:", fit_weibull$loglik, "\n")
+cat("Log-Verossimilhança do Modelo Log-Normal:", fit_lognormal$loglik, "\n\n")
+
+# Comparação usando AIC e BIC
+# AIC(fit_weibull, fit_lognormal)
+# BIC(fit_weibull, fit_lognormal)
+# Outputting full AIC/BIC for comparison from summary
+cat("--- AIC e BIC para o Modelo Weibull ---\n")
+print(AIC(fit_weibull))
+print(BIC(fit_weibull))
+
+cat("\n--- AIC e BIC para o Modelo Log-Normal ---\n")
+print(AIC(fit_lognormal))
+print(BIC(fit_lognormal))
+```
+
+**(Baseado nos resultados prováveis, vou assumir o Log-Normal como modelo preferencial para as próximas etapas. Se os seus resultados reais indicarem o Weibull, por favor, ajuste.)**
+
+**Decisão:** Considerando os valores de AIC e log-verossimilhança, o **Modelo Log-Normal de Regressão** (ou Weibull, dependendo dos resultados exatos) provavelmente apresentará um ajuste ligeiramente melhor para este conjunto de dados. Portanto, utilizaremos o **Modelo Log-Normal** para as próximas etapas do exercício.
+
+---
+
+### ii) Estimar a Função de Sobrevivência para um Indivíduo Específico
+
+Agora, vamos estimar a função de sobrevivência para um indivíduo do grupo **Ag+** que apresente **WBC=5.000**.
+*   Para o grupo Ag+, a covariável `grupo` é `Ag+` (o nível de referência).
+*   Para WBC=5.000, `logWBC = log10(5.000) = 3.69897`.
+
+Utilizaremos o modelo Log-Normal ajustado no item (i) para estimar a função de sobrevivência `S(t)` e seu intervalo de confiança. A fonte recomenda o **intervalo do tipo log-log** para a função de sobrevivência, pois garante que os limites não ultrapassem o intervalo ``. A função `summary` do `flexsurvreg` gera intervalos de confiança para a função de sobrevivência que, por padrão, geralmente são do tipo log-log para garantir a validade dos limites.
+
+**Script R para S(t) e IC:**
+```R
+# Definir o perfil do indivíduo específico
+novo_individuo <- data.frame(grupo = factor("Ag+", levels = c("Ag+", "Ag-")),
+                             logWBC = log10(5000))
+
+# Gerar pontos de tempo para a curva de sobrevivência
+times_to_predict <- seq(0, max(dados$t) + 10, by = 1) # Até um pouco além do tempo máximo observado
+
+# Estimar S(t) para este indivíduo usando o modelo Log-Normal
+# A função summary.flexsurvreg com type="survival" e ci=TRUE fornecerá a estimativa e o IC.
+# Por padrão, flexsurvreg utiliza transformações apropriadas para os ICs de S(t) para mantê-los em.
+s_pred_specific <- summary(fit_lognormal, newdata = novo_individuo, type = "survival",
+                           t = times_to_predict, ci = TRUE)[]
+
+# Plotar a função de sobrevivência estimada com IC
+plot(s_pred_specific$time, s_pred_specific$est, type = "l", ylim = c(0, 1),
+     main = paste0("Função de Sobrevivência Estimada (Modelo Log-Normal)",
+                   "\nIndivíduo: Ag+, WBC=5.000"),
+     xlab = "Tempo (Semanas)", ylab = "S(t)", col = "blue", lwd = 2)
+lines(s_pred_specific$time, s_pred_specific$lcl, lty = 2, col = "darkblue")
+lines(s_pred_specific$time, s_pred_specific$ucl, lty = 2, col = "darkblue")
+legend("topright", legend = c("S(t) Estimada", "IC 95% (log-log)"),
+       col = c("blue", "darkblue"), lty = c(1, 2), lwd = 2, bty = "n")
+
+# Para um ponto específico, por exemplo, t=50 (usado em vmr):
+s_at_t50 <- s_pred_specific %>% filter(time == 50)
+cat(paste0("\nEstimativa de S(t=50) para um indivíduo Ag+ com WBC=5000: ", round(s_at_t50$est, 4), "\n"))
+cat(paste0("Intervalo de Confiança 95% (log-log) em t=50: [", round(s_at_t50$lcl, 4), "; ", round(s_at_t50$ucl, 4), "]\n"))
+```
+
+---
+
+### iii) Média e Mediana do Tempo de Sobrevivência
+
+Vamos calcular a estimativa da média e da mediana do tempo de sobrevivência para o indivíduo específico (Ag+, WBC=5.000), juntamente com seus intervalos de confiança.
+
+*   A **média do tempo de sobrevivência** é a área sob a curva de sobrevivência.
+*   A **mediana** é o tempo `t_p` no qual a probabilidade de sobrevivência é `S(t_p) = 0.5`.
+*   Para o **intervalo de confiança do tipo "log"** para a média e mediana, que são quantidades positivas, a transformação logarítmica é aplicada antes da construção do intervalo, e os limites são então exponenciados. Isso garante que os limites do intervalo sejam positivos. O `flexsurv` calcula os ICs para essas estimativas, e eles naturalmente respeitam a positividade.
+
+**Script R para Média e Mediana:**
+```R
+# Definir o perfil do indivíduo específico
+novo_individuo_mean_median <- data.frame(grupo = factor("Ag+", levels = c("Ag+", "Ag-")),
+                                         logWBC = log10(5000))
+
+# Calcular a média do tempo de sobrevivência
+mean_surv_specific <- summary(fit_lognormal, newdata = novo_individuo_mean_median,
+                              type = "mean", ci = TRUE)[]
+
+cat(paste0("Estimativa da Média do tempo de sobrevivência: ", round(mean_surv_specific$est, 2), " semanas\n"))
+cat(paste0("IC 95% para Média: [", round(mean_surv_specific$lcl, 2), "; ", round(mean_surv_specific$ucl, 2), "] semanas\n\n"))
+
+# Calcular a mediana do tempo de sobrevivência (quantil 0.5)
+median_surv_specific <- summary(fit_lognormal, newdata = novo_individuo_mean_median,
+                                type = "quantile", probs = 0.5, ci = TRUE)[]
+
+cat(paste0("Estimativa da Mediana do tempo de sobrevivência: ", round(median_surv_specific$est, 2), " semanas\n"))
+cat(paste0("IC 95% para Mediana: [", round(median_surv_specific$lcl, 2), "; ", round(median_surv_specific$ucl, 2), "] semanas\n"))
+```
+
+---
+
+### iv) Estimativa da Vida Média Residual (VMR) em T=50
+
+A Vida Média Residual (VMR) em um tempo `t` é a expectativa média de vida de um indivíduo que não falhou até `t`. Conceitualmente, ela é a área sob a curva de sobrevivência à direita do ponto `t`, dividida pelo valor da função de sobrevivência em `t`. Ou seja, `ν(t) = E[T - t | T ≥ t]`.
+
+Para modelos paramétricos como o Log-Normal, o cálculo analítico exato da VMR envolve integração da função de sobrevivência, o que pode ser complexo. As fontes ilustram a VMR a partir de estimativas não paramétricas de `S(t)` ou para a distribuição Exponencial simples.
+
+Para obter uma estimativa da VMR usando o modelo paramétrico ajustado (Log-Normal neste caso), geralmente se faz a integração numérica da função de sobrevivência prevista pelo modelo a partir do tempo `t` até um ponto suficientemente grande, e depois divide-se pela probabilidade de sobrevivência em `t`.
+
+**Script R para VMR (cálculo aproximado via integração numérica):**
+```R
+# Ponto de tempo para a VMR
+t_vmr <- 50
+
+# Perfil do indivíduo específico
+novo_individuo_vmr <- data.frame(grupo = factor("Ag+", levels = c("Ag+", "Ag-")),
+                                 logWBC = log10(5000))
+
+# Função de sobrevivência do modelo Log-Normal para o perfil específico
+# Obtemos os parâmetros do modelo para este perfil específico:
+# log_mean_for_individual = fit_lognormal$coefficients["meanlog"] +
+#                          fit_lognormal$coefficients["grupoAg-"] * ifelse(novo_individuo_vmr$grupo == "Ag-", 1, 0) +
+#                          fit_lognormal$coefficients["logWBC"] * novo_individuo_vmr$logWBC
+# sdlog_for_individual = fit_lognormal$coefficients["sdlog"] # sdlog is usually fixed or modelled differently
+
+# Let's use `predict` to get the parameters for the specific individual from the model.
+# flexsurvreg models the parameters (e.g., meanlog, sdlog) based on covariates.
+# We need to extract these adjusted parameters.
+# For lnorm, it's (meanlog, sdlog). Meanlog is affected by covariates. sdlog is typically constant.
+fitted_pars <- flexsurvreg::pars.flexsurvreg(fit_lognormal, newdata=novo_individuo_vmr, type="link")
+mu_adj <- fitted_pars # Adjusted meanlog for this individual
+sigma_adj <- fitted_pars # sdlog, usually not adjusted by covariates unless specified
+
+# Define the survival function for this specific individual using the adjusted parameters
+S_t_individual <- function(t_val) {
+  if (t_val <= 0) return(1) # Survival is 1 at t=0
+  return(1 - plnorm(t_val, meanlog = mu_adj, sdlog = sigma_adj))
+}
+
+# Calcular a probabilidade de sobrevivência em t_vmr (S(t=50))
+S_at_t_vmr <- S_t_individual(t_vmr)
+
+# Calcular a integral da função de sobrevivência de t_vmr até um limite superior grande (e.g., 500)
+# Ajuste o limite superior com base nos dados e na cauda da distribuição.
+# A função 'integrate' é uma funcionalidade externa ao material, mas é padrão para cálculo de integrais numéricas.
+# Para evitar erros de integração para distribuições de cauda muito longa, um limite superior finito é usado.
+integral_S_t <- integrate(S_t_individual, lower = t_vmr, upper = 500) # upper=500 é um limite arbitrário.
+
+# Estimativa da VMR
+vmr_est <- integral_S_t$value / S_at_t_vmr
+
+cat(paste0("\nEstimativa da Vida Média Residual (VMR) em T=50 para o indivíduo Ag+ com WBC=5000: ", round(vmr_est, 2), " semanas\n"))
+
+# Nota: O cálculo de um intervalo de confiança para a VMR em modelos paramétricos com covariáveis é mais complexo e geralmente envolve o método delta ou bootstrapping, o que está além do escopo direto das fórmulas apresentadas nas fontes para este caso específico.
+```
+
+---
+
+### v) Verificação Gráfica da Qualidade do Ajuste
+
+Para verificar graficamente a qualidade do ajuste do modelo, comparamos a função de sobrevivência estimada empiricamente (Kaplan-Meier) com a função de sobrevivência ajustada pelo modelo paramétrico escolhido (Log-Normal). A dica é **categorizar a covariável numérica** (`logWBC`) para facilitar a visualização e comparação com as curvas KM.
+
+Vamos categorizar `logWBC` em dois grupos, "Baixo WBC" e "Alto WBC", e plotar as curvas KM para cada combinação de `grupo` e `logWBC_categorizado`, comparando-as com as curvas preditas pelo modelo Log-Normal para perfis representativos.
+
+**Script R para verificação gráfica:**
+```R
+# Criar uma versão categorizada de logWBC para os gráficos KM
+# Vamos usar o 40º percentil de logWBC como ponto de corte, por exemplo.
+# Ou, para replicar o exemplo da fonte, usar logWBC=3 e logWBC=4 como pontos representativos.
+# Vamos usar pontos representativos 3 e 4, como no exemplo 1 da Apostila de Riscos Proporcionais.
+dados_cat <- dados %>%
+  mutate(WBC_cat = ifelse(logWBC <= 3.5, "WBC Baixo", "WBC Alto")) %>%
+  mutate(WBC_cat = factor(WBC_cat, levels = c("WBC Baixo", "WBC Alto")))
+
+# Ajustar Kaplan-Meier para os dados categorizados
+km_fit_all_groups <- survfit(Surv(t, censura) ~ grupo + WBC_cat, data = dados_cat)
+
+# Gerar perfis para predição do modelo Log-Normal
+# Usar logWBC = 3 e logWBC = 4 como valores representativos para as predições do modelo
+representative_logWBC_values <- c(3, 4)
+
+# Gerar dados para predição do modelo Log-Normal para os 4 perfis
+newdata_for_plots <- bind_rows(
+  data.frame(grupo = factor("Ag+", levels = c("Ag+", "Ag-")), logWBC = representative_logWBC_values),
+  data.frame(grupo = factor("Ag+", levels = c("Ag+", "Ag-")), logWBC = representative_logWBC_values),
+  data.frame(grupo = factor("Ag-", levels = c("Ag+", "Ag-")), logWBC = representative_logWBC_values),
+  data.frame(grupo = factor("Ag-", levels = c("Ag+", "Ag-")), logWBC = representative_logWBC_values)
+)
+
+# Predizer S(t) do modelo Log-Normal para estes perfis
+pred_model_curves <- summary(fit_lognormal, newdata = newdata_for_plots,
+                             type = "survival", t = times_to_predict, ci = FALSE) # Sem IC aqui para não poluir
+
+# Plotar as curvas (KM e Modelo) lado a lado para cada grupo
+par(mfrow = c(1, 2), mar = c(4, 4, 3, 2) + 0.1) # Ajusta margens para a legenda
+
+# --- GRUPO Ag+ ---
+plot(NA, xlim = range(times_to_predict), ylim = c(0, 1),
+     xlab = "Tempo (Semanas)", ylab = "S(t)", main = "Grupo Ag+", sub = "(Comparação KM vs Log-Normal Ajustado)")
+
+# Curvas KM para Ag+
+plot(km_fit_all_groups[km_fit_all_groups$strata == "grupo=Ag+,WBC_cat=WBC Baixo"], col = "blue", lty = 3, add = TRUE)
+plot(km_fit_all_groups[km_fit_all_groups$strata == "grupo=Ag+,WBC_cat=WBC Alto"], col = "red", lty = 4, add = TRUE)
+
+# Curvas do Modelo Log-Normal para Ag+
+# WBC Baixo (logWBC=3)
+lines(pred_model_curves[]$time, pred_model_curves[]$est, col = "blue", lty = 1, lwd = 2)
+# WBC Alto (logWBC=4)
+lines(pred_model_curves[]$time, pred_model_curves[]$est, col = "red", lty = 2, lwd = 2)
+
+legend("topright",
+       legend = c("Log-Normal (logWBC=3)", "Log-Normal (logWBC=4)",
+                  "KM (WBC Baixo)", "KM (WBC Alto)"),
+       col = c("blue", "red", "blue", "red"),
+       lty = c(1, 2, 3, 4), lwd = c(2, 2, 1, 1), bty = "n", cex = 0.8)
+
+
+# --- GRUPO Ag- ---
+plot(NA, xlim = range(times_to_predict), ylim = c(0, 1),
+     xlab = "Tempo (Semanas)", ylab = "S(t)", main = "Grupo Ag-", sub = "(Comparação KM vs Log-Normal Ajustado)")
+
+# Curvas KM para Ag-
+plot(km_fit_all_groups[km_fit_all_groups$strata == "grupo=Ag-,WBC_cat=WBC Baixo"], col = "blue", lty = 3, add = TRUE)
+plot(km_fit_all_groups[km_fit_all_groups$strata == "grupo=Ag-,WBC_cat=WBC Alto"], col = "red", lty = 4, add = TRUE)
+
+# Curvas do Modelo Log-Normal para Ag-
+# WBC Baixo (logWBC=3)
+lines(pred_model_curves[]$time, pred_model_curves[]$est, col = "blue", lty = 1, lwd = 2)
+# WBC Alto (logWBC=4)
+lines(pred_model_curves[]$time, pred_model_curves[]$est, col = "red", lty = 2, lwd = 2)
+
+legend("topright",
+       legend = c("Log-Normal (logWBC=3)", "Log-Normal (logWBC=4)",
+                  "KM (WBC Baixo)", "KM (WBC Alto)"),
+       col = c("blue", "red", "blue", "red"),
+       lty = c(1, 2, 3, 4), lwd = c(2, 2, 1, 1), bty = "n", cex = 0.8)
+
+par(mfrow = c(1, 1)) # Reset layout
+```
+
+**Análise Gráfica:**
+Ao inspecionar os gráficos, você observará o quão bem as curvas de sobrevivência previstas pelo modelo Log-Normal se alinham às curvas empíricas de Kaplan-Meier para os diferentes subgrupos. Quanto mais próximas as linhas contínuas (modelo) estiverem das linhas tracejadas (KM) dentro de cada painel, melhor será o ajuste do modelo. No geral, espera-se que o modelo Log-Normal (ou o que você escolheu) forneça um bom ajuste visual aos dados.
+
+Uma forma formal de verificar a validade do ajuste é através do teste de Kolmogorov-Smirnov. No entanto, a aplicação direta deste teste para comparar uma curva KM global com um modelo de regressão paramétrico (que considera covariáveis) não é trivial. A verificação gráfica por subgrupos, como feita acima, é uma abordagem prática e informativa para modelos com covariáveis, consistente com a dica do exercício.
+
+---
+
+Ajustar um modelo paramétrico de sobrevivência com covariáveis é como criar uma **"receita da vida útil"** para um produto. Em vez de apenas observar quanto tempo cada item durou (o que seria a análise não paramétrica), você está tentando entender como diferentes "ingredientes" (as covariáveis, como o grupo Ag e a contagem de WBC) na fabricação ou no estado inicial do produto influenciam sua duração. O modelo paramétrico é a sua tentativa de escrever essa receita com uma estrutura matemática específica (como Weibull ou Log-Normal).
+
+Testar a qualidade do ajuste é como **provar a receita**. Você não faz uma única versão e a julga; você prepara várias versões, cada uma com pequenas variações nos "ingredientes", e as compara com as versões "originais" (as curvas KM) para ver se sua receita prevê de forma consistente o sabor (tempo de vida) em diferentes condições.

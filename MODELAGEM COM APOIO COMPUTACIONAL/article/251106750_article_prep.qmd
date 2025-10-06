@@ -11,13 +11,27 @@ format: html
 
 Castor seed germination dataset shared by Doctor Liv Soares Severino from Embrapa Algodão. 
 
-Link: <a href="https://scholar.google.com/citations?view_op=view_citation&hl=pt-BR&user=a3xnkxkAAAAJ&sortby=pubdate&citation_for_view=a3xnkxkAAAAJ:1taIhTC69MYC" target="_blank">Castor seed hydration and germination influenced by temperature and puncture</a>
+Link: <a href="https://doi.org/10.48432/6N3WQA" target="_blank">Castor seed hydration and germination influenced by temperature and puncture</a>
 
 ```{r}
 #| label: data
 #| echo: false
 
-pacman::p_load(tidyverse, knitr, extraDistr, MASS, maxLik, VGAM)
+pacman::p_load(tidyverse, knitr, MASS, maxLik, VGAM, gamlss, gamlss.dist, gamlss.add)
+
+theme_article <- function() {
+  theme_classic() +
+    theme(
+      axis.line = element_line(colour = "black"),
+      panel.border = element_rect(colour = "black", fill=NA),
+      panel.background = element_blank(),
+      plot.background = element_blank(),
+      axis.ticks = element_line(colour = "black"),
+      panel.grid.major = element_blank(),
+      panel.grid.minor = element_blank(),
+      axis.text = element_text(colour = "black", size=16),
+      axis.title = element_text(colour="black", size=18),
+    )}
 
 castor <- read.csv2("C:/Users/User/Documents/GitHub/MSc-est/MODELAGEM COM APOIO COMPUTACIONAL/article/castorseed.csv")
 
@@ -36,72 +50,169 @@ kable(head(castor))
 #interesse na variável time
 
 ggplot(castor, aes(x = time)) +
-  geom_histogram(bins = 30, fill = "lightblue", color = "black") +
+  geom_histogram(bins = 30, fill = "#007937", color="black") +
   labs(title = "Time for germination (Frequency)", x = "Time", y = "Frequency") +
-  theme_minimal()
+  theme_article()
+  #save as png
+  ggsave("C:/Users/User/Documents/GitHub/MSc-est/MODELAGEM COM APOIO COMPUTACIONAL/article/img/histogram_frequency.png", width = 8, height = 6)
 
   # com a densidade
 
 ggplot(castor, aes(x = time)) +
-  geom_histogram(aes(y = after_stat(density)), bins = 30,
-                 fill = "lightblue", color = "black") +
+  geom_histogram(aes(y = after_stat(density)), bins = 30, fill = "#007937", color="black") +
   geom_density(color = "red", linewidth = 1.2) +
   labs(title = "Time for germination (Density)", x = "Time", y = "Density") +
-  theme_minimal()
+  theme_article()
+  ggsave("C:/Users/User/Documents/GitHub/MSc-est/MODELAGEM COM APOIO COMPUTACIONAL/article/img/histogram_density.png", width = 8, height = 6)
 ```
 
-# Birnbaum-Saunders distribution
 
 ```{r}
-#| label: bs-plot
-#| code-overflow: wrap
+#| label: scatter-plots
 
-#plotar a densidade da distribuição Birnbaum-Saunders em cima do histograma dos dados
-
-fit <- fitdistr(
-  castor$time,
-  densfun = function(x, alpha, beta) dfatigue(x, alpha = alpha, beta = beta, mu = 0),
-  start = list(alpha = 1, beta = mean(castor$time)))
-
-fit
-
-alpha0 <- fit$estimate["alpha"]
-beta0 <- fit$estimate["beta"]
-
-# grade de valores para a curva
-x_grid <- seq(min(castor$time), max(castor$time), length.out = 200)
-
-# densidade BS com esses parâmetros
-dens_bs <- dfatigue(x_grid, alpha = alpha0, beta = beta0, mu = 0)
-
-df_bs <- data.frame(x = x_grid, y = dens_bs)
-
-# plot histograma + curva
-ggplot(castor, aes(x = time)) +
-  geom_histogram(aes(y = after_stat(density)), bins = 30,
-                 fill = "lightblue", color = "black") +
-  geom_line(data = df_bs, aes(x = x, y = y),
-            color = "red", linewidth = 1.2) +
-  labs(title = "Histogram with Birnbaum-Saunders Density",
-       x = "Time for germination", y = "Density") +
-  theme_minimal()
+ggplot(castor, aes(x = time_under_hydration, y = time)) +
+  geom_point(color="#007937") +
+  labs(
+    title = "Scatter Plot with Regression Lines",
+    x = "Time under hydration", y = "Time for germination", color = "Puncture") +
+  theme_article()
+  ggsave("C:/Users/User/Documents/GitHub/MSc-est/MODELAGEM COM APOIO COMPUTACIONAL/article/img/tuh.png", width = 8, height = 6)
 ```
 
 ```{r}
-#| label: qq-plot
+#| label: boxplots
 
-theo_quantiles <- qfatigue(ppoints(length(castor$time)), alpha = alpha0, beta = beta0, mu = 0)
-# quantis amostrais
-sample_quantiles <- sort(castor$time)
-# data frame para o ggplot
-df_qq <- data.frame(Theoretical = theo_quantiles, Sample = sample_quantiles)
-# plot QQ
-ggplot(df_qq, aes(x = Theoretical, y = Sample)) +
-  geom_point() +
-  geom_abline(slope = 1, intercept = 0) +
-  labs(title = "QQ-Plot for Birnbaum-Saunders Distribution",
-       x = "Theoretical Quantiles", y = "Sample Quantiles") +
-  theme_minimal()
+ggplot(castor, aes(x = as.factor(temperature), y = time)) +
+  geom_boxplot(fill = "#007937", color = "black") +
+  labs(title = "Boxplot of Time by Temperature",
+       x = "Temperature (°C)", y = "Time for germination") +
+  theme_article()
+  ggsave("C:/Users/User/Documents/GitHub/MSc-est/MODELAGEM COM APOIO COMPUTACIONAL/article/img/boxplot_temperature.png", width = 8, height = 6)
+
+ggplot(castor, aes(x = as.factor(puncture), y = time)) +
+  geom_boxplot(fill = "#007937", color = "black") +
+  labs(title = "Boxplot of Time by Puncture",
+       x = "Puncture (Yes/No)", y = "Time for germination") +
+  theme_article()
+  ggsave("C:/Users/User/Documents/GitHub/MSc-est/MODELAGEM COM APOIO COMPUTACIONAL/article/img/boxplot_puncture.png", width = 8, height = 6)
+```
+
+# Fitting a Linear Regression Model based on the Birnbaum-Saunders Distribution
+
+```{r}
+# | label: bs-to-gamlss
+
+# authors: Roquim, Fernanda; Ramires, Thiago; et al.
+# source: https://ojs.uel.br/revistas/uel/index.php/semexatas/article/view/44417
+
+#----------------------------------------------------------------------------------------
+# Utilizando a distribuicao BS em GAMLSS
+#----------------------------------------------------------------------------------------
+BS <- function(mu.link = "log", sigma.link = "log"){
+  mstats <- checklink("mu.link", "BS", substitute(mu.link),
+                      c("inverse", "log", "identity", "own"))
+  dstats <- checklink("sigma.link", "BS", substitute(sigma.link),
+                      c("inverse", "log", "identity", "own"))
+  structure(
+    list(family = c("BS", "Birnbaum-Saunders"),
+         parameters = list(mu=TRUE,sigma=TRUE),
+         nopar = 2,
+         type = "Continuous",
+         mu.link = as.character(substitute(mu.link)),
+         sigma.link = as.character(substitute(sigma.link)),
+         mu.linkfun = mstats$linkfun,
+         sigma.linkfun = dstats$linkfun,
+         mu.linkinv = mstats$linkinv,
+         sigma.linkinv = dstats$linkinv,
+         mu.dr = mstats$mu.eta,
+         sigma.dr = dstats$mu.eta,
+         
+         
+         
+         dldm = function(y,sigma,mu) 1/(y+mu)-1/(2*mu)-1/(2*sigma^2)*(1/y-y/mu^2),
+         dldd = function(y,sigma,mu) 1/sigma^3*(y/mu+mu/y-2)-1/sigma,
+         d2ldm2 = function(y,sigma,mu) -(1/(y+mu)-1/(2*mu)-1/(2*sigma^2)*(1/y-y/mu^2))^2,
+         d2ldd2 = function(y,sigma,mu) -2/sigma^2,
+
+         d2ldmdd = function(y,sigma,mu){
+           nd = gamlss:::numeric.deriv(dBS(y, mu, sigma,log = TRUE), "mu", delta = 1e-04)
+           dldm = as.vector(attr(nd, "gradient"))
+           nd = gamlss:::numeric.deriv(dBS(y, mu, sigma, log = TRUE), "sigma", delta = 1e-04)
+           dldd = as.vector(attr(nd, "gradient"))
+           d2ldmdd = -dldm * dldd
+           d2ldmdd
+         },
+         
+         
+         G.dev.incr = function(y,mu,sigma,...) -2*dBS(y,mu,sigma,log=TRUE),
+         rqres = expression(rqres(pfun="pBS", type="Continuous",y=y,mu=mu,sigma=sigma)),
+         
+         mu.initial = expression({mu <- rep(median(y),length(y))}),
+         sigma.initial = expression({ sigma <- rep(1,length(y)) }),
+         
+         mu.valid = function(mu) all(mu > 0) ,
+         sigma.valid = function(sigma) all(sigma > 0),
+         y.valid = function(y) all(y > 0)
+    ),
+    class = c("gamlss.family","family"))
+}
+
+#----------------------------------------------------------------------------------------
+# fdp da distribuicao BS
+dBS<-function(x, mu=1, sigma=1, log=FALSE){
+  if (any(mu <= 0)) stop(paste("mu must be positive", "\n", ""))
+  if (any(sigma <= 0)) stop(paste("sigma must be positive", "\n", ""))
+  if (any(x < 0)) stop(paste("x must be positive", "\n", ""))
+  fy <- 1/(2*sigma*sqrt(2*pi*mu))*x^(-3/2)*(x+mu)*exp(-1/(2*sigma^2)*(x/mu+mu/x-2))
+  fy
+}
+#----------------------------------------------------------------------------------------
+# fda da distribuicao BS
+pBS <- function(q, mu=1, sigma=1, lower.tail = TRUE, log.p = FALSE){
+  if (any(mu <= 0)) stop(paste("mu must be positive", "\n", ""))
+  if (any(sigma <= 0)) stop(paste("sigma must be positive", "\n", ""))
+  if (any(q < 0)) stop(paste("y must be positive", "\n", ""))
+  cumulative <- function(x, a, b){
+    integration <- integrate(dBS, lower = 0, upper = x, mu = a, sigma = b)$value
+    return(integration)
+  }
+  cdf <- mapply(cumulative, q, a = mu, b = sigma)
+  if(lower.tail==FALSE) cdf <- 1-cdf
+  if(log.p==TRUE) cdf <- log(cdf)
+  cdf
+}
+#----------------------------------------------------------------------------------------
+# funcao quantilica da distribuicao BS
+qBS <- function(p, mu=1, sigma=1, lower.tail = TRUE, log.p = FALSE){
+  if (any(mu <= 0)) stop(paste("mu must be positive", "\n", ""))
+  if (any(sigma <= 0)) stop(paste("sigma must be positive", "\n", ""))
+  if (log.p==TRUE) p <- log(p)
+  if (lower.tail==FALSE) p <- 1-p
+  if (any(p < 0)|any(p > 1)) stop(paste("p must be between 0 and 1", "\n", ""))
+  q <- mu*(sigma*qnorm(p)/2+sqrt((sigma*qnorm(p)/2)^2)+1)^2
+  return(q)
+}
+#----------------------------------------------------------------------------------------
+# gerador de numeros aleatorios da distribuicao BS
+rBS <- function(n, mu=1, sigma=1){
+  if (any(mu <= 0)) stop(paste("mu must be positive", "\n", ""))
+  if (any(sigma <= 0)) stop(paste("sigma must be positive", "\n", ""))
+  if (any(n <= 0)) stop(paste("n must be a positive integer", "\n", ""))
+  n <- ceiling(n)
+  p <- runif(n)
+  r <- qBS(p,mu=mu,sigma=sigma)
+  r
+}
+#----------------------------------------------------------
+```
+
+```{r}
+#| label: linear-fit
+
+linear_model <- gamlss(time ~ temperature + puncture + time_under_hydration,
+                     data = castor,
+                     family = BS)
+summary(linear_model)
 ```
 
 # Fitting a Quantile Regression Model based on the Birnbaum-Saunders Distribution
@@ -109,8 +220,9 @@ ggplot(df_qq, aes(x = Theoretical, y = Sample)) +
 ```{r}
 #| label: qr-bs-function
 
-#revised function 
+#revised function by T. Nonato
 #authors: L. Sanchez, V. Leiva 
+#source: https://doi.org/10.1002/asmb.2556
 
 bsreg.fit<-function(x, y, link = "log") {
   n<-NROW(x)
@@ -253,12 +365,21 @@ bsreg.fit<-function(x, y, link = "log") {
     
   f5<-function(u,j){
     return((1/(u*gma_alpha^2+4*Q[j]))*dbisa(u, par_beta[j], par_alpha))}
+
+  # MUDANÇA: tenta integrar; se der erro, retorna NA ou 0
+  safe_integrate <- function(fun, j, lower = 1e-6, upper = 1000) {
+    val <- tryCatch(
+      integrate(fun, lower = lower, upper = upper, j = j)$value,
+      error = function(e) NA_real_)
+    if (is.na(val) || is.infinite(val)) val <- 0
+    return(val)}
     
-  for(i in 1:n){
-      integ.f2[i]<-integrate(f2, lower=0, upper=Inf, j=i)$value
-      integ.f3[i]<-integrate(f3, lower=0, upper=Inf, j=i)$value
-      integ.f4[i]<-integrate(f4, lower=0, upper=Inf, j=i)$value
-      integ.f5[i]<-integrate(f5, lower=0, upper=Inf, j=i)$value}
+  for (i in seq_len(n)) {
+    integ.f2[i] <- safe_integrate(f2, i)
+    integ.f3[i] <- safe_integrate(f3, i)
+    integ.f4[i] <- safe_integrate(f4, i)
+    integ.f5[i] <- safe_integrate(f5, i)
+  }
     
   AIC <- (-2 * log.lik.est + 2 * (p+1))
   AICc<- AIC + (2 * (p+1) * ((p+1) + 1)) / (n - (p+1) - 1)
@@ -324,37 +445,38 @@ bsreg.fit<-function(x, y, link = "log") {
 }
 ```
 
+```{r}
+#| label: summary-bsreg
+summary.bsreg.fit <- function(model, ...) {
+  cat("Call: bsreg.fit\n\n")
+  coefs <- cbind(
+    Estimate = c(model$coefficients$beta, model$coefficients$alpha),
+    "Std. Error" = model$se,
+    "z value" = c(model$zstat$beta, model$zstat$alpha),
+    "Pr(>|z|)" = c(model$pvalor$beta, model$pvalor$alpha)
+  )
+  rownames(coefs) <- c(names(model$coefficients$beta), "alpha")
+  printCoefmat(coefs)
+  cat("\nLog-likelihood:", round(model$loglik, 3), "\n")
+  cat("AIC:", round(model$information.criterions$aic, 2),
+      " BIC:", round(model$information.criterions$bic, 2),
+      " AICc:", round(model$information.criterions$aicc, 2), "\n")
+}
+
+```
 
 ```{r}
 #| label: qr-bs-model
 
-model <- bsreg.fit(
-  x = model.matrix(~ temperature + puncture, data = castor),
+quantile_model <- bsreg.fit(
+  x = model.matrix(~ temperature + puncture + time_under_hydration, data = castor),
   y = castor$time,
   link = "log")
 
-#str(model)
+summary.bsreg.fit(quantile_model)
 ```
 
-```{r}
-#| label: summary-bsreg
-summary.bsreg.fit <- function(object, ...) {
-  cat("Call: bsreg.fit\n\n")
-  coefs <- cbind(
-    Estimate = c(object$coefficients$beta, object$coefficients$alpha),
-    "Std. Error" = object$se,
-    "z value" = c(object$zstat$beta, object$zstat$alpha),
-    "Pr(>|z|)" = c(object$pvalor$beta, object$pvalor$alpha)
-  )
-  rownames(coefs) <- c(names(object$coefficients$beta), "alpha")
-  printCoefmat(coefs)
-  cat("\nLog-likelihood:", round(object$loglik, 3), "\n")
-  cat("AIC:", round(object$information.criterions$aic, 2),
-      " BIC:", round(object$information.criterions$bic, 2),
-      " AICc:", round(object$information.criterions$aicc, 2), "\n")
-}
-summary.bsreg.fit(model)
-```
+
 
 
 # Pre-project presentation structure
@@ -363,3 +485,21 @@ summary.bsreg.fit(model)
 - rev. bibliografica
 - modelo
 - aplicação
+
+# Modelo Quantílico
+
+Seja $T_i \sim \mathrm{BS}(\alpha, Q_i)$, onde
+$$
+h(Q_i) = \eta_i = \mathbf{x}_i^\top \boldsymbol{\beta}, \quad i = 1, \ldots, n,
+$$
+tal que $Q_i = h^{-1}(\mathbf{x}_i^\top \boldsymbol{\beta})$, onde $\boldsymbol{\beta} = (\beta_0, \beta_1, \ldots, \beta_{p-1})^\top$, para $p < n$, é um vetor de parâmetros de regressão desconhecidos a serem estimados, e $\mathbf{x}_i^\top = (1, x_{i1}, \ldots, x_{i(p-1)})$ representa os valores das $p$ covariáveis.
+
+# Modelo GAMLSS
+
+Seja $Y \sim D(\boldsymbol{\theta}_k)$, onde $D$ é uma distribuição de probabilidade e $\boldsymbol{\theta}_k = (\theta_1, \ldots, \theta_p)^\top$.
+
+$$
+g_k(\theta_k) = \eta_k = X_k \boldsymbol{\beta}_k + \sum_{j=1}^{J_k} s_{jk}(x_{jk}),
+$$
+
+onde $g_k(\cdot)$, $k = 1, \ldots, p$, é uma função de ligação que relaciona o parâmetro $\theta_k$ com seu preditor $\eta_k$, $X_k$ é uma matriz de delineamento conhecida, $\boldsymbol{\beta}_k^\top = (\beta_{1k}, \ldots, \beta_{J_k^0 k})$ é um vetor de parâmetros de comprimento $J_k^0$ e $s_{jk}$ é uma função não paramétrica (por exemplo, um P-spline) de uma variável explicativa $x_{jk}$.

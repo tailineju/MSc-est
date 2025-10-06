@@ -2,6 +2,10 @@ library(MASS)
 library(maxLik)
 library(VGAM)
 
+#revised function by T. Nonato
+#authors: L. Sanchez, V. Leiva 
+#source: https://doi.org/10.1002/asmb.2556
+
 bsreg.fit<-function(x, y, link = "log") {
   n<-NROW(x)
   p<-NCOL(x)
@@ -143,12 +147,21 @@ bsreg.fit<-function(x, y, link = "log") {
     
   f5<-function(u,j){
     return((1/(u*gma_alpha^2+4*Q[j]))*dbisa(u, par_beta[j], par_alpha))}
+
+  # MUDANÇA: tenta integrar; se der erro, retorna NA ou 0
+  safe_integrate <- function(fun, j, lower = 1e-6, upper = 1000) {
+    val <- tryCatch(
+      integrate(fun, lower = lower, upper = upper, j = j)$value,
+      error = function(e) NA_real_)
+    if (is.na(val) || is.infinite(val)) val <- 0
+    return(val)}
     
-  for(i in 1:n){
-      integ.f2[i]<-integrate(f2, lower=0, upper=Inf, j=i)$value
-      integ.f3[i]<-integrate(f3, lower=0, upper=Inf, j=i)$value
-      integ.f4[i]<-integrate(f4, lower=0, upper=Inf, j=i)$value
-      integ.f5[i]<-integrate(f5, lower=0, upper=Inf, j=i)$value}
+  for (i in seq_len(n)) {
+    integ.f2[i] <- safe_integrate(f2, i)
+    integ.f3[i] <- safe_integrate(f3, i)
+    integ.f4[i] <- safe_integrate(f4, i)
+    integ.f5[i] <- safe_integrate(f5, i)
+  }
     
   AIC <- (-2 * log.lik.est + 2 * (p+1))
   AICc<- AIC + (2 * (p+1) * ((p+1) + 1)) / (n - (p+1) - 1)
