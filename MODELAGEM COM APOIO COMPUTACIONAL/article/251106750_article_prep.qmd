@@ -50,8 +50,8 @@ kable(head(castor))
 #interesse na variável time
 
 ggplot(castor, aes(x = time)) +
-  geom_histogram(bins = 30, fill = "#007937", color="black") +
-  labs(title = "Time for germination (Frequency)", x = "Time", y = "Frequency") +
+  geom_histogram(bins = 30, fill = "white", color="black") +
+  labs(title = "Time for germination (Frequency)", x = "Time for germination", y = "Frequency") +
   theme_article()
   #save as png
   ggsave("C:/Users/User/Documents/GitHub/MSc-est/MODELAGEM COM APOIO COMPUTACIONAL/article/img/histogram_frequency.png", width = 8, height = 6)
@@ -59,9 +59,9 @@ ggplot(castor, aes(x = time)) +
   # com a densidade
 
 ggplot(castor, aes(x = time)) +
-  geom_histogram(aes(y = after_stat(density)), bins = 30, fill = "#007937", color="black") +
+  geom_histogram(aes(y = after_stat(density)), bins = 30, fill = "white", color="black") +
   geom_density(color = "red", linewidth = 1.2) +
-  labs(title = "Time for germination (Density)", x = "Time", y = "Density") +
+  labs(title = "Time for germination (Density)", x = "Time for germination", y = "Density") +
   theme_article()
   ggsave("C:/Users/User/Documents/GitHub/MSc-est/MODELAGEM COM APOIO COMPUTACIONAL/article/img/histogram_density.png", width = 8, height = 6)
 ```
@@ -71,7 +71,7 @@ ggplot(castor, aes(x = time)) +
 #| label: scatter-plots
 
 ggplot(castor, aes(x = time_under_hydration, y = time)) +
-  geom_point(color="#007937") +
+  geom_point(color="white") +
   labs(
     title = "Scatter Plot with Regression Lines",
     x = "Time under hydration", y = "Time for germination", color = "Puncture") +
@@ -83,24 +83,26 @@ ggplot(castor, aes(x = time_under_hydration, y = time)) +
 #| label: boxplots
 
 ggplot(castor, aes(x = as.factor(temperature), y = time)) +
-  geom_boxplot(fill = "#007937", color = "black") +
+  geom_boxplot(fill = "white", color = "black") +
   labs(title = "Boxplot of Time by Temperature",
        x = "Temperature (°C)", y = "Time for germination") +
   theme_article()
   ggsave("C:/Users/User/Documents/GitHub/MSc-est/MODELAGEM COM APOIO COMPUTACIONAL/article/img/boxplot_temperature.png", width = 8, height = 6)
 
 ggplot(castor, aes(x = as.factor(puncture), y = time)) +
-  geom_boxplot(fill = "#007937", color = "black") +
+  geom_boxplot(fill = "white", color = "black") +
   labs(title = "Boxplot of Time by Puncture",
        x = "Puncture (Yes/No)", y = "Time for germination") +
   theme_article()
   ggsave("C:/Users/User/Documents/GitHub/MSc-est/MODELAGEM COM APOIO COMPUTACIONAL/article/img/boxplot_puncture.png", width = 8, height = 6)
 ```
 
-# Fitting a Linear Regression Model based on the Birnbaum-Saunders Distribution
+# Fitting a Linear Regression Model based on the Mean
+
+## Method 1 
 
 ```{r}
-# | label: bs-to-gamlss
+#| label: bs-to-gamlss
 
 # authors: Roquim, Fernanda; Ramires, Thiago; et al.
 # source: https://ojs.uel.br/revistas/uel/index.php/semexatas/article/view/44417
@@ -209,13 +211,266 @@ rBS <- function(n, mu=1, sigma=1){
 ```{r}
 #| label: linear-fit
 
-linear_model <- gamlss(time ~ temperature + puncture + time_under_hydration,
+mean_linear_model <- gamlss(time ~ temperature + puncture + time_under_hydration,
                      data = castor,
                      family = BS)
-summary(linear_model)
+summary(mean_linear_model)
 ```
 
-# Fitting a Quantile Regression Model based on the Birnbaum-Saunders Distribution
+## Method 2
+
+```{r}
+#| label: bs-to-mle
+#########################################################
+## Regression by Rieck and Nedelman (1991)
+## Rieck, J.R., Nedelman, J.R., 1991. A log-linear model for the
+## Birnbaum–Saunders distribution. Technometrics 33, 51–60.
+#########################################################
+mle_unc <- function(x, t, v, kernel = "normal") {
+  x <- as.matrix(x)
+  t <- as.matrix(t)
+  y <- as.matrix(log(t))
+  fit <- lm.fit(x, y)
+  beta <- c(fit$coef)
+  k <- length(beta)
+  n <- length(y)
+  mu <- x %*% beta
+  alpha <- sqrt((4 / n) * sum((sinh((y - mu) / 2)) ^ 2))
+  thetaStar <- c(beta, alpha)
+  loglik <- function(par) {
+    z1 <- par[1:k]
+    z2 <- par[k + 1]
+    mu <- (x %*% z1)
+    xi1 <- (2 / z2) * cosh((y - mu) / 2)
+    xi2 <- (2 / z2) * sinh((y - mu) / 2)
+    g <- switch(kernel,
+      "normal" = exp(-(xi2 ^ 2) / 2),
+      "t" = (v + (xi2 ^ 2)) ^ (-(v + 1) / 2)
+    )
+    const <- switch(kernel,
+      "normal" = 1 / (sqrt(2 * pi)),
+      "t" = (gamma((v + 1) / 2) * v ^ (v / 2)) /
+        (sqrt(pi) * gamma(v / 2))
+    )
+    result <- switch(kernel,
+      "normal" = sum(log(const / 2) + log(xi1) + log(g)),
+      "t" = sum(log(const / 2) + log(xi1) + log(g))
+    )
+    return(-result)
+  }
+  loglikplus <- function(par) {
+    z1 <- par[1:k]
+    z2 <- par[k + 1]
+    mu <- (x %*% z1)
+    xi1 <- (2 / z2) * cosh((y - mu) / 2)
+    xi2 <- (2 / z2) * sinh((y - mu) / 2)
+    result <- log(dnorm(xi2)) + log(xi1 / 2)
+    return(sum(result))
+  }
+  score <- function(par) {
+    z1 <- par[1:k]
+    z2 <- par[k + 1]
+    mu <- (x %*% z1)
+    xi1 <- (2 / z2) * cosh((y - mu) / 2)
+    xi2 <- (2 / z2) * sinh((y - mu) / 2)
+    status <- 1
+    const <- switch(kernel,
+      "normal" = 1 / (sqrt(2 * pi)),
+      "t" = (gamma((v + 1.0) / 2) * v ^ (v / 2)) /
+        (sqrt(pi) * gamma(v / 2))
+    )
+    derivativeF <- switch(kernel,
+      "normal" = -(const) * xi2 * exp(-(xi2 ^ 2) / 2),
+      "t" = -(const) * (v + 1) * xi2 * ((v + (xi2 ^ 2)) ^
+        (-(v + 3) / 2))
+    )
+    h <- switch(kernel,
+      "normal" = dnorm(xi2) / (1 - pnorm(xi2)),
+      "t" = dt(xi2, df = v) / (1 - pt(xi2, df = v))
+    )
+    wg <- switch(kernel,
+      "normal" = -(1 / 2),
+      "t" = -(v + 1) / (2 * (v + (xi2 ^ 2)))
+    )
+    Ubeta <- switch(kernel,
+      "normal" = -status * ((2 / (z2 ^ 2)) * sinh(y - mu) * wg +
+        (1 / 2) * tanh((y - mu) / 2)) +
+        ((1 - status) / 2) * xi1 * h,
+      "t" = -status * ((2 / (z2 ^ 2)) * sinh(y - mu) * wg +
+        (1 / 2) * tanh((y - mu) / 2)) +
+        ((1 - status) / 2) * xi1 * h
+    )
+    Ualpha <- switch(kernel,
+      "normal" = -sum((status / z2) *
+        (((xi2 ^ 2) * 2 * wg) + 1) -
+        ((1 - status) / z2) * h * xi2),
+      "t" = -sum((status / z2) * (((xi2 ^ 2) * 2 * wg) + 1) -
+        ((1 - status) / z2) * h * xi2)
+    )
+    result <- c(t(x) %*% Ubeta, Ualpha)
+    return(result)
+  }
+  # est <- optim(thetaStar, loglik, method = "BFGS", hessian = TRUE)
+  est <- optim(thetaStar, loglik, method = "BFGS", hessian = TRUE)
+  # control = list(fnscale = -1, maxit = 2000, reltol = 1e-12))
+  if (est$conv != 0)
+    warning("FUNCTION DID NOT CONVERGE!")
+  coef <- (est$par)[1:k]
+  alphaest <- est$par[k + 1]
+  muhat <- x %*% coef
+  muhat <- as.vector(muhat)
+  etahat <- exp(muhat)
+  SHess = solve(est$hessian)
+  SE = sqrt(diag(SHess))
+  se.coef = SE
+  tval = c(coef, alphaest) / se.coef
+  matcoef = cbind(c(coef, alphaest), se.coef, tval, 2 * (1 - pnorm(abs(tval))))
+  AIC <- 2 * loglik(c(coef, alphaest)) + 2 * (length(coef) + 1)
+  BIC = 2 * loglik(c(coef, alphaest)) + (length(coef) + 1) * log(length(y))
+  result <- list(
+    alphaHat = alphaest,
+    betaHat = coef,
+    muHat = muhat,
+    AIC = AIC,
+    BIC = BIC,
+    matcoef = matcoef
+  )
+  return(result)
+}
+
+summary.mle_unc <- function(model) {
+  cat("Call: mle_unc\n\n")
+  coefs <- cbind(
+    Estimate = model$matcoef[, 1],
+    "Std. Error" = model$matcoef[, 2],
+    "t value" = model$matcoef[, 3],
+    "Pr(>|t|)" = model$matcoef[, 4]
+  )
+  rownames(coefs) <- c(paste0("beta", 0:(nrow(coefs)-2)), "alpha")
+  printCoefmat(coefs)
+  cat("\nAIC:", round(model$AIC, 2),
+      " BIC:", round(model$BIC, 2), "\n")
+}
+```
+
+```{r}
+#| label: linear-application
+
+linear_model <- mle_unc(
+  x = model.matrix(~ temperature + puncture + time_under_hydration, data = castor),
+  t = castor$time,
+  v = 4,
+  kernel = "t")
+summary.mle_unc(linear_model)
+```
+
+# Fitting a Linear Regression Model based on the Mode
+
+```{r}
+#| label: mode-linear-fit
+
+mle_moda_bs <- function(x, t) {
+  x <- as.matrix(x)
+  t <- as.matrix(t)
+
+  fit <- lm.fit(x, log(t)) 
+  beta <- c(fit$coef)
+  
+  k <- length(beta)
+  n <- length(t)
+
+  mu_init <- x %*% beta
+  alpha <- sqrt((4/n)*sum((sinh((log(t) - mu_init)/2))^2))
+  
+  phi_init <- alpha^2 #chute inicial
+  
+  thetaStar <- c(beta, phi_init)
+  
+  loglik_moda <- function(par) {
+    log_moda_Y <- x %*% par[1:k] 
+    phi_param <- par[k+1]
+    if (phi_param <= 0 || phi_param >= 1) {
+      return(NA)}
+
+    alpha_art <- sqrt(phi_param) #proposta do artigo
+    beta_art <- exp(log_moda_Y) / (1 - phi_param) #proposta do artigo
+
+    #pdf da distribuição log-BS
+    z <- (sqrt(t/beta_art) - sqrt(beta_art/t))/alpha_art
+    pdf_bs <- (1/(alpha_art*sqrt(t)))*(sqrt(t/beta_art) + 
+    sqrt(beta_art/t))*dnorm(z)
+    pdf_bs[pdf_bs <= 0] <- .Machine$double.xmin 
+    #substitui valor menor ou igual a 0 por um número muito pequeno
+    
+    #log-verossimilhança
+    l_i <- log(pdf_bs)
+    if (any(!is.finite(l_i))) {
+      return(.Machine$double.xmax)} 
+      #retorna um valor muito grande se algum log for infinito
+    
+    #verossimilhança total (loglik-plus)
+    return(-sum(l_i))}
+
+  est <- optim(
+    par = thetaStar, 
+    fn = loglik_moda,
+    method = "BFGS", 
+    hessian = TRUE,
+    control = list(maxit = 2000, reltol = 1e-12))
+  
+  if (est$conv != 0) {
+    warning("FUNCTION DID NOT CONVERGE!")}
+  
+  coef <- (est$par)[1:k]
+  phi_est <- est$par[k + 1] 
+
+  moda_hat_log <- x %*% coef
+  moda_hat <- exp(moda_hat_log)
+  
+  SHess = solve(est$hessian)
+  SE = sqrt(diag(SHess))
+  
+  tval = est$par / SE
+  matcoef = cbind(est$par, SE, tval, 2 * (1 - pnorm(abs(tval))))
+  
+  AIC <- 2 * est$value + 2 * (k + 1)
+  BIC <- 2 * est$value + (k + 1) * log(n)
+  
+  result <- list(
+    phiHat = phi_est,
+    betaHat_log_moda = coef,
+    modaHat = moda_hat,
+    AIC = AIC,
+    BIC = BIC,
+    matcoef = matcoef)
+
+  return(result)}
+
+summary.mle_moda_bs <- function(model) {
+  cat("Call: mle_moda_bs\n\n")
+  coefs <- cbind(
+    Estimate = model$matcoef[, 1],
+    "Std. Error" = model$matcoef[, 2],
+    "t value" = model$matcoef[, 3],
+    "Pr(>|t|)" = model$matcoef[, 4]
+  )
+  rownames(coefs) <- c(paste0("beta", 0:(nrow(coefs)-2)), "phi")
+  printCoefmat(coefs)
+  cat("\nAIC:", round(model$AIC, 2),
+      " BIC:", round(model$BIC, 2), "\n")
+}
+```
+
+```{r}
+#| label: mode-linear-application
+
+mode_linear_model <- mle_moda_bs(
+  x = model.matrix(~ temperature + puncture + time_under_hydration, data = castor),
+  t = castor$time)
+summary.mle_moda_bs(mode_linear_model)
+```
+
+# Fitting a Linear Regression Model based on the Quantiles
 
 ```{r}
 #| label: qr-bs-function
