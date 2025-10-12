@@ -1,0 +1,925 @@
+---
+title: "Prova 1"
+subtitle: "Inferência Estatística"
+author: "Tailine J. S. Nonato"
+date: today
+date-format: long
+format: html
+---
+
+
+Resoluções propostas pelo NotebookLM.
+
+:::: {.panel-tabset}
+
+# Exercício 1
+1. Definição Teórica de Consistência
+Um estimador $\bar{X}_n$ é considerado consistente (ou converge em probabilidade, $P\to$) para o parâmetro $\mu$ se, para todo $\epsilon > 0$, a probabilidade de que $\bar{X}_n$ esteja fora de uma vizinhança de $\mu$ tende a zero à medida que o tamanho da amostra $n$ tende ao infinito: 
+
+$$ \bar{X}n \xrightarrow{P} \mu \quad \text{ou} \quad \lim{n \to \infty} P(|\bar{X}_n - \mu| > \epsilon) = 0 
+$$
+
+Uma condição suficiente e amplamente utilizada para demonstrar a consistência em probabilidade é mostrar que o Erro Quadrático Médio (EQM) tende a zero quando $n \to \infty$. O EQM de um estimador é dado por $EQM(\bar{X}_n) = \text{Var}(\bar{X}_n) + (\text{Viés}(\bar{X}_n))^2$. Portanto, as condições suficientes para a consistência são:
+- $\lim_{n \to \infty} E[\bar{X}_n] = \mu$ (O estimador é assintoticamente não viciado).
+- $\lim_{n \to \infty} \text{Var}(\bar{X}_n) = 0$ (A variância converge a zero).
+2. Análise da Esperança (Viés)
+O primeiro passo é calcular a esperança da média amostral, $\bar{X}n = \frac{1}{n} \sum{i=1}^n X_i$.
+Sabemos pelas fontes que:
+- A média populacional de $X_i$ é $E[X_i] = \mu$.
+- A esperança de uma soma de variáveis aleatórias é a soma das esperanças (linearidade).
+- A constante $\frac{1}{n}$ pode ser retirada da esperança.
+$$ 
+E[\bar{X}n] = E\left[ \frac{1}{n} \sum{i=1}^n X_i \right] = \frac{1}{n} \sum_{i=1}^n E[X_i] \quad 
+$$
+Substituindo $E[X_i] = \mu$: 
+$$ 
+E[\bar{X}n] = \frac{1}{n} \sum{i=1}^n \mu = \frac{1}{n} (n\mu) = \mu 
+$$
+
+Conclusão da Esperança: Como $E[\bar{X}_n] = \mu$ para todo $n$, o estimador $\bar{X}n$ é não viciado (ou centrado) para $\mu$. A primeira condição para a consistência ($\lim{n \to \infty} E[\bar{X}_n] = \mu$) é, portanto, satisfeita trivialmente.
+3. Análise da Variância
+O segundo passo é calcular a variância de $\bar{X}_n$ e determinar as condições para que ela convirja a zero.
+A variância de uma soma de variáveis correlacionadas é dada por: 
+
+$$ 
+\text{Var}\left(\sum_{i=1}^n X_i\right) = \sum_{i=1}^n \text{Var}(X_i) + \sum_{i \neq j} \text{Cov}(X_i, X_j) 
+$$
+
+A variância de $\bar{X}n$ é:
+
+$$
+\text{Var}\left(\bar{X}{i=1}^n X_i \right) = \frac{1}{n^2} \text{Var}\left( \sum{i=1}^n X_i \right)
+$$
+
+Cálculo dos Componentes da Variância:
+- Variâncias Individuais ($\text{Var}(X_i)$): O desvio padrão de cada $X_i$ é 1. Portanto, $\text{Var}(X_i) = 1^2 = 1$. 
+$$ 
+\sum_{i=1}^n \text{Var}(X_i) = \sum_{i=1}^n 1 = n 
+$$
+
+- Covariâncias ($\text{Cov}(X_i, X_j)$): A covariância é definida pela correlação e pelos desvios padrões: 
+$$ 
+\text{Cov}(X_i, X_j) = \text{Corr}(X_i, X_j) \cdot \text{DP}(X_i) \cdot \text{DP}(X_j) 
+$$ 
+
+Dado que $\text{Corr}(X_i, X_j) = \rho_{ij}$ e $\text{DP}(X_i) = \text{DP}(X_j) = 1$, temos: 
+
+$$ \text{Cov}(X_i, X_j) = \rho_{ij} \cdot 1 \cdot 1 = \rho_{ij} $$
+
+Cálculo da Variância Total:
+
+Substituindo os componentes na fórmula da variância de $\bar{X}n$:
+
+$$
+\text{Var}\left(\bar{X}{i=1}^n \text{Var}(X_i) + \sum{i \neq j} \text{Cov}(X_i, X_j) \right) 
+$$ 
+
+$$ 
+\text{Var}(\bar{X}n) = \frac{1}{n^2} \left( n + \sum{i \neq j} \rho_{ij} \right) 
+$$
+4. Determinação das Condições Suficientes
+Para que $\bar{X}n$ seja um estimador consistente, a segunda condição necessária é $\lim{n \to \infty} \text{Var}(\bar{X}_n) = 0$.
+
+$$ 
+\lim_{n \to \infty} \text{Var}(\bar{X}n) = \lim{n \to \infty} \frac{1}{n^2} \left( n + \sum_{i \neq j} \rho_{ij} \right) 
+$$
+Podemos separar os termos: 
+
+$$ 
+\lim_{n \to \infty} \left( \frac{1}{n} + \frac{1}{n^2} \sum_{i \neq j} \rho_{ij} \right) 
+$$
+
+Como $\lim_{n \to \infty} \frac{1}{n} = 0$, a convergência da variância a zero depende exclusivamente da convergência do termo de correlação: 
+
+$$ 
+\lim_{n \to \infty} \frac{1}{n^2} \sum_{i \neq j} \rho_{ij} = 0 
+$$
+
+Condições Suficientes Finais:
+
+A média amostral $\bar{X}_n$ já satisfaz a condição de não viés [$E[\bar{X}_n] = \mu$], portanto, a condição suficiente para que $\bar{X}_n$ seja um estimador consistente para $\mu$ é que o termo médio das covariâncias (correlações) convirja para zero:
+$$ \lim_{n \to \infty} \frac{1}{n^2} \sum_{i \neq j} \rho_{ij} = 0 
+$$
+
+Essa condição garante que a influência das correlações entre os pares de observações se torne desprezível em relação ao tamanho total da amostra quando $n$ é grande. Se essa condição for satisfeita, o $\text{EQM}$ se anula assintoticamente, resultando na consistência do estimador $\bar{X}_n$ para $\mu$.
+
+# Exercício 2
+
+O Exercício 2 da prova exige a demonstração da consistência do Estimador de Densidade por Kernel (KDE), $\hat{f}(x)$, para a densidade real $f(x)$ em qualquer ponto de continuidade $x$. Mostrar que $\hat{f}(x) \stackrel{P}{\to} f(x)$ significa provar a convergência em probabilidade.
+A maneira mais detalhada e padrão de demonstrar a consistência para um estimador é provar que o seu Erro Quadrático Médio (EQM) converge para zero: 
+
+$$
+ \text{EQM}[\hat{f}(x)] = \text{Var}[\hat{f}(x)] + \left(\text{Bias}[\hat{f}(x)]\right)^2 
+$$
+
+Onde $\text{Bias}[\hat{f}(x)] = E[\hat{f}(x)] - f(x)$.
+O enunciado do exercício fornece as condições essenciais para a prova:
+1. Amostra aleatória simples $X_1, \ldots, X_n$.
+2. A densidade $f(x)$ é limitada, $|f|_{\infty} \leq M < \infty$.
+3. O bandwidth (largura de banda) $h_n$ satisfaz $h_n > 0$, $h_n \downarrow 0$, e $nh_n \uparrow \infty$ à medida que $n$ aumenta.
+4. O Kernel $K \in L^2(\mathbb{R})$ é não negativo, simétrico em torno de zero, e tem as propriedades de uma função de densidade (ou seja, $\int K(u) du = 1$ e $\int u K(u) du = 0$ devido à simetria).
+
+A solução detalhada consiste em analisar separadamente o viés (Bias) e a variância (Var):
+
+1. Análise do Viés (Bias)
+O viés do estimador $\hat{f}(x)$ deve convergir para zero, o que é garantido pela condição $h_n \downarrow 0$.
+Cálculo da Esperança $E[\hat{f}(x)]$: Devido à amostra ser simples (IID), a esperança é dada por: 
+
+$$ 
+E[\hat{f}(x)] = E\left[\frac{1}{nh_n} \sum_{i=1}^n K\left(\frac{x-X_i}{h_n}\right)\right] = \frac{1}{h_n} E\left[K\left(\frac{x-X_1}{h_n}\right)\right] 
+$$ 
+Aplicando a esperança em termos da integral da densidade $f(y)$: 
+
+$$
+ E[\hat{f}(x)] = \frac{1}{h_n} \int_{-\infty}^{\infty} K\left(\frac{x-y}{h_n}\right) f(y) dy 
+$$
+
+Utilizando a substituição $u = \frac{x-y}{h_n}$ (onde $y = x - h_n u$ e $dy = -h_n du$): 
+
+$$
+ E[\hat{f}(x)] = \int_{-\infty}^{\infty} K(u) f(x - h_n u) du 
+ $$
+
+Converência da Esperança: Como $h_n \to 0$ e $x$ é um ponto de continuidade de $f$, para $n$ grande, $f(x - h_n u) \approx f(x)$. 
+
+$$
+ \lim_{n \to \infty} E[\hat{f}(x)] = \int_{-\infty}^{\infty} K(u) f(x) du = f(x) \int_{-\infty}^{\infty} K(u) du 
+$$ 
+
+Como $K$ possui as propriedades de uma função de densidade, $\int K(u) du = 1$. 
+
+$$ 
+\lim_{n \to \infty} E[\hat{f}(x)] = f(x) 
+$$
+
+ Portanto, o viés $\text{Bias}[\hat{f}(x)] = E[\hat{f}(x)] - f(x)$ converge para zero: 
+
+$$ 
+\lim_{n \to \infty} \text{Bias}[\hat{f}(x)] = 0 
+$$
+
+2. Análise da Variância (Variance)
+A variância do estimador $\hat{f}(x)$ deve convergir para zero, o que é garantido pela condição $nh_n \uparrow \infty$.
+Cálculo da Variância $\text{Var}[\hat{f}(x)]$: Como $X_i$ são independentes (amostra aleatória simples): 
+
+$$ 
+\text{Var}[\hat{f}(x)] = \frac{1}{n^2 h_n^2} \sum_{i=1}^n \text{Var}\left[K\left(\frac{x-X_i}{h_n}\right)\right] = \frac{1}{n h_n^2} \text{Var}\left[K\left(\frac{x-X_1}{h_n}\right)\right] 
+$$
+
+Onde $\text{Var}\left[K\left(\frac{x-X_1}{h_n}\right)\right] = E\left[K^2\left(\frac{x-X_1}{h_n}\right)\right] - \left(E\left[K\left(\frac{x-X_1}{h_n}\right)\right]\right)^2$.
+
+O segundo termo $\left(E\left[K\left(\frac{x-X_1}{h_n}\right)\right]\right)^2 \approx (h_n f(x))^2$ é de ordem $O(h_n^2)$.
+O primeiro termo $E\left[K^2\left(\frac{x-X_1}{h_n}\right)\right]$ é dado pela integral: 
+$$ 
+E\left[K^2\left(\frac{x-X_1}{h_n}\right)\right] = \int_{-\infty}^{\infty} K^2\left(\frac{x-y}{h_n}\right) f(y) dy 
+$$
+
+Usando a substituição $u = \frac{x-y}{h_n}$: 
+
+$$ 
+E\left[K^2\left(\frac{x-X_1}{h_n}\right)\right] = h_n \int_{-\infty}^{\infty} K^2(u) f(x - h_n u) du 
+$$
+
+Para $n \to \infty$ (e, portanto, $h_n \to 0$): 
+$$
+ \lim_{n \to \infty} E\left[K^2\left(\frac{x-X_1}{h_n}\right)\right] \approx h_n f(x) \int_{-\infty}^{\infty} K^2(u) du 
+$$ 
+Como $K \in L^2(\mathbb{R})$, a integral $\int K^2(u) du = C < \infty$. Portanto, $E\left[K^2\left(\frac{x-X_1}{h_n}\right)\right]$ é de ordem $O(h_n)$.
+Substituindo de volta na expressão da variância: 
+$$ 
+\text{Var}[\hat{f}(x)] \approx \frac{1}{n h_n^2} \left( O(h_n) - O(h_n^2) \right) = \frac{1}{n h_n} O(1) 
+$$
+
+Convergência da Variância: O limite superior da variância é: 
+
+$$ 
+\lim_{n \to \infty} \text{Var}[\hat{f}(x)] \leq \lim_{n \to \infty} \frac{M C}{n h_n} 
+$$ 
+
+Dado que $nh_n \uparrow \infty$ e $M$ e $C$ são finitos ($M < \infty$ e $K \in L^2(\mathbb{R})$), a variância converge para zero: 
+
+$$ \lim_{n \to \infty} \text{Var}[\hat{f}(x)] = 0 
+$$
+
+3. Conclusão da Consistência
+Como demonstramos que o viés converge para zero e a variância converge para zero: 
+
+$$ 
+\lim_{n \to \infty} \text{EQM}[\hat{f}(x)] = \lim_{n \to \infty} \text{Var}[\hat{f}(x)] + \lim_{n \to \infty} \left(\text{Bias}[\hat{f}(x)]\right)^2 = 0 + 0 = 0 
+$$ 
+
+Se o EQM converge para zero, isso implica que o estimador $\hat{f}(x)$ é consistente para $f(x)$ em qualquer ponto de continuidade $x$, ou seja, $\hat{f}(x) \stackrel{P}{\to} f(x)$.
+
+# Exercício 3
+
+## Solução 1
+
+O Exercício 3 solicita que se estabeleça uma relação assintótica entre a Divergência de Rényi de ordem $\alpha$ ($R_\alpha$) e a estatística Qui-quadrado ($\chi^2$), utilizando o Método Delta.
+
+O Método Delta é uma técnica utilizada na teoria de grandes amostras para encontrar a distribuição assintótica de uma função de um estimador, baseando-se na expansão de Taylor de primeira ou segunda ordem da função em torno do valor verdadeiro do parâmetro.
+
+Definições e Contexto
+
+As duas estatísticas são definidas como:
+
+1. Estatística Qui-quadrado ($\chi^2$): 
+
+$$
+\chi^2 = n \sum_{k=1}^m \frac{(\hat{p}_k - p_k)^2}{p_k}
+$$ 
+
+Onde $n$ é o tamanho da amostra, $\hat{p}_k$ é a distribuição empírica e $p_k$ é a distribuição hipotética. Para $n$ grande, $\chi^2$ segue aproximadamente uma distribuição qui-quadrado com $m-1$ graus de liberdade.
+
+2. Divergência de Rényi de ordem $\alpha$ ($R_\alpha$): 
+$$R_\alpha = \frac{1}{\alpha- 1} \log \left( \sum_{k=1}^m p_k^\alpha \hat{p}_k^{1-\alpha} \right)
+$$ 
+
+Onde $\alpha > 0$.
+
+Relação Assintótica Utilizando a Expansão de Taylor (Método Delta)
+
+O objetivo é encontrar uma aproximação de $R_\alpha$ em termos de $\chi^2$ para $n \to \infty$. Como $\hat{p}_k$ converge em probabilidade para $p_k$ (dado que $\hat{p}_k$ é uma distribuição empírica baseada em uma amostra aleatória simples), podemos expandir a função de interesse em torno de $p_k$.
+
+Seja $S = \sum_{k=1}^m p_k^\alpha \hat{p}_k^{1-\alpha}$. Queremos encontrar uma aproximação de $S$ usando a diferença $\hat{p}_k - p_k$.
+
+Passo 1: Expansão de Taylor para $S$
+
+Reescrevemos $S$ usando $\hat{p}k = p_k (1 + \delta_k)$, onde 
+
+$$
+\delta_k = \hat{p}{k=1}^m p_k^\alpha \hat{p}{k=1}^m p_k^\alpha (p_k (1 + \delta_k))^{1-\alpha} = \sum{k=1}^m p_k (1 + \delta_k)^{1-\alpha} 
+$$
+
+Usamos a expansão binomial generalizada $(1+x)^\beta \approx 1 + \beta x + \frac{\beta(\beta-1)}{2} x^2$ para a parte $(1 + \delta_k)^{1-\alpha}$, onde $\beta = 1-\alpha$ e $x = \delta_k$: 
+$$
+ (1 + \delta_k)^{1-\alpha} \approx 1 + (1-\alpha) \delta_k + \frac{(1-\alpha)(1-\alpha-1)}{2} \delta_k^2 
+$$ 
+ 
+$$
+(1 + \delta_k)^{1-\alpha} \approx 1 + (1-\alpha) \delta_k - \frac{\alpha(1-\alpha)}{2} \delta_k^2
+$$
+
+Substituindo de volta em $S$: 
+$$
+ S \approx \sum_{k=1}^m p_k \left[ 1 + (1-\alpha) \delta_k - \frac{\alpha(1-\alpha)}{2} \delta_k^2 \right] 
+$$ 
+$$
+ S \approx \sum_{k=1}^m p_k + (1-\alpha) \sum_{k=1}^m p_k \delta_k - \frac{\alpha(1-\alpha)}{2} \sum_{k=1}^m p_k \delta_k^2 
+$$
+
+
+Passo 2: Simplificação dos termos
+
+1. $\sum_{k=1}^m p_k = 1$.
+2. $\sum_{k=1}^m p_k \delta_k = \sum_{k=1}^m p_k \frac{\hat{p}k - p_k}{p_k} = \sum{k=1}^m (\hat{p}k - p_k) = \sum{k=1}^m \hat{p}k - \sum{k=1}^m p_k = 1 - 1 = 0$. (O termo de primeira ordem cancela-se).
+3. $\sum_{k=1}^m p_k \delta_k^2 = \sum_{k=1}^m p_k \left( \frac{\hat{p}k - p_k}{p_k} \right)^2 = \sum{k=1}^m \frac{(\hat{p}_k - p_k)^2}{p_k}$.
+
+Substituindo na aproximação de $S$: 
+$$ S \approx 1 - \frac{\alpha(1-\alpha)}{2} \sum_{k=1}^m \frac{(\hat{p}_k - p_k)^2}{p_k} 
+$$
+
+Passo 3: Conexão com a estatística $\chi^2$
+
+Pela definição da estatística $\chi^2$, temos que $\sum_{k=1}^m \frac{(\hat{p}_k - p_k)^2}{p_k} = \frac{\chi^2}{n}$. 
+$$ S \approx 1 - \frac{\alpha(1-\alpha)}{2} \frac{\chi^2}{n} = 1 + \frac{\alpha(\alpha-1)}{2n} \chi^2 
+$$
+
+Passo 4: Expansão de Taylor para $\log(S)$ e $R_\alpha$
+
+Para $n$ grande, $S$ está próximo de 1. Utilizamos a expansão $\log(1+x) \approx x$. Seja $x = \frac{\alpha(\alpha-1)}{2n} \chi^2$. 
+$$ \log(S) \approx S - 1 \approx \frac{\alpha(\alpha-1)}{2n} \chi^2 
+$$
+Agora, substituímos $\log(S)$ na fórmula de $R_\alpha$: 
+$$ R_\alpha = \frac{1}{\alpha-1} \log(S) 
+$$ 
+$$ R_\alpha \approx \frac{1}{\alpha-1} \left[ \frac{\alpha(\alpha-1)}{2n} \chi^2 \right] 
+$$
+
+Relação Assintótica Final
+
+O termo $(\alpha-1)$ cancela-se, resultando na seguinte relação assintótica entre $R_\alpha$ e $\chi^2$: 
+$$ R_\alpha \approx \frac{\alpha}{2n} \chi^2 
+$$
+
+Esta relação mostra que, assintoticamente, $R_\alpha$ é proporcional à estatística $\chi^2$ e decai na ordem de $O(1/n)$.
+
+Nota: Como a estatística Qui-quadrado $\chi^2$ converge em distribuição para $\chi^2_{m-1}$ para $n$ grande, esta relação implica que $\frac{2n}{\alpha} R_\alpha$ também converge em distribuição para $\chi^2_{m-1}$.
+
+Esta relação assintótica satisfaz o pedido do exercício de usar o Método Delta (baseado em expansões de Taylor) para relacionar $R_\alpha$ e $\chi^2$.
+
+## Solução 2
+
+pós input do artigo
+
+O exercício 3 da prova solicita o estabelecimento de uma relação assintótica entre a divergência de Rényi de ordem $\alpha$ ($R_\alpha$) e a estatística $\chi^2$ de Pearson, utilizando o método delta.
+A solução baseia-se na expansão em série de potências da divergência de Rényi e na sua relação assintótica com a estatística qui-quadrado para grandes amostras, conforme detalhado nos excertos da fonte Matsushita et al. (2026).
+1. Definição das Estatísticas e Contexto Assintótico
+O problema começa definindo as duas estatísticas de goodness-of-fit:
+1. Estatística Qui-quadrado de Pearson ($\chi^2$): 
+$$
+\chi^2 = n \sum_{k=1}^m \frac{(\hat{p}k - p_k)^2}{p_k}
+$$
+
+Para $n$ suficientemente grande, esta estatística segue aproximadamente uma distribuição qui-quadrado com $m-1$ graus de liberdade ($\chi^2{m-1}$).
+2. Divergência de Rényi de Ordem $\alpha$ ($R_\alpha$): 
+$$
+R_\alpha = \frac{1}{\alpha - 1} \log \left( \sum_{k=1}^m p_k^\alpha \hat{p}_k^{1-\alpha} \right)
+$$
+
+Onde $p_k$ é a probabilidade hipotética e $\hat{p}_k$ é a distribuição de probabilidade empírica.
+O contexto assintótico é estabelecido sob a hipótese nula $H_0: (N_1, \dots, N_m)' \sim \text{multinomial}(n, \mathbf{p}_0)$, onde $\mathbf{p}_0 = (p_1, \dots, p_m)'$ são as probabilidades hipotéticas. A distribuição empírica $\hat{p}k = N_k/n$ são estimadores de máxima verossimilhança (MLEs) de $p{0,k}$.
+Para $n$ suficientemente grande, podemos escrever a diferença entre a probabilidade empírica e a hipotética como um termo de erro $\epsilon_k$: 
+
+$$
+\hat{p}k = p{0,k} + \epsilon_k
+$$ 
+
+onde $\epsilon_k \sim N(0, p_{0,k}(1 - p_{0,k})/n)$ e $\sum_{k=1}^m \epsilon_k = 0$.
+
+2. Expansão em Série da Divergência
+Para estabelecer a relação, consideramos a expansão assintótica da soma dentro do logaritmo da divergência de Rényi. Denotando a soma como $A_\alpha$ (usando a notação da fonte), e utilizando o fato de que $\hat{p}k$ é um estimador consistente de $p{0,k}$ para $n$ grande, fazemos uma expansão em série de potências de $A_\alpha$: 
+$$
+A_\alpha = \sum_{k=1}^m p_{0,k}^\alpha \hat{p}k^{1-\alpha} = \sum{k=1}^m p_{0,k} \left( 1 + \frac{\epsilon_k}{p_{0,k}} \right)^{1-\alpha}
+$$ 
+
+(assumindo $p_{0,k} > 0$).
+A expansão em série do termo $\left( 1 + \frac{\epsilon_k}{p_{0,k}} \right)^{1-\alpha}$ (válida para $|\epsilon_k/p_{0,k}| < 1$) resulta, após a soma e simplificações, na seguinte relação assintótica:
+$$
+A_\alpha = 1 + \frac{\alpha(\alpha - 1)}{2n} \chi^2 + r(\alpha, \epsilon)
+$$ 
+onde $\chi^2$ é a estatística qui-quadrado de Pearson, e $r(\alpha, \epsilon)$ é o termo de resto (remainder).
+3. Relação Assintótica Usando a Aproximação Logarítmica
+Para conectar $A_\alpha$ com $R_\alpha$, aplicamos a definição de $R_\alpha$ e utilizamos a aproximação linear para o logaritmo: $\ln(1 + x) \approx x$, para $x$ pequeno o suficiente.
+Como $A_\alpha$ é escrito como $1 + \text{Termo Pequeno}$, aplicamos a aproximação logarítmica para $\log(A_\alpha)$: 
+$$
+\log(A_\alpha) \approx \frac{\alpha(\alpha - 1)}{2n} \chi^2 + r(\alpha, \epsilon)
+$$
+Substituindo na definição de $R_\alpha$ (onde $D_\alpha$ na fonte representa $A_\alpha$): 
+$$
+R_\alpha = \frac{1}{\alpha - 1} \log(A_\alpha) \approx \frac{1}{\alpha - 1} \left[ \frac{\alpha(\alpha - 1)}{2n} \chi^2 + r(\alpha, \epsilon) \right]
+$$
+Multiplicando por $\frac{2n}{\alpha}$, obtemos a relação assintótica primária: 
+$$
+\frac{2n}{\alpha} R_\alpha \approx \chi^2 + \frac{2n}{\alpha(\alpha - 1)} r(\alpha, \epsilon)
+$$
+O termo de resto ($r(\alpha, \epsilon)$) na Equação (7) converge para zero em probabilidade quando $n \to \infty$, pois $n \epsilon_k^j \to 0$ para $k \geq 3$.
+4. Conclusão da Relação Assintótica
+A relação assintótica entre $R_\alpha$ e $\chi^2$ é formalizada definindo uma estatística $R_{\alpha, n, m}$ que se comporta como a estatística $\chi^2$ de Pearson:
+
+$$
+R_{\alpha,n,m} = \frac{2n}{\alpha} R_\alpha
+$$
+
+Utilizando o Teorema de Slutsky, e dado que $\chi^2 \xrightarrow{D} \chi^2_{m-1}$ (converge em distribuição), a estatística $R_{\alpha, n, m}$ também converge em distribuição para a distribuição qui-quadrado com $m-1$ graus de liberdade:
+
+$$
+R_{\alpha,n,m} = \frac{2n}{\alpha} R_\alpha \xrightarrow{D} \chi^2_{m-1}, \quad \text{quando } n \to \infty
+$$
+
+Portanto, a relação assintótica entre $R_\alpha$ e a estatística $\chi^2$ é dada por:
+
+$$
+\frac{2n}{\alpha} R_\alpha \approx \chi^2
+$$
+
+Esta transformação da divergência de Rényi é usada como uma aproximação assintótica para o teste de bondade de ajuste, especialmente útil em cenários com categorias esparsas (baixas frequências esperadas) onde a estatística $\chi^2$ tradicional pode falhar. A precisão da aproximação geralmente melhora à medida que $\alpha$ diminui.
+
+# Exercício 4
+
+O Exercício 4 da prova solicita a demonstração de que a mediana amostral ($\tilde{X}$) é um estimador consistente para a mediana populacional ($\tilde{\mu}$), sob a condição de que a amostra aleatória simples ($X_1, \dots, X_n$) seja retirada de uma população contínua.
+
+Estrutura do Problema e Definições
+
+1. Mediana Populacional ($\tilde{\mu}$): Para uma distribuição contínua com Função de Distribuição Acumulada $F(x)$, a mediana $\tilde{\mu}$ é o ponto tal que $F(\tilde{\mu}) = 1/2$.
+
+2. Mediana Amostral ($\tilde{X}$): Sendo $n$ ímpar, a mediana amostral é definida como a estatística de ordem $X_{([n+1]/2)}$.
+
+3. Consistência: A demonstração de que $\tilde{X}$ é um estimador consistente para $\tilde{\mu}$ requer mostrar que a mediana amostral converge em probabilidade para a mediana populacional ($\tilde{X} \xrightarrow{P} \tilde{\mu}$), ou seja, para qualquer $\epsilon > 0$, 
+
+$$
+P(|\tilde{X} - \tilde{\mu}| < \epsilon) \to 1, \quad \text{quando } n \to \infty
+$$
+
+Demonstração da Consistência
+
+A prova utiliza a relação entre as estatísticas de ordem e a Função de Distribuição Empírica ($F_n^*(x)$), baseando-se na distribuição binomial da contagem de observações.
+
+Seja $\epsilon > 0$. Queremos mostrar que a probabilidade de $\tilde{X}$ estar fora do intervalo $(\tilde{\mu} - \epsilon, \tilde{\mu} + \epsilon)$ tende a zero.
+
+$$
+P(|\tilde{X} - \tilde{\mu}| \geq \epsilon) = P(\tilde{X} \leq \tilde{\mu} - \epsilon) + P(\tilde{X} \geq \tilde{\mu} + \epsilon)
+$$
+
+Passo 1: Analisar o Limite Inferior $P(\tilde{X} \leq \tilde{\mu} - \epsilon)$
+
+O evento ${\tilde{X} \leq \tilde{\mu} - \epsilon}$ ocorre se e somente se pelo menos $r = (n+1)/2$ das observações $X_i$ são menores ou iguais a $x_1 = \tilde{\mu} - \epsilon$.
+
+1. Defina a Probabilidade: Seja $p_1 = F(x_1) = F(\tilde{\mu} - \epsilon)$. Como $F(x)$ é não decrescente e a população é contínua, se $\epsilon > 0$, então $p_1 = F(\tilde{\mu} - \epsilon) < F(\tilde{\mu}) = 1/2$.
+
+2. Variável de Contagem: Seja $N_n$ o número de observações na amostra que caem em $(-\infty, x_1]$. Pela definição de $F_n^(x)$, temos que $N_n = n F_n^(x_1)$. Como a amostra é aleatória simples (iid), $N_n$ segue uma distribuição binomial: 
+
+$$N_n \sim \text{Binomial}(n, p_1)
+$$
+
+3. Converência: O evento ${\tilde{X} \leq \tilde{\mu} - \epsilon}$ é equivalente a ${N_n \geq r}$, onde $r = (n+1)/2$. 
+$$P(\tilde{X} \leq \tilde{\mu} - \epsilon) = P\left( \frac{N_n}{n} \geq \frac{n+1}{2n} \right)
+$$ 
+
+Como $p_1 < 1/2$, a probabilidade de que a proporção amostral ($N_n/n$) exceda $1/2$ (a mediana populacional) tende a zero à medida que $n \to \infty$. Isso é uma aplicação do princípio da consistência (ou da Lei Fraca dos Grandes Números, inerente ao contexto de assintótica de grandes amostras). 
+$$\lim_{n \to \infty} P(\tilde{X} \leq \tilde{\mu} - \epsilon) = 0
+$$
+
+Passo 2: Analisar o Limite Superior $P(\tilde{X} \geq \tilde{\mu} + \epsilon)$
+
+O evento ${\tilde{X} \geq \tilde{\mu} + \epsilon}$ significa que o ponto médio $X_{([n+1]/2)}$ é maior ou igual a $x_2 = \tilde{\mu} + \epsilon$. Isso ocorre se e somente se o número de observações $X_i$ menores ou iguais a $x_2$ é menor que $(n+1)/2$ (ou seja, no máximo $(n-1)/2$).
+
+1. Defina a Probabilidade: Seja $p_2 = F(x_2) = F(\tilde{\mu} + \epsilon)$. Como $F(x)$ é não decrescente, $p_2 > F(\tilde{\mu}) = 1/2$.
+
+2. Variável de Contagem: Seja $M_n$ o número de observações $X_i \leq x_2$. $M_n \sim \text{Binomial}(n, p_2)$.
+
+3. Converência: O evento ${\tilde{X} \geq \tilde{\mu} + \epsilon}$ é equivalente a ${M_n \leq (n-1)/2}$. 
+
+$$P(\tilde{X} \geq \tilde{\mu} + \epsilon) = P\left( \frac{M_n}{n} \leq \frac{n-1}{2n} \right)
+$$ 
+
+Como $p_2 > 1/2$, a probabilidade de que a proporção amostral ($M_n/n$) seja menor ou igual a $1/2$ (a mediana populacional) tende a zero à medida que $n \to \infty$: 
+
+$$\lim_{n \to \infty} P(\tilde{X} \geq \tilde{\mu} + \epsilon) = 0
+$$
+
+Conclusão
+Uma vez que ambos os limites tendem a zero, a probabilidade de $\tilde{X}$ estar fora do intervalo $(\tilde{\mu} - \epsilon, \tilde{\mu} + \epsilon)$ tende a zero: 
+
+$$\lim_{n \to \infty} P(|\tilde{X} - \tilde{\mu}| \geq \epsilon) = \lim_{n \to \infty} P(\tilde{X} \leq \tilde{\mu} - \epsilon) + \lim_{n \to \infty} P(\tilde{X} \geq \tilde{\mu} + \epsilon) = 0 + 0 = 0
+$$
+
+Portanto, a mediana amostral $\tilde{X}$ é um estimador consistente para a mediana populacional $\tilde{\mu}$.
+
+# Exercício 5
+
+## Solução 1 (teórica)
+
+O Exercício 5 da prova requer a comparação entre o Erro Quadrático Médio (EQM) da média amostral ($\bar{X}$) e da mediana amostral ($\tilde{X}$) para uma população com a seguinte função densidade de probabilidade (PDF) de Pareto simétrica:
+$$f(x) = \frac{\alpha \mu^\alpha}{2(\mu+ |x− \mu|)^{\alpha+1}}
+$$
+
+onde $x \in R$, $\mu \in R$ é o parâmetro de localização/escala e $\alpha > 2$ é o parâmetro de forma.
+
+A comparação é feita em termos do Erro Quadrático Médio (EQM), que para um estimador $\delta$ de um parâmetro $\psi(\theta)$ é definido como:
+$$\text{EQM}\theta(\delta) = \text{Var}\theta(\delta) + { \text{Viés}(\delta, \psi) }^2
+$$
+
+O objetivo é encontrar o estimador ($\bar{X}$ ou $\tilde{X}$) que propicie o menor EQM.
+
+Análise do Parâmetro e Viés
+
+1. Parâmetro de Interesse: A distribuição $f(x)$ é simétrica em torno do ponto $\mu$, pois a função depende de $|x-\mu|$. Em distribuições simétricas, a média populacional ($E[X]$) é igual à mediana populacional ($\tilde{\mu}$), e ambos são iguais ao centro de simetria $\mu$.
+
+2. Média Amostral ($\bar{X}$): A média amostral é um estimador não viesado (unbiased) para a média populacional ($\mu$), assumindo que a média existe. Portanto, $\text{Viés}(\bar{X}, \mu) = 0$.
+
+3. Mediana Amostral ($\tilde{X}$): A mediana amostral é um estimador consistente para a mediana populacional ($\tilde{\mu}$). Como $\tilde{\mu} = \mu$, $\tilde{X}$ é assintoticamente não viesado para $\mu$.
+
+Para grandes amostras, o EQM é dominado pela variância do estimador, uma vez que o termo de viés é nulo (para $\bar{X}$) ou tende a zero (para $\tilde{X}$). Portanto, a escolha do melhor estimador se baseia na comparação das suas variâncias assintóticas:
+$$\text{EQM}(\delta) \approx \text{Var}(\delta)
+$$
+
+2. Análise da Existência da Variância
+
+A decisão sobre qual estimador é superior depende crucialmente da existência ou não da variância populacional ($\sigma^2$).
+
+A distribuição de Pareto padrão exige que o parâmetro de forma (denotado como $\beta$ na fonte) seja maior que $n$ para que o momento de ordem $n$ exista.
+
+No caso da PDF fornecida:
+
+- A condição dada é $\mathbf{\alpha > 2}$.
+- Como $\alpha > 2$, a variância populacional existe e é finita. Se $\alpha$ estivesse no intervalo $1 < \alpha \leq 2$, a variância seria infinita, mas o problema restringe $\alpha$ para que $\sigma^2 < \infty$.
+
+3. Comparação de Eficiência
+
+Em estatística, para distribuições onde a variância populacional ($\sigma^2$) é finita (o que é garantido pela condição $\alpha > 2$), a média amostral ($\bar{X}$) é geralmente o estimador mais eficiente para o parâmetro de localização $\mu$.
+
+A eficiência do estimador (e, consequentemente, o EQM) está relacionada ao grau em que a distribuição é "pesada" nas caudas.
+
+1. Se a variância é finita ($\alpha > 2$): A média amostral converge para a distribuição normal com a menor variância possível ($\sigma^2/n$). Nessas condições, a média amostral é o Estimador Não Viesado de Mínima Variância (UMVUE) se a família de distribuições for regular o suficiente. A média amostral é preferível porque tem menor variância assintótica que a mediana.
+
+2. Se a variância fosse infinita ($\alpha \leq 2$): Neste caso, a média amostral não seria um bom estimador (sua variância seria infinita), e a mediana seria o estimador preferido (robusto).
+
+Como a condição $\mathbf{\alpha > 2}$ é explicitamente dada, garantindo a finitude da variância, o estimador $\bar{X}$ (média amostral) é o que possui a menor variância assintótica e, portanto, o menor Erro Quadrático Médio.
+
+Conclusão
+
+O estimador que propicia o menor erro quadrático médio é a média amostral ($\bar{X}$).
+
+Isso se deve ao fato de que, sob a condição de que o parâmetro de forma $\alpha$ é maior que 2, o que garante que a variância populacional existe e é finita, a média amostral se comporta como o estimador mais eficiente para o parâmetro de localização $\mu$.
+
+## Solução 2 (prática)
+
+O estimador com o menor EQM é o preferível. Assintoticamente, o EQM de um estimador $\hat{\theta}$ que é consistente para $\theta$ é dado pela sua variância, se o viés for $O(1/n)$ (desprezível para $n$ grande).
+
+$$
+\text{EQM}(\hat{\theta}) = \text{Var}(\hat{\theta}) + [\text{Viés}(\hat{\theta})]^2
+$$
+
+A população é dada pela densidade Pareto Simétrica:
+$$
+f(x) = \frac{\alpha \mu^\alpha}{2(\mu + |x - \mu|)^{\alpha+1}}
+$$
+com $x \in \mathbb{R}$, $\mu \in \mathbb{R}$, $\alpha > 2$.
+
+Como esta densidade é simétrica em torno de $\mu$, a média populacional e a mediana populacional são ambas iguais a $\mu$.
+
+1. Viés e Variância da Média Amostral ($\bar{X}$)
+
+O parâmetro de interesse é $\mu$. Como $X_i$ são i.i.d., a média amostral $\bar{X}$ é um estimador não viciado para $\mu$, desde que a média exista.
+
+- Viés: $\text{Viés}(\bar{X}) = E[\bar{X}] - \mu = \mu - \mu = 0$.
+- EQM: $\text{EQM}(\bar{X}) = \text{Var}(\bar{X}) + 0^2 = \text{Var}(\bar{X})$.
+
+Para uma amostra aleatória simples de tamanho $n$, a variância de $\bar{X}$ é:
+$$
+\text{Var}(\bar{X}) = \frac{\sigma^2}{n}
+$$
+onde $\sigma^2 = \text{Var}(X)$ é a variância populacional. Como $\alpha > 2$, a variância populacional existe.
+
+1.1. Cálculo da Variância Populacional ($\sigma^2$)
+
+Para a densidade simétrica $f(x)$ em torno de $\mu$, $\sigma^2 = E[(X - \mu)^2]$. Seja $Y = |X - \mu|$. A densidade de $Y$ (para $y \geq 0$) é $f_Y(y) = 2f(\mu + y)$:
+$$
+f_Y(y) = 2 \cdot \frac{\alpha \mu^\alpha}{2(\mu + y)^{\alpha+1}} = \frac{\alpha \mu^\alpha}{(\mu + y)^{\alpha+1}}, \quad y \geq 0
+$$
+
+A variância é
+$$
+\sigma^2 = E[Y^2] = \int_0^\infty y^2 f_Y(y) dy = \alpha \mu^\alpha \int_0^\infty \frac{y^2}{(\mu + y)^{\alpha+1}} dy
+$$
+
+Usando a substituição $z = \mu + y$, obtemos (como detalhado no raciocínio, integrando termo a termo e assumindo $\alpha > 2$):
+$$
+\sigma^2 = \frac{(\alpha - 1)(\alpha - 2)}{2} \mu^2
+$$
+
+1.2. Resultado para o EQM da Média Amostral
+
+$$
+\text{EQM}(\bar{X}) \approx \text{Var}(\bar{X}) = \frac{\sigma^2}{n} = \frac{(\alpha - 1)(\alpha - 2)}{2n} \mu^2
+$$
+
+2. Viés e Variância da Mediana Amostral ($\tilde{X}$)
+
+A mediana amostral $\tilde{X}$ é um estimador consistente para a mediana populacional $\mu$. Para distribuições contínuas, $\tilde{X}$ é assintoticamente não viciado.
+
+- Viés: $\text{Viés}(\tilde{X}) \approx 0$ (assintoticamente).
+- EQM: $\text{EQM}(\tilde{X}) \approx \text{Var}(\tilde{X})$.
+
+Para $n$ grande, a variância assintótica da mediana amostral $\tilde{X}$ é dada pelo método delta:
+$$
+\text{Var}(\tilde{X}) \approx \frac{1}{4n [f(\mu)]^2}
+$$
+onde $f(\mu)$ é a função densidade de probabilidade avaliada na mediana (que é $\mu$).
+
+2.1. Cálculo de $f(\mu)$
+
+Usando a densidade fornecida:
+$$
+f(\mu) = \frac{\alpha \mu^\alpha}{2(\mu + |\mu - \mu|)^{\alpha+1}} = \frac{\alpha \mu^\alpha}{2\mu^{\alpha+1}} = \frac{\alpha}{2\mu}
+$$
+
+2.2. Resultado para o EQM da Mediana Amostral
+
+Substituindo $f(\mu)$ na fórmula da variância:
+$$
+\text{EQM}(\tilde{X}) \approx \text{Var}(\tilde{X}) = \frac{1}{4n} \left( \frac{2\mu}{\alpha} \right)^2 = \frac{\mu^2}{n \alpha^2}
+$$
+
+3. Comparação dos EQMs
+
+Comparamos os resultados assintóticos para $n$ grande:
+$$
+\text{EQM}(\bar{X}) \approx \frac{(\alpha - 1)(\alpha - 2)}{2n} \mu^2
+$$
+$$
+\text{EQM}(\tilde{X}) \approx \frac{\mu^2}{n \alpha^2}
+$$
+
+Para determinar qual é menor, comparamos os fatores constantes multiplicativos (excluindo $\mu^2/n$):
+
+$$
+C_{\bar{X}} = \frac{(\alpha - 1)(\alpha - 2)}{2}
+$$
+$$
+C_{\tilde{X}} = \frac{1}{\alpha^2}
+$$
+
+Calculamos a razão
+$$
+R = \frac{C_{\tilde{X}}}{C_{\bar{X}}} = \frac{2}{\alpha^2 (\alpha - 1)(\alpha - 2)}
+$$
+
+Se $R > 1$, a mediana amostral ($\tilde{X}$) tem EQM menor. Se $R < 1$, a média amostral ($\bar{X}$) tem EQM menor.
+
+Analisamos a desigualdade $R > 1$:
+$$
+\frac{2}{\alpha^2 (\alpha - 1)(\alpha - 2)} > 1 \implies 2 > \alpha^2 (\alpha - 1)(\alpha - 2)
+$$
+
+Como $\alpha > 2$, o denominador cresce rapidamente, então para $\alpha > 2$ temos $R < 1$.
+
+Portanto, para todo $\alpha > 2$, $\text{EQM}(\tilde{X}) < \text{EQM}(\bar{X})$.
+
+Conclusão
+
+Para a população Pareto Simétrica com $\alpha > 2$, o estimador de menor erro quadrático médio (EQM) é a mediana amostral, $\tilde{X}$.
+
+Insight: Esta é uma característica comum de distribuições com caudas pesadas (como a distribuição Pareto, mesmo na forma simétrica). Embora a média amostral seja o Estimador Não Viciado de Variância Uniformemente Mínima (UMVUE) em geral, a mediana amostral é mais robusta e muitas vezes possui uma variância assintótica menor do que a média em distribuições onde a eficiência da média é comprometida por caudas pesadas.
+
+# Exercício 6
+
+O Exercício 6 solicita a comparação dos Erros Quadráticos Médios (EQMs) de dois estimadores da variância populacional $\sigma^2$ baseados em uma amostra aleatória simples $X_1, \dots, X_n$ retirada de uma distribuição normal $N(\mu, \sigma^2)$. Os estimadores são:
+
+1. Variância Amostral Não Viesada ($S^2$): 
+$$S^2 = \frac{1}{n-1} \sum_{i=1}^n(X_i - \bar{X})^2
+$$
+
+2. Variância Amostral Viesada ($V^2$): 
+$$V^2 = \frac{1}{n} \sum_{i=1}^n(X_i - \bar{X})^2
+$$
+
+O Erro Quadrático Médio (EQM) de um estimador $\delta$ de um parâmetro $\psi(\theta)$ é definido como a soma da sua variância e do seu viés ao quadrado:
+$$\text{EQM}(\delta) = \text{Var}(\delta) + {\text{Viés}(\delta)}^2
+$$
+
+1. Relação Fundamental
+
+Para uma amostra $X_1, \dots, X_n$ retirada de $N(\mu, \sigma^2)$, a estatística $(n-1)S^2/\sigma^2$ segue uma distribuição qui-quadrado com $n-1$ graus de liberdade, $\chi^2(n-1)$.
+
+A partir dessa propriedade, o EQM de ambos os estimadores pode ser calculado. Note que $V^2$ pode ser reescrito em função de $S^2$: 
+$$V^2 = \frac{n-1}{n} S^2
+$$
+
+2. Análise do Estimador $S^2$
+
+$S^2$ é o estimador não viesado (unbiased) de $\sigma^2$.
+A. Viés
+
+O viés é zero. 
+$$E[S^2] = \sigma^2
+$$ 
+
+$$\text{Viés}(S^2) = E[S^2] - \sigma^2 = \sigma^2 - \sigma^2 = 0
+$$
+
+B. Variância
+
+A fonte estabelece que $\text{var}(S^2/\sigma^2) = 2/(n-1)$. 
+$$\text{Var}(S^2) = \sigma^4 \cdot \text{Var}\left(\frac{(n-1)S^2}{\sigma^2} \cdot \frac{1}{n-1}\right) = \sigma^4 \cdot \frac{1}{(n-1)^ 2} \text{Var}\left(\chi^2(n-1)\right)
+$$ 
+
+Utilizando a propriedade dada: 
+$$\text{Var}(S^2) = \sigma^4 \cdot \frac{2}{n-1}
+$$
+
+C. EQM de $S^2$
+$$\mathbf{EQM(S^2)} = \text{Var}(S^2) + 0^2 = \mathbf{\frac{2\sigma^4}{n-1}}
+$$
+
+3. Análise do Estimador $V^2$
+
+$V^2$ é o estimador de máxima verossimilhança (MLE) de $\sigma^2$ (Embora a fonte não o nomeie explicitamente, $V^2$ é o MLE padrão para $\sigma^2$ em $N(\mu, \sigma^2)$).
+
+A. Viés
+
+Calculamos o valor esperado de $V^2$: 
+$$E[V^2] = E\left[\frac{n-1}{n} S^2\right] = \frac{n-1}{n} E[S^2] = \frac{n-1}{n} \sigma^2
+$$
+
+O viés de $V^2$ é: 
+$$\text{Viés}(V^2) = E[V^2] - \sigma^2 = \frac{n-1}{n} \sigma^2 - \sigma^2 = \sigma^2 \left( \frac{n-1 - n}{n} \right) = \mathbf{-\frac{\sigma^2}{n}}
+$$
+
+O termo do viés ao quadrado é: 
+$${\text{Viés}(V^2)}^2 = \left( -\frac{\sigma^2}{n} \right)^2 = \mathbf{\frac{\sigma^4}{n^2}}
+$$
+
+B. Variância
+
+Calculamos a variância de $V^2$ usando a relação com $S^2$: 
+$$\text{Var}(V^2) = \text{Var}\left(\frac{n-1}{n} S^2\right) = \left( \frac{n-1}{n} \right)^2 \text{Var}(S^2)
+$$ 
+$$\text{Var}(V^2) = \left( \frac{n-1}{n} \right)^2 \cdot \frac{2\sigma^4}{n-1} = \mathbf{\frac{2\sigma^4 (n-1)}{n^2}}
+$$
+
+C. EQM de $V^2$
+$$\mathbf{EQM(V^2)} = \text{Var}(V^2) + {\text{Viés}(V^2)}^2
+$$ 
+$$EQM(V^2) = \frac{2\sigma^4 (n-1)}{n^2} + \frac{\sigma^4}{n^2}
+$$ 
+$$EQM(V^2) = \frac{\sigma^4}{n^2} [2(n-1) + 1] = \mathbf{\frac{\sigma^4 (2n - 1)}{n^2}}
+$$
+
+4. Comparação dos EQMs e Vantagem
+
+Para determinar qual estimador é mais vantajoso, comparamos os EQMs de $V^2$ e $S^2$: 
+$$\text{EQM}(S^2) = \frac{2\sigma^4}{n-1}
+$$ 
+
+$$\text{EQM}(V^2) = \frac{\sigma^4 (2n - 1)}{n^2}
+$$
+
+A comparação se resume a verificar qual dos denominadores normalizados é maior: 
+$$\frac{EQM(S^2)}{\sigma^4} = \frac{2}{n-1}
+$$ 
+$$\frac{EQM(V^2)}{\sigma^4} = \frac{2n - 1}{n^2}
+$$
+
+Para $n \geq 2$, comparamos $2n^2$ e $(n-1)(2n-1)$: 
+$$2n^2 \quad \text{vs} \quad 2n^2 - 2n - n + 1
+$$ 
+$$2n^2 \quad \text{vs} \quad 2n^2 - 3n + 1
+$$
+Como $2n^2 > 2n^2 - 3n + 1$ (uma vez que $3n - 1 > 0$ para $n \geq 1$), o EQM de $V^2$ é menor que o EQM de $S^2$.
+$$EQM(V^2) < EQM(S^2)
+$$
+
+Conclusão de Vantagem
+
+O estimador $\mathbf{V^2 = \frac{1}{n} \sum_{i=1}^n(X_i - \bar{X})^2}$ propicia o menor erro quadrático médio.
+
+Embora $V^2$ seja viesado (subestima $\sigma^2$ por um fator de $(n-1)/n$), a redução na sua variância (decorrente do fator de escala $(n-1)/n$ em relação a $S^2$) é suficiente para compensar o viés introduzido, resultando em um EQM total menor do que o do estimador não viesado $S^2$.
+
+Portanto, em termos de Erro Quadrático Médio, $V^2$ é o estimador de $\sigma^2$ mais vantajoso.
+
+# Exercício 7
+
+O Exercício 7 explora as propriedades da Distribuição de Touchard, uma distribuição discreta que pode ser escrita na forma de família exponencial, permitindo a determinação de estatísticas suficientes.
+
+A Distribuição de Touchard é definida como: 
+$$
+P(X = x; \lambda, \delta, \nu) = \frac{\lambda^x(x + \nu)^\delta}{x! \tau(\lambda, \delta, \nu)}
+$$ 
+
+onde $\lambda > 0$ é a taxa, $\delta \in R$ é o parâmetro de forma, $\nu \in {1, 2, 3, \dots}$ é o parâmetro de deslocamento, $x \in \mathbb{N}$ (inteiros não negativos) e $\tau(\lambda, \delta, \nu)$ é a função de normalização.
+
+i) Estatística Suficiente Minimal para $\theta_1 = (\lambda, \delta)'$, com $\nu$ Conhecido
+
+Para encontrar a estatística suficiente minimal, reescrevemos a função de massa de probabilidade (PMF) na forma de família exponencial.
+
+O logaritmo da PMF para uma única observação $X=x$ é: 
+$$\ln P(X=x) = x \ln \lambda + \delta \ln(x + \nu) - \ln(x!) - \ln \tau(\lambda, \delta, \nu)
+$$
+
+Para uma amostra aleatória simples $\mathbf{X} = (X_1, \dots, X_n)$, o logaritmo da função de verossimilhança $L(\theta_1; \mathbf{x})$ é a soma dos logaritmos: 
+$$\ln L(\theta_1; \mathbf{x}) = \sum_{i=1}^n \left[ x_i \ln \lambda + \delta \ln(x_i + \nu) \right] - n \ln \tau(\lambda, \delta, \nu) - \sum_{i=1}^n \ln(x_i!)
+$$
+
+Colocando na forma canônica da família exponencial: 
+$$f_{\theta_1}(\mathbf{x}) = \exp \left{ \underbrace{(\ln \lambda)}{Q_1(\theta_1)} \underbrace{\sum{i=1}^n x_i}{T_1(\mathbf{x})} + \underbrace{\delta}{Q_2(\theta_1)} \underbrace{\sum_{i=1}^n \ln(x_i + \nu)}{T_2(\mathbf{x})} + \underbrace{\left[-n \ln \tau(\lambda, \delta, \nu)\right]}{D(\theta_1)} + \underbrace{\left[-\sum_{i=1}^n \ln(x_i!)\right]}_{S(\mathbf{x})} \right}
+$$
+
+1. Forma da Família Exponencial: A distribuição de Touchard é uma família exponencial de dois parâmetros com:
+    - $Q_1(\lambda, \delta) = \ln \lambda$ e $Q_2(\lambda, \delta) = \delta$.
+    - $T_1(\mathbf{X}) = \sum_{i=1}^n X_i$
+    - $T_2(\mathbf{X}) = \sum_{i=1}^n \ln(X_i + \nu)$
+
+2. Estatística Suficiente Minimal: Pelo Teorema da Família Exponencial, a estatística vetorial $\mathbf{T}(\mathbf{X})$ é a estatística suficiente completa e, portanto, minimal. 
+$$\mathbf{T}(\mathbf{X}) = \left( \sum_{i=1}^n X_i, \sum_{i=1}^n \ln(X_i + \nu) \right)
+$$
+
+Nota Adicional: A fonte matsushita2018.pdf confirma este resultado para o caso particular em que $\nu=1$ (onde $S_1 = \sum x_i$ e $S_2 = \sum \ln(x_i+1)$ são suficientes pelo teorema da fatoração).
+
+ii) Estatística Suficiente para $\theta_2 = (\lambda, \delta, \nu)'$ Desconhecido
+
+Quando o parâmetro de deslocamento $\nu$ também é desconhecido, o vetor de parâmetros é $\theta_2 = (\lambda, \delta, \nu)'$.
+
+A função de verossimilhança é: 
+$$L(\theta_2; \mathbf{x}) = \left( \prod_{i=1}^n x_i! \right)^{-1} \lambda^{\sum x_i} \cdot \prod_{i=1}^n (x_i + \nu)^\delta \cdot [\tau(\lambda, \delta, \nu)]^{-n}
+$$
+
+Para o Teorema da Fatoração (Factorization Criterion) ser aplicável, a verossimilhança deve ser escrita como o produto de uma função $h(\mathbf{x})$ (dependente apenas da amostra) e uma função $g_{\theta_2}(\mathbf{T}(\mathbf{x}))$ (dependente da amostra através da estatística $\mathbf{T}(\mathbf{x})$ e de $\theta_2$).
+
+O termo $\prod_{i=1}^n (x_i + \nu)^\delta$ é problemático porque o parâmetro $\nu$ (desconhecido) está dentro da função de $x_i$ ($\ln(x_i + \nu)$), e $\nu$ é um parâmetro discreto que assume valores $1, 2, 3, \dots$. Tentar reescrever este termo para isolar os parâmetros resulta em estatísticas que dependem da ordem das observações ou das observações individuais.
+
+1. Existência de Estatística Suficiente: Sim, uma estatística suficiente sempre existe: a própria estatística de ordem.
+
+2. Forma da Estatística: Como a função de verossimilhança é simétrica em relação às observações (ou seja, permutar $x_i$ não altera o valor de $L$), a Estatística de Ordem $\mathbf{X}{(\cdot)} = (X{(1)}, X_{(2)}, \dots, X_{(n)})'$ é sempre uma estatística suficiente.
+
+A estatística suficiente (não necessariamente minimal) para o vetor $\theta_2$ é a estatística de ordem: 
+$$\mathbf{T}(\mathbf{X}) = (X_{(1)}, X_{(2)}, \dots, X_{(n)})'
+$$
+
+iii) Estatística Suficiente Minimal para $\theta_3 = \lambda$, com $\delta = 0$ e $\nu = 1$
+
+Neste caso, a distribuição de Touchard se simplifica: 
+$$P(X = x; \lambda, 0, 1) = \frac{\lambda^x(x + 1)^0}{x! \tau(\lambda, 0, 1)} = \frac{\lambda^x}{x! \tau(\lambda)}
+$$
+
+O termo de normalização $\tau(\lambda) = \sum_{k=0}^\infty \frac{\lambda^k}{k!}$ é reconhecido como a expansão de $e^\lambda$.
+
+Assim, $P(X = x; \lambda) = \frac{\lambda^x e^{-\lambda}}{x!}$, que é a Distribuição de Poisson $P(\lambda)$.
+
+Para uma amostra $\mathbf{X}$, a verossimilhança é: 
+$$L(\lambda; \mathbf{x}) = \prod_{i=1}^n \frac{\lambda^{x_i} e^{-\lambda}}{x_i!} = \frac{\lambda^{\sum x_i} e^{-n\lambda}}{\prod x_i!}
+$$
+
+Forma da Família Exponencial (Poisson): 
+$$L(\lambda; \mathbf{x}) = \exp \left{ \underbrace{(\ln \lambda)}{Q(\lambda)} \underbrace{\sum{i=1}^n x_i}{T(\mathbf{x})} + \underbrace{(-n\lambda)}{D(\lambda)} + \underbrace{\left[-\sum_{i=1}^n \ln(x_i!)\right]}_{S(\mathbf{x})} \right}
+$$
+
+Como $T(\mathbf{X}) = \sum_{i=1}^n X_i$ isola o parâmetro $\lambda$, e a Poisson pertence à família exponencial de um único parâmetro, a soma é a estatística suficiente completa.
+
+A estatística suficiente minimal para $\lambda$ é a soma amostral: 
+$$\mathbf{T}(\mathbf{X}) = \sum_{i=1}^n X_i
+$$
+
+# Exercício 8
+
+O Exercício 8 exige a análise das propriedades de estimação e suficiência para uma amostra aleatória simples $X_1, \dots, X_n$ retirada de uma distribuição exponencial deslocada, definida pela densidade: 
+$$f_\theta(x) = \exp[-x + \theta], \quad \text{para } x > \theta > 0
+$$
+
+1. Estatística Suficiente (Minimal e Completa)
+
+O primeiro passo é reescrever a função de verossimilhança para a amostra $\mathbf{X} = (X_1, \dots, X_n)$ na forma canônica da família exponencial, ou aplicar o Teorema da Fatoração.
+
+A densidade individual é $f_\theta(x) = e^{-(x-\theta)} = e^{-x} e^\theta$, limitada pelo suporte $x > \theta$.
+
+A função de verossimilhança conjunta $L(\theta; \mathbf{x})$ é dada por: 
+$$L(\theta; \mathbf{x}) = \prod_{i=1}^n f_\theta(x_i) = \prod_{i=1}^n e^{-x_i} e^\theta I(X_i > \theta)
+$$ 
+$$L(\theta; \mathbf{x}) = \left( e^{-\sum_{i=1}^n x_i} \right) \cdot \left( e^{n\theta} I(\min_i X_i > \theta) \right)
+$$
+
+Pelo Teorema da Fatoração, onde $L(\theta; \mathbf{x}) = h(\mathbf{x}) g_\theta(T(\mathbf{x}))$: 
+$$h(\mathbf{x}) = e^{-\sum_{i=1}^n x_i}
+$$ 
+$$g_\theta(T(\mathbf{x})) = e^{n\theta} I(X_{(1)} > \theta)
+$$
+
+Onde $X_{(1)} = \min{X_1, \dots, X_n}$ é a estatística de ordem mínima.
+
+Determinação da Estatística Suficiente Minimal
+
+A estatística suficiente é dada por $\mathbf{T}(\mathbf{X}) = X_{(1)}$. Como $X_{(1)}$ resume completamente a dependência da verossimilhança em relação ao parâmetro $\theta$, é a estatística suficiente minimal para $\theta$.
+
+Determinação da Estatística Completa
+
+Para demonstrar que $T(\mathbf{X}) = X_{(1)}$ é uma estatística completa, devemos mostrar que a família de distribuições de $X_{(1)}$ é completa.
+
+1. Distribuição de $X_{(1)}$: A função de distribuição acumulada (CDF) da população é $F(x) = 1 - e^{-(x-\theta)}$ para $x > \theta$. A probabilidade de $X_{(1)} > t$ é: 
+$$P(X_{(1)} > t) = P(X_i > t, \forall i) = [1 - F(t)]^n = [e^{-(t-\theta)}]^n = e^{-n(t-\theta)}, \quad \text{para } t > \theta
+$$ 
+
+A função densidade de probabilidade (PDF) de $X_{(1)}$ é: 
+$$f_{X_{(1)}}(t; \theta) = - \frac{d}{dt} P(X_{(1)} > t) = n e^{-n(t-\theta)}, \quad \text{para } t > \theta
+$$
+
+2. Teste de Completeza: Queremos verificar se $E_\theta[g(X_{(1)})] = 0$ para todo $\theta > 0$ implica $g(t) = 0$. 
+$$E_\theta[g(X_{(1)})] = \int_\theta^\infty g(t) n e^{-n(t-\theta)} dt = 0 \quad \text{para todo } \theta > 0
+$$ 
+
+Podemos reescrever a integral como: 
+$$n e^{n\theta} \int_\theta^\infty g(t) e^{-nt} dt = 0
+$$ 
+
+Como $n e^{n\theta} \neq 0$, a integral deve ser zero para todo $\theta$: 
+$$I(\theta) = \int_\theta^\infty g(t) e^{-nt} dt = 0
+$$ 
+
+Derivando $I(\theta)$ em relação a $\theta$ (usando o Teorema Fundamental do Cálculo, pois $\theta$ é o limite inferior da integral), obtemos: 
+$$\frac{d}{d\theta} I(\theta) = - g(\theta) e^{-n\theta} = 0
+$$ 
+
+Isso implica que $g(\theta) = 0$ para todo $\theta > 0$. Portanto, $X_{(1)}$ é uma estatística completa.
+
+2. Independência da Estatística Suficiente e da Variância Amostral ($S^2$)
+
+A variância amostral $S^2$ é definida como $S^2 = \frac{1}{n-1} \sum_{i=1}^n(X_i - \bar{X})^2$.
+
+Para mostrar que a estatística suficiente $X_{(1)}$ é independente de $S^2$, utilizamos o Teorema de Basu: se uma estatística $S(\mathbf{X})$ é suficiente e completa para um parâmetro $\theta$, ela é independente de qualquer estatística ancilar $A(\mathbf{X})$.
+
+A. $X_{(1)}$ é Estatística Suficiente Completa
+Já demonstramos que $T(\mathbf{X}) = X_{(1)}$ é suficiente e completa para $\theta$.
+
+B. $S^2$ é Estatística Ancilar
+Uma estatística $A(\mathbf{X})$ é ancilar se sua distribuição não depende do parâmetro $\theta$.
+
+O parâmetro $\theta$ nesta distribuição é um parâmetro de localização. Consideremos as desvios da média amostral, $X_i - \bar{X}$. 
+$$X_i - \bar{X} = (X_i - \theta) - (\bar{X} - \theta)
+$$ 
+
+Definindo $Y_i = X_i - \theta$. A variável $Y_i$ segue uma distribuição Exponencial padrão ($Y_i \sim \text{Exp}(1)$), que não depende de $\theta$. A média amostral deslocada é $\bar{Y} = \bar{X} - \theta$. 
+$$X_i - \bar{X} = Y_i - \bar{Y}
+$$ 
+
+A estatística $S^2$ é uma função apenas dos desvios $(X_i - \bar{X})$, que são idênticos aos desvios $(Y_i - \bar{Y})$. 
+$$S^2 = \frac{1}{n-1} \sum_{i=1}^n(X_i - \bar{X})^2 = \frac{1}{n-1} \sum_{i=1}^n(Y_i - \bar{Y})^2
+$$
+
+Como $S^2$ é uma função da amostra transformada $Y_1, \dots, Y_n$, cuja distribuição não depende de $\theta$, $S^2$ é uma estatística ancilar para $\theta$. $S^2$ é invariante sob transformações de translação $X_i \to X_i + c$, o que a torna ancilar para o parâmetro de localização $\theta$.
+
+C. Conclusão da Independência
+
+Pelo Teorema de Basu, como $X_{(1)}$ é a estatística suficiente completa e $S^2$ é uma estatística ancilar, elas são independentes.
+$$\mathbf{X_{(1)} \text{ é independente de } S^2}
+ $$
+
+::::

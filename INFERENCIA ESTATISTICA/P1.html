@@ -1,0 +1,1094 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.24">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Tailine J. S. Nonato">
+<meta name="dcterms.date" content="2025-10-10">
+
+<title>Prova 1</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="P1_files/libs/clipboard/clipboard.min.js"></script>
+<script src="P1_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="P1_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="P1_files/libs/quarto-html/popper.min.js"></script>
+<script src="P1_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="P1_files/libs/quarto-html/anchor.min.js"></script>
+<link href="P1_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="P1_files/libs/quarto-html/quarto-syntax-highlighting-a37c72dd2dbac68997fcdc15a3622e78.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="P1_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="P1_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="P1_files/libs/bootstrap/bootstrap-bb462d781dde1847d9e3ccf7736099dd.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="fullcontent quarto-light">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Prova 1</h1>
+<p class="subtitle lead">Inferência Estatística</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Tailine J. S. Nonato </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">October 10, 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Resoluções propostas pelo NotebookLM.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="">Exercício 1</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">Exercício 2</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false" href="">Exercício 3</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-4" role="tab" aria-controls="tabset-1-4" aria-selected="false" href="">Exercício 4</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-5" role="tab" aria-controls="tabset-1-5" aria-selected="false" href="">Exercício 5</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-6-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-6" role="tab" aria-controls="tabset-1-6" aria-selected="false" href="">Exercício 6</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-7-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-7" role="tab" aria-controls="tabset-1-7" aria-selected="false" href="">Exercício 7</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-8-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-8" role="tab" aria-controls="tabset-1-8" aria-selected="false" href="">Exercício 8</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<ol type="1">
+<li>Definição Teórica de Consistência Um estimador <span class="math inline">\(\bar{X}_n\)</span> é considerado consistente (ou converge em probabilidade, <span class="math inline">\(P\to\)</span>) para o parâmetro <span class="math inline">\(\mu\)</span> se, para todo <span class="math inline">\(\epsilon &gt; 0\)</span>, a probabilidade de que <span class="math inline">\(\bar{X}_n\)</span> esteja fora de uma vizinhança de <span class="math inline">\(\mu\)</span> tende a zero à medida que o tamanho da amostra <span class="math inline">\(n\)</span> tende ao infinito:</li>
+</ol>
+<p><span class="math display">\[ \bar{X}n \xrightarrow{P} \mu \quad \text{ou} \quad \lim{n \to \infty} P(|\bar{X}_n - \mu| &gt; \epsilon) = 0
+\]</span></p>
+<p>Uma condição suficiente e amplamente utilizada para demonstrar a consistência em probabilidade é mostrar que o Erro Quadrático Médio (EQM) tende a zero quando <span class="math inline">\(n \to \infty\)</span>. O EQM de um estimador é dado por <span class="math inline">\(EQM(\bar{X}_n) = \text{Var}(\bar{X}_n) + (\text{Viés}(\bar{X}_n))^2\)</span>. Portanto, as condições suficientes para a consistência são: - <span class="math inline">\(\lim_{n \to \infty} E[\bar{X}_n] = \mu\)</span> (O estimador é assintoticamente não viciado). - <span class="math inline">\(\lim_{n \to \infty} \text{Var}(\bar{X}_n) = 0\)</span> (A variância converge a zero). 2. Análise da Esperança (Viés) O primeiro passo é calcular a esperança da média amostral, <span class="math inline">\(\bar{X}n = \frac{1}{n} \sum{i=1}^n X_i\)</span>. Sabemos pelas fontes que: - A média populacional de <span class="math inline">\(X_i\)</span> é <span class="math inline">\(E[X_i] = \mu\)</span>. - A esperança de uma soma de variáveis aleatórias é a soma das esperanças (linearidade). - A constante <span class="math inline">\(\frac{1}{n}\)</span> pode ser retirada da esperança. <span class="math display">\[
+E[\bar{X}n] = E\left[ \frac{1}{n} \sum{i=1}^n X_i \right] = \frac{1}{n} \sum_{i=1}^n E[X_i] \quad
+\]</span> Substituindo <span class="math inline">\(E[X_i] = \mu\)</span>: <span class="math display">\[
+E[\bar{X}n] = \frac{1}{n} \sum{i=1}^n \mu = \frac{1}{n} (n\mu) = \mu
+\]</span></p>
+<p>Conclusão da Esperança: Como <span class="math inline">\(E[\bar{X}_n] = \mu\)</span> para todo <span class="math inline">\(n\)</span>, o estimador <span class="math inline">\(\bar{X}n\)</span> é não viciado (ou centrado) para <span class="math inline">\(\mu\)</span>. A primeira condição para a consistência (<span class="math inline">\(\lim{n \to \infty} E[\bar{X}_n] = \mu\)</span>) é, portanto, satisfeita trivialmente. 3. Análise da Variância O segundo passo é calcular a variância de <span class="math inline">\(\bar{X}_n\)</span> e determinar as condições para que ela convirja a zero. A variância de uma soma de variáveis correlacionadas é dada por:</p>
+<p><span class="math display">\[
+\text{Var}\left(\sum_{i=1}^n X_i\right) = \sum_{i=1}^n \text{Var}(X_i) + \sum_{i \neq j} \text{Cov}(X_i, X_j)
+\]</span></p>
+<p>A variância de <span class="math inline">\(\bar{X}n\)</span> é:</p>
+<p><span class="math display">\[
+\text{Var}\left(\bar{X}{i=1}^n X_i \right) = \frac{1}{n^2} \text{Var}\left( \sum{i=1}^n X_i \right)
+\]</span></p>
+<p>Cálculo dos Componentes da Variância: - Variâncias Individuais (<span class="math inline">\(\text{Var}(X_i)\)</span>): O desvio padrão de cada <span class="math inline">\(X_i\)</span> é 1. Portanto, <span class="math inline">\(\text{Var}(X_i) = 1^2 = 1\)</span>. <span class="math display">\[
+\sum_{i=1}^n \text{Var}(X_i) = \sum_{i=1}^n 1 = n
+\]</span></p>
+<ul>
+<li>Covariâncias (<span class="math inline">\(\text{Cov}(X_i, X_j)\)</span>): A covariância é definida pela correlação e pelos desvios padrões: <span class="math display">\[
+\text{Cov}(X_i, X_j) = \text{Corr}(X_i, X_j) \cdot \text{DP}(X_i) \cdot \text{DP}(X_j)
+\]</span></li>
+</ul>
+<p>Dado que <span class="math inline">\(\text{Corr}(X_i, X_j) = \rho_{ij}\)</span> e <span class="math inline">\(\text{DP}(X_i) = \text{DP}(X_j) = 1\)</span>, temos:</p>
+<p><span class="math display">\[ \text{Cov}(X_i, X_j) = \rho_{ij} \cdot 1 \cdot 1 = \rho_{ij} \]</span></p>
+<p>Cálculo da Variância Total:</p>
+<p>Substituindo os componentes na fórmula da variância de <span class="math inline">\(\bar{X}n\)</span>:</p>
+<p><span class="math display">\[
+\text{Var}\left(\bar{X}{i=1}^n \text{Var}(X_i) + \sum{i \neq j} \text{Cov}(X_i, X_j) \right)
+\]</span></p>
+<p><span class="math display">\[
+\text{Var}(\bar{X}n) = \frac{1}{n^2} \left( n + \sum{i \neq j} \rho_{ij} \right)
+\]</span> 4. Determinação das Condições Suficientes Para que <span class="math inline">\(\bar{X}n\)</span> seja um estimador consistente, a segunda condição necessária é <span class="math inline">\(\lim{n \to \infty} \text{Var}(\bar{X}_n) = 0\)</span>.</p>
+<p><span class="math display">\[
+\lim_{n \to \infty} \text{Var}(\bar{X}n) = \lim{n \to \infty} \frac{1}{n^2} \left( n + \sum_{i \neq j} \rho_{ij} \right)
+\]</span> Podemos separar os termos:</p>
+<p><span class="math display">\[
+\lim_{n \to \infty} \left( \frac{1}{n} + \frac{1}{n^2} \sum_{i \neq j} \rho_{ij} \right)
+\]</span></p>
+<p>Como <span class="math inline">\(\lim_{n \to \infty} \frac{1}{n} = 0\)</span>, a convergência da variância a zero depende exclusivamente da convergência do termo de correlação:</p>
+<p><span class="math display">\[
+\lim_{n \to \infty} \frac{1}{n^2} \sum_{i \neq j} \rho_{ij} = 0
+\]</span></p>
+<p>Condições Suficientes Finais:</p>
+<p>A média amostral <span class="math inline">\(\bar{X}_n\)</span> já satisfaz a condição de não viés [<span class="math inline">\(E[\bar{X}_n] = \mu\)</span>], portanto, a condição suficiente para que <span class="math inline">\(\bar{X}_n\)</span> seja um estimador consistente para <span class="math inline">\(\mu\)</span> é que o termo médio das covariâncias (correlações) convirja para zero: <span class="math display">\[ \lim_{n \to \infty} \frac{1}{n^2} \sum_{i \neq j} \rho_{ij} = 0
+\]</span></p>
+<p>Essa condição garante que a influência das correlações entre os pares de observações se torne desprezível em relação ao tamanho total da amostra quando <span class="math inline">\(n\)</span> é grande. Se essa condição for satisfeita, o <span class="math inline">\(\text{EQM}\)</span> se anula assintoticamente, resultando na consistência do estimador <span class="math inline">\(\bar{X}_n\)</span> para <span class="math inline">\(\mu\)</span>.</p>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<p>O Exercício 2 da prova exige a demonstração da consistência do Estimador de Densidade por Kernel (KDE), <span class="math inline">\(\hat{f}(x)\)</span>, para a densidade real <span class="math inline">\(f(x)\)</span> em qualquer ponto de continuidade <span class="math inline">\(x\)</span>. Mostrar que <span class="math inline">\(\hat{f}(x) \stackrel{P}{\to} f(x)\)</span> significa provar a convergência em probabilidade. A maneira mais detalhada e padrão de demonstrar a consistência para um estimador é provar que o seu Erro Quadrático Médio (EQM) converge para zero:</p>
+<p><span class="math display">\[
+\text{EQM}[\hat{f}(x)] = \text{Var}[\hat{f}(x)] + \left(\text{Bias}[\hat{f}(x)]\right)^2
+\]</span></p>
+<p>Onde <span class="math inline">\(\text{Bias}[\hat{f}(x)] = E[\hat{f}(x)] - f(x)\)</span>. O enunciado do exercício fornece as condições essenciais para a prova: 1. Amostra aleatória simples <span class="math inline">\(X_1, \ldots, X_n\)</span>. 2. A densidade <span class="math inline">\(f(x)\)</span> é limitada, <span class="math inline">\(|f|_{\infty} \leq M &lt; \infty\)</span>. 3. O bandwidth (largura de banda) <span class="math inline">\(h_n\)</span> satisfaz <span class="math inline">\(h_n &gt; 0\)</span>, <span class="math inline">\(h_n \downarrow 0\)</span>, e <span class="math inline">\(nh_n \uparrow \infty\)</span> à medida que <span class="math inline">\(n\)</span> aumenta. 4. O Kernel <span class="math inline">\(K \in L^2(\mathbb{R})\)</span> é não negativo, simétrico em torno de zero, e tem as propriedades de uma função de densidade (ou seja, <span class="math inline">\(\int K(u) du = 1\)</span> e <span class="math inline">\(\int u K(u) du = 0\)</span> devido à simetria).</p>
+<p>A solução detalhada consiste em analisar separadamente o viés (Bias) e a variância (Var):</p>
+<ol type="1">
+<li>Análise do Viés (Bias) O viés do estimador <span class="math inline">\(\hat{f}(x)\)</span> deve convergir para zero, o que é garantido pela condição <span class="math inline">\(h_n \downarrow 0\)</span>. Cálculo da Esperança <span class="math inline">\(E[\hat{f}(x)]\)</span>: Devido à amostra ser simples (IID), a esperança é dada por:</li>
+</ol>
+<p><span class="math display">\[
+E[\hat{f}(x)] = E\left[\frac{1}{nh_n} \sum_{i=1}^n K\left(\frac{x-X_i}{h_n}\right)\right] = \frac{1}{h_n} E\left[K\left(\frac{x-X_1}{h_n}\right)\right]
+\]</span> Aplicando a esperança em termos da integral da densidade <span class="math inline">\(f(y)\)</span>:</p>
+<p><span class="math display">\[
+E[\hat{f}(x)] = \frac{1}{h_n} \int_{-\infty}^{\infty} K\left(\frac{x-y}{h_n}\right) f(y) dy
+\]</span></p>
+<p>Utilizando a substituição <span class="math inline">\(u = \frac{x-y}{h_n}\)</span> (onde <span class="math inline">\(y = x - h_n u\)</span> e <span class="math inline">\(dy = -h_n du\)</span>):</p>
+<p><span class="math display">\[
+E[\hat{f}(x)] = \int_{-\infty}^{\infty} K(u) f(x - h_n u) du
+\]</span></p>
+<p>Converência da Esperança: Como <span class="math inline">\(h_n \to 0\)</span> e <span class="math inline">\(x\)</span> é um ponto de continuidade de <span class="math inline">\(f\)</span>, para <span class="math inline">\(n\)</span> grande, <span class="math inline">\(f(x - h_n u) \approx f(x)\)</span>.</p>
+<p><span class="math display">\[
+\lim_{n \to \infty} E[\hat{f}(x)] = \int_{-\infty}^{\infty} K(u) f(x) du = f(x) \int_{-\infty}^{\infty} K(u) du
+\]</span></p>
+<p>Como <span class="math inline">\(K\)</span> possui as propriedades de uma função de densidade, <span class="math inline">\(\int K(u) du = 1\)</span>.</p>
+<p><span class="math display">\[
+\lim_{n \to \infty} E[\hat{f}(x)] = f(x)
+\]</span></p>
+<p>Portanto, o viés <span class="math inline">\(\text{Bias}[\hat{f}(x)] = E[\hat{f}(x)] - f(x)\)</span> converge para zero:</p>
+<p><span class="math display">\[
+\lim_{n \to \infty} \text{Bias}[\hat{f}(x)] = 0
+\]</span></p>
+<ol start="2" type="1">
+<li>Análise da Variância (Variance) A variância do estimador <span class="math inline">\(\hat{f}(x)\)</span> deve convergir para zero, o que é garantido pela condição <span class="math inline">\(nh_n \uparrow \infty\)</span>. Cálculo da Variância <span class="math inline">\(\text{Var}[\hat{f}(x)]\)</span>: Como <span class="math inline">\(X_i\)</span> são independentes (amostra aleatória simples):</li>
+</ol>
+<p><span class="math display">\[
+\text{Var}[\hat{f}(x)] = \frac{1}{n^2 h_n^2} \sum_{i=1}^n \text{Var}\left[K\left(\frac{x-X_i}{h_n}\right)\right] = \frac{1}{n h_n^2} \text{Var}\left[K\left(\frac{x-X_1}{h_n}\right)\right]
+\]</span></p>
+<p>Onde <span class="math inline">\(\text{Var}\left[K\left(\frac{x-X_1}{h_n}\right)\right] = E\left[K^2\left(\frac{x-X_1}{h_n}\right)\right] - \left(E\left[K\left(\frac{x-X_1}{h_n}\right)\right]\right)^2\)</span>.</p>
+<p>O segundo termo <span class="math inline">\(\left(E\left[K\left(\frac{x-X_1}{h_n}\right)\right]\right)^2 \approx (h_n f(x))^2\)</span> é de ordem <span class="math inline">\(O(h_n^2)\)</span>. O primeiro termo <span class="math inline">\(E\left[K^2\left(\frac{x-X_1}{h_n}\right)\right]\)</span> é dado pela integral: <span class="math display">\[
+E\left[K^2\left(\frac{x-X_1}{h_n}\right)\right] = \int_{-\infty}^{\infty} K^2\left(\frac{x-y}{h_n}\right) f(y) dy
+\]</span></p>
+<p>Usando a substituição <span class="math inline">\(u = \frac{x-y}{h_n}\)</span>:</p>
+<p><span class="math display">\[
+E\left[K^2\left(\frac{x-X_1}{h_n}\right)\right] = h_n \int_{-\infty}^{\infty} K^2(u) f(x - h_n u) du
+\]</span></p>
+<p>Para <span class="math inline">\(n \to \infty\)</span> (e, portanto, <span class="math inline">\(h_n \to 0\)</span>): <span class="math display">\[
+\lim_{n \to \infty} E\left[K^2\left(\frac{x-X_1}{h_n}\right)\right] \approx h_n f(x) \int_{-\infty}^{\infty} K^2(u) du
+\]</span> Como <span class="math inline">\(K \in L^2(\mathbb{R})\)</span>, a integral <span class="math inline">\(\int K^2(u) du = C &lt; \infty\)</span>. Portanto, <span class="math inline">\(E\left[K^2\left(\frac{x-X_1}{h_n}\right)\right]\)</span> é de ordem <span class="math inline">\(O(h_n)\)</span>. Substituindo de volta na expressão da variância: <span class="math display">\[
+\text{Var}[\hat{f}(x)] \approx \frac{1}{n h_n^2} \left( O(h_n) - O(h_n^2) \right) = \frac{1}{n h_n} O(1)
+\]</span></p>
+<p>Convergência da Variância: O limite superior da variância é:</p>
+<p><span class="math display">\[
+\lim_{n \to \infty} \text{Var}[\hat{f}(x)] \leq \lim_{n \to \infty} \frac{M C}{n h_n}
+\]</span></p>
+<p>Dado que <span class="math inline">\(nh_n \uparrow \infty\)</span> e <span class="math inline">\(M\)</span> e <span class="math inline">\(C\)</span> são finitos (<span class="math inline">\(M &lt; \infty\)</span> e <span class="math inline">\(K \in L^2(\mathbb{R})\)</span>), a variância converge para zero:</p>
+<p><span class="math display">\[ \lim_{n \to \infty} \text{Var}[\hat{f}(x)] = 0
+\]</span></p>
+<ol start="3" type="1">
+<li>Conclusão da Consistência Como demonstramos que o viés converge para zero e a variância converge para zero:</li>
+</ol>
+<p><span class="math display">\[
+\lim_{n \to \infty} \text{EQM}[\hat{f}(x)] = \lim_{n \to \infty} \text{Var}[\hat{f}(x)] + \lim_{n \to \infty} \left(\text{Bias}[\hat{f}(x)]\right)^2 = 0 + 0 = 0
+\]</span></p>
+<p>Se o EQM converge para zero, isso implica que o estimador <span class="math inline">\(\hat{f}(x)\)</span> é consistente para <span class="math inline">\(f(x)\)</span> em qualquer ponto de continuidade <span class="math inline">\(x\)</span>, ou seja, <span class="math inline">\(\hat{f}(x) \stackrel{P}{\to} f(x)\)</span>.</p>
+</div>
+<div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
+<section id="solução-1" class="level2">
+<h2 class="anchored" data-anchor-id="solução-1">Solução 1</h2>
+<p>O Exercício 3 solicita que se estabeleça uma relação assintótica entre a Divergência de Rényi de ordem <span class="math inline">\(\alpha\)</span> (<span class="math inline">\(R_\alpha\)</span>) e a estatística Qui-quadrado (<span class="math inline">\(\chi^2\)</span>), utilizando o Método Delta.</p>
+<p>O Método Delta é uma técnica utilizada na teoria de grandes amostras para encontrar a distribuição assintótica de uma função de um estimador, baseando-se na expansão de Taylor de primeira ou segunda ordem da função em torno do valor verdadeiro do parâmetro.</p>
+<p>Definições e Contexto</p>
+<p>As duas estatísticas são definidas como:</p>
+<ol type="1">
+<li>Estatística Qui-quadrado (<span class="math inline">\(\chi^2\)</span>):</li>
+</ol>
+<p><span class="math display">\[
+\chi^2 = n \sum_{k=1}^m \frac{(\hat{p}_k - p_k)^2}{p_k}
+\]</span></p>
+<p>Onde <span class="math inline">\(n\)</span> é o tamanho da amostra, <span class="math inline">\(\hat{p}_k\)</span> é a distribuição empírica e <span class="math inline">\(p_k\)</span> é a distribuição hipotética. Para <span class="math inline">\(n\)</span> grande, <span class="math inline">\(\chi^2\)</span> segue aproximadamente uma distribuição qui-quadrado com <span class="math inline">\(m-1\)</span> graus de liberdade.</p>
+<ol start="2" type="1">
+<li>Divergência de Rényi de ordem <span class="math inline">\(\alpha\)</span> (<span class="math inline">\(R_\alpha\)</span>): <span class="math display">\[R_\alpha = \frac{1}{\alpha- 1} \log \left( \sum_{k=1}^m p_k^\alpha \hat{p}_k^{1-\alpha} \right)
+\]</span></li>
+</ol>
+<p>Onde <span class="math inline">\(\alpha &gt; 0\)</span>.</p>
+<p>Relação Assintótica Utilizando a Expansão de Taylor (Método Delta)</p>
+<p>O objetivo é encontrar uma aproximação de <span class="math inline">\(R_\alpha\)</span> em termos de <span class="math inline">\(\chi^2\)</span> para <span class="math inline">\(n \to \infty\)</span>. Como <span class="math inline">\(\hat{p}_k\)</span> converge em probabilidade para <span class="math inline">\(p_k\)</span> (dado que <span class="math inline">\(\hat{p}_k\)</span> é uma distribuição empírica baseada em uma amostra aleatória simples), podemos expandir a função de interesse em torno de <span class="math inline">\(p_k\)</span>.</p>
+<p>Seja <span class="math inline">\(S = \sum_{k=1}^m p_k^\alpha \hat{p}_k^{1-\alpha}\)</span>. Queremos encontrar uma aproximação de <span class="math inline">\(S\)</span> usando a diferença <span class="math inline">\(\hat{p}_k - p_k\)</span>.</p>
+<p>Passo 1: Expansão de Taylor para <span class="math inline">\(S\)</span></p>
+<p>Reescrevemos <span class="math inline">\(S\)</span> usando <span class="math inline">\(\hat{p}k = p_k (1 + \delta_k)\)</span>, onde</p>
+<p><span class="math display">\[
+\delta_k = \hat{p}{k=1}^m p_k^\alpha \hat{p}{k=1}^m p_k^\alpha (p_k (1 + \delta_k))^{1-\alpha} = \sum{k=1}^m p_k (1 + \delta_k)^{1-\alpha}
+\]</span></p>
+<p>Usamos a expansão binomial generalizada <span class="math inline">\((1+x)^\beta \approx 1 + \beta x + \frac{\beta(\beta-1)}{2} x^2\)</span> para a parte <span class="math inline">\((1 + \delta_k)^{1-\alpha}\)</span>, onde <span class="math inline">\(\beta = 1-\alpha\)</span> e <span class="math inline">\(x = \delta_k\)</span>: <span class="math display">\[
+(1 + \delta_k)^{1-\alpha} \approx 1 + (1-\alpha) \delta_k + \frac{(1-\alpha)(1-\alpha-1)}{2} \delta_k^2
+\]</span></p>
+<p><span class="math display">\[
+(1 + \delta_k)^{1-\alpha} \approx 1 + (1-\alpha) \delta_k - \frac{\alpha(1-\alpha)}{2} \delta_k^2
+\]</span></p>
+<p>Substituindo de volta em <span class="math inline">\(S\)</span>: <span class="math display">\[
+S \approx \sum_{k=1}^m p_k \left[ 1 + (1-\alpha) \delta_k - \frac{\alpha(1-\alpha)}{2} \delta_k^2 \right]
+\]</span> <span class="math display">\[
+S \approx \sum_{k=1}^m p_k + (1-\alpha) \sum_{k=1}^m p_k \delta_k - \frac{\alpha(1-\alpha)}{2} \sum_{k=1}^m p_k \delta_k^2
+\]</span></p>
+<p>Passo 2: Simplificação dos termos</p>
+<ol type="1">
+<li><span class="math inline">\(\sum_{k=1}^m p_k = 1\)</span>.</li>
+<li><span class="math inline">\(\sum_{k=1}^m p_k \delta_k = \sum_{k=1}^m p_k \frac{\hat{p}k - p_k}{p_k} = \sum{k=1}^m (\hat{p}k - p_k) = \sum{k=1}^m \hat{p}k - \sum{k=1}^m p_k = 1 - 1 = 0\)</span>. (O termo de primeira ordem cancela-se).</li>
+<li><span class="math inline">\(\sum_{k=1}^m p_k \delta_k^2 = \sum_{k=1}^m p_k \left( \frac{\hat{p}k - p_k}{p_k} \right)^2 = \sum{k=1}^m \frac{(\hat{p}_k - p_k)^2}{p_k}\)</span>.</li>
+</ol>
+<p>Substituindo na aproximação de <span class="math inline">\(S\)</span>: <span class="math display">\[ S \approx 1 - \frac{\alpha(1-\alpha)}{2} \sum_{k=1}^m \frac{(\hat{p}_k - p_k)^2}{p_k}
+\]</span></p>
+<p>Passo 3: Conexão com a estatística <span class="math inline">\(\chi^2\)</span></p>
+<p>Pela definição da estatística <span class="math inline">\(\chi^2\)</span>, temos que <span class="math inline">\(\sum_{k=1}^m \frac{(\hat{p}_k - p_k)^2}{p_k} = \frac{\chi^2}{n}\)</span>. <span class="math display">\[ S \approx 1 - \frac{\alpha(1-\alpha)}{2} \frac{\chi^2}{n} = 1 + \frac{\alpha(\alpha-1)}{2n} \chi^2
+\]</span></p>
+<p>Passo 4: Expansão de Taylor para <span class="math inline">\(\log(S)\)</span> e <span class="math inline">\(R_\alpha\)</span></p>
+<p>Para <span class="math inline">\(n\)</span> grande, <span class="math inline">\(S\)</span> está próximo de 1. Utilizamos a expansão <span class="math inline">\(\log(1+x) \approx x\)</span>. Seja <span class="math inline">\(x = \frac{\alpha(\alpha-1)}{2n} \chi^2\)</span>. <span class="math display">\[ \log(S) \approx S - 1 \approx \frac{\alpha(\alpha-1)}{2n} \chi^2
+\]</span> Agora, substituímos <span class="math inline">\(\log(S)\)</span> na fórmula de <span class="math inline">\(R_\alpha\)</span>: <span class="math display">\[ R_\alpha = \frac{1}{\alpha-1} \log(S)
+\]</span> <span class="math display">\[ R_\alpha \approx \frac{1}{\alpha-1} \left[ \frac{\alpha(\alpha-1)}{2n} \chi^2 \right]
+\]</span></p>
+<p>Relação Assintótica Final</p>
+<p>O termo <span class="math inline">\((\alpha-1)\)</span> cancela-se, resultando na seguinte relação assintótica entre <span class="math inline">\(R_\alpha\)</span> e <span class="math inline">\(\chi^2\)</span>: <span class="math display">\[ R_\alpha \approx \frac{\alpha}{2n} \chi^2
+\]</span></p>
+<p>Esta relação mostra que, assintoticamente, <span class="math inline">\(R_\alpha\)</span> é proporcional à estatística <span class="math inline">\(\chi^2\)</span> e decai na ordem de <span class="math inline">\(O(1/n)\)</span>.</p>
+<p>Nota: Como a estatística Qui-quadrado <span class="math inline">\(\chi^2\)</span> converge em distribuição para <span class="math inline">\(\chi^2_{m-1}\)</span> para <span class="math inline">\(n\)</span> grande, esta relação implica que <span class="math inline">\(\frac{2n}{\alpha} R_\alpha\)</span> também converge em distribuição para <span class="math inline">\(\chi^2_{m-1}\)</span>.</p>
+<p>Esta relação assintótica satisfaz o pedido do exercício de usar o Método Delta (baseado em expansões de Taylor) para relacionar <span class="math inline">\(R_\alpha\)</span> e <span class="math inline">\(\chi^2\)</span>.</p>
+</section>
+<section id="solução-2" class="level2">
+<h2 class="anchored" data-anchor-id="solução-2">Solução 2</h2>
+<p>pós input do artigo</p>
+<p>O exercício 3 da prova solicita o estabelecimento de uma relação assintótica entre a divergência de Rényi de ordem <span class="math inline">\(\alpha\)</span> (<span class="math inline">\(R_\alpha\)</span>) e a estatística <span class="math inline">\(\chi^2\)</span> de Pearson, utilizando o método delta. A solução baseia-se na expansão em série de potências da divergência de Rényi e na sua relação assintótica com a estatística qui-quadrado para grandes amostras, conforme detalhado nos excertos da fonte Matsushita et al.&nbsp;(2026). 1. Definição das Estatísticas e Contexto Assintótico O problema começa definindo as duas estatísticas de goodness-of-fit: 1. Estatística Qui-quadrado de Pearson (<span class="math inline">\(\chi^2\)</span>): <span class="math display">\[
+\chi^2 = n \sum_{k=1}^m \frac{(\hat{p}k - p_k)^2}{p_k}
+\]</span></p>
+<p>Para <span class="math inline">\(n\)</span> suficientemente grande, esta estatística segue aproximadamente uma distribuição qui-quadrado com <span class="math inline">\(m-1\)</span> graus de liberdade (<span class="math inline">\(\chi^2{m-1}\)</span>). 2. Divergência de Rényi de Ordem <span class="math inline">\(\alpha\)</span> (<span class="math inline">\(R_\alpha\)</span>): <span class="math display">\[
+R_\alpha = \frac{1}{\alpha - 1} \log \left( \sum_{k=1}^m p_k^\alpha \hat{p}_k^{1-\alpha} \right)
+\]</span></p>
+<p>Onde <span class="math inline">\(p_k\)</span> é a probabilidade hipotética e <span class="math inline">\(\hat{p}_k\)</span> é a distribuição de probabilidade empírica. O contexto assintótico é estabelecido sob a hipótese nula <span class="math inline">\(H_0: (N_1, \dots, N_m)' \sim \text{multinomial}(n, \mathbf{p}_0)\)</span>, onde <span class="math inline">\(\mathbf{p}_0 = (p_1, \dots, p_m)'\)</span> são as probabilidades hipotéticas. A distribuição empírica <span class="math inline">\(\hat{p}k = N_k/n\)</span> são estimadores de máxima verossimilhança (MLEs) de <span class="math inline">\(p{0,k}\)</span>. Para <span class="math inline">\(n\)</span> suficientemente grande, podemos escrever a diferença entre a probabilidade empírica e a hipotética como um termo de erro <span class="math inline">\(\epsilon_k\)</span>:</p>
+<p><span class="math display">\[
+\hat{p}k = p{0,k} + \epsilon_k
+\]</span></p>
+<p>onde <span class="math inline">\(\epsilon_k \sim N(0, p_{0,k}(1 - p_{0,k})/n)\)</span> e <span class="math inline">\(\sum_{k=1}^m \epsilon_k = 0\)</span>.</p>
+<ol start="2" type="1">
+<li>Expansão em Série da Divergência Para estabelecer a relação, consideramos a expansão assintótica da soma dentro do logaritmo da divergência de Rényi. Denotando a soma como <span class="math inline">\(A_\alpha\)</span> (usando a notação da fonte), e utilizando o fato de que <span class="math inline">\(\hat{p}k\)</span> é um estimador consistente de <span class="math inline">\(p{0,k}\)</span> para <span class="math inline">\(n\)</span> grande, fazemos uma expansão em série de potências de <span class="math inline">\(A_\alpha\)</span>: <span class="math display">\[
+A_\alpha = \sum_{k=1}^m p_{0,k}^\alpha \hat{p}k^{1-\alpha} = \sum{k=1}^m p_{0,k} \left( 1 + \frac{\epsilon_k}{p_{0,k}} \right)^{1-\alpha}
+\]</span></li>
+</ol>
+<p>(assumindo <span class="math inline">\(p_{0,k} &gt; 0\)</span>). A expansão em série do termo <span class="math inline">\(\left( 1 + \frac{\epsilon_k}{p_{0,k}} \right)^{1-\alpha}\)</span> (válida para <span class="math inline">\(|\epsilon_k/p_{0,k}| &lt; 1\)</span>) resulta, após a soma e simplificações, na seguinte relação assintótica: <span class="math display">\[
+A_\alpha = 1 + \frac{\alpha(\alpha - 1)}{2n} \chi^2 + r(\alpha, \epsilon)
+\]</span> onde <span class="math inline">\(\chi^2\)</span> é a estatística qui-quadrado de Pearson, e <span class="math inline">\(r(\alpha, \epsilon)\)</span> é o termo de resto (remainder). 3. Relação Assintótica Usando a Aproximação Logarítmica Para conectar <span class="math inline">\(A_\alpha\)</span> com <span class="math inline">\(R_\alpha\)</span>, aplicamos a definição de <span class="math inline">\(R_\alpha\)</span> e utilizamos a aproximação linear para o logaritmo: <span class="math inline">\(\ln(1 + x) \approx x\)</span>, para <span class="math inline">\(x\)</span> pequeno o suficiente. Como <span class="math inline">\(A_\alpha\)</span> é escrito como <span class="math inline">\(1 + \text{Termo Pequeno}\)</span>, aplicamos a aproximação logarítmica para <span class="math inline">\(\log(A_\alpha)\)</span>: <span class="math display">\[
+\log(A_\alpha) \approx \frac{\alpha(\alpha - 1)}{2n} \chi^2 + r(\alpha, \epsilon)
+\]</span> Substituindo na definição de <span class="math inline">\(R_\alpha\)</span> (onde <span class="math inline">\(D_\alpha\)</span> na fonte representa <span class="math inline">\(A_\alpha\)</span>): <span class="math display">\[
+R_\alpha = \frac{1}{\alpha - 1} \log(A_\alpha) \approx \frac{1}{\alpha - 1} \left[ \frac{\alpha(\alpha - 1)}{2n} \chi^2 + r(\alpha, \epsilon) \right]
+\]</span> Multiplicando por <span class="math inline">\(\frac{2n}{\alpha}\)</span>, obtemos a relação assintótica primária: <span class="math display">\[
+\frac{2n}{\alpha} R_\alpha \approx \chi^2 + \frac{2n}{\alpha(\alpha - 1)} r(\alpha, \epsilon)
+\]</span> O termo de resto (<span class="math inline">\(r(\alpha, \epsilon)\)</span>) na Equação (7) converge para zero em probabilidade quando <span class="math inline">\(n \to \infty\)</span>, pois <span class="math inline">\(n \epsilon_k^j \to 0\)</span> para <span class="math inline">\(k \geq 3\)</span>. 4. Conclusão da Relação Assintótica A relação assintótica entre <span class="math inline">\(R_\alpha\)</span> e <span class="math inline">\(\chi^2\)</span> é formalizada definindo uma estatística <span class="math inline">\(R_{\alpha, n, m}\)</span> que se comporta como a estatística <span class="math inline">\(\chi^2\)</span> de Pearson:</p>
+<p><span class="math display">\[
+R_{\alpha,n,m} = \frac{2n}{\alpha} R_\alpha
+\]</span></p>
+<p>Utilizando o Teorema de Slutsky, e dado que <span class="math inline">\(\chi^2 \xrightarrow{D} \chi^2_{m-1}\)</span> (converge em distribuição), a estatística <span class="math inline">\(R_{\alpha, n, m}\)</span> também converge em distribuição para a distribuição qui-quadrado com <span class="math inline">\(m-1\)</span> graus de liberdade:</p>
+<p><span class="math display">\[
+R_{\alpha,n,m} = \frac{2n}{\alpha} R_\alpha \xrightarrow{D} \chi^2_{m-1}, \quad \text{quando } n \to \infty
+\]</span></p>
+<p>Portanto, a relação assintótica entre <span class="math inline">\(R_\alpha\)</span> e a estatística <span class="math inline">\(\chi^2\)</span> é dada por:</p>
+<p><span class="math display">\[
+\frac{2n}{\alpha} R_\alpha \approx \chi^2
+\]</span></p>
+<p>Esta transformação da divergência de Rényi é usada como uma aproximação assintótica para o teste de bondade de ajuste, especialmente útil em cenários com categorias esparsas (baixas frequências esperadas) onde a estatística <span class="math inline">\(\chi^2\)</span> tradicional pode falhar. A precisão da aproximação geralmente melhora à medida que <span class="math inline">\(\alpha\)</span> diminui.</p>
+</section>
+</div>
+<div id="tabset-1-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-4-tab">
+<p>O Exercício 4 da prova solicita a demonstração de que a mediana amostral (<span class="math inline">\(\tilde{X}\)</span>) é um estimador consistente para a mediana populacional (<span class="math inline">\(\tilde{\mu}\)</span>), sob a condição de que a amostra aleatória simples (<span class="math inline">\(X_1, \dots, X_n\)</span>) seja retirada de uma população contínua.</p>
+<p>Estrutura do Problema e Definições</p>
+<ol type="1">
+<li><p>Mediana Populacional (<span class="math inline">\(\tilde{\mu}\)</span>): Para uma distribuição contínua com Função de Distribuição Acumulada <span class="math inline">\(F(x)\)</span>, a mediana <span class="math inline">\(\tilde{\mu}\)</span> é o ponto tal que <span class="math inline">\(F(\tilde{\mu}) = 1/2\)</span>.</p></li>
+<li><p>Mediana Amostral (<span class="math inline">\(\tilde{X}\)</span>): Sendo <span class="math inline">\(n\)</span> ímpar, a mediana amostral é definida como a estatística de ordem <span class="math inline">\(X_{([n+1]/2)}\)</span>.</p></li>
+<li><p>Consistência: A demonstração de que <span class="math inline">\(\tilde{X}\)</span> é um estimador consistente para <span class="math inline">\(\tilde{\mu}\)</span> requer mostrar que a mediana amostral converge em probabilidade para a mediana populacional (<span class="math inline">\(\tilde{X} \xrightarrow{P} \tilde{\mu}\)</span>), ou seja, para qualquer <span class="math inline">\(\epsilon &gt; 0\)</span>,</p></li>
+</ol>
+<p><span class="math display">\[
+P(|\tilde{X} - \tilde{\mu}| &lt; \epsilon) \to 1, \quad \text{quando } n \to \infty
+\]</span></p>
+<p>Demonstração da Consistência</p>
+<p>A prova utiliza a relação entre as estatísticas de ordem e a Função de Distribuição Empírica (<span class="math inline">\(F_n^*(x)\)</span>), baseando-se na distribuição binomial da contagem de observações.</p>
+<p>Seja <span class="math inline">\(\epsilon &gt; 0\)</span>. Queremos mostrar que a probabilidade de <span class="math inline">\(\tilde{X}\)</span> estar fora do intervalo <span class="math inline">\((\tilde{\mu} - \epsilon, \tilde{\mu} + \epsilon)\)</span> tende a zero.</p>
+<p><span class="math display">\[
+P(|\tilde{X} - \tilde{\mu}| \geq \epsilon) = P(\tilde{X} \leq \tilde{\mu} - \epsilon) + P(\tilde{X} \geq \tilde{\mu} + \epsilon)
+\]</span></p>
+<p>Passo 1: Analisar o Limite Inferior <span class="math inline">\(P(\tilde{X} \leq \tilde{\mu} - \epsilon)\)</span></p>
+<p>O evento <span class="math inline">\({\tilde{X} \leq \tilde{\mu} - \epsilon}\)</span> ocorre se e somente se pelo menos <span class="math inline">\(r = (n+1)/2\)</span> das observações <span class="math inline">\(X_i\)</span> são menores ou iguais a <span class="math inline">\(x_1 = \tilde{\mu} - \epsilon\)</span>.</p>
+<ol type="1">
+<li><p>Defina a Probabilidade: Seja <span class="math inline">\(p_1 = F(x_1) = F(\tilde{\mu} - \epsilon)\)</span>. Como <span class="math inline">\(F(x)\)</span> é não decrescente e a população é contínua, se <span class="math inline">\(\epsilon &gt; 0\)</span>, então <span class="math inline">\(p_1 = F(\tilde{\mu} - \epsilon) &lt; F(\tilde{\mu}) = 1/2\)</span>.</p></li>
+<li><p>Variável de Contagem: Seja <span class="math inline">\(N_n\)</span> o número de observações na amostra que caem em <span class="math inline">\((-\infty, x_1]\)</span>. Pela definição de <span class="math inline">\(F_n^(x)\)</span>, temos que <span class="math inline">\(N_n = n F_n^(x_1)\)</span>. Como a amostra é aleatória simples (iid), <span class="math inline">\(N_n\)</span> segue uma distribuição binomial:</p></li>
+</ol>
+<p><span class="math display">\[N_n \sim \text{Binomial}(n, p_1)
+\]</span></p>
+<ol start="3" type="1">
+<li>Converência: O evento <span class="math inline">\({\tilde{X} \leq \tilde{\mu} - \epsilon}\)</span> é equivalente a <span class="math inline">\({N_n \geq r}\)</span>, onde <span class="math inline">\(r = (n+1)/2\)</span>. <span class="math display">\[P(\tilde{X} \leq \tilde{\mu} - \epsilon) = P\left( \frac{N_n}{n} \geq \frac{n+1}{2n} \right)
+\]</span></li>
+</ol>
+<p>Como <span class="math inline">\(p_1 &lt; 1/2\)</span>, a probabilidade de que a proporção amostral (<span class="math inline">\(N_n/n\)</span>) exceda <span class="math inline">\(1/2\)</span> (a mediana populacional) tende a zero à medida que <span class="math inline">\(n \to \infty\)</span>. Isso é uma aplicação do princípio da consistência (ou da Lei Fraca dos Grandes Números, inerente ao contexto de assintótica de grandes amostras). <span class="math display">\[\lim_{n \to \infty} P(\tilde{X} \leq \tilde{\mu} - \epsilon) = 0
+\]</span></p>
+<p>Passo 2: Analisar o Limite Superior <span class="math inline">\(P(\tilde{X} \geq \tilde{\mu} + \epsilon)\)</span></p>
+<p>O evento <span class="math inline">\({\tilde{X} \geq \tilde{\mu} + \epsilon}\)</span> significa que o ponto médio <span class="math inline">\(X_{([n+1]/2)}\)</span> é maior ou igual a <span class="math inline">\(x_2 = \tilde{\mu} + \epsilon\)</span>. Isso ocorre se e somente se o número de observações <span class="math inline">\(X_i\)</span> menores ou iguais a <span class="math inline">\(x_2\)</span> é menor que <span class="math inline">\((n+1)/2\)</span> (ou seja, no máximo <span class="math inline">\((n-1)/2\)</span>).</p>
+<ol type="1">
+<li><p>Defina a Probabilidade: Seja <span class="math inline">\(p_2 = F(x_2) = F(\tilde{\mu} + \epsilon)\)</span>. Como <span class="math inline">\(F(x)\)</span> é não decrescente, <span class="math inline">\(p_2 &gt; F(\tilde{\mu}) = 1/2\)</span>.</p></li>
+<li><p>Variável de Contagem: Seja <span class="math inline">\(M_n\)</span> o número de observações <span class="math inline">\(X_i \leq x_2\)</span>. <span class="math inline">\(M_n \sim \text{Binomial}(n, p_2)\)</span>.</p></li>
+<li><p>Converência: O evento <span class="math inline">\({\tilde{X} \geq \tilde{\mu} + \epsilon}\)</span> é equivalente a <span class="math inline">\({M_n \leq (n-1)/2}\)</span>.</p></li>
+</ol>
+<p><span class="math display">\[P(\tilde{X} \geq \tilde{\mu} + \epsilon) = P\left( \frac{M_n}{n} \leq \frac{n-1}{2n} \right)
+\]</span></p>
+<p>Como <span class="math inline">\(p_2 &gt; 1/2\)</span>, a probabilidade de que a proporção amostral (<span class="math inline">\(M_n/n\)</span>) seja menor ou igual a <span class="math inline">\(1/2\)</span> (a mediana populacional) tende a zero à medida que <span class="math inline">\(n \to \infty\)</span>:</p>
+<p><span class="math display">\[\lim_{n \to \infty} P(\tilde{X} \geq \tilde{\mu} + \epsilon) = 0
+\]</span></p>
+<p>Conclusão Uma vez que ambos os limites tendem a zero, a probabilidade de <span class="math inline">\(\tilde{X}\)</span> estar fora do intervalo <span class="math inline">\((\tilde{\mu} - \epsilon, \tilde{\mu} + \epsilon)\)</span> tende a zero:</p>
+<p><span class="math display">\[\lim_{n \to \infty} P(|\tilde{X} - \tilde{\mu}| \geq \epsilon) = \lim_{n \to \infty} P(\tilde{X} \leq \tilde{\mu} - \epsilon) + \lim_{n \to \infty} P(\tilde{X} \geq \tilde{\mu} + \epsilon) = 0 + 0 = 0
+\]</span></p>
+<p>Portanto, a mediana amostral <span class="math inline">\(\tilde{X}\)</span> é um estimador consistente para a mediana populacional <span class="math inline">\(\tilde{\mu}\)</span>.</p>
+</div>
+<div id="tabset-1-5" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-5-tab">
+<section id="solução-1-teórica" class="level2">
+<h2 class="anchored" data-anchor-id="solução-1-teórica">Solução 1 (teórica)</h2>
+<p>O Exercício 5 da prova requer a comparação entre o Erro Quadrático Médio (EQM) da média amostral (<span class="math inline">\(\bar{X}\)</span>) e da mediana amostral (<span class="math inline">\(\tilde{X}\)</span>) para uma população com a seguinte função densidade de probabilidade (PDF) de Pareto simétrica: <span class="math display">\[f(x) = \frac{\alpha \mu^\alpha}{2(\mu+ |x− \mu|)^{\alpha+1}}
+\]</span></p>
+<p>onde <span class="math inline">\(x \in R\)</span>, <span class="math inline">\(\mu \in R\)</span> é o parâmetro de localização/escala e <span class="math inline">\(\alpha &gt; 2\)</span> é o parâmetro de forma.</p>
+<p>A comparação é feita em termos do Erro Quadrático Médio (EQM), que para um estimador <span class="math inline">\(\delta\)</span> de um parâmetro <span class="math inline">\(\psi(\theta)\)</span> é definido como: <span class="math display">\[\text{EQM}\theta(\delta) = \text{Var}\theta(\delta) + { \text{Viés}(\delta, \psi) }^2
+\]</span></p>
+<p>O objetivo é encontrar o estimador (<span class="math inline">\(\bar{X}\)</span> ou <span class="math inline">\(\tilde{X}\)</span>) que propicie o menor EQM.</p>
+<p>Análise do Parâmetro e Viés</p>
+<ol type="1">
+<li><p>Parâmetro de Interesse: A distribuição <span class="math inline">\(f(x)\)</span> é simétrica em torno do ponto <span class="math inline">\(\mu\)</span>, pois a função depende de <span class="math inline">\(|x-\mu|\)</span>. Em distribuições simétricas, a média populacional (<span class="math inline">\(E[X]\)</span>) é igual à mediana populacional (<span class="math inline">\(\tilde{\mu}\)</span>), e ambos são iguais ao centro de simetria <span class="math inline">\(\mu\)</span>.</p></li>
+<li><p>Média Amostral (<span class="math inline">\(\bar{X}\)</span>): A média amostral é um estimador não viesado (unbiased) para a média populacional (<span class="math inline">\(\mu\)</span>), assumindo que a média existe. Portanto, <span class="math inline">\(\text{Viés}(\bar{X}, \mu) = 0\)</span>.</p></li>
+<li><p>Mediana Amostral (<span class="math inline">\(\tilde{X}\)</span>): A mediana amostral é um estimador consistente para a mediana populacional (<span class="math inline">\(\tilde{\mu}\)</span>). Como <span class="math inline">\(\tilde{\mu} = \mu\)</span>, <span class="math inline">\(\tilde{X}\)</span> é assintoticamente não viesado para <span class="math inline">\(\mu\)</span>.</p></li>
+</ol>
+<p>Para grandes amostras, o EQM é dominado pela variância do estimador, uma vez que o termo de viés é nulo (para <span class="math inline">\(\bar{X}\)</span>) ou tende a zero (para <span class="math inline">\(\tilde{X}\)</span>). Portanto, a escolha do melhor estimador se baseia na comparação das suas variâncias assintóticas: <span class="math display">\[\text{EQM}(\delta) \approx \text{Var}(\delta)
+\]</span></p>
+<ol start="2" type="1">
+<li>Análise da Existência da Variância</li>
+</ol>
+<p>A decisão sobre qual estimador é superior depende crucialmente da existência ou não da variância populacional (<span class="math inline">\(\sigma^2\)</span>).</p>
+<p>A distribuição de Pareto padrão exige que o parâmetro de forma (denotado como <span class="math inline">\(\beta\)</span> na fonte) seja maior que <span class="math inline">\(n\)</span> para que o momento de ordem <span class="math inline">\(n\)</span> exista.</p>
+<p>No caso da PDF fornecida:</p>
+<ul>
+<li>A condição dada é <span class="math inline">\(\mathbf{\alpha &gt; 2}\)</span>.</li>
+<li>Como <span class="math inline">\(\alpha &gt; 2\)</span>, a variância populacional existe e é finita. Se <span class="math inline">\(\alpha\)</span> estivesse no intervalo <span class="math inline">\(1 &lt; \alpha \leq 2\)</span>, a variância seria infinita, mas o problema restringe <span class="math inline">\(\alpha\)</span> para que <span class="math inline">\(\sigma^2 &lt; \infty\)</span>.</li>
+</ul>
+<ol start="3" type="1">
+<li>Comparação de Eficiência</li>
+</ol>
+<p>Em estatística, para distribuições onde a variância populacional (<span class="math inline">\(\sigma^2\)</span>) é finita (o que é garantido pela condição <span class="math inline">\(\alpha &gt; 2\)</span>), a média amostral (<span class="math inline">\(\bar{X}\)</span>) é geralmente o estimador mais eficiente para o parâmetro de localização <span class="math inline">\(\mu\)</span>.</p>
+<p>A eficiência do estimador (e, consequentemente, o EQM) está relacionada ao grau em que a distribuição é “pesada” nas caudas.</p>
+<ol type="1">
+<li><p>Se a variância é finita (<span class="math inline">\(\alpha &gt; 2\)</span>): A média amostral converge para a distribuição normal com a menor variância possível (<span class="math inline">\(\sigma^2/n\)</span>). Nessas condições, a média amostral é o Estimador Não Viesado de Mínima Variância (UMVUE) se a família de distribuições for regular o suficiente. A média amostral é preferível porque tem menor variância assintótica que a mediana.</p></li>
+<li><p>Se a variância fosse infinita (<span class="math inline">\(\alpha \leq 2\)</span>): Neste caso, a média amostral não seria um bom estimador (sua variância seria infinita), e a mediana seria o estimador preferido (robusto).</p></li>
+</ol>
+<p>Como a condição <span class="math inline">\(\mathbf{\alpha &gt; 2}\)</span> é explicitamente dada, garantindo a finitude da variância, o estimador <span class="math inline">\(\bar{X}\)</span> (média amostral) é o que possui a menor variância assintótica e, portanto, o menor Erro Quadrático Médio.</p>
+<p>Conclusão</p>
+<p>O estimador que propicia o menor erro quadrático médio é a média amostral (<span class="math inline">\(\bar{X}\)</span>).</p>
+<p>Isso se deve ao fato de que, sob a condição de que o parâmetro de forma <span class="math inline">\(\alpha\)</span> é maior que 2, o que garante que a variância populacional existe e é finita, a média amostral se comporta como o estimador mais eficiente para o parâmetro de localização <span class="math inline">\(\mu\)</span>.</p>
+</section>
+<section id="solução-2-prática" class="level2">
+<h2 class="anchored" data-anchor-id="solução-2-prática">Solução 2 (prática)</h2>
+<p>O estimador com o menor EQM é o preferível. Assintoticamente, o EQM de um estimador <span class="math inline">\(\hat{\theta}\)</span> que é consistente para <span class="math inline">\(\theta\)</span> é dado pela sua variância, se o viés for <span class="math inline">\(O(1/n)\)</span> (desprezível para <span class="math inline">\(n\)</span> grande).</p>
+<p><span class="math display">\[
+\text{EQM}(\hat{\theta}) = \text{Var}(\hat{\theta}) + [\text{Viés}(\hat{\theta})]^2
+\]</span></p>
+<p>A população é dada pela densidade Pareto Simétrica: <span class="math display">\[
+f(x) = \frac{\alpha \mu^\alpha}{2(\mu + |x - \mu|)^{\alpha+1}}
+\]</span> com <span class="math inline">\(x \in \mathbb{R}\)</span>, <span class="math inline">\(\mu \in \mathbb{R}\)</span>, <span class="math inline">\(\alpha &gt; 2\)</span>.</p>
+<p>Como esta densidade é simétrica em torno de <span class="math inline">\(\mu\)</span>, a média populacional e a mediana populacional são ambas iguais a <span class="math inline">\(\mu\)</span>.</p>
+<ol type="1">
+<li>Viés e Variância da Média Amostral (<span class="math inline">\(\bar{X}\)</span>)</li>
+</ol>
+<p>O parâmetro de interesse é <span class="math inline">\(\mu\)</span>. Como <span class="math inline">\(X_i\)</span> são i.i.d., a média amostral <span class="math inline">\(\bar{X}\)</span> é um estimador não viciado para <span class="math inline">\(\mu\)</span>, desde que a média exista.</p>
+<ul>
+<li>Viés: <span class="math inline">\(\text{Viés}(\bar{X}) = E[\bar{X}] - \mu = \mu - \mu = 0\)</span>.</li>
+<li>EQM: <span class="math inline">\(\text{EQM}(\bar{X}) = \text{Var}(\bar{X}) + 0^2 = \text{Var}(\bar{X})\)</span>.</li>
+</ul>
+<p>Para uma amostra aleatória simples de tamanho <span class="math inline">\(n\)</span>, a variância de <span class="math inline">\(\bar{X}\)</span> é: <span class="math display">\[
+\text{Var}(\bar{X}) = \frac{\sigma^2}{n}
+\]</span> onde <span class="math inline">\(\sigma^2 = \text{Var}(X)\)</span> é a variância populacional. Como <span class="math inline">\(\alpha &gt; 2\)</span>, a variância populacional existe.</p>
+<p>1.1. Cálculo da Variância Populacional (<span class="math inline">\(\sigma^2\)</span>)</p>
+<p>Para a densidade simétrica <span class="math inline">\(f(x)\)</span> em torno de <span class="math inline">\(\mu\)</span>, <span class="math inline">\(\sigma^2 = E[(X - \mu)^2]\)</span>. Seja <span class="math inline">\(Y = |X - \mu|\)</span>. A densidade de <span class="math inline">\(Y\)</span> (para <span class="math inline">\(y \geq 0\)</span>) é <span class="math inline">\(f_Y(y) = 2f(\mu + y)\)</span>: <span class="math display">\[
+f_Y(y) = 2 \cdot \frac{\alpha \mu^\alpha}{2(\mu + y)^{\alpha+1}} = \frac{\alpha \mu^\alpha}{(\mu + y)^{\alpha+1}}, \quad y \geq 0
+\]</span></p>
+<p>A variância é <span class="math display">\[
+\sigma^2 = E[Y^2] = \int_0^\infty y^2 f_Y(y) dy = \alpha \mu^\alpha \int_0^\infty \frac{y^2}{(\mu + y)^{\alpha+1}} dy
+\]</span></p>
+<p>Usando a substituição <span class="math inline">\(z = \mu + y\)</span>, obtemos (como detalhado no raciocínio, integrando termo a termo e assumindo <span class="math inline">\(\alpha &gt; 2\)</span>): <span class="math display">\[
+\sigma^2 = \frac{(\alpha - 1)(\alpha - 2)}{2} \mu^2
+\]</span></p>
+<p>1.2. Resultado para o EQM da Média Amostral</p>
+<p><span class="math display">\[
+\text{EQM}(\bar{X}) \approx \text{Var}(\bar{X}) = \frac{\sigma^2}{n} = \frac{(\alpha - 1)(\alpha - 2)}{2n} \mu^2
+\]</span></p>
+<ol start="2" type="1">
+<li>Viés e Variância da Mediana Amostral (<span class="math inline">\(\tilde{X}\)</span>)</li>
+</ol>
+<p>A mediana amostral <span class="math inline">\(\tilde{X}\)</span> é um estimador consistente para a mediana populacional <span class="math inline">\(\mu\)</span>. Para distribuições contínuas, <span class="math inline">\(\tilde{X}\)</span> é assintoticamente não viciado.</p>
+<ul>
+<li>Viés: <span class="math inline">\(\text{Viés}(\tilde{X}) \approx 0\)</span> (assintoticamente).</li>
+<li>EQM: <span class="math inline">\(\text{EQM}(\tilde{X}) \approx \text{Var}(\tilde{X})\)</span>.</li>
+</ul>
+<p>Para <span class="math inline">\(n\)</span> grande, a variância assintótica da mediana amostral <span class="math inline">\(\tilde{X}\)</span> é dada pelo método delta: <span class="math display">\[
+\text{Var}(\tilde{X}) \approx \frac{1}{4n [f(\mu)]^2}
+\]</span> onde <span class="math inline">\(f(\mu)\)</span> é a função densidade de probabilidade avaliada na mediana (que é <span class="math inline">\(\mu\)</span>).</p>
+<p>2.1. Cálculo de <span class="math inline">\(f(\mu)\)</span></p>
+<p>Usando a densidade fornecida: <span class="math display">\[
+f(\mu) = \frac{\alpha \mu^\alpha}{2(\mu + |\mu - \mu|)^{\alpha+1}} = \frac{\alpha \mu^\alpha}{2\mu^{\alpha+1}} = \frac{\alpha}{2\mu}
+\]</span></p>
+<p>2.2. Resultado para o EQM da Mediana Amostral</p>
+<p>Substituindo <span class="math inline">\(f(\mu)\)</span> na fórmula da variância: <span class="math display">\[
+\text{EQM}(\tilde{X}) \approx \text{Var}(\tilde{X}) = \frac{1}{4n} \left( \frac{2\mu}{\alpha} \right)^2 = \frac{\mu^2}{n \alpha^2}
+\]</span></p>
+<ol start="3" type="1">
+<li>Comparação dos EQMs</li>
+</ol>
+<p>Comparamos os resultados assintóticos para <span class="math inline">\(n\)</span> grande: <span class="math display">\[
+\text{EQM}(\bar{X}) \approx \frac{(\alpha - 1)(\alpha - 2)}{2n} \mu^2
+\]</span> <span class="math display">\[
+\text{EQM}(\tilde{X}) \approx \frac{\mu^2}{n \alpha^2}
+\]</span></p>
+<p>Para determinar qual é menor, comparamos os fatores constantes multiplicativos (excluindo <span class="math inline">\(\mu^2/n\)</span>):</p>
+<p><span class="math display">\[
+C_{\bar{X}} = \frac{(\alpha - 1)(\alpha - 2)}{2}
+\]</span> <span class="math display">\[
+C_{\tilde{X}} = \frac{1}{\alpha^2}
+\]</span></p>
+<p>Calculamos a razão <span class="math display">\[
+R = \frac{C_{\tilde{X}}}{C_{\bar{X}}} = \frac{2}{\alpha^2 (\alpha - 1)(\alpha - 2)}
+\]</span></p>
+<p>Se <span class="math inline">\(R &gt; 1\)</span>, a mediana amostral (<span class="math inline">\(\tilde{X}\)</span>) tem EQM menor. Se <span class="math inline">\(R &lt; 1\)</span>, a média amostral (<span class="math inline">\(\bar{X}\)</span>) tem EQM menor.</p>
+<p>Analisamos a desigualdade <span class="math inline">\(R &gt; 1\)</span>: <span class="math display">\[
+\frac{2}{\alpha^2 (\alpha - 1)(\alpha - 2)} &gt; 1 \implies 2 &gt; \alpha^2 (\alpha - 1)(\alpha - 2)
+\]</span></p>
+<p>Como <span class="math inline">\(\alpha &gt; 2\)</span>, o denominador cresce rapidamente, então para <span class="math inline">\(\alpha &gt; 2\)</span> temos <span class="math inline">\(R &lt; 1\)</span>.</p>
+<p>Portanto, para todo <span class="math inline">\(\alpha &gt; 2\)</span>, <span class="math inline">\(\text{EQM}(\tilde{X}) &lt; \text{EQM}(\bar{X})\)</span>.</p>
+<p>Conclusão</p>
+<p>Para a população Pareto Simétrica com <span class="math inline">\(\alpha &gt; 2\)</span>, o estimador de menor erro quadrático médio (EQM) é a mediana amostral, <span class="math inline">\(\tilde{X}\)</span>.</p>
+<p>Insight: Esta é uma característica comum de distribuições com caudas pesadas (como a distribuição Pareto, mesmo na forma simétrica). Embora a média amostral seja o Estimador Não Viciado de Variância Uniformemente Mínima (UMVUE) em geral, a mediana amostral é mais robusta e muitas vezes possui uma variância assintótica menor do que a média em distribuições onde a eficiência da média é comprometida por caudas pesadas.</p>
+</section>
+</div>
+<div id="tabset-1-6" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-6-tab">
+<p>O Exercício 6 solicita a comparação dos Erros Quadráticos Médios (EQMs) de dois estimadores da variância populacional <span class="math inline">\(\sigma^2\)</span> baseados em uma amostra aleatória simples <span class="math inline">\(X_1, \dots, X_n\)</span> retirada de uma distribuição normal <span class="math inline">\(N(\mu, \sigma^2)\)</span>. Os estimadores são:</p>
+<ol type="1">
+<li><p>Variância Amostral Não Viesada (<span class="math inline">\(S^2\)</span>): <span class="math display">\[S^2 = \frac{1}{n-1} \sum_{i=1}^n(X_i - \bar{X})^2
+\]</span></p></li>
+<li><p>Variância Amostral Viesada (<span class="math inline">\(V^2\)</span>): <span class="math display">\[V^2 = \frac{1}{n} \sum_{i=1}^n(X_i - \bar{X})^2
+\]</span></p></li>
+</ol>
+<p>O Erro Quadrático Médio (EQM) de um estimador <span class="math inline">\(\delta\)</span> de um parâmetro <span class="math inline">\(\psi(\theta)\)</span> é definido como a soma da sua variância e do seu viés ao quadrado: <span class="math display">\[\text{EQM}(\delta) = \text{Var}(\delta) + {\text{Viés}(\delta)}^2
+\]</span></p>
+<ol type="1">
+<li>Relação Fundamental</li>
+</ol>
+<p>Para uma amostra <span class="math inline">\(X_1, \dots, X_n\)</span> retirada de <span class="math inline">\(N(\mu, \sigma^2)\)</span>, a estatística <span class="math inline">\((n-1)S^2/\sigma^2\)</span> segue uma distribuição qui-quadrado com <span class="math inline">\(n-1\)</span> graus de liberdade, <span class="math inline">\(\chi^2(n-1)\)</span>.</p>
+<p>A partir dessa propriedade, o EQM de ambos os estimadores pode ser calculado. Note que <span class="math inline">\(V^2\)</span> pode ser reescrito em função de <span class="math inline">\(S^2\)</span>: <span class="math display">\[V^2 = \frac{n-1}{n} S^2
+\]</span></p>
+<ol start="2" type="1">
+<li>Análise do Estimador <span class="math inline">\(S^2\)</span></li>
+</ol>
+<p><span class="math inline">\(S^2\)</span> é o estimador não viesado (unbiased) de <span class="math inline">\(\sigma^2\)</span>. A. Viés</p>
+<p>O viés é zero. <span class="math display">\[E[S^2] = \sigma^2
+\]</span></p>
+<p><span class="math display">\[\text{Viés}(S^2) = E[S^2] - \sigma^2 = \sigma^2 - \sigma^2 = 0
+\]</span></p>
+<p>B. Variância</p>
+<p>A fonte estabelece que <span class="math inline">\(\text{var}(S^2/\sigma^2) = 2/(n-1)\)</span>. <span class="math display">\[\text{Var}(S^2) = \sigma^4 \cdot \text{Var}\left(\frac{(n-1)S^2}{\sigma^2} \cdot \frac{1}{n-1}\right) = \sigma^4 \cdot \frac{1}{(n-1)^ 2} \text{Var}\left(\chi^2(n-1)\right)
+\]</span></p>
+<p>Utilizando a propriedade dada: <span class="math display">\[\text{Var}(S^2) = \sigma^4 \cdot \frac{2}{n-1}
+\]</span></p>
+<p>C. EQM de <span class="math inline">\(S^2\)</span> <span class="math display">\[\mathbf{EQM(S^2)} = \text{Var}(S^2) + 0^2 = \mathbf{\frac{2\sigma^4}{n-1}}
+\]</span></p>
+<ol start="3" type="1">
+<li>Análise do Estimador <span class="math inline">\(V^2\)</span></li>
+</ol>
+<p><span class="math inline">\(V^2\)</span> é o estimador de máxima verossimilhança (MLE) de <span class="math inline">\(\sigma^2\)</span> (Embora a fonte não o nomeie explicitamente, <span class="math inline">\(V^2\)</span> é o MLE padrão para <span class="math inline">\(\sigma^2\)</span> em <span class="math inline">\(N(\mu, \sigma^2)\)</span>).</p>
+<p>A. Viés</p>
+<p>Calculamos o valor esperado de <span class="math inline">\(V^2\)</span>: <span class="math display">\[E[V^2] = E\left[\frac{n-1}{n} S^2\right] = \frac{n-1}{n} E[S^2] = \frac{n-1}{n} \sigma^2
+\]</span></p>
+<p>O viés de <span class="math inline">\(V^2\)</span> é: <span class="math display">\[\text{Viés}(V^2) = E[V^2] - \sigma^2 = \frac{n-1}{n} \sigma^2 - \sigma^2 = \sigma^2 \left( \frac{n-1 - n}{n} \right) = \mathbf{-\frac{\sigma^2}{n}}
+\]</span></p>
+<p>O termo do viés ao quadrado é: <span class="math display">\[{\text{Viés}(V^2)}^2 = \left( -\frac{\sigma^2}{n} \right)^2 = \mathbf{\frac{\sigma^4}{n^2}}
+\]</span></p>
+<p>B. Variância</p>
+<p>Calculamos a variância de <span class="math inline">\(V^2\)</span> usando a relação com <span class="math inline">\(S^2\)</span>: <span class="math display">\[\text{Var}(V^2) = \text{Var}\left(\frac{n-1}{n} S^2\right) = \left( \frac{n-1}{n} \right)^2 \text{Var}(S^2)
+\]</span> <span class="math display">\[\text{Var}(V^2) = \left( \frac{n-1}{n} \right)^2 \cdot \frac{2\sigma^4}{n-1} = \mathbf{\frac{2\sigma^4 (n-1)}{n^2}}
+\]</span></p>
+<p>C. EQM de <span class="math inline">\(V^2\)</span> <span class="math display">\[\mathbf{EQM(V^2)} = \text{Var}(V^2) + {\text{Viés}(V^2)}^2
+\]</span> <span class="math display">\[EQM(V^2) = \frac{2\sigma^4 (n-1)}{n^2} + \frac{\sigma^4}{n^2}
+\]</span> <span class="math display">\[EQM(V^2) = \frac{\sigma^4}{n^2} [2(n-1) + 1] = \mathbf{\frac{\sigma^4 (2n - 1)}{n^2}}
+\]</span></p>
+<ol start="4" type="1">
+<li>Comparação dos EQMs e Vantagem</li>
+</ol>
+<p>Para determinar qual estimador é mais vantajoso, comparamos os EQMs de <span class="math inline">\(V^2\)</span> e <span class="math inline">\(S^2\)</span>: <span class="math display">\[\text{EQM}(S^2) = \frac{2\sigma^4}{n-1}
+\]</span></p>
+<p><span class="math display">\[\text{EQM}(V^2) = \frac{\sigma^4 (2n - 1)}{n^2}
+\]</span></p>
+<p>A comparação se resume a verificar qual dos denominadores normalizados é maior: <span class="math display">\[\frac{EQM(S^2)}{\sigma^4} = \frac{2}{n-1}
+\]</span> <span class="math display">\[\frac{EQM(V^2)}{\sigma^4} = \frac{2n - 1}{n^2}
+\]</span></p>
+<p>Para <span class="math inline">\(n \geq 2\)</span>, comparamos <span class="math inline">\(2n^2\)</span> e <span class="math inline">\((n-1)(2n-1)\)</span>: <span class="math display">\[2n^2 \quad \text{vs} \quad 2n^2 - 2n - n + 1
+\]</span> <span class="math display">\[2n^2 \quad \text{vs} \quad 2n^2 - 3n + 1
+\]</span> Como <span class="math inline">\(2n^2 &gt; 2n^2 - 3n + 1\)</span> (uma vez que <span class="math inline">\(3n - 1 &gt; 0\)</span> para <span class="math inline">\(n \geq 1\)</span>), o EQM de <span class="math inline">\(V^2\)</span> é menor que o EQM de <span class="math inline">\(S^2\)</span>. <span class="math display">\[EQM(V^2) &lt; EQM(S^2)
+\]</span></p>
+<p>Conclusão de Vantagem</p>
+<p>O estimador <span class="math inline">\(\mathbf{V^2 = \frac{1}{n} \sum_{i=1}^n(X_i - \bar{X})^2}\)</span> propicia o menor erro quadrático médio.</p>
+<p>Embora <span class="math inline">\(V^2\)</span> seja viesado (subestima <span class="math inline">\(\sigma^2\)</span> por um fator de <span class="math inline">\((n-1)/n\)</span>), a redução na sua variância (decorrente do fator de escala <span class="math inline">\((n-1)/n\)</span> em relação a <span class="math inline">\(S^2\)</span>) é suficiente para compensar o viés introduzido, resultando em um EQM total menor do que o do estimador não viesado <span class="math inline">\(S^2\)</span>.</p>
+<p>Portanto, em termos de Erro Quadrático Médio, <span class="math inline">\(V^2\)</span> é o estimador de <span class="math inline">\(\sigma^2\)</span> mais vantajoso.</p>
+</div>
+<div id="tabset-1-7" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-7-tab">
+<p>O Exercício 7 explora as propriedades da Distribuição de Touchard, uma distribuição discreta que pode ser escrita na forma de família exponencial, permitindo a determinação de estatísticas suficientes.</p>
+<p>A Distribuição de Touchard é definida como: <span class="math display">\[
+P(X = x; \lambda, \delta, \nu) = \frac{\lambda^x(x + \nu)^\delta}{x! \tau(\lambda, \delta, \nu)}
+\]</span></p>
+<p>onde <span class="math inline">\(\lambda &gt; 0\)</span> é a taxa, <span class="math inline">\(\delta \in R\)</span> é o parâmetro de forma, <span class="math inline">\(\nu \in {1, 2, 3, \dots}\)</span> é o parâmetro de deslocamento, <span class="math inline">\(x \in \mathbb{N}\)</span> (inteiros não negativos) e <span class="math inline">\(\tau(\lambda, \delta, \nu)\)</span> é a função de normalização.</p>
+<ol type="i">
+<li>Estatística Suficiente Minimal para <span class="math inline">\(\theta_1 = (\lambda, \delta)'\)</span>, com <span class="math inline">\(\nu\)</span> Conhecido</li>
+</ol>
+<p>Para encontrar a estatística suficiente minimal, reescrevemos a função de massa de probabilidade (PMF) na forma de família exponencial.</p>
+<p>O logaritmo da PMF para uma única observação <span class="math inline">\(X=x\)</span> é: <span class="math display">\[\ln P(X=x) = x \ln \lambda + \delta \ln(x + \nu) - \ln(x!) - \ln \tau(\lambda, \delta, \nu)
+\]</span></p>
+<p>Para uma amostra aleatória simples <span class="math inline">\(\mathbf{X} = (X_1, \dots, X_n)\)</span>, o logaritmo da função de verossimilhança <span class="math inline">\(L(\theta_1; \mathbf{x})\)</span> é a soma dos logaritmos: <span class="math display">\[\ln L(\theta_1; \mathbf{x}) = \sum_{i=1}^n \left[ x_i \ln \lambda + \delta \ln(x_i + \nu) \right] - n \ln \tau(\lambda, \delta, \nu) - \sum_{i=1}^n \ln(x_i!)
+\]</span></p>
+<p>Colocando na forma canônica da família exponencial: <span class="math display">\[f_{\theta_1}(\mathbf{x}) = \exp \left{ \underbrace{(\ln \lambda)}{Q_1(\theta_1)} \underbrace{\sum{i=1}^n x_i}{T_1(\mathbf{x})} + \underbrace{\delta}{Q_2(\theta_1)} \underbrace{\sum_{i=1}^n \ln(x_i + \nu)}{T_2(\mathbf{x})} + \underbrace{\left[-n \ln \tau(\lambda, \delta, \nu)\right]}{D(\theta_1)} + \underbrace{\left[-\sum_{i=1}^n \ln(x_i!)\right]}_{S(\mathbf{x})} \right}
+\]</span></p>
+<ol type="1">
+<li>Forma da Família Exponencial: A distribuição de Touchard é uma família exponencial de dois parâmetros com:
+<ul>
+<li><span class="math inline">\(Q_1(\lambda, \delta) = \ln \lambda\)</span> e <span class="math inline">\(Q_2(\lambda, \delta) = \delta\)</span>.</li>
+<li><span class="math inline">\(T_1(\mathbf{X}) = \sum_{i=1}^n X_i\)</span></li>
+<li><span class="math inline">\(T_2(\mathbf{X}) = \sum_{i=1}^n \ln(X_i + \nu)\)</span></li>
+</ul></li>
+<li>Estatística Suficiente Minimal: Pelo Teorema da Família Exponencial, a estatística vetorial <span class="math inline">\(\mathbf{T}(\mathbf{X})\)</span> é a estatística suficiente completa e, portanto, minimal. <span class="math display">\[\mathbf{T}(\mathbf{X}) = \left( \sum_{i=1}^n X_i, \sum_{i=1}^n \ln(X_i + \nu) \right)
+\]</span></li>
+</ol>
+<p>Nota Adicional: A fonte matsushita2018.pdf confirma este resultado para o caso particular em que <span class="math inline">\(\nu=1\)</span> (onde <span class="math inline">\(S_1 = \sum x_i\)</span> e <span class="math inline">\(S_2 = \sum \ln(x_i+1)\)</span> são suficientes pelo teorema da fatoração).</p>
+<ol start="2" type="i">
+<li>Estatística Suficiente para <span class="math inline">\(\theta_2 = (\lambda, \delta, \nu)'\)</span> Desconhecido</li>
+</ol>
+<p>Quando o parâmetro de deslocamento <span class="math inline">\(\nu\)</span> também é desconhecido, o vetor de parâmetros é <span class="math inline">\(\theta_2 = (\lambda, \delta, \nu)'\)</span>.</p>
+<p>A função de verossimilhança é: <span class="math display">\[L(\theta_2; \mathbf{x}) = \left( \prod_{i=1}^n x_i! \right)^{-1} \lambda^{\sum x_i} \cdot \prod_{i=1}^n (x_i + \nu)^\delta \cdot [\tau(\lambda, \delta, \nu)]^{-n}
+\]</span></p>
+<p>Para o Teorema da Fatoração (Factorization Criterion) ser aplicável, a verossimilhança deve ser escrita como o produto de uma função <span class="math inline">\(h(\mathbf{x})\)</span> (dependente apenas da amostra) e uma função <span class="math inline">\(g_{\theta_2}(\mathbf{T}(\mathbf{x}))\)</span> (dependente da amostra através da estatística <span class="math inline">\(\mathbf{T}(\mathbf{x})\)</span> e de <span class="math inline">\(\theta_2\)</span>).</p>
+<p>O termo <span class="math inline">\(\prod_{i=1}^n (x_i + \nu)^\delta\)</span> é problemático porque o parâmetro <span class="math inline">\(\nu\)</span> (desconhecido) está dentro da função de <span class="math inline">\(x_i\)</span> (<span class="math inline">\(\ln(x_i + \nu)\)</span>), e <span class="math inline">\(\nu\)</span> é um parâmetro discreto que assume valores <span class="math inline">\(1, 2, 3, \dots\)</span>. Tentar reescrever este termo para isolar os parâmetros resulta em estatísticas que dependem da ordem das observações ou das observações individuais.</p>
+<ol type="1">
+<li><p>Existência de Estatística Suficiente: Sim, uma estatística suficiente sempre existe: a própria estatística de ordem.</p></li>
+<li><p>Forma da Estatística: Como a função de verossimilhança é simétrica em relação às observações (ou seja, permutar <span class="math inline">\(x_i\)</span> não altera o valor de <span class="math inline">\(L\)</span>), a Estatística de Ordem <span class="math inline">\(\mathbf{X}{(\cdot)} = (X{(1)}, X_{(2)}, \dots, X_{(n)})'\)</span> é sempre uma estatística suficiente.</p></li>
+</ol>
+<p>A estatística suficiente (não necessariamente minimal) para o vetor <span class="math inline">\(\theta_2\)</span> é a estatística de ordem: <span class="math display">\[\mathbf{T}(\mathbf{X}) = (X_{(1)}, X_{(2)}, \dots, X_{(n)})'
+\]</span></p>
+<ol start="3" type="i">
+<li>Estatística Suficiente Minimal para <span class="math inline">\(\theta_3 = \lambda\)</span>, com <span class="math inline">\(\delta = 0\)</span> e <span class="math inline">\(\nu = 1\)</span></li>
+</ol>
+<p>Neste caso, a distribuição de Touchard se simplifica: <span class="math display">\[P(X = x; \lambda, 0, 1) = \frac{\lambda^x(x + 1)^0}{x! \tau(\lambda, 0, 1)} = \frac{\lambda^x}{x! \tau(\lambda)}
+\]</span></p>
+<p>O termo de normalização <span class="math inline">\(\tau(\lambda) = \sum_{k=0}^\infty \frac{\lambda^k}{k!}\)</span> é reconhecido como a expansão de <span class="math inline">\(e^\lambda\)</span>.</p>
+<p>Assim, <span class="math inline">\(P(X = x; \lambda) = \frac{\lambda^x e^{-\lambda}}{x!}\)</span>, que é a Distribuição de Poisson <span class="math inline">\(P(\lambda)\)</span>.</p>
+<p>Para uma amostra <span class="math inline">\(\mathbf{X}\)</span>, a verossimilhança é: <span class="math display">\[L(\lambda; \mathbf{x}) = \prod_{i=1}^n \frac{\lambda^{x_i} e^{-\lambda}}{x_i!} = \frac{\lambda^{\sum x_i} e^{-n\lambda}}{\prod x_i!}
+\]</span></p>
+<p>Forma da Família Exponencial (Poisson): <span class="math display">\[L(\lambda; \mathbf{x}) = \exp \left{ \underbrace{(\ln \lambda)}{Q(\lambda)} \underbrace{\sum{i=1}^n x_i}{T(\mathbf{x})} + \underbrace{(-n\lambda)}{D(\lambda)} + \underbrace{\left[-\sum_{i=1}^n \ln(x_i!)\right]}_{S(\mathbf{x})} \right}
+\]</span></p>
+<p>Como <span class="math inline">\(T(\mathbf{X}) = \sum_{i=1}^n X_i\)</span> isola o parâmetro <span class="math inline">\(\lambda\)</span>, e a Poisson pertence à família exponencial de um único parâmetro, a soma é a estatística suficiente completa.</p>
+<p>A estatística suficiente minimal para <span class="math inline">\(\lambda\)</span> é a soma amostral: <span class="math display">\[\mathbf{T}(\mathbf{X}) = \sum_{i=1}^n X_i
+\]</span></p>
+</div>
+<div id="tabset-1-8" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-8-tab">
+<p>O Exercício 8 exige a análise das propriedades de estimação e suficiência para uma amostra aleatória simples <span class="math inline">\(X_1, \dots, X_n\)</span> retirada de uma distribuição exponencial deslocada, definida pela densidade: <span class="math display">\[f_\theta(x) = \exp[-x + \theta], \quad \text{para } x &gt; \theta &gt; 0
+\]</span></p>
+<ol type="1">
+<li>Estatística Suficiente (Minimal e Completa)</li>
+</ol>
+<p>O primeiro passo é reescrever a função de verossimilhança para a amostra <span class="math inline">\(\mathbf{X} = (X_1, \dots, X_n)\)</span> na forma canônica da família exponencial, ou aplicar o Teorema da Fatoração.</p>
+<p>A densidade individual é <span class="math inline">\(f_\theta(x) = e^{-(x-\theta)} = e^{-x} e^\theta\)</span>, limitada pelo suporte <span class="math inline">\(x &gt; \theta\)</span>.</p>
+<p>A função de verossimilhança conjunta <span class="math inline">\(L(\theta; \mathbf{x})\)</span> é dada por: <span class="math display">\[L(\theta; \mathbf{x}) = \prod_{i=1}^n f_\theta(x_i) = \prod_{i=1}^n e^{-x_i} e^\theta I(X_i &gt; \theta)
+\]</span> <span class="math display">\[L(\theta; \mathbf{x}) = \left( e^{-\sum_{i=1}^n x_i} \right) \cdot \left( e^{n\theta} I(\min_i X_i &gt; \theta) \right)
+\]</span></p>
+<p>Pelo Teorema da Fatoração, onde <span class="math inline">\(L(\theta; \mathbf{x}) = h(\mathbf{x}) g_\theta(T(\mathbf{x}))\)</span>: <span class="math display">\[h(\mathbf{x}) = e^{-\sum_{i=1}^n x_i}
+\]</span> <span class="math display">\[g_\theta(T(\mathbf{x})) = e^{n\theta} I(X_{(1)} &gt; \theta)
+\]</span></p>
+<p>Onde <span class="math inline">\(X_{(1)} = \min{X_1, \dots, X_n}\)</span> é a estatística de ordem mínima.</p>
+<p>Determinação da Estatística Suficiente Minimal</p>
+<p>A estatística suficiente é dada por <span class="math inline">\(\mathbf{T}(\mathbf{X}) = X_{(1)}\)</span>. Como <span class="math inline">\(X_{(1)}\)</span> resume completamente a dependência da verossimilhança em relação ao parâmetro <span class="math inline">\(\theta\)</span>, é a estatística suficiente minimal para <span class="math inline">\(\theta\)</span>.</p>
+<p>Determinação da Estatística Completa</p>
+<p>Para demonstrar que <span class="math inline">\(T(\mathbf{X}) = X_{(1)}\)</span> é uma estatística completa, devemos mostrar que a família de distribuições de <span class="math inline">\(X_{(1)}\)</span> é completa.</p>
+<ol type="1">
+<li>Distribuição de <span class="math inline">\(X_{(1)}\)</span>: A função de distribuição acumulada (CDF) da população é <span class="math inline">\(F(x) = 1 - e^{-(x-\theta)}\)</span> para <span class="math inline">\(x &gt; \theta\)</span>. A probabilidade de <span class="math inline">\(X_{(1)} &gt; t\)</span> é: <span class="math display">\[P(X_{(1)} &gt; t) = P(X_i &gt; t, \forall i) = [1 - F(t)]^n = [e^{-(t-\theta)}]^n = e^{-n(t-\theta)}, \quad \text{para } t &gt; \theta
+\]</span></li>
+</ol>
+<p>A função densidade de probabilidade (PDF) de <span class="math inline">\(X_{(1)}\)</span> é: <span class="math display">\[f_{X_{(1)}}(t; \theta) = - \frac{d}{dt} P(X_{(1)} &gt; t) = n e^{-n(t-\theta)}, \quad \text{para } t &gt; \theta
+\]</span></p>
+<ol start="2" type="1">
+<li>Teste de Completeza: Queremos verificar se <span class="math inline">\(E_\theta[g(X_{(1)})] = 0\)</span> para todo <span class="math inline">\(\theta &gt; 0\)</span> implica <span class="math inline">\(g(t) = 0\)</span>. <span class="math display">\[E_\theta[g(X_{(1)})] = \int_\theta^\infty g(t) n e^{-n(t-\theta)} dt = 0 \quad \text{para todo } \theta &gt; 0
+\]</span></li>
+</ol>
+<p>Podemos reescrever a integral como: <span class="math display">\[n e^{n\theta} \int_\theta^\infty g(t) e^{-nt} dt = 0
+\]</span></p>
+<p>Como <span class="math inline">\(n e^{n\theta} \neq 0\)</span>, a integral deve ser zero para todo <span class="math inline">\(\theta\)</span>: <span class="math display">\[I(\theta) = \int_\theta^\infty g(t) e^{-nt} dt = 0
+\]</span></p>
+<p>Derivando <span class="math inline">\(I(\theta)\)</span> em relação a <span class="math inline">\(\theta\)</span> (usando o Teorema Fundamental do Cálculo, pois <span class="math inline">\(\theta\)</span> é o limite inferior da integral), obtemos: <span class="math display">\[\frac{d}{d\theta} I(\theta) = - g(\theta) e^{-n\theta} = 0
+\]</span></p>
+<p>Isso implica que <span class="math inline">\(g(\theta) = 0\)</span> para todo <span class="math inline">\(\theta &gt; 0\)</span>. Portanto, <span class="math inline">\(X_{(1)}\)</span> é uma estatística completa.</p>
+<ol start="2" type="1">
+<li>Independência da Estatística Suficiente e da Variância Amostral (<span class="math inline">\(S^2\)</span>)</li>
+</ol>
+<p>A variância amostral <span class="math inline">\(S^2\)</span> é definida como <span class="math inline">\(S^2 = \frac{1}{n-1} \sum_{i=1}^n(X_i - \bar{X})^2\)</span>.</p>
+<p>Para mostrar que a estatística suficiente <span class="math inline">\(X_{(1)}\)</span> é independente de <span class="math inline">\(S^2\)</span>, utilizamos o Teorema de Basu: se uma estatística <span class="math inline">\(S(\mathbf{X})\)</span> é suficiente e completa para um parâmetro <span class="math inline">\(\theta\)</span>, ela é independente de qualquer estatística ancilar <span class="math inline">\(A(\mathbf{X})\)</span>.</p>
+<p>A. <span class="math inline">\(X_{(1)}\)</span> é Estatística Suficiente Completa Já demonstramos que <span class="math inline">\(T(\mathbf{X}) = X_{(1)}\)</span> é suficiente e completa para <span class="math inline">\(\theta\)</span>.</p>
+<p>B. <span class="math inline">\(S^2\)</span> é Estatística Ancilar Uma estatística <span class="math inline">\(A(\mathbf{X})\)</span> é ancilar se sua distribuição não depende do parâmetro <span class="math inline">\(\theta\)</span>.</p>
+<p>O parâmetro <span class="math inline">\(\theta\)</span> nesta distribuição é um parâmetro de localização. Consideremos as desvios da média amostral, <span class="math inline">\(X_i - \bar{X}\)</span>. <span class="math display">\[X_i - \bar{X} = (X_i - \theta) - (\bar{X} - \theta)
+\]</span></p>
+<p>Definindo <span class="math inline">\(Y_i = X_i - \theta\)</span>. A variável <span class="math inline">\(Y_i\)</span> segue uma distribuição Exponencial padrão (<span class="math inline">\(Y_i \sim \text{Exp}(1)\)</span>), que não depende de <span class="math inline">\(\theta\)</span>. A média amostral deslocada é <span class="math inline">\(\bar{Y} = \bar{X} - \theta\)</span>. <span class="math display">\[X_i - \bar{X} = Y_i - \bar{Y}
+\]</span></p>
+<p>A estatística <span class="math inline">\(S^2\)</span> é uma função apenas dos desvios <span class="math inline">\((X_i - \bar{X})\)</span>, que são idênticos aos desvios <span class="math inline">\((Y_i - \bar{Y})\)</span>. <span class="math display">\[S^2 = \frac{1}{n-1} \sum_{i=1}^n(X_i - \bar{X})^2 = \frac{1}{n-1} \sum_{i=1}^n(Y_i - \bar{Y})^2
+\]</span></p>
+<p>Como <span class="math inline">\(S^2\)</span> é uma função da amostra transformada <span class="math inline">\(Y_1, \dots, Y_n\)</span>, cuja distribuição não depende de <span class="math inline">\(\theta\)</span>, <span class="math inline">\(S^2\)</span> é uma estatística ancilar para <span class="math inline">\(\theta\)</span>. <span class="math inline">\(S^2\)</span> é invariante sob transformações de translação <span class="math inline">\(X_i \to X_i + c\)</span>, o que a torna ancilar para o parâmetro de localização <span class="math inline">\(\theta\)</span>.</p>
+<p>C. Conclusão da Independência</p>
+<p>Pelo Teorema de Basu, como <span class="math inline">\(X_{(1)}\)</span> é a estatística suficiente completa e <span class="math inline">\(S^2\)</span> é uma estatística ancilar, elas são independentes. <span class="math display">\[\mathbf{X_{(1)} \text{ é independente de } S^2}
+\]</span></p>
+</div>
+</div>
+</div>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
