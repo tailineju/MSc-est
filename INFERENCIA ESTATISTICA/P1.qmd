@@ -772,7 +772,13 @@ $$\ln L(\theta_1; \mathbf{x}) = \sum_{i=1}^n \left[ x_i \ln \lambda + \delta \ln
 $$
 
 Colocando na forma canônica da família exponencial: 
-$$f_{\theta_1}(\mathbf{x}) = \exp \left{ \underbrace{(\ln \lambda)}{Q_1(\theta_1)} \underbrace{\sum{i=1}^n x_i}{T_1(\mathbf{x})} + \underbrace{\delta}{Q_2(\theta_1)} \underbrace{\sum_{i=1}^n \ln(x_i + \nu)}{T_2(\mathbf{x})} + \underbrace{\left[-n \ln \tau(\lambda, \delta, \nu)\right]}{D(\theta_1)} + \underbrace{\left[-\sum_{i=1}^n \ln(x_i!)\right]}_{S(\mathbf{x})} \right}
+$$
+f_{\theta_1}(\mathbf{x}) = \exp \left\{
+    \underbrace{(\ln \lambda)}_{Q_1(\theta_1)} \underbrace{\sum_{i=1}^n x_i}_{T_1(\mathbf{x})}
+    + \underbrace{\delta}_{Q_2(\theta_1)} \underbrace{\sum_{i=1}^n \ln(x_i + \nu)}_{T_2(\mathbf{x})}
+    + \underbrace{\left[-n \ln \tau(\lambda, \delta, \nu)\right]}_{D(\theta_1)}
+    + \underbrace{\left[-\sum_{i=1}^n \ln(x_i!)\right]}_{S(\mathbf{x})}
+\right\}
 $$
 
 1. Forma da Família Exponencial: A distribuição de Touchard é uma família exponencial de dois parâmetros com:
@@ -821,7 +827,8 @@ $$L(\lambda; \mathbf{x}) = \prod_{i=1}^n \frac{\lambda^{x_i} e^{-\lambda}}{x_i!}
 $$
 
 Forma da Família Exponencial (Poisson): 
-$$L(\lambda; \mathbf{x}) = \exp \left{ \underbrace{(\ln \lambda)}{Q(\lambda)} \underbrace{\sum{i=1}^n x_i}{T(\mathbf{x})} + \underbrace{(-n\lambda)}{D(\lambda)} + \underbrace{\left[-\sum_{i=1}^n \ln(x_i!)\right]}_{S(\mathbf{x})} \right}
+$$
+L(\lambda; \mathbf{x}) = \exp \left\{ \underbrace{(\ln \lambda)}_{Q(\lambda)} \underbrace{\sum_{i=1}^n x_i}_{T(\mathbf{x})} + \underbrace{(-n\lambda)}_{D(\lambda)} + \underbrace{\left[-\sum_{i=1}^n \ln(x_i!)\right]}_{S(\mathbf{x})} \right\}
 $$
 
 Como $T(\mathbf{X}) = \sum_{i=1}^n X_i$ isola o parâmetro $\lambda$, e a Poisson pertence à família exponencial de um único parâmetro, a soma é a estatística suficiente completa.

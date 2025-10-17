@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Tailine J. S. Nonato">
-<meta name="dcterms.date" content="2025-10-10">
+<meta name="dcterms.date" content="2025-10-12">
 
 <title>Prova 1</title>
 <style>
@@ -95,7 +95,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">October 10, 2025</p>
+      <p class="date">October 12, 2025</p>
     </div>
   </div>
   
@@ -586,7 +586,13 @@ P(X = x; \lambda, \delta, \nu) = \frac{\lambda^x(x + \nu)^\delta}{x! \tau(\lambd
 \]</span></p>
 <p>Para uma amostra aleatória simples <span class="math inline">\(\mathbf{X} = (X_1, \dots, X_n)\)</span>, o logaritmo da função de verossimilhança <span class="math inline">\(L(\theta_1; \mathbf{x})\)</span> é a soma dos logaritmos: <span class="math display">\[\ln L(\theta_1; \mathbf{x}) = \sum_{i=1}^n \left[ x_i \ln \lambda + \delta \ln(x_i + \nu) \right] - n \ln \tau(\lambda, \delta, \nu) - \sum_{i=1}^n \ln(x_i!)
 \]</span></p>
-<p>Colocando na forma canônica da família exponencial: <span class="math display">\[f_{\theta_1}(\mathbf{x}) = \exp \left{ \underbrace{(\ln \lambda)}{Q_1(\theta_1)} \underbrace{\sum{i=1}^n x_i}{T_1(\mathbf{x})} + \underbrace{\delta}{Q_2(\theta_1)} \underbrace{\sum_{i=1}^n \ln(x_i + \nu)}{T_2(\mathbf{x})} + \underbrace{\left[-n \ln \tau(\lambda, \delta, \nu)\right]}{D(\theta_1)} + \underbrace{\left[-\sum_{i=1}^n \ln(x_i!)\right]}_{S(\mathbf{x})} \right}
+<p>Colocando na forma canônica da família exponencial: <span class="math display">\[
+f_{\theta_1}(\mathbf{x}) = \exp \left\{
+    \underbrace{(\ln \lambda)}_{Q_1(\theta_1)} \underbrace{\sum_{i=1}^n x_i}_{T_1(\mathbf{x})}
+    + \underbrace{\delta}_{Q_2(\theta_1)} \underbrace{\sum_{i=1}^n \ln(x_i + \nu)}_{T_2(\mathbf{x})}
+    + \underbrace{\left[-n \ln \tau(\lambda, \delta, \nu)\right]}_{D(\theta_1)}
+    + \underbrace{\left[-\sum_{i=1}^n \ln(x_i!)\right]}_{S(\mathbf{x})}
+\right\}
 \]</span></p>
 <ol type="1">
 <li>Forma da Família Exponencial: A distribuição de Touchard é uma família exponencial de dois parâmetros com:
@@ -622,7 +628,8 @@ P(X = x; \lambda, \delta, \nu) = \frac{\lambda^x(x + \nu)^\delta}{x! \tau(\lambd
 <p>Assim, <span class="math inline">\(P(X = x; \lambda) = \frac{\lambda^x e^{-\lambda}}{x!}\)</span>, que é a Distribuição de Poisson <span class="math inline">\(P(\lambda)\)</span>.</p>
 <p>Para uma amostra <span class="math inline">\(\mathbf{X}\)</span>, a verossimilhança é: <span class="math display">\[L(\lambda; \mathbf{x}) = \prod_{i=1}^n \frac{\lambda^{x_i} e^{-\lambda}}{x_i!} = \frac{\lambda^{\sum x_i} e^{-n\lambda}}{\prod x_i!}
 \]</span></p>
-<p>Forma da Família Exponencial (Poisson): <span class="math display">\[L(\lambda; \mathbf{x}) = \exp \left{ \underbrace{(\ln \lambda)}{Q(\lambda)} \underbrace{\sum{i=1}^n x_i}{T(\mathbf{x})} + \underbrace{(-n\lambda)}{D(\lambda)} + \underbrace{\left[-\sum_{i=1}^n \ln(x_i!)\right]}_{S(\mathbf{x})} \right}
+<p>Forma da Família Exponencial (Poisson): <span class="math display">\[
+L(\lambda; \mathbf{x}) = \exp \left\{ \underbrace{(\ln \lambda)}_{Q(\lambda)} \underbrace{\sum_{i=1}^n x_i}_{T(\mathbf{x})} + \underbrace{(-n\lambda)}_{D(\lambda)} + \underbrace{\left[-\sum_{i=1}^n \ln(x_i!)\right]}_{S(\mathbf{x})} \right\}
 \]</span></p>
 <p>Como <span class="math inline">\(T(\mathbf{X}) = \sum_{i=1}^n X_i\)</span> isola o parâmetro <span class="math inline">\(\lambda\)</span>, e a Poisson pertence à família exponencial de um único parâmetro, a soma é a estatística suficiente completa.</p>
 <p>A estatística suficiente minimal para <span class="math inline">\(\lambda\)</span> é a soma amostral: <span class="math display">\[\mathbf{T}(\mathbf{X}) = \sum_{i=1}^n X_i

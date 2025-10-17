@@ -71,7 +71,7 @@ ggplot(castor, aes(x = time)) +
 #| label: scatter-plots
 
 ggplot(castor, aes(x = time_under_hydration, y = time)) +
-  geom_point(color="white") +
+  geom_point(color="black") +
   labs(
     title = "Scatter Plot with Regression Lines",
     x = "Time under hydration", y = "Time for germination", color = "Puncture") +
@@ -103,6 +103,8 @@ ggplot(castor, aes(x = as.factor(puncture), y = time)) +
 
 ```{r}
 #| label: bs-to-gamlss
+#| eval: false
+#| echo: false
 
 # authors: Roquim, Fernanda; Ramires, Thiago; et al.
 # source: https://ojs.uel.br/revistas/uel/index.php/semexatas/article/view/44417
@@ -210,6 +212,8 @@ rBS <- function(n, mu=1, sigma=1){
 
 ```{r}
 #| label: linear-fit
+#| eval: false
+#| echo: false
 
 mean_linear_model <- gamlss(time ~ temperature + puncture + time_under_hydration,
                      data = castor,
@@ -226,6 +230,7 @@ summary(mean_linear_model)
 ## Rieck, J.R., Nedelman, J.R., 1991. A log-linear model for the
 ## Birnbaum–Saunders distribution. Technometrics 33, 51–60.
 #########################################################
+
 mle_unc <- function(x, t, v, kernel = "normal") {
   x <- as.matrix(x)
   t <- as.matrix(t)
@@ -356,12 +361,12 @@ summary.mle_unc <- function(model) {
 ```{r}
 #| label: linear-application
 
-linear_model <- mle_unc(
+mean_model <- mle_unc(
   x = model.matrix(~ temperature + puncture + time_under_hydration, data = castor),
   t = castor$time,
   v = 4,
   kernel = "t")
-summary.mle_unc(linear_model)
+summary.mle_unc(mean_model)
 ```
 
 # Fitting a Linear Regression Model based on the Mode
@@ -369,6 +374,8 @@ summary.mle_unc(linear_model)
 ```{r}
 #| label: mode-linear-fit
 
+# revised/adapted from the mean proposal by Rieck, J.R., Nedelman, J.R.
+# author: T. Nonato
 mle_moda_bs <- function(x, t) {
   x <- as.matrix(x)
   t <- as.matrix(t)
