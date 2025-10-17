@@ -1,0 +1,124 @@
+---
+title: "Lista 2"
+subtitle: "Modelos Lineares Generalizados"
+author: "Tailine J. S. Nonato"
+date: today
+date-format: long
+format: html
+---
+
+
+
+```{r}
+#ler txt
+dados <- read.table("C:/Users/User/Documents/GitHub/MSc-est/MODELOS LINEARES GENERALIZADOS/Q10_data-L02.txt", header = TRUE)
+#rename columns
+#x1=idade, x2=tratamento
+colnames(dados) <- c("y", "x1", "x2")
+head(dados)
+```
+
+## Item (a) e (b)
+
+```{r}
+#ajustar lm
+modelo_lm <- lm(y ~ x1 + x2, data = dados)
+summary(modelo_lm)
+```
+
+## Item (c)
+
+$$
+y_i = \beta_0 + \beta_1 x_{1i} + \beta_2 x_{Ai} + \beta_3 x_{Bi} + \beta_4 x_{1i}x_{Ai} + \beta_5 x_{1i}x_{Bi} + \varepsilon_i
+$$
+
+```{r}
+#ajustar o modelo acima
+dados$xA <- ifelse(dados$x2 == "A", 1, 0)
+dados$xB <- ifelse(dados$x2 == "B", 1, 0)
+modelo_lm_interacao_C <- lm(y ~ x1 + xA + xB + x1:xA + x1:xB, data = dados)
+summary(modelo_lm_interacao_C)
+
+anova(modelo_lm, modelo_lm_interacao_C)
+
+#residuos
+par(mfrow=c(2,2))
+plot(modelo_lm_interacao_C)
+#save plot
+#dev.copy(png, 'MODELOS LINEARES GENERALIZADOS/residuos_lm_interacao.png')
+#dev.off()
+```
+
+hipóteses
+$$
+H_0: \beta_4 = \beta_5 = 0 \\
+H_a: \text{pelo menos um dos } \beta_4 \text{ ou } \beta_5 \neq 0
+$$
+
+## Item (d)
+
+Modelo I:
+$$
+y_i^{(I)}=\beta_0+\beta_1 x_{1i}+\varepsilon_i^{(I)}
+$$
+
+```{r}
+#ajustar modelo I
+modelo_I <- lm(y ~ x1, data = dados)
+summary(modelo_I)
+```
+
+Modelo II:
+$$
+y_i^{(II)}=\beta_0+\beta_1 x_{1i}+\beta_4\,x_{1i}x_{Bi}+\varepsilon_i^{(II)}
+$$
+
+onde \(x_{Bi}=\mathbf{1}\{x_{2i}=\text{B}\}\).
+
+```{r}
+#ajustar modelo II
+modelo_II <- lm(y ~ x1 + x1:xB, data = dados)
+summary(modelo_II)
+```
+
+Considere a possibilidade de incluir no modelo I, os fatores de risco xAi, xBi e
+a intera¸c˜ao dos dois. Formule as hip´oteses de interesse e conclua ao n´ıvel de 5%
+de significˆancia
+
+novo modelo:
+$$
+y_i = \beta_0 + \beta_1 x_{1i} + \beta_2 x_{Ai} + \beta_3 x_{Bi} + \beta_4 x_{1i}x_{Ai} + \beta_5 x_{1i}x_{Bi} + \varepsilon_i
+$$
+
+hipoteses:
+$$
+H_0: \beta_2 = \beta_3 = 0 \\
+H_a: \text{pelo menos um dos } \beta_2 \text{ ou } \beta_3 \neq 0
+$$
+
+
+```{r}
+modelo_I_new <- lm(y ~ x1 + xA + xB + x1:xA + x1:xB, data = dados)
+summary(modelo_I_new)
+anova(modelo_I, modelo_I_new)
+```
+
+ incluir o fator xAi no modelo II. Formule as hip´oteses de interesse, e conclua quanto a viabilidade ou n˜ao da inclus˜ao
+de tal fator de risco.
+
+novo modelo II:
+$$
+y_i = \beta_0 + \beta_1 x_{1i} + \beta_2 x_{Ai} + \beta_4 x_{1i}x_{Bi} + \varepsilon_i
+$$
+
+hipoteses:
+$$
+H_0: \beta_2 = 0 \\
+H_a: \beta_2 \neq 0
+$$
+
+```{r}
+modelo_II_new <- lm(y ~ x1 + xA + x1:xB, data = dados)
+summary(modelo_II_new)
+anova(modelo_II, modelo_II_new)
+```
