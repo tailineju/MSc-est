@@ -10,6 +10,7 @@ format: html
 
 
 ```{r}
+pacman::p_load(lmtest, knitr)
 #ler txt
 dados <- read.table("C:/Users/User/Documents/GitHub/MSc-est/MODELOS LINEARES GENERALIZADOS/Q10_data-L02.txt", header = TRUE)
 #rename columns
@@ -18,12 +19,43 @@ colnames(dados) <- c("y", "x1", "x2")
 head(dados)
 ```
 
+```{r}
+#função para tabela ANOVA
+
+# coluna: fonte de variação, graus de liberdade, soma dos quadrados, quadrado médio, F calculado, p-valor
+# linhas: regressão (tudo junto), resíduos, total
+anova_table <- function(modelo) {
+    anova_res <- anova(modelo)
+    SQReg <- sum(anova_res[1:(nrow(anova_res) - 1), "Sum Sq"])
+    SQRes <- anova_res["Residuals", "Sum Sq"]
+    SQTOT <- SQReg + SQRes
+    gl_reg <- nrow(anova_res) - 1
+    gl_res <- df.residual(modelo)
+    gl_tot <- gl_reg + gl_res
+    QMReg <- SQReg / gl_reg
+    QMRes <- SQRes / gl_res
+    Fcalc <- QMReg / QMRes
+    pval <- pf(Fcalc, gl_reg, gl_res, lower.tail = FALSE)
+    anova_tabela <- data.frame(
+        `VAR` = c("Regressão", "Resíduo", "Total"),
+        `gl` = c(gl_reg, gl_res, gl_tot),
+        `SQ` = c(SQReg, SQRes, SQTOT),
+        `QM` = c(QMReg, QMRes, NA),
+        `F` = c(Fcalc, NA, NA),
+        `p-valor` = c(pval, NA, NA)
+    )
+    return(anova_tabela)
+}
+```
+
 ## Item (a) e (b)
 
 ```{r}
 #ajustar lm
 modelo_lm <- lm(y ~ x1 + x2, data = dados)
 summary(modelo_lm)
+
+kable(anova_table(modelo_lm))
 ```
 
 ## Item (c)
@@ -38,6 +70,7 @@ dados$xA <- ifelse(dados$x2 == "A", 1, 0)
 dados$xB <- ifelse(dados$x2 == "B", 1, 0)
 modelo_lm_interacao_C <- lm(y ~ x1 + xA + xB + x1:xA + x1:xB, data = dados)
 summary(modelo_lm_interacao_C)
+kable(anova_table(modelo_lm_interacao_C))
 
 anova(modelo_lm, modelo_lm_interacao_C)
 
@@ -47,6 +80,9 @@ plot(modelo_lm_interacao_C)
 #save plot
 #dev.copy(png, 'MODELOS LINEARES GENERALIZADOS/residuos_lm_interacao.png')
 #dev.off()
+
+shapiro.test(residuals(modelo_lm_interacao_C))
+bptest(modelo_lm_interacao_C)
 ```
 
 hipóteses
@@ -66,24 +102,9 @@ $$
 #ajustar modelo I
 modelo_I <- lm(y ~ x1, data = dados)
 summary(modelo_I)
+kable(anova_table(modelo_I))
 ```
 
-Modelo II:
-$$
-y_i^{(II)}=\beta_0+\beta_1 x_{1i}+\beta_4\,x_{1i}x_{Bi}+\varepsilon_i^{(II)}
-$$
-
-onde \(x_{Bi}=\mathbf{1}\{x_{2i}=\text{B}\}\).
-
-```{r}
-#ajustar modelo II
-modelo_II <- lm(y ~ x1 + x1:xB, data = dados)
-summary(modelo_II)
-```
-
-Considere a possibilidade de incluir no modelo I, os fatores de risco xAi, xBi e
-a intera¸c˜ao dos dois. Formule as hip´oteses de interesse e conclua ao n´ıvel de 5%
-de significˆancia
 
 novo modelo:
 $$
@@ -100,11 +121,23 @@ $$
 ```{r}
 modelo_I_new <- lm(y ~ x1 + xA + xB + x1:xA + x1:xB, data = dados)
 summary(modelo_I_new)
+kable(anova_table(modelo_I_new))
 anova(modelo_I, modelo_I_new)
 ```
 
- incluir o fator xAi no modelo II. Formule as hip´oteses de interesse, e conclua quanto a viabilidade ou n˜ao da inclus˜ao
-de tal fator de risco.
+Modelo II:
+$$
+y_i^{(II)}=\beta_0+\beta_1 x_{1i}+\beta_4\,x_{1i}x_{Bi}+\varepsilon_i^{(II)}
+$$
+
+onde $x_{Bi}=\mathbf{1}\{x_{2i}=\text{B}\}$.
+
+```{r}
+#ajustar modelo II
+modelo_II <- lm(y ~ x1 + x1:xB, data = dados)
+summary(modelo_II)
+kable(anova_table(modelo_II))
+```
 
 novo modelo II:
 $$
@@ -120,5 +153,6 @@ $$
 ```{r}
 modelo_II_new <- lm(y ~ x1 + xA + x1:xB, data = dados)
 summary(modelo_II_new)
+kable(anova_table(modelo_II_new))
 anova(modelo_II, modelo_II_new)
 ```
