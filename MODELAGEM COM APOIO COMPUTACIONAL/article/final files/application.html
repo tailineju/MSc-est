@@ -1,0 +1,1229 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.24">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Tailine J. S. Nonato">
+<meta name="dcterms.date" content="2025-11-10">
+
+<title>Artigo - Aplicação</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="application_files/libs/clipboard/clipboard.min.js"></script>
+<script src="application_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="application_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="application_files/libs/quarto-html/popper.min.js"></script>
+<script src="application_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="application_files/libs/quarto-html/anchor.min.js"></script>
+<link href="application_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="application_files/libs/quarto-html/quarto-syntax-highlighting-a37c72dd2dbac68997fcdc15a3622e78.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="application_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="application_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="application_files/libs/bootstrap/bootstrap-bb462d781dde1847d9e3ccf7736099dd.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body class="fullcontent quarto-light">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Artigo - Aplicação</h1>
+<p class="subtitle lead">Modelagem com Apoio Computacional</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Tailine J. S. Nonato </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">November 10, 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="">Pacotes</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">Média</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false" href="">Moda</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-4" role="tab" aria-controls="tabset-1-4" aria-selected="false" href="">Quantis</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-5" role="tab" aria-controls="tabset-1-5" aria-selected="false" href="">Aplicação</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-6-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-6" role="tab" aria-controls="tabset-1-6" aria-selected="false" href="">Resíduos</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(tidyverse, knitr, MASS, maxLik, VGAM, miscTools)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="do">#########################################################</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="do">## Regression by Rieck and Nedelman (1991)</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="do">## Rieck, J.R., Nedelman, J.R., 1991. A log-linear model for the</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Birnbaum–Saunders distribution. Technometrics 33, 51–60.</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="do">#########################################################</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>mle_unc <span class="ot">&lt;-</span> <span class="cf">function</span>(x, t, v, <span class="at">kernel =</span> <span class="st">"normal"</span>, <span class="at">print=</span><span class="cn">TRUE</span>) {</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  x <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(x)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  t <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(t)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  y <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(<span class="fu">log</span>(t))</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  fit <span class="ot">&lt;-</span> <span class="fu">lm.fit</span>(x, y)</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  beta <span class="ot">&lt;-</span> <span class="fu">c</span>(fit<span class="sc">$</span>coef)</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  k <span class="ot">&lt;-</span> <span class="fu">length</span>(beta)</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>  n <span class="ot">&lt;-</span> <span class="fu">length</span>(y)</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>  mu <span class="ot">&lt;-</span> x <span class="sc">%*%</span> beta</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>  alpha <span class="ot">&lt;-</span> <span class="fu">sqrt</span>((<span class="dv">4</span> <span class="sc">/</span> n) <span class="sc">*</span> <span class="fu">sum</span>((<span class="fu">sinh</span>((y <span class="sc">-</span> mu) <span class="sc">/</span> <span class="dv">2</span>)) <span class="sc">^</span> <span class="dv">2</span>))</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>  thetaStar <span class="ot">&lt;-</span> <span class="fu">c</span>(beta, alpha)</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>  loglik <span class="ot">&lt;-</span> <span class="cf">function</span>(par) {</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>    z1 <span class="ot">&lt;-</span> par[<span class="dv">1</span><span class="sc">:</span>k]</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>    z2 <span class="ot">&lt;-</span> par[k <span class="sc">+</span> <span class="dv">1</span>]</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>    mu <span class="ot">&lt;-</span> (x <span class="sc">%*%</span> z1)</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    xi1 <span class="ot">&lt;-</span> (<span class="dv">2</span> <span class="sc">/</span> z2) <span class="sc">*</span> <span class="fu">cosh</span>((y <span class="sc">-</span> mu) <span class="sc">/</span> <span class="dv">2</span>)</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    xi2 <span class="ot">&lt;-</span> (<span class="dv">2</span> <span class="sc">/</span> z2) <span class="sc">*</span> <span class="fu">sinh</span>((y <span class="sc">-</span> mu) <span class="sc">/</span> <span class="dv">2</span>)</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>    g <span class="ot">&lt;-</span> <span class="cf">switch</span>(kernel,</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>      <span class="st">"normal"</span> <span class="ot">=</span> <span class="fu">exp</span>(<span class="sc">-</span>(xi2 <span class="sc">^</span> <span class="dv">2</span>) <span class="sc">/</span> <span class="dv">2</span>),</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>      <span class="st">"t"</span> <span class="ot">=</span> (v <span class="sc">+</span> (xi2 <span class="sc">^</span> <span class="dv">2</span>)) <span class="sc">^</span> (<span class="sc">-</span>(v <span class="sc">+</span> <span class="dv">1</span>) <span class="sc">/</span> <span class="dv">2</span>)</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>    const <span class="ot">&lt;-</span> <span class="cf">switch</span>(kernel,</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>      <span class="st">"normal"</span> <span class="ot">=</span> <span class="dv">1</span> <span class="sc">/</span> (<span class="fu">sqrt</span>(<span class="dv">2</span> <span class="sc">*</span> pi)),</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>      <span class="st">"t"</span> <span class="ot">=</span> (<span class="fu">gamma</span>((v <span class="sc">+</span> <span class="dv">1</span>) <span class="sc">/</span> <span class="dv">2</span>) <span class="sc">*</span> v <span class="sc">^</span> (v <span class="sc">/</span> <span class="dv">2</span>)) <span class="sc">/</span></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>        (<span class="fu">sqrt</span>(pi) <span class="sc">*</span> <span class="fu">gamma</span>(v <span class="sc">/</span> <span class="dv">2</span>))</span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>    result <span class="ot">&lt;-</span> <span class="cf">switch</span>(kernel,</span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>      <span class="st">"normal"</span> <span class="ot">=</span> <span class="fu">sum</span>(<span class="fu">log</span>(const <span class="sc">/</span> <span class="dv">2</span>) <span class="sc">+</span> <span class="fu">log</span>(xi1) <span class="sc">+</span> <span class="fu">log</span>(g)),</span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>      <span class="st">"t"</span> <span class="ot">=</span> <span class="fu">sum</span>(<span class="fu">log</span>(const <span class="sc">/</span> <span class="dv">2</span>) <span class="sc">+</span> <span class="fu">log</span>(xi1) <span class="sc">+</span> <span class="fu">log</span>(g))</span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="sc">-</span>result)</span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>  loglikplus <span class="ot">&lt;-</span> <span class="cf">function</span>(par) {</span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>    z1 <span class="ot">&lt;-</span> par[<span class="dv">1</span><span class="sc">:</span>k]</span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>    z2 <span class="ot">&lt;-</span> par[k <span class="sc">+</span> <span class="dv">1</span>]</span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>    mu <span class="ot">&lt;-</span> (x <span class="sc">%*%</span> z1)</span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>    xi1 <span class="ot">&lt;-</span> (<span class="dv">2</span> <span class="sc">/</span> z2) <span class="sc">*</span> <span class="fu">cosh</span>((y <span class="sc">-</span> mu) <span class="sc">/</span> <span class="dv">2</span>)</span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>    xi2 <span class="ot">&lt;-</span> (<span class="dv">2</span> <span class="sc">/</span> z2) <span class="sc">*</span> <span class="fu">sinh</span>((y <span class="sc">-</span> mu) <span class="sc">/</span> <span class="dv">2</span>)</span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>    result <span class="ot">&lt;-</span> <span class="fu">log</span>(<span class="fu">dnorm</span>(xi2)) <span class="sc">+</span> <span class="fu">log</span>(xi1 <span class="sc">/</span> <span class="dv">2</span>)</span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="fu">sum</span>(result))</span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>  score <span class="ot">&lt;-</span> <span class="cf">function</span>(par) {</span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>    z1 <span class="ot">&lt;-</span> par[<span class="dv">1</span><span class="sc">:</span>k]</span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>    z2 <span class="ot">&lt;-</span> par[k <span class="sc">+</span> <span class="dv">1</span>]</span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a>    mu <span class="ot">&lt;-</span> (x <span class="sc">%*%</span> z1)</span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a>    xi1 <span class="ot">&lt;-</span> (<span class="dv">2</span> <span class="sc">/</span> z2) <span class="sc">*</span> <span class="fu">cosh</span>((y <span class="sc">-</span> mu) <span class="sc">/</span> <span class="dv">2</span>)</span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a>    xi2 <span class="ot">&lt;-</span> (<span class="dv">2</span> <span class="sc">/</span> z2) <span class="sc">*</span> <span class="fu">sinh</span>((y <span class="sc">-</span> mu) <span class="sc">/</span> <span class="dv">2</span>)</span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a>    status <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a>    const <span class="ot">&lt;-</span> <span class="cf">switch</span>(kernel,</span>
+<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a>      <span class="st">"normal"</span> <span class="ot">=</span> <span class="dv">1</span> <span class="sc">/</span> (<span class="fu">sqrt</span>(<span class="dv">2</span> <span class="sc">*</span> pi)),</span>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a>      <span class="st">"t"</span> <span class="ot">=</span> (<span class="fu">gamma</span>((v <span class="sc">+</span> <span class="fl">1.0</span>) <span class="sc">/</span> <span class="dv">2</span>) <span class="sc">*</span> v <span class="sc">^</span> (v <span class="sc">/</span> <span class="dv">2</span>)) <span class="sc">/</span></span>
+<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a>        (<span class="fu">sqrt</span>(pi) <span class="sc">*</span> <span class="fu">gamma</span>(v <span class="sc">/</span> <span class="dv">2</span>))</span>
+<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a>    derivativeF <span class="ot">&lt;-</span> <span class="cf">switch</span>(kernel,</span>
+<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a>      <span class="st">"normal"</span> <span class="ot">=</span> <span class="sc">-</span>(const) <span class="sc">*</span> xi2 <span class="sc">*</span> <span class="fu">exp</span>(<span class="sc">-</span>(xi2 <span class="sc">^</span> <span class="dv">2</span>) <span class="sc">/</span> <span class="dv">2</span>),</span>
+<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a>      <span class="st">"t"</span> <span class="ot">=</span> <span class="sc">-</span>(const) <span class="sc">*</span> (v <span class="sc">+</span> <span class="dv">1</span>) <span class="sc">*</span> xi2 <span class="sc">*</span> ((v <span class="sc">+</span> (xi2 <span class="sc">^</span> <span class="dv">2</span>)) <span class="sc">^</span></span>
+<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a>        (<span class="sc">-</span>(v <span class="sc">+</span> <span class="dv">3</span>) <span class="sc">/</span> <span class="dv">2</span>))</span>
+<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a>    h <span class="ot">&lt;-</span> <span class="cf">switch</span>(kernel,</span>
+<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a>      <span class="st">"normal"</span> <span class="ot">=</span> <span class="fu">dnorm</span>(xi2) <span class="sc">/</span> (<span class="dv">1</span> <span class="sc">-</span> <span class="fu">pnorm</span>(xi2)),</span>
+<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a>      <span class="st">"t"</span> <span class="ot">=</span> <span class="fu">dt</span>(xi2, <span class="at">df =</span> v) <span class="sc">/</span> (<span class="dv">1</span> <span class="sc">-</span> <span class="fu">pt</span>(xi2, <span class="at">df =</span> v))</span>
+<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a>    wg <span class="ot">&lt;-</span> <span class="cf">switch</span>(kernel,</span>
+<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a>      <span class="st">"normal"</span> <span class="ot">=</span> <span class="sc">-</span>(<span class="dv">1</span> <span class="sc">/</span> <span class="dv">2</span>),</span>
+<span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a>      <span class="st">"t"</span> <span class="ot">=</span> <span class="sc">-</span>(v <span class="sc">+</span> <span class="dv">1</span>) <span class="sc">/</span> (<span class="dv">2</span> <span class="sc">*</span> (v <span class="sc">+</span> (xi2 <span class="sc">^</span> <span class="dv">2</span>)))</span>
+<span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a>    Ubeta <span class="ot">&lt;-</span> <span class="cf">switch</span>(kernel,</span>
+<span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a>      <span class="st">"normal"</span> <span class="ot">=</span> <span class="sc">-</span>status <span class="sc">*</span> ((<span class="dv">2</span> <span class="sc">/</span> (z2 <span class="sc">^</span> <span class="dv">2</span>)) <span class="sc">*</span> <span class="fu">sinh</span>(y <span class="sc">-</span> mu) <span class="sc">*</span> wg <span class="sc">+</span></span>
+<span id="cb2-75"><a href="#cb2-75" aria-hidden="true" tabindex="-1"></a>        (<span class="dv">1</span> <span class="sc">/</span> <span class="dv">2</span>) <span class="sc">*</span> <span class="fu">tanh</span>((y <span class="sc">-</span> mu) <span class="sc">/</span> <span class="dv">2</span>)) <span class="sc">+</span></span>
+<span id="cb2-76"><a href="#cb2-76" aria-hidden="true" tabindex="-1"></a>        ((<span class="dv">1</span> <span class="sc">-</span> status) <span class="sc">/</span> <span class="dv">2</span>) <span class="sc">*</span> xi1 <span class="sc">*</span> h,</span>
+<span id="cb2-77"><a href="#cb2-77" aria-hidden="true" tabindex="-1"></a>      <span class="st">"t"</span> <span class="ot">=</span> <span class="sc">-</span>status <span class="sc">*</span> ((<span class="dv">2</span> <span class="sc">/</span> (z2 <span class="sc">^</span> <span class="dv">2</span>)) <span class="sc">*</span> <span class="fu">sinh</span>(y <span class="sc">-</span> mu) <span class="sc">*</span> wg <span class="sc">+</span></span>
+<span id="cb2-78"><a href="#cb2-78" aria-hidden="true" tabindex="-1"></a>        (<span class="dv">1</span> <span class="sc">/</span> <span class="dv">2</span>) <span class="sc">*</span> <span class="fu">tanh</span>((y <span class="sc">-</span> mu) <span class="sc">/</span> <span class="dv">2</span>)) <span class="sc">+</span></span>
+<span id="cb2-79"><a href="#cb2-79" aria-hidden="true" tabindex="-1"></a>        ((<span class="dv">1</span> <span class="sc">-</span> status) <span class="sc">/</span> <span class="dv">2</span>) <span class="sc">*</span> xi1 <span class="sc">*</span> h</span>
+<span id="cb2-80"><a href="#cb2-80" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb2-81"><a href="#cb2-81" aria-hidden="true" tabindex="-1"></a>    Ualpha <span class="ot">&lt;-</span> <span class="cf">switch</span>(kernel,</span>
+<span id="cb2-82"><a href="#cb2-82" aria-hidden="true" tabindex="-1"></a>      <span class="st">"normal"</span> <span class="ot">=</span> <span class="sc">-</span><span class="fu">sum</span>((status <span class="sc">/</span> z2) <span class="sc">*</span></span>
+<span id="cb2-83"><a href="#cb2-83" aria-hidden="true" tabindex="-1"></a>        (((xi2 <span class="sc">^</span> <span class="dv">2</span>) <span class="sc">*</span> <span class="dv">2</span> <span class="sc">*</span> wg) <span class="sc">+</span> <span class="dv">1</span>) <span class="sc">-</span></span>
+<span id="cb2-84"><a href="#cb2-84" aria-hidden="true" tabindex="-1"></a>        ((<span class="dv">1</span> <span class="sc">-</span> status) <span class="sc">/</span> z2) <span class="sc">*</span> h <span class="sc">*</span> xi2),</span>
+<span id="cb2-85"><a href="#cb2-85" aria-hidden="true" tabindex="-1"></a>      <span class="st">"t"</span> <span class="ot">=</span> <span class="sc">-</span><span class="fu">sum</span>((status <span class="sc">/</span> z2) <span class="sc">*</span> (((xi2 <span class="sc">^</span> <span class="dv">2</span>) <span class="sc">*</span> <span class="dv">2</span> <span class="sc">*</span> wg) <span class="sc">+</span> <span class="dv">1</span>) <span class="sc">-</span></span>
+<span id="cb2-86"><a href="#cb2-86" aria-hidden="true" tabindex="-1"></a>        ((<span class="dv">1</span> <span class="sc">-</span> status) <span class="sc">/</span> z2) <span class="sc">*</span> h <span class="sc">*</span> xi2)</span>
+<span id="cb2-87"><a href="#cb2-87" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb2-88"><a href="#cb2-88" aria-hidden="true" tabindex="-1"></a>    result <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">t</span>(x) <span class="sc">%*%</span> Ubeta, Ualpha)</span>
+<span id="cb2-89"><a href="#cb2-89" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(result)</span>
+<span id="cb2-90"><a href="#cb2-90" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb2-91"><a href="#cb2-91" aria-hidden="true" tabindex="-1"></a>  <span class="co"># est &lt;- optim(thetaStar, loglik, method = "BFGS", hessian = TRUE)</span></span>
+<span id="cb2-92"><a href="#cb2-92" aria-hidden="true" tabindex="-1"></a>  est <span class="ot">&lt;-</span> <span class="fu">optim</span>(thetaStar, loglik, <span class="at">method =</span> <span class="st">"BFGS"</span>, <span class="at">hessian =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb2-93"><a href="#cb2-93" aria-hidden="true" tabindex="-1"></a>  <span class="co"># control = list(fnscale = -1, maxit = 2000, reltol = 1e-12))</span></span>
+<span id="cb2-94"><a href="#cb2-94" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (est<span class="sc">$</span>conv <span class="sc">!=</span> <span class="dv">0</span>)</span>
+<span id="cb2-95"><a href="#cb2-95" aria-hidden="true" tabindex="-1"></a>    <span class="fu">warning</span>(<span class="st">"FUNCTION DID NOT CONVERGE!"</span>)</span>
+<span id="cb2-96"><a href="#cb2-96" aria-hidden="true" tabindex="-1"></a>  coef <span class="ot">&lt;-</span> (est<span class="sc">$</span>par)[<span class="dv">1</span><span class="sc">:</span>k]</span>
+<span id="cb2-97"><a href="#cb2-97" aria-hidden="true" tabindex="-1"></a>  alphaest <span class="ot">&lt;-</span> est<span class="sc">$</span>par[k <span class="sc">+</span> <span class="dv">1</span>]</span>
+<span id="cb2-98"><a href="#cb2-98" aria-hidden="true" tabindex="-1"></a>  muhat <span class="ot">&lt;-</span> x <span class="sc">%*%</span> coef</span>
+<span id="cb2-99"><a href="#cb2-99" aria-hidden="true" tabindex="-1"></a>  muhat <span class="ot">&lt;-</span> <span class="fu">as.vector</span>(muhat)</span>
+<span id="cb2-100"><a href="#cb2-100" aria-hidden="true" tabindex="-1"></a>  etahat <span class="ot">&lt;-</span> <span class="fu">exp</span>(muhat)</span>
+<span id="cb2-101"><a href="#cb2-101" aria-hidden="true" tabindex="-1"></a>  SHess <span class="ot">=</span> <span class="fu">solve</span>(est<span class="sc">$</span>hessian)</span>
+<span id="cb2-102"><a href="#cb2-102" aria-hidden="true" tabindex="-1"></a>  SE <span class="ot">=</span> <span class="fu">sqrt</span>(<span class="fu">diag</span>(SHess))</span>
+<span id="cb2-103"><a href="#cb2-103" aria-hidden="true" tabindex="-1"></a>  se.coef <span class="ot">=</span> SE</span>
+<span id="cb2-104"><a href="#cb2-104" aria-hidden="true" tabindex="-1"></a>  tval <span class="ot">=</span> <span class="fu">c</span>(coef, alphaest) <span class="sc">/</span> se.coef</span>
+<span id="cb2-105"><a href="#cb2-105" aria-hidden="true" tabindex="-1"></a>  matcoef <span class="ot">=</span> <span class="fu">cbind</span>(<span class="fu">c</span>(coef, alphaest), se.coef, tval, <span class="dv">2</span> <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> <span class="fu">pnorm</span>(<span class="fu">abs</span>(tval))))</span>
+<span id="cb2-106"><a href="#cb2-106" aria-hidden="true" tabindex="-1"></a>  AIC <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> <span class="fu">loglik</span>(<span class="fu">c</span>(coef, alphaest)) <span class="sc">+</span> <span class="dv">2</span> <span class="sc">*</span> (<span class="fu">length</span>(coef) <span class="sc">+</span> <span class="dv">1</span>)</span>
+<span id="cb2-107"><a href="#cb2-107" aria-hidden="true" tabindex="-1"></a>  BIC <span class="ot">=</span> <span class="dv">2</span> <span class="sc">*</span> <span class="fu">loglik</span>(<span class="fu">c</span>(coef, alphaest)) <span class="sc">+</span> (<span class="fu">length</span>(coef) <span class="sc">+</span> <span class="dv">1</span>) <span class="sc">*</span> <span class="fu">log</span>(<span class="fu">length</span>(y))</span>
+<span id="cb2-108"><a href="#cb2-108" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-109"><a href="#cb2-109" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(print) {</span>
+<span id="cb2-110"><a href="#cb2-110" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb2-111"><a href="#cb2-111" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">"--------------------------------------------------------------</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb2-112"><a href="#cb2-112" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">"        BS regression model - Mean                           </span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb2-113"><a href="#cb2-113" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">"--------------------------------------------------------------</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb2-114"><a href="#cb2-114" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">"Maximum Likelihood estimation </span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb2-115"><a href="#cb2-115" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">"Number of observations:"</span>, n, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb2-116"><a href="#cb2-116" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">"--------------------------------------------------------------</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb2-117"><a href="#cb2-117" aria-hidden="true" tabindex="-1"></a>    coefs <span class="ot">&lt;-</span> <span class="fu">cbind</span>(</span>
+<span id="cb2-118"><a href="#cb2-118" aria-hidden="true" tabindex="-1"></a>      <span class="at">Estimate =</span> <span class="fu">round</span>(<span class="fu">c</span>(coef, alphaest),<span class="dv">3</span>),</span>
+<span id="cb2-119"><a href="#cb2-119" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Std. Error"</span> <span class="ot">=</span> <span class="fu">round</span>(se.coef,<span class="dv">3</span>),</span>
+<span id="cb2-120"><a href="#cb2-120" aria-hidden="true" tabindex="-1"></a>      <span class="st">"t value"</span> <span class="ot">=</span> <span class="fu">round</span>(tval,<span class="dv">3</span>),</span>
+<span id="cb2-121"><a href="#cb2-121" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Pr(&gt;|t|)"</span> <span class="ot">=</span> <span class="fu">round</span>(<span class="dv">2</span> <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> <span class="fu">pnorm</span>(<span class="fu">abs</span>(tval))),<span class="dv">3</span>)</span>
+<span id="cb2-122"><a href="#cb2-122" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb2-123"><a href="#cb2-123" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rownames</span>(coefs) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">paste0</span>(<span class="st">"beta"</span>, <span class="dv">0</span><span class="sc">:</span>(<span class="fu">nrow</span>(coefs)<span class="sc">-</span><span class="dv">2</span>)), <span class="st">"alpha"</span>)</span>
+<span id="cb2-124"><a href="#cb2-124" aria-hidden="true" tabindex="-1"></a>    <span class="fu">printCoefmat</span>(coefs, <span class="at">signif.stars =</span> <span class="cn">TRUE</span>, <span class="at">signif.legend =</span> <span class="cn">TRUE</span>, <span class="at">digits =</span> <span class="dv">3</span>)</span>
+<span id="cb2-125"><a href="#cb2-125" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">"--------------------------------------------------------------</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb2-126"><a href="#cb2-126" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">"AIC:"</span>, <span class="fu">round</span>(AIC, <span class="dv">2</span>),</span>
+<span id="cb2-127"><a href="#cb2-127" aria-hidden="true" tabindex="-1"></a>        <span class="st">" BIC:"</span>, <span class="fu">round</span>(BIC, <span class="dv">2</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb2-128"><a href="#cb2-128" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb2-129"><a href="#cb2-129" aria-hidden="true" tabindex="-1"></a>  out <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb2-130"><a href="#cb2-130" aria-hidden="true" tabindex="-1"></a>    <span class="at">par =</span> est<span class="sc">$</span>par,</span>
+<span id="cb2-131"><a href="#cb2-131" aria-hidden="true" tabindex="-1"></a>    <span class="at">beta =</span> coef,</span>
+<span id="cb2-132"><a href="#cb2-132" aria-hidden="true" tabindex="-1"></a>    <span class="at">alpha =</span> alphaest,</span>
+<span id="cb2-133"><a href="#cb2-133" aria-hidden="true" tabindex="-1"></a>    <span class="at">se =</span> se.coef,</span>
+<span id="cb2-134"><a href="#cb2-134" aria-hidden="true" tabindex="-1"></a>    <span class="at">muHat =</span> muhat,</span>
+<span id="cb2-135"><a href="#cb2-135" aria-hidden="true" tabindex="-1"></a>    <span class="at">etaHat =</span> etahat,</span>
+<span id="cb2-136"><a href="#cb2-136" aria-hidden="true" tabindex="-1"></a>    <span class="at">value =</span> est<span class="sc">$</span>value,</span>
+<span id="cb2-137"><a href="#cb2-137" aria-hidden="true" tabindex="-1"></a>    <span class="at">hessian =</span> est<span class="sc">$</span>hessian,</span>
+<span id="cb2-138"><a href="#cb2-138" aria-hidden="true" tabindex="-1"></a>    <span class="at">convergence =</span> est<span class="sc">$</span>convergence,</span>
+<span id="cb2-139"><a href="#cb2-139" aria-hidden="true" tabindex="-1"></a>    <span class="at">matcoef =</span> matcoef,</span>
+<span id="cb2-140"><a href="#cb2-140" aria-hidden="true" tabindex="-1"></a>    <span class="at">AIC =</span> AIC,</span>
+<span id="cb2-141"><a href="#cb2-141" aria-hidden="true" tabindex="-1"></a>    <span class="at">BIC =</span> BIC</span>
+<span id="cb2-142"><a href="#cb2-142" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb2-143"><a href="#cb2-143" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(out)</span>
+<span id="cb2-144"><a href="#cb2-144" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>dbsmoda_logpdf <span class="ot">&lt;-</span> <span class="cf">function</span>(y, mu, phi) {</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  alpha <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(phi)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  beta  <span class="ot">&lt;-</span> mu <span class="sc">/</span> (<span class="dv">1</span> <span class="sc">-</span> phi)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  log_pdf <span class="ot">&lt;-</span> <span class="sc">-</span><span class="fl">0.5</span><span class="sc">*</span><span class="fu">log</span>(<span class="dv">2</span><span class="sc">*</span>pi) <span class="sc">-</span> <span class="fu">log</span>(<span class="dv">2</span><span class="sc">*</span>alpha<span class="sc">*</span><span class="fu">sqrt</span>(beta)) <span class="sc">-</span> <span class="fl">1.5</span><span class="sc">*</span><span class="fu">log</span>(y) <span class="sc">+</span> <span class="fu">log</span>(y <span class="sc">+</span> beta) <span class="sc">-</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    ( (y<span class="sc">/</span>beta) <span class="sc">+</span> (beta<span class="sc">/</span>y) <span class="sc">-</span> <span class="dv">2</span> ) <span class="sc">/</span> (<span class="dv">2</span><span class="sc">*</span>alpha<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.vector</span>(log_pdf)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>dbsmoda <span class="ot">&lt;-</span> <span class="cf">function</span>(t, mu, phi, <span class="at">log =</span> <span class="cn">FALSE</span>) {</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  lp <span class="ot">&lt;-</span> <span class="fu">dbsmoda_logpdf</span>(t, mu, phi)</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (log) <span class="fu">return</span>(lp)</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">exp</span>(lp)</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>mle_dbsmoda <span class="ot">&lt;-</span> <span class="cf">function</span>(x, z, t, <span class="at">print =</span> <span class="cn">TRUE</span>){</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>  x <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(x)</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>  z <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(z)</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>  y <span class="ot">&lt;-</span> <span class="fu">as.vector</span>(t)  </span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>  k <span class="ot">&lt;-</span> <span class="fu">ncol</span>(x)</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>  l <span class="ot">&lt;-</span> <span class="fu">ncol</span>(z)</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>  n <span class="ot">&lt;-</span> <span class="fu">length</span>(y)</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>  loglik <span class="ot">&lt;-</span> <span class="cf">function</span>(par){</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>    nu <span class="ot">&lt;-</span> par[<span class="dv">1</span><span class="sc">:</span>k]</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>    xi <span class="ot">&lt;-</span> par[(k <span class="sc">+</span> <span class="dv">1</span>)<span class="sc">:</span>(k <span class="sc">+</span> l)]</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>    eta_mu  <span class="ot">&lt;-</span> <span class="fu">as.vector</span>(x <span class="sc">%*%</span> nu)</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>    eta_phi <span class="ot">&lt;-</span> <span class="fu">as.vector</span>(z <span class="sc">%*%</span> xi)</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>    mu  <span class="ot">&lt;-</span> <span class="fu">exp</span>(eta_mu)</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>    phi <span class="ot">&lt;-</span> <span class="fu">plogis</span>(eta_phi)</span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>    <span class="sc">-</span><span class="fu">sum</span>(<span class="fu">dbsmoda_logpdf</span>(y, mu, phi))</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>  theta0 <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">0</span>, k <span class="sc">+</span> l)  <span class="co"># chute neutro</span></span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>  est <span class="ot">&lt;-</span> <span class="fu">optim</span>(theta0, loglik, <span class="at">method =</span> <span class="st">"BFGS"</span>, <span class="at">hessian =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>               <span class="at">control =</span> <span class="fu">list</span>(<span class="at">reltol =</span> <span class="fl">1e-9</span>, <span class="at">maxit =</span> <span class="dv">1000</span>))</span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>  nu  <span class="ot">&lt;-</span> <span class="fu">as.vector</span>(est<span class="sc">$</span>par[<span class="dv">1</span><span class="sc">:</span>k])</span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>  xi  <span class="ot">&lt;-</span> <span class="fu">as.vector</span>(est<span class="sc">$</span>par[(k <span class="sc">+</span> <span class="dv">1</span>)<span class="sc">:</span>(k <span class="sc">+</span> l)])</span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>  <span class="co"># erros-padrão</span></span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>  se <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">diag</span>(<span class="fu">solve</span>(est<span class="sc">$</span>hessian)))</span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>  zstatnu   <span class="ot">&lt;-</span> nu <span class="sc">/</span> se[<span class="dv">1</span><span class="sc">:</span>k]</span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>  zstatxi   <span class="ot">&lt;-</span> xi <span class="sc">/</span> se[(k <span class="sc">+</span> <span class="dv">1</span>)<span class="sc">:</span>(k <span class="sc">+</span> l)] </span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>  pvalornu  <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> <span class="fu">pnorm</span>(<span class="fu">abs</span>(zstatnu), <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a>  pvalorxi  <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> <span class="fu">pnorm</span>(<span class="fu">abs</span>(zstatxi), <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a>  <span class="fu">names</span>(nu) <span class="ot">&lt;-</span> <span class="fu">colnames</span>(x)</span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a>  <span class="fu">names</span>(xi) <span class="ot">&lt;-</span> <span class="fu">colnames</span>(z)</span>
+<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a>  senu <span class="ot">&lt;-</span> se[<span class="dv">1</span><span class="sc">:</span>k]</span>
+<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a>  sexi <span class="ot">&lt;-</span> se[(k <span class="sc">+</span> <span class="dv">1</span>)<span class="sc">:</span>(k <span class="sc">+</span> l)] </span>
+<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a>  tb_mu  <span class="ot">&lt;-</span> miscTools<span class="sc">::</span><span class="fu">coefTable</span>(nu, senu, <span class="at">df =</span> (n <span class="sc">-</span> (k <span class="sc">+</span> l)))</span>
+<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a>  tb_phi <span class="ot">&lt;-</span> miscTools<span class="sc">::</span><span class="fu">coefTable</span>(xi, sexi, <span class="at">df =</span> (n <span class="sc">-</span> (k <span class="sc">+</span> l)))</span>
+<span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a>  muHat  <span class="ot">&lt;-</span> <span class="fu">exp</span>(<span class="fu">as.vector</span>(x <span class="sc">%*%</span> nu))</span>
+<span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a>  phiHat <span class="ot">&lt;-</span> <span class="fu">plogis</span>(<span class="fu">as.vector</span>(z <span class="sc">%*%</span> xi))</span>
+<span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-60"><a href="#cb3-60" aria-hidden="true" tabindex="-1"></a>  AIC <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> <span class="fu">loglik</span>(est<span class="sc">$</span>par) <span class="sc">+</span> <span class="dv">2</span> <span class="sc">*</span> (k <span class="sc">+</span> l)</span>
+<span id="cb3-61"><a href="#cb3-61" aria-hidden="true" tabindex="-1"></a>  BIC <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> <span class="fu">loglik</span>(est<span class="sc">$</span>par) <span class="sc">+</span> <span class="fu">log</span>(n) <span class="sc">*</span> (k <span class="sc">+</span> l)</span>
+<span id="cb3-62"><a href="#cb3-62" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb3-63"><a href="#cb3-63" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (print) {</span>
+<span id="cb3-64"><a href="#cb3-64" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb3-65"><a href="#cb3-65" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">"--------------------------------------------------------------</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb3-66"><a href="#cb3-66" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">"             BS regression model - Mode                       </span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb3-67"><a href="#cb3-67" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">"--------------------------------------------------------------</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb3-68"><a href="#cb3-68" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">"Maximum Likelihood estimation </span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb3-69"><a href="#cb3-69" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">"Number of observations:"</span>, n, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb3-70"><a href="#cb3-70" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">"--------------------------------------------------------------</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb3-71"><a href="#cb3-71" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">"Mu - Coefficients:</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb3-72"><a href="#cb3-72" aria-hidden="true" tabindex="-1"></a>    <span class="fu">printCoefmat</span>(tb_mu, <span class="at">signif.stars =</span> <span class="cn">TRUE</span>, <span class="at">signif.legend =</span> <span class="cn">TRUE</span>, <span class="at">digits =</span> <span class="dv">4</span>)</span>
+<span id="cb3-73"><a href="#cb3-73" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">"--------------------------------------------------------------</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb3-74"><a href="#cb3-74" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">"Phi - Coefficients:</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb3-75"><a href="#cb3-75" aria-hidden="true" tabindex="-1"></a>    <span class="fu">printCoefmat</span>(tb_phi, <span class="at">signif.stars =</span> <span class="cn">TRUE</span>, <span class="at">signif.legend =</span> <span class="cn">TRUE</span>, <span class="at">digits =</span> <span class="dv">4</span>)</span>
+<span id="cb3-76"><a href="#cb3-76" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">"--------------------------------------------------------------</span><span class="sc">\n</span><span class="st">"</span>)  </span>
+<span id="cb3-77"><a href="#cb3-77" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">"AIC:"</span>, <span class="fu">round</span>(AIC, <span class="dv">2</span>),</span>
+<span id="cb3-78"><a href="#cb3-78" aria-hidden="true" tabindex="-1"></a>        <span class="st">" BIC:"</span>, <span class="fu">round</span>(BIC, <span class="dv">2</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb3-79"><a href="#cb3-79" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb3-80"><a href="#cb3-80" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb3-81"><a href="#cb3-81" aria-hidden="true" tabindex="-1"></a>  out <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb3-82"><a href="#cb3-82" aria-hidden="true" tabindex="-1"></a>    <span class="at">par         =</span> est<span class="sc">$</span>par,</span>
+<span id="cb3-83"><a href="#cb3-83" aria-hidden="true" tabindex="-1"></a>    <span class="at">beta_nu     =</span> est<span class="sc">$</span>par[<span class="dv">1</span><span class="sc">:</span>k],</span>
+<span id="cb3-84"><a href="#cb3-84" aria-hidden="true" tabindex="-1"></a>    <span class="at">beta_xi     =</span> est<span class="sc">$</span>par[(k<span class="sc">+</span><span class="dv">1</span>)<span class="sc">:</span>(k<span class="sc">+</span>l)],</span>
+<span id="cb3-85"><a href="#cb3-85" aria-hidden="true" tabindex="-1"></a>    <span class="at">se          =</span> se,</span>
+<span id="cb3-86"><a href="#cb3-86" aria-hidden="true" tabindex="-1"></a>    <span class="at">muHat       =</span> muHat,</span>
+<span id="cb3-87"><a href="#cb3-87" aria-hidden="true" tabindex="-1"></a>    <span class="at">phiHat      =</span> phiHat,</span>
+<span id="cb3-88"><a href="#cb3-88" aria-hidden="true" tabindex="-1"></a>    <span class="at">value       =</span> est<span class="sc">$</span>value,</span>
+<span id="cb3-89"><a href="#cb3-89" aria-hidden="true" tabindex="-1"></a>    <span class="at">hessian     =</span> est<span class="sc">$</span>hessian,</span>
+<span id="cb3-90"><a href="#cb3-90" aria-hidden="true" tabindex="-1"></a>    <span class="at">convergence =</span> est<span class="sc">$</span>convergence,</span>
+<span id="cb3-91"><a href="#cb3-91" aria-hidden="true" tabindex="-1"></a>    <span class="at">tables      =</span> <span class="fu">list</span>(<span class="at">mu =</span> tb_mu, <span class="at">phi =</span> tb_phi)</span>
+<span id="cb3-92"><a href="#cb3-92" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb3-93"><a href="#cb3-93" aria-hidden="true" tabindex="-1"></a>  <span class="fu">class</span>(out) <span class="ot">&lt;-</span> <span class="st">"mle_dbsmoda"</span></span>
+<span id="cb3-94"><a href="#cb3-94" aria-hidden="true" tabindex="-1"></a>  out</span>
+<span id="cb3-95"><a href="#cb3-95" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div id="tabset-1-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-4-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#revised function by T. Nonato</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co">#authors: L. Sanchez, V. Leiva </span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co">#source: https://doi.org/10.1002/asmb.2556</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>bsreg.fit<span class="ot">&lt;-</span><span class="cf">function</span>(x, y, <span class="at">q=</span><span class="fl">0.5</span>, <span class="at">link =</span> <span class="st">"log"</span>, <span class="at">print=</span><span class="cn">TRUE</span>){</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  n<span class="ot">&lt;-</span><span class="fu">NROW</span>(x)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  p<span class="ot">&lt;-</span><span class="fu">NCOL</span>(x)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  linkobj<span class="ot">&lt;-</span><span class="fu">make.link</span>(link)</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  linkfun<span class="ot">&lt;-</span>linkobj<span class="sc">$</span>linkfun</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  linkinv<span class="ot">&lt;-</span>linkobj<span class="sc">$</span>linkinv</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>  Q.eta<span class="ot">&lt;-</span>linkobj<span class="sc">$</span>mu.eta</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>  ystar<span class="ot">&lt;-</span><span class="fu">linkfun</span>(y)</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>  beta<span class="ot">&lt;-</span><span class="fu">ginv</span>(<span class="fu">t</span>(x) <span class="sc">%*%</span> x) <span class="sc">%*%</span> <span class="fu">t</span>(x) <span class="sc">%*%</span> ystar</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>  xbar<span class="ot">&lt;-</span><span class="fu">mean</span>(y)</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>  vart<span class="ot">&lt;-</span>(n<span class="sc">/</span>(n<span class="dv">-1</span>))<span class="sc">*</span><span class="fu">var</span>(y)</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>  r<span class="ot">&lt;-</span>vart <span class="sc">/</span> xbar<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>  alphai<span class="ot">&lt;-</span><span class="fu">sqrt</span>((<span class="dv">2</span><span class="sc">*</span>r<span class="dv">-2</span><span class="sc">+</span><span class="dv">2</span><span class="sc">*</span><span class="fu">sqrt</span>(<span class="dv">1</span><span class="sc">+</span><span class="dv">3</span><span class="sc">*</span>r))<span class="sc">/</span>(<span class="dv">5</span><span class="sc">-</span>r))</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">is.nan</span>(alphai) <span class="sc">||</span> <span class="fu">is.na</span>(alphai)) { <span class="co">#MUDANÇA</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>    s1<span class="ot">&lt;-</span><span class="fu">mean</span>(y)</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>    r1<span class="ot">&lt;-</span><span class="dv">1</span><span class="sc">/</span><span class="fu">mean</span>(<span class="dv">1</span><span class="sc">/</span>y)</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>    alphai<span class="ot">&lt;-</span><span class="fu">sqrt</span>(<span class="dv">2</span><span class="sc">*</span><span class="fu">sqrt</span>(s1<span class="sc">/</span>r1)<span class="sc">-</span><span class="dv">2</span>)</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>  start<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="fu">as.vector</span>(beta), alphai) <span class="co">#MUDANÇA</span></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>  <span class="co"># função de verossimilhança (log-like)</span></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>  fr<span class="ot">&lt;-</span><span class="cf">function</span>(vp) {</span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>    betab<span class="ot">&lt;-</span>vp[<span class="dv">1</span><span class="sc">:</span>p]</span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>    eta<span class="ot">&lt;-</span><span class="fu">as.vector</span>(x <span class="sc">%*%</span> betab)</span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>    Q<span class="ot">&lt;-</span><span class="fu">linkinv</span>(eta)</span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>    alphab<span class="ot">&lt;-</span>vp[p<span class="sc">+</span><span class="dv">1</span>]    <span class="co">#MUDANÇA: índice corrigido, garantir escalar </span></span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>    zq<span class="ot">&lt;-</span><span class="fu">qnorm</span>(q, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>    gma_alphab<span class="ot">&lt;-</span>alphab <span class="sc">*</span> zq <span class="sc">+</span> <span class="fu">sqrt</span>(alphab<span class="sc">^</span><span class="dv">2</span> <span class="sc">*</span> zq<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> <span class="dv">4</span>)</span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>    vt<span class="ot">&lt;-</span>y</span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sum</span>(<span class="sc">-</span><span class="fl">0.5</span><span class="sc">*</span><span class="fu">log</span>(<span class="dv">8</span><span class="sc">*</span>pi<span class="sc">*</span>vt) <span class="sc">-</span> <span class="fu">log</span>(alphab) <span class="sc">-</span> <span class="fu">log</span>(gma_alphab) <span class="sc">-</span> <span class="fl">0.5</span><span class="sc">*</span><span class="fu">log</span>(Q) <span class="sc">+</span></span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>        <span class="fu">log</span>(gma_alphab<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span><span class="dv">2</span> <span class="sc">+</span> <span class="dv">2</span><span class="sc">*</span>Q<span class="sc">/</span>vt) <span class="sc">-</span></span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>        (<span class="dv">2</span><span class="sc">*</span>Q<span class="sc">/</span>(alphab<span class="sc">^</span><span class="dv">2</span><span class="sc">*</span>gma_alphab<span class="sc">^</span><span class="dv">2</span><span class="sc">*</span>vt))<span class="sc">*</span>(vt<span class="sc">*</span>gma_alphab<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span>(<span class="dv">4</span><span class="sc">*</span>Q) <span class="sc">-</span> <span class="dv">1</span>)<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a>  <span class="co"># função gradiente: retorna um vetor NUMÉRICO de comprimento p+1</span></span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a>  grr<span class="ot">&lt;-</span><span class="cf">function</span>(vp) {</span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a>    betab<span class="ot">&lt;-</span>vp[<span class="dv">1</span><span class="sc">:</span>p]</span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a>    eta<span class="ot">&lt;-</span><span class="fu">as.vector</span>(x <span class="sc">%*%</span> betab)</span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a>    Q<span class="ot">&lt;-</span><span class="fu">linkinv</span>(eta)</span>
+<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a>    alphab<span class="ot">&lt;-</span>vp[p<span class="sc">+</span><span class="dv">1</span>]   <span class="co"># MUDANÇA: garantir escalar</span></span>
+<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a>    zq<span class="ot">&lt;-</span><span class="fu">qnorm</span>(q)</span>
+<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a>    gma_alphab<span class="ot">&lt;-</span>alphab <span class="sc">*</span> zq <span class="sc">+</span> <span class="fu">sqrt</span>(alphab<span class="sc">^</span><span class="dv">2</span> <span class="sc">*</span> zq<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> <span class="dv">4</span>)</span>
+<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a>    <span class="co"># derivadas auxiliares</span></span>
+<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a>    gma_alphabp<span class="ot">&lt;-</span>zq <span class="sc">+</span> zq<span class="sc">^</span><span class="dv">2</span> <span class="sc">*</span> alphab <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">/</span> <span class="fu">sqrt</span>(alphab<span class="sc">^</span><span class="dv">2</span> <span class="sc">*</span> zq<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> <span class="dv">4</span>))</span>
+<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a>    vt<span class="ot">&lt;-</span>y</span>
+<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a>    z<span class="ot">&lt;-</span><span class="sc">-</span><span class="fl">0.5</span><span class="sc">*</span>(<span class="dv">1</span><span class="sc">/</span>Q) <span class="sc">-</span> <span class="dv">2</span><span class="sc">*</span>(<span class="dv">1</span><span class="sc">/</span>(alphab<span class="sc">^</span><span class="dv">2</span> <span class="sc">*</span> gma_alphab<span class="sc">^</span><span class="dv">2</span> <span class="sc">*</span> vt)) <span class="sc">+</span></span>
+<span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a>         gma_alphab<span class="sc">^</span><span class="dv">2</span> <span class="sc">*</span> vt <span class="sc">*</span> (<span class="dv">1</span><span class="sc">/</span>(<span class="dv">8</span> <span class="sc">*</span> alphab<span class="sc">^</span><span class="dv">2</span> <span class="sc">*</span> Q<span class="sc">^</span><span class="dv">2</span>)) <span class="sc">+</span></span>
+<span id="cb4-55"><a href="#cb4-55" aria-hidden="true" tabindex="-1"></a>         <span class="dv">4</span><span class="sc">*</span>(<span class="dv">1</span><span class="sc">/</span>(vt <span class="sc">*</span> gma_alphab<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> <span class="dv">4</span><span class="sc">*</span>Q))</span>
+<span id="cb4-56"><a href="#cb4-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-57"><a href="#cb4-57" aria-hidden="true" tabindex="-1"></a>    b<span class="ot">&lt;-</span><span class="sc">-</span>(gma_alphab <span class="sc">+</span> alphab <span class="sc">*</span> gma_alphabp) <span class="sc">*</span> (<span class="dv">1</span><span class="sc">/</span>(alphab <span class="sc">*</span> gma_alphab)) <span class="sc">+</span></span>
+<span id="cb4-58"><a href="#cb4-58" aria-hidden="true" tabindex="-1"></a>         <span class="dv">2</span><span class="sc">*</span>vt <span class="sc">*</span> gma_alphab <span class="sc">*</span> gma_alphabp <span class="sc">*</span> (<span class="dv">1</span><span class="sc">/</span>(vt <span class="sc">*</span> gma_alphab<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> <span class="dv">4</span><span class="sc">*</span>Q)) <span class="sc">-</span></span>
+<span id="cb4-59"><a href="#cb4-59" aria-hidden="true" tabindex="-1"></a>         (gma_alphab <span class="sc">*</span> gma_alphabp <span class="sc">*</span> alphab <span class="sc">-</span> gma_alphab<span class="sc">^</span><span class="dv">2</span>) <span class="sc">*</span> vt <span class="sc">*</span> (<span class="dv">1</span><span class="sc">/</span>(<span class="dv">4</span><span class="sc">*</span>Q<span class="sc">*</span>alphab<span class="sc">^</span><span class="dv">3</span>)) <span class="sc">-</span></span>
+<span id="cb4-60"><a href="#cb4-60" aria-hidden="true" tabindex="-1"></a>         <span class="dv">2</span><span class="sc">*</span>(<span class="dv">1</span><span class="sc">/</span>(alphab<span class="sc">^</span><span class="dv">3</span>)) <span class="sc">+</span></span>
+<span id="cb4-61"><a href="#cb4-61" aria-hidden="true" tabindex="-1"></a>         <span class="dv">4</span><span class="sc">*</span>Q<span class="sc">*</span>(gma_alphab <span class="sc">+</span> alphab <span class="sc">*</span> gma_alphabp) <span class="sc">*</span> (<span class="dv">1</span><span class="sc">/</span>(alphab<span class="sc">^</span><span class="dv">3</span> <span class="sc">*</span> gma_alphab<span class="sc">^</span><span class="dv">3</span> <span class="sc">*</span> vt))</span>
+<span id="cb4-62"><a href="#cb4-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-63"><a href="#cb4-63" aria-hidden="true" tabindex="-1"></a>    <span class="co"># MUDANÇA</span></span>
+<span id="cb4-64"><a href="#cb4-64" aria-hidden="true" tabindex="-1"></a>    <span class="co"># gradiente em relação a beta (p x 1)</span></span>
+<span id="cb4-65"><a href="#cb4-65" aria-hidden="true" tabindex="-1"></a>    grad_beta<span class="ot">&lt;-</span><span class="fu">as.vector</span>(<span class="fu">t</span>(x) <span class="sc">%*%</span> (<span class="fu">Q.eta</span>(eta) <span class="sc">*</span> z))</span>
+<span id="cb4-66"><a href="#cb4-66" aria-hidden="true" tabindex="-1"></a>    <span class="co"># gradiente em relação a alpha (escala)</span></span>
+<span id="cb4-67"><a href="#cb4-67" aria-hidden="true" tabindex="-1"></a>    grad_alpha<span class="ot">&lt;-</span><span class="fu">sum</span>(b)</span>
+<span id="cb4-68"><a href="#cb4-68" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb4-69"><a href="#cb4-69" aria-hidden="true" tabindex="-1"></a>    <span class="co"># retornar UM VETOR numérico (p+1)</span></span>
+<span id="cb4-70"><a href="#cb4-70" aria-hidden="true" tabindex="-1"></a>    <span class="fu">c</span>(grad_beta, grad_alpha)</span>
+<span id="cb4-71"><a href="#cb4-71" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb4-72"><a href="#cb4-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-73"><a href="#cb4-73" aria-hidden="true" tabindex="-1"></a>  A<span class="ot">&lt;-</span><span class="fu">matrix</span>(<span class="fu">c</span>(<span class="fu">rep</span>(<span class="dv">0</span>,p),<span class="dv">1</span>),<span class="dv">1</span>,p<span class="sc">+</span><span class="dv">1</span>)</span>
+<span id="cb4-74"><a href="#cb4-74" aria-hidden="true" tabindex="-1"></a>  B<span class="ot">&lt;-</span><span class="dv">0</span></span>
+<span id="cb4-75"><a href="#cb4-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-76"><a href="#cb4-76" aria-hidden="true" tabindex="-1"></a>  opt<span class="ot">&lt;-</span>maxLik<span class="sc">::</span><span class="fu">maxBFGS</span>(<span class="at">fn =</span> fr, <span class="at">grad =</span> grr, <span class="at">start =</span> start,</span>
+<span id="cb4-77"><a href="#cb4-77" aria-hidden="true" tabindex="-1"></a>                         <span class="at">constraints =</span> <span class="fu">list</span>(<span class="at">ineqA =</span> A, <span class="at">ineqB =</span> B))</span>
+<span id="cb4-78"><a href="#cb4-78" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-79"><a href="#cb4-79" aria-hidden="true" tabindex="-1"></a>  <span class="co"># MUDANÇA: inspeção para debug</span></span>
+<span id="cb4-80"><a href="#cb4-80" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-81"><a href="#cb4-81" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.null</span>(opt<span class="sc">$</span>code) <span class="sc">&amp;&amp;</span> opt<span class="sc">$</span>code <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="fu">warning</span>(<span class="st">"optimization failed to converge (opt$code &gt; 0)"</span>)</span>
+<span id="cb4-82"><a href="#cb4-82" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.null</span>(opt<span class="sc">$</span>convergence) <span class="sc">&amp;&amp;</span> opt<span class="sc">$</span>convergence <span class="sc">!=</span> <span class="dv">0</span>) <span class="fu">warning</span>(<span class="st">"optimizer signaled non-zero convergence code"</span>)</span>
+<span id="cb4-83"><a href="#cb4-83" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-84"><a href="#cb4-84" aria-hidden="true" tabindex="-1"></a>  estimates<span class="ot">&lt;-</span>opt<span class="sc">$</span>estimate</span>
+<span id="cb4-85"><a href="#cb4-85" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-86"><a href="#cb4-86" aria-hidden="true" tabindex="-1"></a>  <span class="co"># MUDANÇA: garantir que log.lik.est é numérico (NA se não disponível)</span></span>
+<span id="cb4-87"><a href="#cb4-87" aria-hidden="true" tabindex="-1"></a>  log.lik.est<span class="ot">&lt;-</span><span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.null</span>(opt<span class="sc">$</span>maximum)) opt<span class="sc">$</span>maximum <span class="cf">else</span> <span class="cn">NA</span></span>
+<span id="cb4-88"><a href="#cb4-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-89"><a href="#cb4-89" aria-hidden="true" tabindex="-1"></a>  beta<span class="ot">&lt;-</span><span class="fu">as.vector</span>(estimates[<span class="dv">1</span><span class="sc">:</span>p])</span>
+<span id="cb4-90"><a href="#cb4-90" aria-hidden="true" tabindex="-1"></a>  eta<span class="ot">&lt;-</span><span class="fu">as.vector</span>(x <span class="sc">%*%</span> beta)</span>
+<span id="cb4-91"><a href="#cb4-91" aria-hidden="true" tabindex="-1"></a>  Q<span class="ot">&lt;-</span><span class="fu">linkinv</span>(eta)</span>
+<span id="cb4-92"><a href="#cb4-92" aria-hidden="true" tabindex="-1"></a>  alpha<span class="ot">&lt;-</span>estimates[p<span class="sc">+</span><span class="dv">1</span>]</span>
+<span id="cb4-93"><a href="#cb4-93" aria-hidden="true" tabindex="-1"></a>  zq<span class="ot">&lt;-</span><span class="fu">qnorm</span>(q, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span>
+<span id="cb4-94"><a href="#cb4-94" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-95"><a href="#cb4-95" aria-hidden="true" tabindex="-1"></a>  aux<span class="ot">&lt;-</span><span class="fu">matrix</span>(<span class="dv">1</span>, <span class="at">ncol =</span> <span class="dv">1</span>L, <span class="at">nrow =</span> n)</span>
+<span id="cb4-96"><a href="#cb4-96" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-97"><a href="#cb4-97" aria-hidden="true" tabindex="-1"></a>  gma_alpha<span class="ot">&lt;-</span>alpha <span class="sc">*</span> zq <span class="sc">+</span> <span class="fu">sqrt</span>(alpha<span class="sc">^</span><span class="dv">2</span> <span class="sc">*</span> zq<span class="sc">^</span><span class="dv">2</span><span class="sc">+</span><span class="dv">4</span>) </span>
+<span id="cb4-98"><a href="#cb4-98" aria-hidden="true" tabindex="-1"></a>  gma_alphap<span class="ot">&lt;-</span>zq<span class="sc">+</span>alpha<span class="sc">*</span>zq<span class="sc">^</span><span class="dv">2</span><span class="sc">*</span>(<span class="dv">1</span><span class="sc">/</span><span class="fu">sqrt</span>(alpha<span class="sc">^</span><span class="dv">2</span><span class="sc">*</span>zq<span class="sc">^</span><span class="dv">2</span><span class="sc">+</span><span class="dv">4</span>))</span>
+<span id="cb4-99"><a href="#cb4-99" aria-hidden="true" tabindex="-1"></a>  gma_alphapp<span class="ot">&lt;-</span><span class="dv">4</span><span class="sc">*</span>zq<span class="sc">^</span><span class="dv">2</span><span class="sc">*</span>(<span class="dv">1</span><span class="sc">/</span><span class="fu">sqrt</span>(alpha<span class="sc">^</span><span class="dv">2</span><span class="sc">*</span>zq<span class="sc">^</span><span class="dv">2</span><span class="sc">+</span><span class="dv">4</span>)<span class="sc">^</span><span class="dv">3</span>)</span>
+<span id="cb4-100"><a href="#cb4-100" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-101"><a href="#cb4-101" aria-hidden="true" tabindex="-1"></a>  par_alpha<span class="ot">&lt;-</span>alpha</span>
+<span id="cb4-102"><a href="#cb4-102" aria-hidden="true" tabindex="-1"></a>  par_beta <span class="ot">&lt;-</span><span class="dv">4</span><span class="sc">*</span>Q<span class="sc">/</span>gma_alpha<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb4-103"><a href="#cb4-103" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-104"><a href="#cb4-104" aria-hidden="true" tabindex="-1"></a>  Acal<span class="ot">&lt;-</span>((<span class="dv">2</span><span class="sc">*</span>gma_alphap<span class="sc">+</span>alpha<span class="sc">*</span>gma_alphapp)<span class="sc">*</span>(alpha<span class="sc">*</span>gma_alpha)<span class="sc">-</span>(gma_alpha<span class="sc">+</span>alpha<span class="sc">*</span>gma_alphap)<span class="sc">^</span><span class="dv">2</span>)<span class="sc">/</span></span>
+<span id="cb4-105"><a href="#cb4-105" aria-hidden="true" tabindex="-1"></a>          (alpha<span class="sc">^</span><span class="dv">2</span><span class="sc">*</span>gma_alpha<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb4-106"><a href="#cb4-106" aria-hidden="true" tabindex="-1"></a>  Bcal<span class="ot">&lt;-</span><span class="dv">8</span><span class="sc">*</span>Q<span class="sc">*</span>(gma_alphap<span class="sc">^</span><span class="dv">2</span><span class="sc">+</span>gma_alpha<span class="sc">*</span>gma_alphapp)</span>
+<span id="cb4-107"><a href="#cb4-107" aria-hidden="true" tabindex="-1"></a>  Ccal<span class="ot">&lt;-</span>(<span class="dv">1</span><span class="sc">/</span>(<span class="dv">4</span><span class="sc">*</span>Q<span class="sc">*</span>alpha<span class="sc">^</span><span class="dv">4</span>))<span class="sc">*</span>(alpha<span class="sc">^</span><span class="dv">2</span><span class="sc">*</span>gma_alphap<span class="sc">^</span><span class="dv">2</span><span class="sc">+</span>alpha<span class="sc">^</span><span class="dv">2</span><span class="sc">*</span>gma_alpha<span class="sc">*</span>gma_alphapp<span class="sc">-</span>alpha<span class="sc">*</span>gma_alpha<span class="sc">*</span>gma_alphap<span class="sc">-</span></span>
+<span id="cb4-108"><a href="#cb4-108" aria-hidden="true" tabindex="-1"></a>          <span class="dv">3</span><span class="sc">*</span>gma_alpha<span class="sc">*</span>gma_alphap<span class="sc">*</span>alpha<span class="sc">+</span><span class="dv">3</span><span class="sc">*</span>gma_alpha<span class="sc">^</span><span class="dv">3</span>)</span>
+<span id="cb4-109"><a href="#cb4-109" aria-hidden="true" tabindex="-1"></a>  Dcal<span class="ot">&lt;-</span><span class="dv">4</span><span class="sc">*</span>Q<span class="sc">*</span>((<span class="dv">2</span><span class="sc">*</span>gma_alphap<span class="sc">+</span>alpha<span class="sc">*</span>gma_alphapp)<span class="sc">*</span>alpha<span class="sc">*</span>gma_alpha<span class="dv">-3</span><span class="sc">*</span>(gma_alpha<span class="sc">+</span>alpha<span class="sc">*</span>gma_alphap)<span class="sc">^</span><span class="dv">2</span>)<span class="sc">/</span></span>
+<span id="cb4-110"><a href="#cb4-110" aria-hidden="true" tabindex="-1"></a>          (alpha<span class="sc">^</span><span class="dv">4</span><span class="sc">*</span>gma_alpha<span class="sc">^</span><span class="dv">4</span>)</span>
+<span id="cb4-111"><a href="#cb4-111" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb4-112"><a href="#cb4-112" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(link <span class="sc">==</span> <span class="st">"log"</span>){</span>
+<span id="cb4-113"><a href="#cb4-113" aria-hidden="true" tabindex="-1"></a>      a<span class="ot">&lt;-</span>Q</span>
+<span id="cb4-114"><a href="#cb4-114" aria-hidden="true" tabindex="-1"></a>      h1<span class="ot">&lt;-</span>Q<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb4-115"><a href="#cb4-115" aria-hidden="true" tabindex="-1"></a>      h2<span class="ot">&lt;-</span><span class="sc">-</span><span class="dv">1</span><span class="sc">/</span>(Q<span class="sc">^</span><span class="dv">2</span><span class="sc">*</span>(<span class="fu">log</span>(Q)<span class="sc">^</span><span class="dv">3</span>))}</span>
+<span id="cb4-116"><a href="#cb4-116" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb4-117"><a href="#cb4-117" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(link <span class="sc">==</span> <span class="st">"identity"</span>){</span>
+<span id="cb4-118"><a href="#cb4-118" aria-hidden="true" tabindex="-1"></a>      a<span class="ot">&lt;-</span><span class="fu">rep</span>(<span class="dv">1</span>,n)</span>
+<span id="cb4-119"><a href="#cb4-119" aria-hidden="true" tabindex="-1"></a>      h1<span class="ot">&lt;-</span><span class="dv">1</span></span>
+<span id="cb4-120"><a href="#cb4-120" aria-hidden="true" tabindex="-1"></a>      h2<span class="ot">&lt;-</span><span class="dv">0</span>}</span>
+<span id="cb4-121"><a href="#cb4-121" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb4-122"><a href="#cb4-122" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(link <span class="sc">==</span> <span class="st">"sqrt"</span>){</span>
+<span id="cb4-123"><a href="#cb4-123" aria-hidden="true" tabindex="-1"></a>      a<span class="ot">&lt;-</span><span class="dv">2</span><span class="sc">*</span><span class="fu">sqrt</span>(Q)</span>
+<span id="cb4-124"><a href="#cb4-124" aria-hidden="true" tabindex="-1"></a>      h1<span class="ot">&lt;-</span><span class="dv">4</span><span class="sc">*</span>Q</span>
+<span id="cb4-125"><a href="#cb4-125" aria-hidden="true" tabindex="-1"></a>      h2<span class="ot">&lt;-</span><span class="sc">-</span><span class="dv">1</span><span class="sc">/</span>(<span class="dv">4</span><span class="sc">*</span>Q<span class="sc">^</span><span class="dv">3</span>)}</span>
+<span id="cb4-126"><a href="#cb4-126" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb4-127"><a href="#cb4-127" aria-hidden="true" tabindex="-1"></a>    integ.f2<span class="ot">&lt;-</span><span class="fu">c</span>()</span>
+<span id="cb4-128"><a href="#cb4-128" aria-hidden="true" tabindex="-1"></a>    integ.f3<span class="ot">&lt;-</span><span class="fu">c</span>()</span>
+<span id="cb4-129"><a href="#cb4-129" aria-hidden="true" tabindex="-1"></a>    integ.f4<span class="ot">&lt;-</span><span class="fu">c</span>()</span>
+<span id="cb4-130"><a href="#cb4-130" aria-hidden="true" tabindex="-1"></a>    integ.f5<span class="ot">&lt;-</span><span class="fu">c</span>()</span>
+<span id="cb4-131"><a href="#cb4-131" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-132"><a href="#cb4-132" aria-hidden="true" tabindex="-1"></a>  f2<span class="ot">&lt;-</span><span class="cf">function</span>(u,j){</span>
+<span id="cb4-133"><a href="#cb4-133" aria-hidden="true" tabindex="-1"></a>      <span class="fu">return</span>((u<span class="sc">/</span>(u<span class="sc">*</span>gma_alpha<span class="sc">^</span><span class="dv">2</span><span class="sc">+</span><span class="dv">4</span><span class="sc">*</span>Q[j]))<span class="sc">^</span><span class="dv">2</span><span class="sc">*</span><span class="fu">dbisa</span>(u, par_beta[j], par_alpha))}</span>
+<span id="cb4-134"><a href="#cb4-134" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb4-135"><a href="#cb4-135" aria-hidden="true" tabindex="-1"></a>  f3<span class="ot">&lt;-</span><span class="cf">function</span>(u,j){</span>
+<span id="cb4-136"><a href="#cb4-136" aria-hidden="true" tabindex="-1"></a>      <span class="fu">return</span>((u<span class="sc">/</span>(u<span class="sc">*</span>gma_alpha<span class="sc">^</span><span class="dv">2</span><span class="sc">+</span><span class="dv">4</span><span class="sc">*</span>Q[j])<span class="sc">^</span><span class="dv">2</span>)<span class="sc">*</span><span class="fu">dbisa</span>(u, par_beta[j], par_alpha))}</span>
+<span id="cb4-137"><a href="#cb4-137" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb4-138"><a href="#cb4-138" aria-hidden="true" tabindex="-1"></a>  f4<span class="ot">&lt;-</span><span class="cf">function</span>(u,j){</span>
+<span id="cb4-139"><a href="#cb4-139" aria-hidden="true" tabindex="-1"></a>      <span class="fu">return</span>((<span class="dv">1</span><span class="sc">/</span>(u<span class="sc">*</span>gma_alpha<span class="sc">^</span><span class="dv">2</span><span class="sc">+</span><span class="dv">4</span><span class="sc">*</span>Q[j])<span class="sc">^</span><span class="dv">2</span>)<span class="sc">*</span><span class="fu">dbisa</span>(u, par_beta[j], par_alpha))}</span>
+<span id="cb4-140"><a href="#cb4-140" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb4-141"><a href="#cb4-141" aria-hidden="true" tabindex="-1"></a>  f5<span class="ot">&lt;-</span><span class="cf">function</span>(u,j){</span>
+<span id="cb4-142"><a href="#cb4-142" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>((<span class="dv">1</span><span class="sc">/</span>(u<span class="sc">*</span>gma_alpha<span class="sc">^</span><span class="dv">2</span><span class="sc">+</span><span class="dv">4</span><span class="sc">*</span>Q[j]))<span class="sc">*</span><span class="fu">dbisa</span>(u, par_beta[j], par_alpha))}</span>
+<span id="cb4-143"><a href="#cb4-143" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-144"><a href="#cb4-144" aria-hidden="true" tabindex="-1"></a>  <span class="co"># MUDANÇA: tenta integrar; se der erro, retorna NA ou 0</span></span>
+<span id="cb4-145"><a href="#cb4-145" aria-hidden="true" tabindex="-1"></a>  safe_integrate <span class="ot">&lt;-</span> <span class="cf">function</span>(fun, j, <span class="at">lower =</span> <span class="fl">1e-6</span>, <span class="at">upper =</span> <span class="dv">1000</span>) {</span>
+<span id="cb4-146"><a href="#cb4-146" aria-hidden="true" tabindex="-1"></a>    val <span class="ot">&lt;-</span> <span class="fu">tryCatch</span>(</span>
+<span id="cb4-147"><a href="#cb4-147" aria-hidden="true" tabindex="-1"></a>      <span class="fu">integrate</span>(fun, <span class="at">lower =</span> lower, <span class="at">upper =</span> upper, <span class="at">j =</span> j)<span class="sc">$</span>value,</span>
+<span id="cb4-148"><a href="#cb4-148" aria-hidden="true" tabindex="-1"></a>      <span class="at">error =</span> <span class="cf">function</span>(e) <span class="cn">NA_real_</span>)</span>
+<span id="cb4-149"><a href="#cb4-149" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (<span class="fu">is.na</span>(val) <span class="sc">||</span> <span class="fu">is.infinite</span>(val)) val <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb4-150"><a href="#cb4-150" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(val)}</span>
+<span id="cb4-151"><a href="#cb4-151" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb4-152"><a href="#cb4-152" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_len</span>(n)) {</span>
+<span id="cb4-153"><a href="#cb4-153" aria-hidden="true" tabindex="-1"></a>    integ.f2[i] <span class="ot">&lt;-</span> <span class="fu">safe_integrate</span>(f2, i)</span>
+<span id="cb4-154"><a href="#cb4-154" aria-hidden="true" tabindex="-1"></a>    integ.f3[i] <span class="ot">&lt;-</span> <span class="fu">safe_integrate</span>(f3, i)</span>
+<span id="cb4-155"><a href="#cb4-155" aria-hidden="true" tabindex="-1"></a>    integ.f4[i] <span class="ot">&lt;-</span> <span class="fu">safe_integrate</span>(f4, i)</span>
+<span id="cb4-156"><a href="#cb4-156" aria-hidden="true" tabindex="-1"></a>    integ.f5[i] <span class="ot">&lt;-</span> <span class="fu">safe_integrate</span>(f5, i)</span>
+<span id="cb4-157"><a href="#cb4-157" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb4-158"><a href="#cb4-158" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb4-159"><a href="#cb4-159" aria-hidden="true" tabindex="-1"></a>  AIC <span class="ot">&lt;-</span> (<span class="sc">-</span><span class="dv">2</span> <span class="sc">*</span> log.lik.est <span class="sc">+</span> <span class="dv">2</span> <span class="sc">*</span> (p<span class="sc">+</span><span class="dv">1</span>))</span>
+<span id="cb4-160"><a href="#cb4-160" aria-hidden="true" tabindex="-1"></a>  AICc<span class="ot">&lt;-</span> AIC <span class="sc">+</span> (<span class="dv">2</span> <span class="sc">*</span> (p<span class="sc">+</span><span class="dv">1</span>) <span class="sc">*</span> ((p<span class="sc">+</span><span class="dv">1</span>) <span class="sc">+</span> <span class="dv">1</span>)) <span class="sc">/</span> (n <span class="sc">-</span> (p<span class="sc">+</span><span class="dv">1</span>) <span class="sc">-</span> <span class="dv">1</span>)</span>
+<span id="cb4-161"><a href="#cb4-161" aria-hidden="true" tabindex="-1"></a>  BIC <span class="ot">&lt;-</span> (<span class="sc">-</span><span class="dv">2</span> <span class="sc">*</span> log.lik.est <span class="sc">+</span> <span class="fu">log</span>(n) <span class="sc">*</span> (p<span class="sc">+</span><span class="dv">1</span>))</span>
+<span id="cb4-162"><a href="#cb4-162" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-163"><a href="#cb4-163" aria-hidden="true" tabindex="-1"></a>  v<span class="ot">&lt;-</span>(<span class="sc">-</span><span class="dv">1</span><span class="sc">/</span>(<span class="dv">2</span><span class="sc">*</span>Q<span class="sc">^</span><span class="dv">2</span>)<span class="sc">+</span><span class="dv">16</span><span class="sc">*</span>integ.f4 <span class="sc">+</span> (<span class="dv">1</span><span class="sc">/</span>(alpha<span class="sc">^</span><span class="dv">2</span><span class="sc">*</span>Q<span class="sc">^</span><span class="dv">2</span>))<span class="sc">*</span>(<span class="dv">1</span><span class="sc">+</span>alpha<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span><span class="dv">2</span>))<span class="sc">*</span>h1<span class="sc">-</span></span>
+<span id="cb4-164"><a href="#cb4-164" aria-hidden="true" tabindex="-1"></a>      (<span class="dv">1</span><span class="sc">/</span>(<span class="dv">2</span><span class="sc">*</span>Q)<span class="sc">+</span>(<span class="dv">1</span><span class="sc">/</span>(<span class="dv">2</span><span class="sc">*</span>alpha<span class="sc">^</span><span class="dv">2</span><span class="sc">*</span>Q))<span class="sc">*</span>(<span class="dv">1</span><span class="sc">+</span>alpha<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span><span class="dv">2</span>)<span class="sc">-</span><span class="dv">4</span><span class="sc">*</span>integ.f5)<span class="sc">*</span>h2</span>
+<span id="cb4-165"><a href="#cb4-165" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb4-166"><a href="#cb4-166" aria-hidden="true" tabindex="-1"></a>  s<span class="ot">&lt;-</span><span class="dv">8</span><span class="sc">*</span>gma_alpha<span class="sc">*</span>gma_alphap<span class="sc">*</span>integ.f3 <span class="sc">-</span> </span>
+<span id="cb4-167"><a href="#cb4-167" aria-hidden="true" tabindex="-1"></a>      ((gma_alpha <span class="sc">*</span> gma_alphap <span class="sc">*</span> alpha<span class="sc">-</span> gma_alpha<span class="sc">^</span><span class="dv">2</span>)<span class="sc">/</span>(alpha<span class="sc">^</span><span class="dv">3</span><span class="sc">*</span>gma_alpha<span class="sc">^</span><span class="dv">2</span><span class="sc">*</span>Q<span class="sc">^</span><span class="dv">2</span>))<span class="sc">*</span>(<span class="dv">1</span><span class="sc">+</span>alpha<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span><span class="dv">2</span>)<span class="sc">-</span></span>
+<span id="cb4-168"><a href="#cb4-168" aria-hidden="true" tabindex="-1"></a>      ((gma_alpha <span class="sc">+</span>alpha<span class="sc">*</span> gma_alphap)<span class="sc">/</span>(alpha<span class="sc">^</span><span class="dv">3</span><span class="sc">*</span>gma_alpha <span class="sc">*</span>Q))<span class="sc">*</span>(<span class="dv">1</span><span class="sc">+</span>alpha<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span><span class="dv">2</span>)</span>
+<span id="cb4-169"><a href="#cb4-169" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb4-170"><a href="#cb4-170" aria-hidden="true" tabindex="-1"></a>  u<span class="ot">&lt;-</span>Acal<span class="sc">-</span>Bcal<span class="sc">*</span>integ.f3 <span class="sc">-</span><span class="dv">2</span><span class="sc">*</span>(gma_alpha<span class="sc">^</span><span class="dv">3</span><span class="sc">*</span>gma_alphapp<span class="sc">-</span>gma_alpha<span class="sc">^</span><span class="dv">2</span><span class="sc">*</span>gma_alphap<span class="sc">^</span><span class="dv">2</span>)<span class="sc">^</span><span class="dv">2</span><span class="sc">*</span></span>
+<span id="cb4-171"><a href="#cb4-171" aria-hidden="true" tabindex="-1"></a>      integ.f2 <span class="sc">+</span> Ccal<span class="sc">*</span>(<span class="dv">4</span><span class="sc">*</span>Q<span class="sc">/</span>gma_alpha<span class="sc">^</span><span class="dv">2</span>)<span class="sc">*</span>(<span class="dv">1</span><span class="sc">+</span>alpha<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span><span class="dv">2</span>)<span class="sc">-</span><span class="dv">6</span><span class="sc">/</span>alpha<span class="sc">^</span><span class="dv">4</span><span class="sc">-</span></span>
+<span id="cb4-172"><a href="#cb4-172" aria-hidden="true" tabindex="-1"></a>      Dcal<span class="sc">*</span>(gma_alpha<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span>(<span class="dv">4</span><span class="sc">*</span>Q))<span class="sc">*</span>(<span class="dv">1</span><span class="sc">+</span>alpha<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span><span class="dv">2</span>)</span>
+<span id="cb4-173"><a href="#cb4-173" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb4-174"><a href="#cb4-174" aria-hidden="true" tabindex="-1"></a>  kbb<span class="ot">&lt;-</span><span class="fu">t</span>(x)<span class="sc">%*%</span><span class="fu">diag</span>(<span class="fu">as.vector</span>(v))<span class="sc">%*%</span>x</span>
+<span id="cb4-175"><a href="#cb4-175" aria-hidden="true" tabindex="-1"></a>  kaa<span class="ot">&lt;-</span><span class="fu">sum</span>(<span class="fu">diag</span>(<span class="fu">as.vector</span>(u)))</span>
+<span id="cb4-176"><a href="#cb4-176" aria-hidden="true" tabindex="-1"></a>  kba<span class="ot">&lt;-</span><span class="fu">t</span>(x)<span class="sc">%*%</span><span class="fu">diag</span>(<span class="fu">as.vector</span>(a))<span class="sc">%*%</span>s</span>
+<span id="cb4-177"><a href="#cb4-177" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb4-178"><a href="#cb4-178" aria-hidden="true" tabindex="-1"></a>  Diag<span class="ot">&lt;-</span><span class="cf">function</span>(A){</span>
+<span id="cb4-179"><a href="#cb4-179" aria-hidden="true" tabindex="-1"></a>    diag.A<span class="ot">&lt;-</span><span class="fu">vector</span>()</span>
+<span id="cb4-180"><a href="#cb4-180" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span>(t <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">ncol</span>(A)){</span>
+<span id="cb4-181"><a href="#cb4-181" aria-hidden="true" tabindex="-1"></a>      diag.A[t]<span class="ot">=</span>A[t,t]</span>
+<span id="cb4-182"><a href="#cb4-182" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb4-183"><a href="#cb4-183" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="fu">as.vector</span>(diag.A))</span>
+<span id="cb4-184"><a href="#cb4-184" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb4-185"><a href="#cb4-185" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb4-186"><a href="#cb4-186" aria-hidden="true" tabindex="-1"></a>  fisher<span class="ot">&lt;-</span><span class="fu">cbind</span>(<span class="fu">rbind</span>(kbb, <span class="fu">t</span>(kba)), <span class="fu">rbind</span>(kba, kaa))</span>
+<span id="cb4-187"><a href="#cb4-187" aria-hidden="true" tabindex="-1"></a>  se  <span class="ot">&lt;-</span><span class="fu">sqrt</span>(<span class="fu">Diag</span>(<span class="fu">solve</span>(fisher)))</span>
+<span id="cb4-188"><a href="#cb4-188" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb4-189"><a href="#cb4-189" aria-hidden="true" tabindex="-1"></a>  hess<span class="ot">&lt;-</span><span class="fu">as.matrix</span>(opt<span class="sc">$</span>hessian)</span>
+<span id="cb4-190"><a href="#cb4-190" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-191"><a href="#cb4-191" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(p <span class="sc">==</span> <span class="dv">1</span>) {</span>
+<span id="cb4-192"><a href="#cb4-192" aria-hidden="true" tabindex="-1"></a>    var.explic<span class="ot">&lt;-</span>x</span>
+<span id="cb4-193"><a href="#cb4-193" aria-hidden="true" tabindex="-1"></a>  }  <span class="cf">else</span> {</span>
+<span id="cb4-194"><a href="#cb4-194" aria-hidden="true" tabindex="-1"></a>            var.explic<span class="ot">&lt;-</span>x[,<span class="sc">-</span><span class="dv">1</span>]</span>
+<span id="cb4-195"><a href="#cb4-195" aria-hidden="true" tabindex="-1"></a>          }</span>
+<span id="cb4-196"><a href="#cb4-196" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-197"><a href="#cb4-197" aria-hidden="true" tabindex="-1"></a>  zstatbeta<span class="ot">&lt;-</span>beta <span class="sc">/</span> se[<span class="dv">1</span><span class="sc">:</span>p]</span>
+<span id="cb4-198"><a href="#cb4-198" aria-hidden="true" tabindex="-1"></a>  zstatalpha <span class="ot">&lt;-</span>alpha <span class="sc">/</span> se[p<span class="sc">+</span><span class="dv">1</span>] <span class="co">#MUDANÇA: índice</span></span>
+<span id="cb4-199"><a href="#cb4-199" aria-hidden="true" tabindex="-1"></a>  pvalorbeta<span class="ot">&lt;-</span><span class="dv">2</span> <span class="sc">*</span> <span class="fu">pnorm</span>(<span class="fu">abs</span>(zstatbeta), <span class="at">lower.tail =</span> F)</span>
+<span id="cb4-200"><a href="#cb4-200" aria-hidden="true" tabindex="-1"></a>  pvaloralpha<span class="ot">&lt;-</span><span class="dv">2</span> <span class="sc">*</span> <span class="fu">pnorm</span>(<span class="fu">abs</span>(zstatalpha), <span class="at">lower.tail =</span> F)</span>
+<span id="cb4-201"><a href="#cb4-201" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-202"><a href="#cb4-202" aria-hidden="true" tabindex="-1"></a>  <span class="fu">names</span>(beta)<span class="ot">&lt;-</span><span class="fu">colnames</span>(x)</span>
+<span id="cb4-203"><a href="#cb4-203" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-204"><a href="#cb4-204" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(print){</span>
+<span id="cb4-205"><a href="#cb4-205" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb4-206"><a href="#cb4-206" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">"--------------------------------------------------------------</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb4-207"><a href="#cb4-207" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">"        BS regression model - Quantile:"</span>, q, <span class="st">"                 </span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb4-208"><a href="#cb4-208" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">"--------------------------------------------------------------</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb4-209"><a href="#cb4-209" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">"Maximum Likelihood estimation </span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb4-210"><a href="#cb4-210" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">"Number of observations:"</span>, n, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb4-211"><a href="#cb4-211" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">"--------------------------------------------------------------</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb4-212"><a href="#cb4-212" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">"Beta - Coefficients:</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb4-213"><a href="#cb4-213" aria-hidden="true" tabindex="-1"></a>    <span class="fu">printCoefmat</span>(<span class="fu">cbind</span>(<span class="at">Estimate =</span> beta, <span class="st">"Std. Error"</span> <span class="ot">=</span> se[<span class="dv">1</span><span class="sc">:</span>p], <span class="st">"z value"</span> <span class="ot">=</span> zstatbeta, <span class="st">"Pr(&gt;|z|)"</span> <span class="ot">=</span> pvalorbeta))</span>
+<span id="cb4-214"><a href="#cb4-214" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">"Alpha - Coefficient:</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb4-215"><a href="#cb4-215" aria-hidden="true" tabindex="-1"></a>    <span class="fu">printCoefmat</span>(<span class="fu">cbind</span>(<span class="at">Estimate =</span> alpha, <span class="st">"Std. Error"</span> <span class="ot">=</span> se[p<span class="sc">+</span><span class="dv">1</span>], <span class="st">"z value"</span> <span class="ot">=</span> zstatalpha, <span class="st">"Pr(&gt;|z|)"</span> <span class="ot">=</span> pvaloralpha))</span>
+<span id="cb4-216"><a href="#cb4-216" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">"--------------------------------------------------------------</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb4-217"><a href="#cb4-217" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">"AIC:"</span>, <span class="fu">round</span>(AIC, <span class="dv">2</span>),</span>
+<span id="cb4-218"><a href="#cb4-218" aria-hidden="true" tabindex="-1"></a>        <span class="st">" BIC:"</span>, <span class="fu">round</span>(BIC, <span class="dv">2</span>),<span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb4-219"><a href="#cb4-219" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb4-220"><a href="#cb4-220" aria-hidden="true" tabindex="-1"></a>  out<span class="ot">&lt;-</span><span class="fu">list</span>(</span>
+<span id="cb4-221"><a href="#cb4-221" aria-hidden="true" tabindex="-1"></a>    <span class="at">coefficients =</span> <span class="fu">list</span>(<span class="at">beta =</span> beta, <span class="at">alpha =</span> alpha),</span>
+<span id="cb4-222"><a href="#cb4-222" aria-hidden="true" tabindex="-1"></a>    <span class="at">se =</span> se,</span>
+<span id="cb4-223"><a href="#cb4-223" aria-hidden="true" tabindex="-1"></a>    <span class="at">zstat =</span> <span class="fu">list</span>(<span class="at">beta =</span> zstatbeta, <span class="at">alpha =</span> zstatalpha),</span>
+<span id="cb4-224"><a href="#cb4-224" aria-hidden="true" tabindex="-1"></a>    <span class="at">pvalor =</span> <span class="fu">list</span>(<span class="at">beta =</span> pvalorbeta, <span class="at">alpha =</span> pvaloralpha),</span>
+<span id="cb4-225"><a href="#cb4-225" aria-hidden="true" tabindex="-1"></a>    <span class="at">loglik =</span> log.lik.est,</span>
+<span id="cb4-226"><a href="#cb4-226" aria-hidden="true" tabindex="-1"></a>    <span class="at">information.criterions =</span> <span class="fu">list</span>(<span class="at">aic =</span> AIC, <span class="at">bic =</span> BIC, <span class="at">aicc =</span> AICc),</span>
+<span id="cb4-227"><a href="#cb4-227" aria-hidden="true" tabindex="-1"></a>    <span class="at">hessian =</span> hess</span>
+<span id="cb4-228"><a href="#cb4-228" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb4-229"><a href="#cb4-229" aria-hidden="true" tabindex="-1"></a>  <span class="fu">class</span>(out) <span class="ot">&lt;-</span> <span class="st">"bsreg.fit"</span></span>
+<span id="cb4-230"><a href="#cb4-230" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(out)</span>
+<span id="cb4-231"><a href="#cb4-231" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div id="tabset-1-5" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-5-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>castor <span class="ot">&lt;-</span> <span class="fu">read.csv2</span>(<span class="st">"C:/Users/User/Documents/GitHub/MSc-est/MODELAGEM COM APOIO COMPUTACIONAL/article/final files/castorseed.csv"</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co">#phase="Germinated"</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>castor <span class="ot">&lt;-</span> castor <span class="sc">%&gt;%</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(phase <span class="sc">==</span> <span class="st">"Germinated"</span>)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Mediana</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>mle_mediana <span class="ot">&lt;-</span> <span class="fu">bsreg.fit</span>(<span class="at">x=</span><span class="fu">model.matrix</span>(<span class="sc">~</span>temperature <span class="sc">+</span> puncture <span class="sc">+</span> time_under_hydration, <span class="at">data=</span>castor),</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>                          <span class="at">y=</span>castor<span class="sc">$</span>time, <span class="at">q=</span><span class="fl">0.5</span>,<span class="at">link =</span> <span class="st">"log"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+--------------------------------------------------------------
+        BS regression model - Quantile: 0.5                  
+--------------------------------------------------------------
+Maximum Likelihood estimation 
+Number of observations: 201 
+--------------------------------------------------------------
+Beta - Coefficients:
+                        Estimate  Std. Error z value  Pr(&gt;|z|)    
+(Intercept)           3.40138149  0.11923858 28.5258 &lt; 2.2e-16 ***
+temperature          -0.01364774  0.00342991 -3.9790 6.919e-05 ***
+punctureYes          -0.02900113  0.03418883 -0.8483    0.3963    
+time_under_hydration  0.01287079  0.00040056 32.1322 &lt; 2.2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+Alpha - Coefficient:
+      Estimate Std. Error z value  Pr(&gt;|z|)    
+[1,] 0.1940858  0.0018129  107.06 &lt; 2.2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+--------------------------------------------------------------
+AIC: 1503.47  BIC: 1519.98 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>betahat_mediana <span class="ot">&lt;-</span> mle_mediana<span class="sc">$</span>coefficients<span class="sc">$</span>beta</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>alphahat_mediana <span class="ot">&lt;-</span> mle_mediana<span class="sc">$</span>coefficients<span class="sc">$</span>alpha</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(betahat_mediana)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>         (Intercept)          temperature          punctureYes 
+          3.40138149          -0.01364774          -0.02900113 
+time_under_hydration 
+          0.01287079 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(alphahat_mediana)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.1940858</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Média</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>mle_media <span class="ot">&lt;-</span> <span class="fu">mle_unc</span>(<span class="at">x=</span><span class="fu">model.matrix</span>(<span class="sc">~</span> temperature <span class="sc">+</span> puncture <span class="sc">+</span> time_under_hydration, <span class="at">data=</span>castor),</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>                     <span class="at">t=</span>castor<span class="sc">$</span>time)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+--------------------------------------------------------------
+        BS regression model - Mean                           
+--------------------------------------------------------------
+Maximum Likelihood estimation 
+Number of observations: 201 
+--------------------------------------------------------------
+      Estimate Std. Error t value Pr(&gt;|t|)    
+beta0    3.397      0.119   28.63   &lt;2e-16 ***
+beta1   -0.014      0.003   -3.96   &lt;2e-16 ***
+beta2   -0.028      0.034   -0.81     0.41    
+beta3    0.013      0.000   32.71   &lt;2e-16 ***
+alpha    0.194      0.010   20.05   &lt;2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+--------------------------------------------------------------
+AIC: -80.48  BIC: -63.96 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>betahat_media <span class="ot">&lt;-</span> mle_media<span class="sc">$</span>beta</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>alphahat_media <span class="ot">&lt;-</span> mle_media<span class="sc">$</span>alpha</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(betahat_media)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>         (Intercept)          temperature          punctureYes 
+          3.39727813          -0.01355736          -0.02781684 
+time_under_hydration 
+          0.01288005 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(alphahat_media)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>          
+0.1941056 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Moda</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>mle_moda <span class="ot">&lt;-</span> <span class="fu">mle_dbsmoda</span>(<span class="at">x=</span><span class="fu">model.matrix</span>(<span class="sc">~</span> temperature <span class="sc">+</span> puncture <span class="sc">+</span> time_under_hydration, <span class="at">data=</span>castor),</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>                         <span class="at">z=</span><span class="fu">matrix</span>(<span class="dv">1</span>, <span class="at">nrow=</span><span class="fu">nrow</span>(castor), <span class="at">ncol=</span><span class="dv">1</span>),</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>                         <span class="at">t=</span>castor<span class="sc">$</span>time, <span class="at">print =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+--------------------------------------------------------------
+             BS regression model - Mode                       
+--------------------------------------------------------------
+Maximum Likelihood estimation 
+Number of observations: 201 
+--------------------------------------------------------------
+Mu - Coefficients:
+                       Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)           3.3653555  0.1187210  28.347  &lt; 2e-16 ***
+temperature          -0.0137024  0.0034256  -4.000 8.97e-05 ***
+punctureYes          -0.0296722  0.0341507  -0.869    0.386    
+time_under_hydration  0.0128659  0.0003938  32.673  &lt; 2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+--------------------------------------------------------------
+Phi - Coefficients:
+     Estimate Std. Error t value Pr(&gt;|t|)    
+[1,]  -3.2403     0.1037  -31.26   &lt;2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+--------------------------------------------------------------
+AIC: 1503.47  BIC: 1519.98 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>betahat_moda <span class="ot">&lt;-</span> mle_moda<span class="sc">$</span>beta_nu</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>alphahat_moda <span class="ot">&lt;-</span> mle_moda<span class="sc">$</span>beta_xi</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(betahat_moda)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]  3.36535554 -0.01370244 -0.02967222  0.01286593</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(alphahat_moda)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] -3.240327</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Quantis</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>mle_quantil_10 <span class="ot">&lt;-</span> <span class="fu">bsreg.fit</span>(<span class="at">x=</span><span class="fu">model.matrix</span>(<span class="sc">~</span>temperature <span class="sc">+</span> puncture <span class="sc">+</span> time_under_hydration, <span class="at">data=</span>castor),</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>                          <span class="at">y=</span>castor<span class="sc">$</span>time, <span class="at">q=</span><span class="fl">0.1</span>,<span class="at">link =</span> <span class="st">"log"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+--------------------------------------------------------------
+        BS regression model - Quantile: 0.1                  
+--------------------------------------------------------------
+Maximum Likelihood estimation 
+Number of observations: 201 
+--------------------------------------------------------------
+Beta - Coefficients:
+                       Estimate Std. Error z value  Pr(&gt;|z|)    
+(Intercept)           3.1539088  0.1192221 26.4541 &lt; 2.2e-16 ***
+temperature          -0.0136640  0.0034302 -3.9834 6.793e-05 ***
+punctureYes          -0.0291552  0.0341918 -0.8527    0.3938    
+time_under_hydration  0.0128698  0.0004006 32.1265 &lt; 2.2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+Alpha - Coefficient:
+      Estimate Std. Error z value  Pr(&gt;|z|)    
+[1,] 0.1941029  0.0020137  96.391 &lt; 2.2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+--------------------------------------------------------------
+AIC: 1503.47  BIC: 1519.98 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>betahat_quantil_10 <span class="ot">&lt;-</span> mle_quantil_10<span class="sc">$</span>coefficients<span class="sc">$</span>beta</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>alphahat_quantil_10 <span class="ot">&lt;-</span> mle_quantil_10<span class="sc">$</span>coefficients<span class="sc">$</span>alpha</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(betahat_quantil_10)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>         (Intercept)          temperature          punctureYes 
+          3.15390876          -0.01366398          -0.02915517 
+time_under_hydration 
+          0.01286982 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(alphahat_quantil_10)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.1941029</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>mle_quantil_90 <span class="ot">&lt;-</span> <span class="fu">bsreg.fit</span>(<span class="at">x=</span><span class="fu">model.matrix</span>(<span class="sc">~</span>temperature <span class="sc">+</span> puncture <span class="sc">+</span> time_under_hydration, <span class="at">data=</span>castor),</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>                          <span class="at">y=</span>castor<span class="sc">$</span>time, <span class="at">q=</span><span class="fl">0.9</span>,<span class="at">link =</span> <span class="st">"log"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+--------------------------------------------------------------
+        BS regression model - Quantile: 0.9                  
+--------------------------------------------------------------
+Maximum Likelihood estimation 
+Number of observations: 201 
+--------------------------------------------------------------
+Beta - Coefficients:
+                        Estimate  Std. Error z value  Pr(&gt;|z|)    
+(Intercept)           3.65013868  0.11924977 30.6092 &lt; 2.2e-16 ***
+temperature          -0.01366387  0.00343020 -3.9834 6.794e-05 ***
+punctureYes          -0.02915500  0.03419177 -0.8527    0.3938    
+time_under_hydration  0.01286981  0.00040059 32.1271 &lt; 2.2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+Alpha - Coefficient:
+      Estimate Std. Error z value  Pr(&gt;|z|)    
+[1,] 0.1941027  0.0016047  120.96 &lt; 2.2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+--------------------------------------------------------------
+AIC: 1503.47  BIC: 1519.98 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>betahat_quantil_90 <span class="ot">&lt;-</span> mle_quantil_90<span class="sc">$</span>coefficients<span class="sc">$</span>beta</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>alphahat_quantil_90 <span class="ot">&lt;-</span> mle_quantil_90<span class="sc">$</span>coefficients<span class="sc">$</span>alpha</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(betahat_quantil_90)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>         (Intercept)          temperature          punctureYes 
+          3.65013868          -0.01366387          -0.02915500 
+time_under_hydration 
+          0.01286981 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(alphahat_quantil_90)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.1941027</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-1-6" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-6-tab">
+<p>#| eval: false</p>
+<p>t &lt;- castor$time x &lt;- model.matrix(~temperature + puncture + time_under_hydration, data=castor) a &lt;- ppoints(2000) #### QQ plot Generalized Cox-Snell vs Exp(1) Q_exp &lt;- qexp(a)</p>
+<p>#moda #### Resíduos (FS, Cox-Snell generalizado e ‘randomized quantile’) etaHat &lt;- x %<em>% betahat_moda betahat_moda_i &lt;- exp(etaHat) xihat_moda &lt;- 1/alphahat_moda </em> (sqrt(t/betahat_moda_i) - sqrt(betahat_moda_i/t)) SurvivalBS_fit &lt;- 1 - pnorm(xihat_moda) CSresiduals &lt;- -log(SurvivalBS_fit) DSresiduals &lt;- qnorm(SurvivalBS_fit)</p>
+<p>png(“C:/Users/User/Documents/GitHub/MSc-est/MODELAGEM COM APOIO COMPUTACIONAL/article/final files/img/qqplot_CS_moda.png”, width = 800, height = 600, res = 120) qqplot(Q_exp, CSresiduals, xlab = “Quantis teóricos Exp(1)”, ylab = “Quantis resíduos CS”, main = “QQ-plot Cox–Snell generalizado (moda)”) abline(0, 1, col = “red”) dev.off()</p>
+<p>#mediana #### Resíduos (FS, Cox-Snell generalizado e ‘randomized quantile’) etaHat &lt;- x %<em>% betahat_mediana betahat_mediana_i &lt;- exp(etaHat) xihat_mediana &lt;- 1/alphahat_mediana </em> (sqrt(t/betahat_mediana_i) - sqrt(betahat_mediana_i/t)) SurvivalBS_fit &lt;- 1 - pnorm(xihat_mediana) CSresiduals &lt;- -log(SurvivalBS_fit) DSresiduals &lt;- qnorm(SurvivalBS_fit) png(“C:/Users/User/Documents/GitHub/MSc-est/MODELAGEM COM APOIO COMPUTACIONAL/article/final files/img/qqplot_CS_mediana.png”, width = 800, height = 600, res = 120) qqplot(Q_exp, CSresiduals, xlab = “Quantis teóricos Exp(1)”, ylab = “Quantis resíduos CS”, main = “QQ-plot Cox–Snell generalizado (mediana)”) abline(0, 1, col = “red”) dev.off()</p>
+<p>#média #### Resíduos (FS, Cox-Snell generalizado e ‘randomized quantile’) etaHat &lt;- x %<em>% betahat_media betahat_media_i &lt;- exp(etaHat) xihat_media &lt;- 1/alphahat_media </em> (sqrt(t/betahat_media_i) - sqrt(betahat_media_i/t)) SurvivalBS_fit &lt;- 1 - pnorm(xihat_media) CSresiduals &lt;- -log(SurvivalBS_fit) DSresiduals &lt;- qnorm(SurvivalBS_fit) png(“C:/Users/User/Documents/GitHub/MSc-est/MODELAGEM COM APOIO COMPUTACIONAL/article/final files/img/qqplot_CS_media.png”, width = 800, height = 600, res = 120) qqplot(Q_exp, CSresiduals, xlab = “Quantis teóricos Exp(1)”, ylab = “Quantis resíduos CS”, main = “QQ-plot Cox–Snell generalizado (média)”) abline(0, 1, col = “red”) dev.off()</p>
+<p>#quantil 10 #### Resíduos (FS, Cox-Snell generalizado e ‘randomized quantile’) etaHat &lt;- x %<em>% betahat_quantil_10 betahat_quantil_10_i &lt;- exp(etaHat) xihat_quantil_10 &lt;- 1/alphahat_quantil_10 </em> (sqrt(t/betahat_quantil_10_i) - sqrt(betahat_quantil_10_i/t)) SurvivalBS_fit &lt;- 1 - pnorm(xihat_quantil_10) CSresiduals &lt;- -log(SurvivalBS_fit) DSresiduals &lt;- qnorm(SurvivalBS_fit) png(“C:/Users/User/Documents/GitHub/MSc-est/MODELAGEM COM APOIO COMPUTACIONAL/article/final files/img/qqplot_CS_quantil_10.png”, width = 800, height = 600, res = 120) qqplot(Q_exp, CSresiduals, xlab = “Quantis teóricos Exp(1)”, ylab = “Quantis resíduos CS”, main = “QQ-plot Cox–Snell generalizado (quantil 10%)”) abline(0, 1, col = “red”) dev.off() #quantil 90 #### Resíduos (FS, Cox-Snell generalizado e ‘randomized quantile’) etaHat &lt;- x %<em>% betahat_quantil_90 betahat_quantil_90_i &lt;- exp(etaHat) xihat_quantil_90 &lt;- 1/alphahat_quantil_90 </em> (sqrt(t/betahat_quantil_90_i) - sqrt(betahat_quantil_90_i/t)) SurvivalBS_fit &lt;- 1 - pnorm(xihat_quantil_90) CSresiduals &lt;- -log(SurvivalBS_fit) DSresiduals &lt;- qnorm(SurvivalBS_fit) png(“C:/Users/User/Documents/GitHub/MSc-est/MODELAGEM COM APOIO COMPUTACIONAL/article/final files/img/qqplot_CS_quantil_90.png”, width = 800, height = 600, res = 120) qqplot(Q_exp, CSresiduals, xlab = “Quantis teóricos Exp(1)”, ylab = “Quantis resíduos CS”, main = “QQ-plot Cox–Snell generalizado (quantil 90%)”) abline(0, 1, col = “red”) dev.off() ````</p>
+</div>
+</div>
+</div>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

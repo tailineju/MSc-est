@@ -17,7 +17,7 @@ Link: <a href="https://doi.org/10.48432/6N3WQA" target="_blank">Castor seed hydr
 #| label: data
 #| echo: false
 
-pacman::p_load(tidyverse, knitr, MASS, maxLik, VGAM, gamlss, gamlss.dist, gamlss.add)
+pacman::p_load(tidyverse, knitr, MASS, maxLik, VGAM)
 
 theme_article <- function() {
   theme_classic() +
@@ -33,7 +33,7 @@ theme_article <- function() {
       axis.title = element_text(colour="black", size=18),
     )}
 
-castor <- read.csv2("C:/Users/User/Documents/GitHub/MSc-est/MODELAGEM COM APOIO COMPUTACIONAL/article/castorseed.csv")
+castor <- read.csv2("C:/Users/User/Documents/GitHub/MSc-est/MODELAGEM COM APOIO COMPUTACIONAL/article/final files/castorseed.csv")
 
 #phase="Germinated"
 castor <- castor %>%
@@ -52,9 +52,14 @@ kable(head(castor))
 ggplot(castor, aes(x = time)) +
   geom_histogram(bins = 30, fill = "white", color="black") +
   labs(title = "Time for germination (Frequency)", x = "Time for germination", y = "Frequency") +
+  #add median and mean
+  geom_vline(aes(xintercept = median(time), color = "Median"), size = 1) +
+  geom_vline(aes(xintercept = mean(time), color = "Mean"), size = 1) +
+  # add legend for median and mean
+  scale_color_manual(name = "Statistics", values = c("Median" = "blue", "Mean" = "red")) +
   theme_article()
   #save as png
-  ggsave("C:/Users/User/Documents/GitHub/MSc-est/MODELAGEM COM APOIO COMPUTACIONAL/article/img/histogram_frequency.png", width = 8, height = 6)
+  ggsave("C:/Users/User/Documents/GitHub/MSc-est/MODELAGEM COM APOIO COMPUTACIONAL/article/final files/img/histogram_frequency.png", width = 8, height = 6)
 
   # com a densidade
 
@@ -76,7 +81,7 @@ ggplot(castor, aes(x = time_under_hydration, y = time)) +
     title = "Scatter Plot with Regression Lines",
     x = "Time under hydration", y = "Time for germination", color = "Puncture") +
   theme_article()
-  ggsave("C:/Users/User/Documents/GitHub/MSc-est/MODELAGEM COM APOIO COMPUTACIONAL/article/img/tuh.png", width = 8, height = 6)
+  ggsave("C:/Users/User/Documents/GitHub/MSc-est/MODELAGEM COM APOIO COMPUTACIONAL/article/final files/img/scatter_tuh.png", width = 8, height = 6)
 ```
 
 ```{r}
@@ -87,14 +92,14 @@ ggplot(castor, aes(x = as.factor(temperature), y = time)) +
   labs(title = "Boxplot of Time by Temperature",
        x = "Temperature (°C)", y = "Time for germination") +
   theme_article()
-  ggsave("C:/Users/User/Documents/GitHub/MSc-est/MODELAGEM COM APOIO COMPUTACIONAL/article/img/boxplot_temperature.png", width = 8, height = 6)
+  ggsave("C:/Users/User/Documents/GitHub/MSc-est/MODELAGEM COM APOIO COMPUTACIONAL/article/final files/img/boxplot_temperature.png", width = 8, height = 6)
 
 ggplot(castor, aes(x = as.factor(puncture), y = time)) +
   geom_boxplot(fill = "white", color = "black") +
   labs(title = "Boxplot of Time by Puncture",
        x = "Puncture (Yes/No)", y = "Time for germination") +
   theme_article()
-  ggsave("C:/Users/User/Documents/GitHub/MSc-est/MODELAGEM COM APOIO COMPUTACIONAL/article/img/boxplot_puncture.png", width = 8, height = 6)
+  ggsave("C:/Users/User/Documents/GitHub/MSc-est/MODELAGEM COM APOIO COMPUTACIONAL/article/final files/img/boxplot_puncture.png", width = 8, height = 6)
 ```
 
 # Fitting a Linear Regression Model based on the Mean

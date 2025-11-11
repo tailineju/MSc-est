@@ -1,0 +1,649 @@
+---
+title: "Artigo - Aplicação"
+subtitle: "Modelagem com Apoio Computacional"
+author: "Tailine J. S. Nonato"
+date: today
+date-format: long
+format: html
+---
+
+:::: {.panel-tabset}
+
+# Pacotes
+```{r}
+#| label: pacotes
+
+pacman::p_load(tidyverse, knitr, MASS, maxLik, VGAM, miscTools)
+```
+
+# Média
+```{r}
+#| label: fun_media
+
+#########################################################
+## Regression by Rieck and Nedelman (1991)
+## Rieck, J.R., Nedelman, J.R., 1991. A log-linear model for the
+## Birnbaum–Saunders distribution. Technometrics 33, 51–60.
+#########################################################
+
+mle_unc <- function(x, t, v, kernel = "normal", print=TRUE) {
+  x <- as.matrix(x)
+  t <- as.matrix(t)
+  y <- as.matrix(log(t))
+  fit <- lm.fit(x, y)
+  beta <- c(fit$coef)
+  k <- length(beta)
+  n <- length(y)
+  mu <- x %*% beta
+  alpha <- sqrt((4 / n) * sum((sinh((y - mu) / 2)) ^ 2))
+  thetaStar <- c(beta, alpha)
+  loglik <- function(par) {
+    z1 <- par[1:k]
+    z2 <- par[k + 1]
+    mu <- (x %*% z1)
+    xi1 <- (2 / z2) * cosh((y - mu) / 2)
+    xi2 <- (2 / z2) * sinh((y - mu) / 2)
+    g <- switch(kernel,
+      "normal" = exp(-(xi2 ^ 2) / 2),
+      "t" = (v + (xi2 ^ 2)) ^ (-(v + 1) / 2)
+    )
+    const <- switch(kernel,
+      "normal" = 1 / (sqrt(2 * pi)),
+      "t" = (gamma((v + 1) / 2) * v ^ (v / 2)) /
+        (sqrt(pi) * gamma(v / 2))
+    )
+    result <- switch(kernel,
+      "normal" = sum(log(const / 2) + log(xi1) + log(g)),
+      "t" = sum(log(const / 2) + log(xi1) + log(g))
+    )
+    return(-result)
+  }
+  loglikplus <- function(par) {
+    z1 <- par[1:k]
+    z2 <- par[k + 1]
+    mu <- (x %*% z1)
+    xi1 <- (2 / z2) * cosh((y - mu) / 2)
+    xi2 <- (2 / z2) * sinh((y - mu) / 2)
+    result <- log(dnorm(xi2)) + log(xi1 / 2)
+    return(sum(result))
+  }
+  score <- function(par) {
+    z1 <- par[1:k]
+    z2 <- par[k + 1]
+    mu <- (x %*% z1)
+    xi1 <- (2 / z2) * cosh((y - mu) / 2)
+    xi2 <- (2 / z2) * sinh((y - mu) / 2)
+    status <- 1
+    const <- switch(kernel,
+      "normal" = 1 / (sqrt(2 * pi)),
+      "t" = (gamma((v + 1.0) / 2) * v ^ (v / 2)) /
+        (sqrt(pi) * gamma(v / 2))
+    )
+    derivativeF <- switch(kernel,
+      "normal" = -(const) * xi2 * exp(-(xi2 ^ 2) / 2),
+      "t" = -(const) * (v + 1) * xi2 * ((v + (xi2 ^ 2)) ^
+        (-(v + 3) / 2))
+    )
+    h <- switch(kernel,
+      "normal" = dnorm(xi2) / (1 - pnorm(xi2)),
+      "t" = dt(xi2, df = v) / (1 - pt(xi2, df = v))
+    )
+    wg <- switch(kernel,
+      "normal" = -(1 / 2),
+      "t" = -(v + 1) / (2 * (v + (xi2 ^ 2)))
+    )
+    Ubeta <- switch(kernel,
+      "normal" = -status * ((2 / (z2 ^ 2)) * sinh(y - mu) * wg +
+        (1 / 2) * tanh((y - mu) / 2)) +
+        ((1 - status) / 2) * xi1 * h,
+      "t" = -status * ((2 / (z2 ^ 2)) * sinh(y - mu) * wg +
+        (1 / 2) * tanh((y - mu) / 2)) +
+        ((1 - status) / 2) * xi1 * h
+    )
+    Ualpha <- switch(kernel,
+      "normal" = -sum((status / z2) *
+        (((xi2 ^ 2) * 2 * wg) + 1) -
+        ((1 - status) / z2) * h * xi2),
+      "t" = -sum((status / z2) * (((xi2 ^ 2) * 2 * wg) + 1) -
+        ((1 - status) / z2) * h * xi2)
+    )
+    result <- c(t(x) %*% Ubeta, Ualpha)
+    return(result)
+  }
+  # est <- optim(thetaStar, loglik, method = "BFGS", hessian = TRUE)
+  est <- optim(thetaStar, loglik, method = "BFGS", hessian = TRUE)
+  # control = list(fnscale = -1, maxit = 2000, reltol = 1e-12))
+  if (est$conv != 0)
+    warning("FUNCTION DID NOT CONVERGE!")
+  coef <- (est$par)[1:k]
+  alphaest <- est$par[k + 1]
+  muhat <- x %*% coef
+  muhat <- as.vector(muhat)
+  etahat <- exp(muhat)
+  SHess = solve(est$hessian)
+  SE = sqrt(diag(SHess))
+  se.coef = SE
+  tval = c(coef, alphaest) / se.coef
+  matcoef = cbind(c(coef, alphaest), se.coef, tval, 2 * (1 - pnorm(abs(tval))))
+  AIC <- 2 * loglik(c(coef, alphaest)) + 2 * (length(coef) + 1)
+  BIC = 2 * loglik(c(coef, alphaest)) + (length(coef) + 1) * log(length(y))
+  
+  if(print) {
+    cat("\n")
+    cat("--------------------------------------------------------------\n")
+    cat("        BS regression model - Mean                           \n")
+    cat("--------------------------------------------------------------\n")
+    cat("Maximum Likelihood estimation \n")
+    cat("Number of observations:", n, "\n")
+    cat("--------------------------------------------------------------\n")
+    coefs <- cbind(
+      Estimate = round(c(coef, alphaest),3),
+      "Std. Error" = round(se.coef,3),
+      "t value" = round(tval,3),
+      "Pr(>|t|)" = round(2 * (1 - pnorm(abs(tval))),3)
+    )
+    rownames(coefs) <- c(paste0("beta", 0:(nrow(coefs)-2)), "alpha")
+    printCoefmat(coefs, signif.stars = TRUE, signif.legend = TRUE, digits = 3)
+    cat("--------------------------------------------------------------\n")
+    cat("AIC:", round(AIC, 2),
+        " BIC:", round(BIC, 2), "\n")
+  }
+  out <- list(
+    par = est$par,
+    beta = coef,
+    alpha = alphaest,
+    se = se.coef,
+    muHat = muhat,
+    etaHat = etahat,
+    value = est$value,
+    hessian = est$hessian,
+    convergence = est$convergence,
+    matcoef = matcoef,
+    AIC = AIC,
+    BIC = BIC
+  )
+  return(out)
+}
+```
+
+# Moda
+
+```{r}
+#| label: fun_moda
+
+dbsmoda_logpdf <- function(y, mu, phi) {
+  alpha <- sqrt(phi)
+  beta  <- mu / (1 - phi)
+  log_pdf <- -0.5*log(2*pi) - log(2*alpha*sqrt(beta)) - 1.5*log(y) + log(y + beta) -
+    ( (y/beta) + (beta/y) - 2 ) / (2*alpha^2)
+  as.vector(log_pdf)
+}
+
+dbsmoda <- function(t, mu, phi, log = FALSE) {
+  lp <- dbsmoda_logpdf(t, mu, phi)
+  if (log) return(lp)
+  exp(lp)
+}
+
+mle_dbsmoda <- function(x, z, t, print = TRUE){
+  x <- as.matrix(x)
+  z <- as.matrix(z)
+  y <- as.vector(t)  
+  k <- ncol(x)
+  l <- ncol(z)
+  n <- length(y)
+  
+  loglik <- function(par){
+    nu <- par[1:k]
+    xi <- par[(k + 1):(k + l)]
+    eta_mu  <- as.vector(x %*% nu)
+    eta_phi <- as.vector(z %*% xi)
+    mu  <- exp(eta_mu)
+    phi <- plogis(eta_phi)
+    -sum(dbsmoda_logpdf(y, mu, phi))
+  }
+  
+  theta0 <- rep(0, k + l)  # chute neutro
+  est <- optim(theta0, loglik, method = "BFGS", hessian = TRUE,
+               control = list(reltol = 1e-9, maxit = 1000))
+  
+  nu  <- as.vector(est$par[1:k])
+  xi  <- as.vector(est$par[(k + 1):(k + l)])
+ 
+  # erros-padrão
+  se <- sqrt(diag(solve(est$hessian)))
+
+  zstatnu   <- nu / se[1:k]
+  zstatxi   <- xi / se[(k + 1):(k + l)] 
+  pvalornu  <- 2 * pnorm(abs(zstatnu), lower.tail = FALSE)
+  pvalorxi  <- 2 * pnorm(abs(zstatxi), lower.tail = FALSE)
+  
+  names(nu) <- colnames(x)
+  names(xi) <- colnames(z)
+  
+  senu <- se[1:k]
+  sexi <- se[(k + 1):(k + l)] 
+  
+  tb_mu  <- miscTools::coefTable(nu, senu, df = (n - (k + l)))
+  tb_phi <- miscTools::coefTable(xi, sexi, df = (n - (k + l)))
+
+  muHat  <- exp(as.vector(x %*% nu))
+  phiHat <- plogis(as.vector(z %*% xi))
+
+  AIC <- 2 * loglik(est$par) + 2 * (k + l)
+  BIC <- 2 * loglik(est$par) + log(n) * (k + l)
+  
+  if (print) {
+    cat("\n")
+    cat("--------------------------------------------------------------\n")
+    cat("             BS regression model - Mode                       \n")
+    cat("--------------------------------------------------------------\n")
+    cat("Maximum Likelihood estimation \n")
+    cat("Number of observations:", n, "\n")
+    cat("--------------------------------------------------------------\n")
+    cat("Mu - Coefficients:\n")
+    printCoefmat(tb_mu, signif.stars = TRUE, signif.legend = TRUE, digits = 4)
+    cat("--------------------------------------------------------------\n")
+    cat("Phi - Coefficients:\n")
+    printCoefmat(tb_phi, signif.stars = TRUE, signif.legend = TRUE, digits = 4)
+    cat("--------------------------------------------------------------\n")  
+    cat("AIC:", round(AIC, 2),
+        " BIC:", round(BIC, 2), "\n")
+  }
+      
+  out <- list(
+    par         = est$par,
+    beta_nu     = est$par[1:k],
+    beta_xi     = est$par[(k+1):(k+l)],
+    se          = se,
+    muHat       = muHat,
+    phiHat      = phiHat,
+    value       = est$value,
+    hessian     = est$hessian,
+    convergence = est$convergence,
+    tables      = list(mu = tb_mu, phi = tb_phi)
+  )
+  class(out) <- "mle_dbsmoda"
+  out
+}
+```
+
+
+# Quantis
+
+```{r}
+#| label: fun_quantis
+
+
+#revised function by T. Nonato
+#authors: L. Sanchez, V. Leiva 
+#source: https://doi.org/10.1002/asmb.2556
+
+bsreg.fit<-function(x, y, q=0.5, link = "log", print=TRUE){
+  n<-NROW(x)
+  p<-NCOL(x)
+  linkobj<-make.link(link)
+  linkfun<-linkobj$linkfun
+  linkinv<-linkobj$linkinv
+  Q.eta<-linkobj$mu.eta
+  ystar<-linkfun(y)
+  beta<-ginv(t(x) %*% x) %*% t(x) %*% ystar
+
+  xbar<-mean(y)
+  vart<-(n/(n-1))*var(y)
+  r<-vart / xbar^2
+  alphai<-sqrt((2*r-2+2*sqrt(1+3*r))/(5-r))
+
+  if (is.nan(alphai) || is.na(alphai)) { #MUDANÇA
+    s1<-mean(y)
+    r1<-1/mean(1/y)
+    alphai<-sqrt(2*sqrt(s1/r1)-2)
+  }
+
+  start<-c(as.vector(beta), alphai) #MUDANÇA
+
+  # função de verossimilhança (log-like)
+  fr<-function(vp) {
+    betab<-vp[1:p]
+    eta<-as.vector(x %*% betab)
+    Q<-linkinv(eta)
+    alphab<-vp[p+1]    #MUDANÇA: índice corrigido, garantir escalar 
+    zq<-qnorm(q, mean = 0, sd = 1)
+    gma_alphab<-alphab * zq + sqrt(alphab^2 * zq^2 + 4)
+    vt<-y
+    sum(-0.5*log(8*pi*vt) - log(alphab) - log(gma_alphab) - 0.5*log(Q) +
+        log(gma_alphab^2/2 + 2*Q/vt) -
+        (2*Q/(alphab^2*gma_alphab^2*vt))*(vt*gma_alphab^2/(4*Q) - 1)^2)
+  }
+
+  # função gradiente: retorna um vetor NUMÉRICO de comprimento p+1
+  grr<-function(vp) {
+    betab<-vp[1:p]
+    eta<-as.vector(x %*% betab)
+    Q<-linkinv(eta)
+    alphab<-vp[p+1]   # MUDANÇA: garantir escalar
+    zq<-qnorm(q)
+    gma_alphab<-alphab * zq + sqrt(alphab^2 * zq^2 + 4)
+    # derivadas auxiliares
+    gma_alphabp<-zq + zq^2 * alphab * (1 / sqrt(alphab^2 * zq^2 + 4))
+    vt<-y
+    z<--0.5*(1/Q) - 2*(1/(alphab^2 * gma_alphab^2 * vt)) +
+         gma_alphab^2 * vt * (1/(8 * alphab^2 * Q^2)) +
+         4*(1/(vt * gma_alphab^2 + 4*Q))
+
+    b<--(gma_alphab + alphab * gma_alphabp) * (1/(alphab * gma_alphab)) +
+         2*vt * gma_alphab * gma_alphabp * (1/(vt * gma_alphab^2 + 4*Q)) -
+         (gma_alphab * gma_alphabp * alphab - gma_alphab^2) * vt * (1/(4*Q*alphab^3)) -
+         2*(1/(alphab^3)) +
+         4*Q*(gma_alphab + alphab * gma_alphabp) * (1/(alphab^3 * gma_alphab^3 * vt))
+
+    # MUDANÇA
+    # gradiente em relação a beta (p x 1)
+    grad_beta<-as.vector(t(x) %*% (Q.eta(eta) * z))
+    # gradiente em relação a alpha (escala)
+    grad_alpha<-sum(b)
+    
+    # retornar UM VETOR numérico (p+1)
+    c(grad_beta, grad_alpha)
+  }
+
+  A<-matrix(c(rep(0,p),1),1,p+1)
+  B<-0
+
+  opt<-maxLik::maxBFGS(fn = fr, grad = grr, start = start,
+                         constraints = list(ineqA = A, ineqB = B))
+
+  # MUDANÇA: inspeção para debug
+
+  if (!is.null(opt$code) && opt$code > 0) warning("optimization failed to converge (opt$code > 0)")
+  if (!is.null(opt$convergence) && opt$convergence != 0) warning("optimizer signaled non-zero convergence code")
+
+  estimates<-opt$estimate
+
+  # MUDANÇA: garantir que log.lik.est é numérico (NA se não disponível)
+  log.lik.est<-if (!is.null(opt$maximum)) opt$maximum else NA
+
+  beta<-as.vector(estimates[1:p])
+  eta<-as.vector(x %*% beta)
+  Q<-linkinv(eta)
+  alpha<-estimates[p+1]
+  zq<-qnorm(q, mean = 0, sd = 1)
+
+  aux<-matrix(1, ncol = 1L, nrow = n)
+
+  gma_alpha<-alpha * zq + sqrt(alpha^2 * zq^2+4) 
+  gma_alphap<-zq+alpha*zq^2*(1/sqrt(alpha^2*zq^2+4))
+  gma_alphapp<-4*zq^2*(1/sqrt(alpha^2*zq^2+4)^3)
+
+  par_alpha<-alpha
+  par_beta <-4*Q/gma_alpha^2
+
+  Acal<-((2*gma_alphap+alpha*gma_alphapp)*(alpha*gma_alpha)-(gma_alpha+alpha*gma_alphap)^2)/
+          (alpha^2*gma_alpha^2)
+  Bcal<-8*Q*(gma_alphap^2+gma_alpha*gma_alphapp)
+  Ccal<-(1/(4*Q*alpha^4))*(alpha^2*gma_alphap^2+alpha^2*gma_alpha*gma_alphapp-alpha*gma_alpha*gma_alphap-
+          3*gma_alpha*gma_alphap*alpha+3*gma_alpha^3)
+  Dcal<-4*Q*((2*gma_alphap+alpha*gma_alphapp)*alpha*gma_alpha-3*(gma_alpha+alpha*gma_alphap)^2)/
+          (alpha^4*gma_alpha^4)
+  
+  if(link == "log"){
+      a<-Q
+      h1<-Q^2
+      h2<--1/(Q^2*(log(Q)^3))}
+  
+  if(link == "identity"){
+      a<-rep(1,n)
+      h1<-1
+      h2<-0}
+  
+  if(link == "sqrt"){
+      a<-2*sqrt(Q)
+      h1<-4*Q
+      h2<--1/(4*Q^3)}
+    
+    integ.f2<-c()
+    integ.f3<-c()
+    integ.f4<-c()
+    integ.f5<-c()
+
+  f2<-function(u,j){
+      return((u/(u*gma_alpha^2+4*Q[j]))^2*dbisa(u, par_beta[j], par_alpha))}
+    
+  f3<-function(u,j){
+      return((u/(u*gma_alpha^2+4*Q[j])^2)*dbisa(u, par_beta[j], par_alpha))}
+    
+  f4<-function(u,j){
+      return((1/(u*gma_alpha^2+4*Q[j])^2)*dbisa(u, par_beta[j], par_alpha))}
+    
+  f5<-function(u,j){
+    return((1/(u*gma_alpha^2+4*Q[j]))*dbisa(u, par_beta[j], par_alpha))}
+
+  # MUDANÇA: tenta integrar; se der erro, retorna NA ou 0
+  safe_integrate <- function(fun, j, lower = 1e-6, upper = 1000) {
+    val <- tryCatch(
+      integrate(fun, lower = lower, upper = upper, j = j)$value,
+      error = function(e) NA_real_)
+    if (is.na(val) || is.infinite(val)) val <- 0
+    return(val)}
+    
+  for (i in seq_len(n)) {
+    integ.f2[i] <- safe_integrate(f2, i)
+    integ.f3[i] <- safe_integrate(f3, i)
+    integ.f4[i] <- safe_integrate(f4, i)
+    integ.f5[i] <- safe_integrate(f5, i)
+  }
+    
+  AIC <- (-2 * log.lik.est + 2 * (p+1))
+  AICc<- AIC + (2 * (p+1) * ((p+1) + 1)) / (n - (p+1) - 1)
+  BIC <- (-2 * log.lik.est + log(n) * (p+1))
+
+  v<-(-1/(2*Q^2)+16*integ.f4 + (1/(alpha^2*Q^2))*(1+alpha^2/2))*h1-
+      (1/(2*Q)+(1/(2*alpha^2*Q))*(1+alpha^2/2)-4*integ.f5)*h2
+    
+  s<-8*gma_alpha*gma_alphap*integ.f3 - 
+      ((gma_alpha * gma_alphap * alpha- gma_alpha^2)/(alpha^3*gma_alpha^2*Q^2))*(1+alpha^2/2)-
+      ((gma_alpha +alpha* gma_alphap)/(alpha^3*gma_alpha *Q))*(1+alpha^2/2)
+    
+  u<-Acal-Bcal*integ.f3 -2*(gma_alpha^3*gma_alphapp-gma_alpha^2*gma_alphap^2)^2*
+      integ.f2 + Ccal*(4*Q/gma_alpha^2)*(1+alpha^2/2)-6/alpha^4-
+      Dcal*(gma_alpha^2/(4*Q))*(1+alpha^2/2)
+  
+  kbb<-t(x)%*%diag(as.vector(v))%*%x
+  kaa<-sum(diag(as.vector(u)))
+  kba<-t(x)%*%diag(as.vector(a))%*%s
+  
+  Diag<-function(A){
+    diag.A<-vector()
+    for(t in 1:ncol(A)){
+      diag.A[t]=A[t,t]
+    }
+    return(as.vector(diag.A))
+  }
+  
+  fisher<-cbind(rbind(kbb, t(kba)), rbind(kba, kaa))
+  se  <-sqrt(Diag(solve(fisher)))
+  
+  hess<-as.matrix(opt$hessian)
+
+  if(p == 1) {
+    var.explic<-x
+  }  else {
+            var.explic<-x[,-1]
+          }
+
+  zstatbeta<-beta / se[1:p]
+  zstatalpha <-alpha / se[p+1] #MUDANÇA: índice
+  pvalorbeta<-2 * pnorm(abs(zstatbeta), lower.tail = F)
+  pvaloralpha<-2 * pnorm(abs(zstatalpha), lower.tail = F)
+
+  names(beta)<-colnames(x)
+
+  if(print){
+    cat("\n")
+    cat("--------------------------------------------------------------\n")
+    cat("        BS regression model - Quantile:", q, "                 \n")
+    cat("--------------------------------------------------------------\n")
+    cat("Maximum Likelihood estimation \n")
+    cat("Number of observations:", n, "\n")
+    cat("--------------------------------------------------------------\n")
+    cat("Beta - Coefficients:\n")
+    printCoefmat(cbind(Estimate = beta, "Std. Error" = se[1:p], "z value" = zstatbeta, "Pr(>|z|)" = pvalorbeta))
+    cat("Alpha - Coefficient:\n")
+    printCoefmat(cbind(Estimate = alpha, "Std. Error" = se[p+1], "z value" = zstatalpha, "Pr(>|z|)" = pvaloralpha))
+    cat("--------------------------------------------------------------\n")
+    cat("AIC:", round(AIC, 2),
+        " BIC:", round(BIC, 2),"\n")
+  }
+  out<-list(
+    coefficients = list(beta = beta, alpha = alpha),
+    se = se,
+    zstat = list(beta = zstatbeta, alpha = zstatalpha),
+    pvalor = list(beta = pvalorbeta, alpha = pvaloralpha),
+    loglik = log.lik.est,
+    information.criterions = list(aic = AIC, bic = BIC, aicc = AICc),
+    hessian = hess
+  )
+  class(out) <- "bsreg.fit"
+  return(out)
+}
+```
+
+
+# Aplicação
+
+```{r}
+#| label: dados
+
+castor <- read.csv2("C:/Users/User/Documents/GitHub/MSc-est/MODELAGEM COM APOIO COMPUTACIONAL/article/final files/castorseed.csv")
+
+#phase="Germinated"
+castor <- castor %>%
+  filter(phase == "Germinated")
+
+
+# Mediana
+mle_mediana <- bsreg.fit(x=model.matrix(~temperature + puncture + time_under_hydration, data=castor),
+                          y=castor$time, q=0.5,link = "log")
+betahat_mediana <- mle_mediana$coefficients$beta
+alphahat_mediana <- mle_mediana$coefficients$alpha
+print(betahat_mediana)
+print(alphahat_mediana)
+
+# Média
+mle_media <- mle_unc(x=model.matrix(~ temperature + puncture + time_under_hydration, data=castor),
+                     t=castor$time)
+betahat_media <- mle_media$beta
+alphahat_media <- mle_media$alpha
+print(betahat_media)
+print(alphahat_media)
+
+# Moda
+mle_moda <- mle_dbsmoda(x=model.matrix(~ temperature + puncture + time_under_hydration, data=castor),
+                         z=matrix(1, nrow=nrow(castor), ncol=1),
+                         t=castor$time, print = TRUE)
+betahat_moda <- mle_moda$beta_nu
+alphahat_moda <- mle_moda$beta_xi
+print(betahat_moda)
+print(alphahat_moda)
+
+# Quantis
+mle_quantil_10 <- bsreg.fit(x=model.matrix(~temperature + puncture + time_under_hydration, data=castor),
+                          y=castor$time, q=0.1,link = "log")
+betahat_quantil_10 <- mle_quantil_10$coefficients$beta
+alphahat_quantil_10 <- mle_quantil_10$coefficients$alpha
+print(betahat_quantil_10)
+print(alphahat_quantil_10)
+
+
+mle_quantil_90 <- bsreg.fit(x=model.matrix(~temperature + puncture + time_under_hydration, data=castor),
+                          y=castor$time, q=0.9,link = "log")
+betahat_quantil_90 <- mle_quantil_90$coefficients$beta
+alphahat_quantil_90 <- mle_quantil_90$coefficients$alpha
+print(betahat_quantil_90)
+print(alphahat_quantil_90)
+```
+
+# Resíduos
+
+```{r}
+#| eval: false
+
+t <- castor$time
+x <- model.matrix(~temperature + puncture + time_under_hydration, data=castor)
+a <- ppoints(2000)
+#### QQ plot Generalized Cox-Snell vs Exp(1)
+Q_exp <- qexp(a)
+
+#moda
+#### Resíduos (FS, Cox-Snell generalizado e 'randomized quantile')
+etaHat <- x %*% betahat_moda
+betahat_moda_i <- exp(etaHat)
+xihat_moda <- 1/alphahat_moda * (sqrt(t/betahat_moda_i) - sqrt(betahat_moda_i/t))
+SurvivalBS_fit <- 1 - pnorm(xihat_moda)
+CSresiduals <- -log(SurvivalBS_fit)
+DSresiduals <- qnorm(SurvivalBS_fit)
+
+png("C:/Users/User/Documents/GitHub/MSc-est/MODELAGEM COM APOIO COMPUTACIONAL/article/final files/img/qqplot_CS_moda.png", width = 800, height = 600, res = 120)
+qqplot(Q_exp, CSresiduals, xlab = "Quantis teóricos Exp(1)", ylab = "Quantis resíduos CS",
+       main = "QQ-plot Cox–Snell generalizado (moda)")
+abline(0, 1, col = "red")
+dev.off()
+
+#mediana
+#### Resíduos (FS, Cox-Snell generalizado e 'randomized quantile')
+etaHat <- x %*% betahat_mediana
+betahat_mediana_i <- exp(etaHat)
+xihat_mediana <- 1/alphahat_mediana * (sqrt(t/betahat_mediana_i) - sqrt(betahat_mediana_i/t))
+SurvivalBS_fit <- 1 - pnorm(xihat_mediana)
+CSresiduals <- -log(SurvivalBS_fit)
+DSresiduals <- qnorm(SurvivalBS_fit)
+png("C:/Users/User/Documents/GitHub/MSc-est/MODELAGEM COM APOIO COMPUTACIONAL/article/final files/img/qqplot_CS_mediana.png", width = 800, height = 600, res = 120)
+qqplot(Q_exp, CSresiduals, xlab = "Quantis teóricos Exp(1)", ylab = "Quantis resíduos CS",
+       main = "QQ-plot Cox–Snell generalizado (mediana)")
+abline(0, 1, col = "red")
+dev.off()
+
+#média
+#### Resíduos (FS, Cox-Snell generalizado e 'randomized quantile')
+etaHat <- x %*% betahat_media
+betahat_media_i <- exp(etaHat)
+xihat_media <- 1/alphahat_media * (sqrt(t/betahat_media_i) - sqrt(betahat_media_i/t))
+SurvivalBS_fit <- 1 - pnorm(xihat_media)
+CSresiduals <- -log(SurvivalBS_fit)
+DSresiduals <- qnorm(SurvivalBS_fit)
+png("C:/Users/User/Documents/GitHub/MSc-est/MODELAGEM COM APOIO COMPUTACIONAL/article/final files/img/qqplot_CS_media.png", width = 800, height = 600, res = 120)
+qqplot(Q_exp, CSresiduals, xlab = "Quantis teóricos Exp(1)", ylab = "Quantis resíduos CS",
+       main = "QQ-plot Cox–Snell generalizado (média)")
+abline(0, 1, col = "red")
+dev.off()
+
+#quantil 10
+#### Resíduos (FS, Cox-Snell generalizado e 'randomized quantile')
+etaHat <- x %*% betahat_quantil_10
+betahat_quantil_10_i <- exp(etaHat)
+xihat_quantil_10 <- 1/alphahat_quantil_10 * (sqrt(t/betahat_quantil_10_i) - sqrt(betahat_quantil_10_i/t))
+SurvivalBS_fit <- 1 - pnorm(xihat_quantil_10)
+CSresiduals <- -log(SurvivalBS_fit)
+DSresiduals <- qnorm(SurvivalBS_fit)
+png("C:/Users/User/Documents/GitHub/MSc-est/MODELAGEM COM APOIO COMPUTACIONAL/article/final files/img/qqplot_CS_quantil_10.png", width = 800, height = 600, res = 120)
+qqplot(Q_exp, CSresiduals, xlab = "Quantis teóricos Exp(1)", ylab = "Quantis resíduos CS",
+       main = "QQ-plot Cox–Snell generalizado (quantil 10%)")
+abline(0, 1, col = "red")
+dev.off()
+#quantil 90
+#### Resíduos (FS, Cox-Snell generalizado e 'randomized quantile')
+etaHat <- x %*% betahat_quantil_90
+betahat_quantil_90_i <- exp(etaHat)
+xihat_quantil_90 <- 1/alphahat_quantil_90 * (sqrt(t/betahat_quantil_90_i) - sqrt(betahat_quantil_90_i/t))
+SurvivalBS_fit <- 1 - pnorm(xihat_quantil_90)
+CSresiduals <- -log(SurvivalBS_fit)
+DSresiduals <- qnorm(SurvivalBS_fit)
+png("C:/Users/User/Documents/GitHub/MSc-est/MODELAGEM COM APOIO COMPUTACIONAL/article/final files/img/qqplot_CS_quantil_90.png", width = 800, height = 600, res = 120)
+qqplot(Q_exp, CSresiduals, xlab = "Quantis teóricos Exp(1)", ylab = "Quantis resíduos CS",
+       main = "QQ-plot Cox–Snell generalizado (quantil 90%)")
+abline(0, 1, col = "red")
+dev.off()
+```
+
+
+::::
