@@ -515,7 +515,7 @@ bsreg.fit<-function(x, y, q=0.5, link = "log", print=TRUE){
 ```{r}
 #| label: dados
 
-castor <- read.csv2("C:\\Users\\07391760137\\Downloads\\Outros\\MSc-est\\MODELAGEM COM APOIO COMPUTACIONAL\\article\\final files\\castorseed.csv")
+castor <- read.csv2("C:\\Users\\07391760137\\Downloads\\Outros\\MSc-est\\SINAPE\\castorseed.csv")
 
 #phase="Germinated"
 castor <- castor %>%

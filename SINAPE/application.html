@@ -610,56 +610,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div id="tabset-1-5" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-5-tab">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>castor <span class="ot">&lt;-</span> <span class="fu">read.csv2</span>(<span class="st">"C:</span><span class="sc">\\</span><span class="st">Users</span><span class="sc">\\</span><span class="st">07391760137</span><span class="sc">\\</span><span class="st">Downloads</span><span class="sc">\\</span><span class="st">Outros</span><span class="sc">\\</span><span class="st">MSc-est</span><span class="sc">\\</span><span class="st">MODELAGEM COM APOIO COMPUTACIONAL</span><span class="sc">\\</span><span class="st">article</span><span class="sc">\\</span><span class="st">final files</span><span class="sc">\\</span><span class="st">castorseed.csv"</span>)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>castor <span class="ot">&lt;-</span> <span class="fu">read.csv2</span>(<span class="st">"C:</span><span class="sc">\\</span><span class="st">Users</span><span class="sc">\\</span><span class="st">07391760137</span><span class="sc">\\</span><span class="st">Downloads</span><span class="sc">\\</span><span class="st">Outros</span><span class="sc">\\</span><span class="st">MSc-est</span><span class="sc">\\</span><span class="st">SINAPE</span><span class="sc">\\</span><span class="st">castorseed.csv"</span>)</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co">#phase="Germinated"</span></span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>castor <span class="ot">&lt;-</span> castor <span class="sc">%&gt;%</span></span>
 <span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(phase <span class="sc">==</span> <span class="st">"Germinated"</span>)</span>
 <span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Mediana</span></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>mle_mediana <span class="ot">&lt;-</span> <span class="fu">bsreg.fit</span>(<span class="at">x=</span><span class="fu">model.matrix</span>(<span class="sc">~</span>temperature <span class="sc">+</span> puncture <span class="sc">+</span> time_under_hydration, <span class="at">data=</span>castor),</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>                          <span class="at">y=</span>castor<span class="sc">$</span>time, <span class="at">q=</span><span class="fl">0.5</span>,<span class="at">link =</span> <span class="st">"log"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
---------------------------------------------------------------
-        BS regression model - Quantile: 0.5                  
---------------------------------------------------------------
-Maximum Likelihood estimation 
-Number of observations: 201 
---------------------------------------------------------------
-Beta - Coefficients:
-                        Estimate  Std. Error z value  Pr(&gt;|z|)    
-(Intercept)           3.40138149  0.11923858 28.5258 &lt; 2.2e-16 ***
-temperature          -0.01364774  0.00342991 -3.9790 6.919e-05 ***
-punctureYes          -0.02900113  0.03418883 -0.8483    0.3963    
-time_under_hydration  0.01287079  0.00040056 32.1322 &lt; 2.2e-16 ***
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-Alpha - Coefficient:
-      Estimate Std. Error z value  Pr(&gt;|z|)    
-[1,] 0.1940858  0.0018129  107.06 &lt; 2.2e-16 ***
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
---------------------------------------------------------------
-AIC: 1503.47  BIC: 1519.98 </code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>betahat_mediana <span class="ot">&lt;-</span> mle_mediana<span class="sc">$</span>coefficients<span class="sc">$</span>beta</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>alphahat_mediana <span class="ot">&lt;-</span> mle_mediana<span class="sc">$</span>coefficients<span class="sc">$</span>alpha</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(betahat_mediana)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>         (Intercept)          temperature          punctureYes 
-          3.40138149          -0.01364774          -0.02900113 
-time_under_hydration 
-          0.01287079 </code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(alphahat_mediana)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.1940858</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Média</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>mle_media <span class="ot">&lt;-</span> <span class="fu">mle_unc</span>(<span class="at">x=</span><span class="fu">model.matrix</span>(<span class="sc">~</span> temperature <span class="sc">+</span> puncture <span class="sc">+</span> time_under_hydration, <span class="at">data=</span>castor),</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>                     <span class="at">t=</span>castor<span class="sc">$</span>time)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Média</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>mle_media <span class="ot">&lt;-</span> <span class="fu">mle_unc</span>(<span class="at">x=</span><span class="fu">model.matrix</span>(<span class="sc">~</span> temperature <span class="sc">+</span> puncture <span class="sc">+</span> time_under_hydration, <span class="at">data=</span>castor),</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>                     <span class="at">t=</span>castor<span class="sc">$</span>time)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 --------------------------------------------------------------
@@ -679,24 +639,24 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 --------------------------------------------------------------
 AIC: -80.48  BIC: -63.96 </code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>betahat_media <span class="ot">&lt;-</span> mle_media<span class="sc">$</span>beta</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>alphahat_media <span class="ot">&lt;-</span> mle_media<span class="sc">$</span>alpha</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(betahat_media)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>betahat_media <span class="ot">&lt;-</span> mle_media<span class="sc">$</span>beta</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>alphahat_media <span class="ot">&lt;-</span> mle_media<span class="sc">$</span>alpha</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(betahat_media)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>         (Intercept)          temperature          punctureYes 
           3.39727813          -0.01355736          -0.02781684 
 time_under_hydration 
           0.01288005 </code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(alphahat_media)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(alphahat_media)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>          
 0.1941056 </code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Moda</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>mle_moda <span class="ot">&lt;-</span> <span class="fu">mle_dbsmoda</span>(<span class="at">x=</span><span class="fu">model.matrix</span>(<span class="sc">~</span> temperature <span class="sc">+</span> puncture <span class="sc">+</span> time_under_hydration, <span class="at">data=</span>castor),</span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>                         <span class="at">z=</span><span class="fu">matrix</span>(<span class="dv">1</span>, <span class="at">nrow=</span><span class="fu">nrow</span>(castor), <span class="at">ncol=</span><span class="dv">1</span>),</span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>                         <span class="at">t=</span>castor<span class="sc">$</span>time, <span class="at">print =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Moda</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>mle_moda <span class="ot">&lt;-</span> <span class="fu">mle_dbsmoda</span>(<span class="at">x=</span><span class="fu">model.matrix</span>(<span class="sc">~</span> temperature <span class="sc">+</span> puncture <span class="sc">+</span> time_under_hydration, <span class="at">data=</span>castor),</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>                         <span class="at">z=</span><span class="fu">matrix</span>(<span class="dv">1</span>, <span class="at">nrow=</span><span class="fu">nrow</span>(castor), <span class="at">ncol=</span><span class="dv">1</span>),</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>                         <span class="at">t=</span>castor<span class="sc">$</span>time, <span class="at">print =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 --------------------------------------------------------------
@@ -722,19 +682,19 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 --------------------------------------------------------------
 AIC: 1503.47  BIC: 1519.98 </code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>betahat_moda <span class="ot">&lt;-</span> mle_moda<span class="sc">$</span>beta_nu</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>alphahat_moda <span class="ot">&lt;-</span> mle_moda<span class="sc">$</span>beta_xi</span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(betahat_moda)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>betahat_moda <span class="ot">&lt;-</span> mle_moda<span class="sc">$</span>beta_nu</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>alphahat_moda <span class="ot">&lt;-</span> mle_moda<span class="sc">$</span>beta_xi</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(betahat_moda)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1]  3.36535554 -0.01370244 -0.02967222  0.01286593</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(alphahat_moda)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(alphahat_moda)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] -3.240327</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Quantis</span></span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>mle_quantil_10 <span class="ot">&lt;-</span> <span class="fu">bsreg.fit</span>(<span class="at">x=</span><span class="fu">model.matrix</span>(<span class="sc">~</span>temperature <span class="sc">+</span> puncture <span class="sc">+</span> time_under_hydration, <span class="at">data=</span>castor),</span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>                          <span class="at">y=</span>castor<span class="sc">$</span>time, <span class="at">q=</span><span class="fl">0.1</span>,<span class="at">link =</span> <span class="st">"log"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Quantis</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>mle_quantil_10 <span class="ot">&lt;-</span> <span class="fu">bsreg.fit</span>(<span class="at">x=</span><span class="fu">model.matrix</span>(<span class="sc">~</span>temperature <span class="sc">+</span> puncture <span class="sc">+</span> time_under_hydration, <span class="at">data=</span>castor),</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>                          <span class="at">y=</span>castor<span class="sc">$</span>time, <span class="at">q=</span><span class="fl">0.1</span>,<span class="at">link =</span> <span class="st">"log"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 --------------------------------------------------------------
@@ -759,18 +719,58 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 --------------------------------------------------------------
 AIC: 1503.47  BIC: 1519.98 </code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>betahat_quantil_10 <span class="ot">&lt;-</span> mle_quantil_10<span class="sc">$</span>coefficients<span class="sc">$</span>beta</span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>alphahat_quantil_10 <span class="ot">&lt;-</span> mle_quantil_10<span class="sc">$</span>coefficients<span class="sc">$</span>alpha</span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(betahat_quantil_10)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>betahat_quantil_10 <span class="ot">&lt;-</span> mle_quantil_10<span class="sc">$</span>coefficients<span class="sc">$</span>beta</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>alphahat_quantil_10 <span class="ot">&lt;-</span> mle_quantil_10<span class="sc">$</span>coefficients<span class="sc">$</span>alpha</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(betahat_quantil_10)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>         (Intercept)          temperature          punctureYes 
           3.15390876          -0.01366398          -0.02915517 
 time_under_hydration 
           0.01286982 </code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(alphahat_quantil_10)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(alphahat_quantil_10)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.1941029</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Mediana</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>mle_mediana <span class="ot">&lt;-</span> <span class="fu">bsreg.fit</span>(<span class="at">x=</span><span class="fu">model.matrix</span>(<span class="sc">~</span>temperature <span class="sc">+</span> puncture <span class="sc">+</span> time_under_hydration, <span class="at">data=</span>castor),</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>                          <span class="at">y=</span>castor<span class="sc">$</span>time, <span class="at">q=</span><span class="fl">0.5</span>,<span class="at">link =</span> <span class="st">"log"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+--------------------------------------------------------------
+        BS regression model - Quantile: 0.5                  
+--------------------------------------------------------------
+Maximum Likelihood estimation 
+Number of observations: 201 
+--------------------------------------------------------------
+Beta - Coefficients:
+                        Estimate  Std. Error z value  Pr(&gt;|z|)    
+(Intercept)           3.40138149  0.11923858 28.5258 &lt; 2.2e-16 ***
+temperature          -0.01364774  0.00342991 -3.9790 6.919e-05 ***
+punctureYes          -0.02900113  0.03418883 -0.8483    0.3963    
+time_under_hydration  0.01287079  0.00040056 32.1322 &lt; 2.2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+Alpha - Coefficient:
+      Estimate Std. Error z value  Pr(&gt;|z|)    
+[1,] 0.1940858  0.0018129  107.06 &lt; 2.2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+--------------------------------------------------------------
+AIC: 1503.47  BIC: 1519.98 </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>betahat_mediana <span class="ot">&lt;-</span> mle_mediana<span class="sc">$</span>coefficients<span class="sc">$</span>beta</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>alphahat_mediana <span class="ot">&lt;-</span> mle_mediana<span class="sc">$</span>coefficients<span class="sc">$</span>alpha</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(betahat_mediana)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>         (Intercept)          temperature          punctureYes 
+          3.40138149          -0.01364774          -0.02900113 
+time_under_hydration 
+          0.01287079 </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(alphahat_mediana)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.1940858</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>mle_quantil_90 <span class="ot">&lt;-</span> <span class="fu">bsreg.fit</span>(<span class="at">x=</span><span class="fu">model.matrix</span>(<span class="sc">~</span>temperature <span class="sc">+</span> puncture <span class="sc">+</span> time_under_hydration, <span class="at">data=</span>castor),</span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>                          <span class="at">y=</span>castor<span class="sc">$</span>time, <span class="at">q=</span><span class="fl">0.9</span>,<span class="at">link =</span> <span class="st">"log"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
