@@ -1,0 +1,324 @@
+\documentclass[12pt]{article}%
+%\documentclass[pdftex,12pt]{article}%
+%\usepackage[pdftex]{hyperref}%
+%\usepackage[pdftex]{graphicx}%
+\usepackage{graphicx}%
+\usepackage[normalem]{ulem}
+\usepackage{amsmath,amsthm,amsfonts,
+amsbsy,amssymb,upref,enumerate,bigstrut,
+color,mathtools,mathrsfs,float,bm,dsfont,scalefnt,mathtools}
+%\usepackage{refcheck}
+\usepackage{natbib}
+\usepackage{lipsum}
+%\usepackage{utopia}
+%\usepackage{tgbonum}
+\usepackage{lmodern}
+\usepackage{stmaryrd}
+\usepackage{authblk} % author and affiliations
+\usepackage{subfigure}
+\usepackage{pgfplots}
+\usetikzlibrary{pgfplots.fillbetween}
+
+\newcommand\scalemath[2]{\scalebox{#1}{\mbox{\ensuremath{\displaystyle #2}}}}
+
+%
+\usepackage{caption}
+\captionsetup{ format=plain,
+	labelfont=bf,
+	figurename = Fig. ,
+	tablename = Tab.}
+\usepackage{tikz}
+%
+\usetikzlibrary{intersections}
+
+% Grouping the common style settings here to make the code below easier to read
+
+\sloppy
+
+%\urlstyle{same}
+
+
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue]{hyperref}
+
+
+
+
+\newcommand\T{\rule{0pt}{2.6ex}}
+\newcommand\B{\rule[-1.2ex]{0pt}{0pt}}
+\usepackage[left=1in,top=1.2in,right=0.7in]{geometry}
+
+%\newcommand{\scalemath}[2]{\scalebox{#1}{\begin{math} {#2} \end{math}}}
+
+
+\usepackage{booktabs}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\theoremstyle{definition}
+\newtheorem{remark1}{Remark}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{acknowledgement}{Acknowledgement}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{example}{Example}[section]
+\newtheorem{definition}{Definition}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{remark}[theorem]{Remark}
+\numberwithin{equation}{section} % requires amsmath
+\newcommand{\nto}{\mbox{$\;\rightarrow_{\hspace*{-0.3cm}{\small n}}\;$~}}
+\newcommand{\ntop}{\mbox{$\;{\to}^{^{\hspace*{-0.3cm}{\small p}}}\;$~}}
+\newcommand{\ntod}{\mbox{$\;{\to}^{^{\hspace*{-0.3cm}{\small d}}}\;$~}}
+\newcommand{\lto}{\mbox{$\;\rightarrow_{\hspace*{-0.3cm}{\tiny\tiny{l}}}\;$~}}
+
+\makeatletter
+\def\@seccntformat#1{\@ifundefined{#1@cntformat}%
+	{\csname the#1\endcsname\quad}%      default
+	{\csname #1@cntformat\endcsname}%    enable individual control
+}
+\makeatother
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\markright{{\scriptsize RWprewetting-13; version from \today%21.11.02
+}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newif\ifShowComments
+\ShowCommentstrue
+\def\strutdepth{\dp\strutbox}
+\def\druk#1{\strut\vadjust{\kern-\strutdepth
+        {\vtop to \strutdepth{%
+                \baselineskip\strutdepth\vss
+                        \llap{\hbox{#1}\quad}\null}}}}
+\def\asksign{{\bf?!!}}
+\def\commO#1{\ifShowComments \asksign{\sf\small\
+                #1}\asksign\marginpar{\asksign \asksign}\fi}
+\def\comm#1{\ifShowComments \asksign{\sf\small\ #1}\asksign\marginpar{\asksign \asksign}\fi}
+\def\note#1{\ifShowComments\hfill\\%
+    \uwave{\small\sf{#1}}\marginpar{\sf\small !!!}\fi}
+\def\NB{\ifShowComments $\clubsuit\clubsuit\clubsuit$ %
+        \marginpar{\asksign \asksign}\fi}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\def\oldtext{{\sc will be inserted from the old text !!!}}
+
+%\newcommand\scalemath[2]{\scalebox{#1}{\mbox{\ensuremath{\displaystyle #2}}}} % reduz tamanho de matriz e formulas mat
+
+\newcommand{\ra}{\rightarrow}
+\newcommand{\rr}{\mathbb{R}}
+\newcommand{\smallavg}[1]{\langle #1 \rangle}
+\newtheorem{thm1}{Theorem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\title{\bf Modelos de regressão Birnbaum--Saunders parametrizados pela média, moda e quantis: Uma aplicação comparativa em dados de germinação de sementes}
+
+\author[1]{Tailine Nonato\thanks{Corresponding author: tailine.nonato@gmail.com}}
+\author[1,2]{Helton Saulo}
+\affil[1]{Department of Statistics, University of
+	 Bras\'ilia, Bras\'ilia, Brazil}
+\affil[2]{
+Department of Economics, Federal University of Pelotas, Pelotas, Brazil}
+
+%\date{}                     %% if you don't need date to appear
+\setcounter{Maxaffil}{0}
+\renewcommand\Affilfont{\itshape\small}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+The Birnbaum–Saunders distribution has been widely used to model lifetime data and positive skewed variables, particularly in reliability and fatigue-related studies. In this paper, we investigate different parameterizations of the Birnbaum–Saunders regression model based on the mean, median, mode, and quantiles. Although these formulations are mathematically equivalent, they provide distinct interpretations of the regression parameters and may affect model performance. The models are applied to seed germination data to assess their empirical behavior under agricultural conditions. The results indicate that the estimated effects of the covariates are stable across parameterizations, while diagnostic analyses suggest limitations in model fit for all cases. These findings highlight the role of parameterization in interpretability and suggest the need for more flexible modeling approaches in the presence of high variability.
+\end{abstract}
+
+\smallskip
+\noindent
+{\small {\bfseries Keywords.} {Length-biased distributions; Birnbaum--Saunders distribution; Quantile regression;
+Maximum likelihood; Diagnostic residuals. }}
+\\
+{\small{\bfseries Mathematics Subject Classification (2010).} {MSC 60E05 $\cdot$ MSC 62Exx $\cdot$ MSC 62Fxx.}}
+
+
+%\tableofcontents
+
+\section{Introduction}
+%\label{sec:1}
+\noindent
+
+The Birnbaum–Saunders distribution has been widely used in modeling lifetime data and positive skewed variables, standing out as a flexible alternative in reliability studies and cumulative processes. In recent years, different parameterizations of this distribution—based on the median, mean, mode, and quantiles—have been proposed in the literature. Although mathematically equivalent, these approaches differ in terms of parameter interpretation and may impact the performance of the associated regression models.
+
+Despite these advances, comparative applications of these parameterizations in agricultural data remain limited, even though such data often exhibit high experimental variability. In this context, investigating the behavior of these models is relevant to guide their practical use. Therefore, this study aims to compare different parameterizations of the Birnbaum–Saunders regression model, evaluating their performance in terms of model fit, estimation precision, and parameter interpretability, with an application to seed germination data.
+
+\section{The Birnbaum--Saunders distribution and its regression models}
+
+Considere \( T \) uma variável aleatória definida por
+\[
+T = \frac{\beta}{4}\left(\alpha Z + \sqrt{\alpha^2 Z^2 + 4}\right)^2,
+\]
+em que \( Z \sim N(0,1) \), \( \alpha > 0 \) e \( \beta > 0 \).
+
+Assim, \( T \) segue uma distribuição BS, denotada por \( T \sim BS(\alpha, \beta) \). 
+
+\citeauthor{bs1969}
+
+\subsection{Standard parametrization (median)}
+
+Consider $T$ a random variable defined as
+
+\begin{equation}
+    T=\frac{\beta}{4}\left(\alpha Z+ \sqrt{\alpha^2Z^2 + 4}\right)^2
+\end{equation}
+where $Z \sim N(0,1)$, $\alpha>0$ and $\beta>0$. Then $T$ follows a Birnbaum-Saudners distribution denoted by $T \sim BS(\alpha, \beta)$ \cite{bs1969}. $\beta$ is a scale parameter, also the median of the distribution and $\alpha$ is a shape parameter.
+
+The probability density function can be expressed as
+
+\begin{equation}
+    f_T(t) = \frac{1}{2\alpha \beta \sqrt{2 \pi}}\left[ \sqrt{\frac{\beta}{t}}+\sqrt{\left(\frac{\beta}{t}\right)^3}\right] exp \left[-\frac{1}{2\alpha^2 }\left(\frac{t}{\beta}+\frac{\beta}{t}-2\right)\right], \hspace{1cm} t>0.
+\end{equation}
+
+And the cumulative distribution function can be expressed as 
+
+\begin{equation}
+    F_T(t) = \phi \left[\frac{1}{\alpha}\left( \sqrt{\frac{t}{\beta}}-\sqrt{\frac{\beta}{t}}\right) \right], \hspace{1cm} t>0
+\end{equation}
+where $\phi$ is the  standard normal cumulative distribution function.
+
+Now consider $T_i$ the response variable, the regression model can be written as:
+
+\begin{equation}
+    T_i = \beta_i \varphi_i, \hspace{1cm} i=1, 2, . . . , n
+\end{equation}
+where $\beta_i$ is the median for the case $i$. 
+
+
+
+
+\subsection{Parametrized by the mean}
+
+
+
+\cite{santos2012}
+
+
+\subsection{Parametrized by the mode}
+
+\cite{bourguignon2022}
+
+\subsection{Parametrized by the quantiles}
+
+Let $q\in(0,1)$ be a fixed number, \citeauthor{sanchez2021} discusses that the $q \times100th$ quantile can be defined as
+
+\begin{equation}
+    Q = t_q = \frac{\beta}{4}\left(\alpha Z_q +  \sqrt{\alpha^2 Z_q^2 + 4}\right)^2, \hspace{1cm} q\in(0,1).
+\end{equation}
+
+Then, let the transformation $(\alpha, \beta) \mapsto (\alpha, Q)$ be one-to-one, then the probability density function can be expressed as
+
+\begin{equation}
+    f_T(t) = \frac{1}{\alpha \gamma_{\alpha} \sqrt{8 \pi Q_t}}\left(\frac{\gamma_{\alpha}^2}{2}+ \frac{2Q}{t}\right) exp \left[-\frac{2Q}{\alpha^2 \gamma_{\alpha}^2 t}\left(\frac{t \gamma_{\alpha}^2}{4Q}-1\right)^2\right], \hspace{1cm} t>0.
+\end{equation}
+
+And the cumulative distribution function can be expressed as 
+
+\begin{equation}
+    F_T(t) = \phi \left[\frac{1}{\alpha \gamma_{\alpha}}\sqrt{\frac{4Q}{t}}\left(\frac{t\gamma_{\alpha}^2}{4Q}-1\right) \right], \hspace{1cm} t>0
+\end{equation}
+where $\phi$ is the  standard normal cumulative distribution function.
+
+
+\section{A comparative application of the models}
+
+Since the models were previously defined and proposed,
+
+\subsection{The dataset}
+
+The dataset entitled ``Castor seed hydration and germination influenced by temperature and puncture" comes from an publicized dataset authored and used to multiple studies from \citeauthor{severino2024studies}. Castor seed is the source of castor oil, which is very famous for its cosmetic use. This oil is widely used in the industry due to a unique chemical characteristic that no other commercially produced vegetable oil has. 
+
+The data is a result of an experiment with the objective of measuring the progress of hydration of castor seed under temperatures between 16 and 34 ºC, and if making a puncture in the seed coat would make the hydration to occur faster \cite{6N3WQA_2024}. Although the focus of \citeauthor{severino2024studies}'s studies are the hydration of the seeds, time for germination was also measured, providing the expected format to fit a Birnbaum--Saunders regression model. The dataset has 13 variables and 3692 observations, but after selecting only the seeds that germinated, the data adapted for this study contains 5 variables (id, puncture, temperature, time under hydration and time for germination) and 201 observations. 
+
+\begin{figure}[H]
+\centering
+\caption{Histograms of the time of germination}
+\begin{tabular}{cc}
+     \includegraphics[width=200px]{img/histogram_frequency.png} &  \includegraphics[width=200px]{img/histogram_density.png}
+\end{tabular}
+\label{grph:hist}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\caption{Histograms of the time of germination}
+\begin{tabular}{ccc}
+     \includegraphics[width=140px]{img/boxplot_puncture.png} &  \includegraphics[width=140px]{img/tuh.png} &
+     \includegraphics[width=140px]{img/boxplot_temperature.png} \\
+\end{tabular}
+\label{grph:boxplot}
+\end{figure}
+
+
+\subsection{The regression models}
+
+The interest variable here is the time until germination and the explanatory variables are puncture (yes/no), temperature (16-34ºC) and time under hydration.
+
+\subsubsection{Parametrized by the mean} 
+
+\subsubsection{Parametrized by the mode}
+
+\subsubsection{Parametrized by the quantiles}
+
+\subsubsection{Model comparison}
+
+\section{Final considerations}
+
+\newpage
+
+\subsection{testes}
+
+\begin{table}[H]
+\caption{Classification accuracies for naive Bayes and flexible
+Bayes on various data sets.}
+\label{sample-table}
+\vskip 0.15in
+\begin{center}
+\begin{small}
+\begin{sc}
+\begin{tabular}{lcccr}
+\toprule
+Data set & Naive & Flexible & Better? \\
+\midrule
+Breast    & 95.9$\pm$ 0.2& 96.7$\pm$ 0.2& $\surd$ \\
+Cleveland & 83.3$\pm$ 0.6& 80.0$\pm$ 0.6& $\times$\\
+Glass2    & 61.9$\pm$ 1.4& 83.8$\pm$ 0.7& $\surd$ \\
+Credit    & 74.8$\pm$ 0.5& 78.3$\pm$ 0.6&         \\
+Horse     & 73.3$\pm$ 0.9& 69.7$\pm$ 1.0& $\times$\\
+Meta      & 67.1$\pm$ 0.6& 76.5$\pm$ 0.5& $\surd$ \\
+Pima      & 75.1$\pm$ 0.6& 73.9$\pm$ 0.5&         \\
+Vehicle   & 44.9$\pm$ 0.6& 61.5$\pm$ 0.4& $\surd$ \\
+\bottomrule
+\end{tabular}
+\end{sc}
+\end{small}
+\end{center}
+\vskip -0.1in
+\end{table}
+%
+
+
+
+\section*{Acknowledgments}
+
+We gratefully acknowledge financial support from CAPES, Brazil.
+
+
+\bibliographystyle{apalike}
+ \bibliography{referencias}
+
+
+\appendix
+
+
+\subsubsection*{Derivation of Property (P5)}
+
+Let $Y\sim \mathrm{BS}(\alpha,\beta)$ and define the usual Birnbaum--Saunders transformation
+
+
+\end{document}
