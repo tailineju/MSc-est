@@ -613,20 +613,8 @@ modelos <- list(
   "Quantil 90" = mle_quantil_90
 )
 tabelas_latex <- gerar_tabela_latex(modelos)
-```
-
-```{r}
-#| label: tabela_coeficientes
-#| results: asis
-
-cat(tabelas_latex$coeficientes, sep = "\n")
-```
-
-```{r}
-#| label: tabela_criterios
-#| results: asis
-
-cat(tabelas_latex$criterios, sep = "\n")
+tabelas_latex$coeficientes
+tabelas_latex$criterios
 ```
 
 ```{r}
@@ -902,7 +890,6 @@ make_model_tables(modelos)
 
 ```{r}
 #| label: fun_envelope
-#| eval: false
 
 ## Extrai (escala, forma) da BS padrão implícitos em cada família de modelo,
 ## a partir da matriz de covariáveis x e (quando aplicável) do quantil q.
@@ -999,11 +986,25 @@ plot_envelope <- function(env, main = "", file = NULL, width = 800, height = 600
   abline(0, 1, col = "red")
   if (!is.null(file)) dev.off()
 }
+
+# residuos ajustados vs fitted values
+plot_residuals_vs_fitted <- function(fit, x, t, model_type, q = NULL, file = NULL, width = 800, height = 600, res = 120) {
+  par_obs <- parametros_bs(fit, x, model_type, q)
+  cs_obs  <- residuos_cs(t, par_obs$scale, par_obs$shape)
+  fitted_values <- par_obs$scale
+  if (!is.null(file)) png(file, width = width, height = height, res = res)
+  plot(fitted_values, cs_obs,
+       xlab = "Fitted values (scale parameter)",
+       ylab = "Cox-Snell residuals",
+       main = paste("Residuals vs Fitted Values (", model_type, ")", sep = ""),
+       pch = 16)
+  abline(h = 0, col = "red")
+  if (!is.null(file)) dev.off()
+}
 ```
 
 ```{r}
 #| label: envelopes_aplicacao
-#| eval: false
 
 t <- castor$time
 x <- model.matrix(~ temperature + puncture + time_under_hydration, data = castor)
@@ -1013,24 +1014,32 @@ caminho_img <- "C:\\Users\\07391760137\\Downloads\\Outros\\MSc-est\\SINAPE\\img\
 env_media <- gerar_envelope(mle_media, x, t, model_type = "media", B = 100)
 plot_envelope(env_media, main = "Envelope simulado (média)",
               file = paste0(caminho_img, "envelope_media.png"))
+plot_residuals_vs_fitted(mle_media, x, t, model_type = "media",
+                           file = paste0(caminho_img, "residuals_vs_fitted_media.png"))
 
 # Moda
 env_moda <- gerar_envelope(mle_moda, x, t, model_type = "moda", B = 100)
 plot_envelope(env_moda, main = "Envelope simulado (moda)",
               file = paste0(caminho_img, "envelope_moda.png"))
+plot_residuals_vs_fitted(mle_moda, x, t, model_type = "moda",
+              file = paste0(caminho_img, "residuals_vs_fitted_moda.png"))
 
 # Quantil 10%
 env_q10 <- gerar_envelope(mle_quantil_10, x, t, model_type = "quantil", q = 0.1, B = 100)
 plot_envelope(env_q10, main = "Envelope simulado (quantil 10%)",
               file = paste0(caminho_img, "envelope_quantil_10.png"))
-
+plot_residuals_vs_fitted(mle_quantil_10, x, t, model_type = "quantil", q = 0.1,
+              file = paste0(caminho_img, "residuals_vs_fitted_quantil_10.png"))
 # Mediana
 env_mediana <- gerar_envelope(mle_mediana, x, t, model_type = "quantil", q = 0.5, B = 100)
 plot_envelope(env_mediana, main = "Envelope simulado (mediana)",
               file = paste0(caminho_img, "envelope_mediana.png"))
-
+plot_residuals_vs_fitted(mle_mediana, x, t, model_type = "quantil", q = 0.5,
+              file = paste0(caminho_img, "residuals_vs_fitted_mediana.png"))
 # Quantil 90%
 env_q90 <- gerar_envelope(mle_quantil_90, x, t, model_type = "quantil", q = 0.9, B = 100)
 plot_envelope(env_q90, main = "Envelope simulado (quantil 90%)",
               file = paste0(caminho_img, "envelope_quantil_90.png"))
+plot_residuals_vs_fitted(mle_quantil_90, x, t, model_type = "quantil", q = 0.9,
+              file = paste0(caminho_img, "residuals_vs_fitted_quantil_90.png"))
 ```
