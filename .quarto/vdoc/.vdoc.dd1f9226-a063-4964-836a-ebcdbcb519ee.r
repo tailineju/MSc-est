@@ -1,23 +1,23 @@
----
-title: "Artigo - Aplicação"
-subtitle: "Modelagem com Apoio Computacional"
-author: "Tailine J. S. Nonato"
-date: today
-date-format: long
-format: html
----
-
-# Pacotes
-```{r}
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
 #| label: pacotes
 
 if (!require("pacman")) install.packages("pacman")
 pacman::p_load(tidyverse, knitr, MASS, maxLik, VGAM, miscTools, rmarkdown)
-```
-
-# Log-verossimilhança e critérios de informação (padronizado)
-
-```{r}
+#
+#
+#
+#
+#
 #| label: fun_ic
 
 ## Todas as funções de ajuste abaixo devem fornecer a log-verossimilhança
@@ -29,10 +29,10 @@ compute_ic <- function(logLik, npar, n) {
   bic <- -2 * logLik + npar * log(n)
   list(AIC = aic, BIC = bic)
 }
-```
-
-# Média
-```{r}
+#
+#
+#
+#
 #| label: fun_media
 
 #########################################################
@@ -122,11 +122,11 @@ mle_unc <- function(x, t, v, kernel = "normal") {
   class(out) <- "mle_media"
   return(out)
 }
-```
-
-# Moda
-
-```{r}
+#
+#
+#
+#
+#
 #| label: fun_moda
 ###############################################################
 ## Reparametrização da distribuição Birnbaum-Saunders pela moda.
@@ -230,12 +230,12 @@ mle_dbsmoda <- function(x, z, t){
   class(out) <- "mle_dbsmoda"
   out
 }
-```
-
-
-# Quantis
-
-```{r}
+#
+#
+#
+#
+#
+#
 #| label: fun_quantis
 
 
@@ -451,11 +451,11 @@ bsreg.fit <- function(x, y, q = 0.5, link = "log"){
   class(out) <- "bsreg.fit"
   return(out)
 }
-```
-
-# Tabela de resultados em LaTeX
-
-```{r}
+#
+#
+#
+#
+#
 #| label: fun_tabela_latex
 
 ## Função separada, chamada explicitamente, para gerar as tabelas de
@@ -558,12 +558,12 @@ extrai_coefs <- function(nome, fit) {
     tab_criterios = tab_criterios
   )
 }
-```
-
-
-# Aplicação
-
-```{r}
+#
+#
+#
+#
+#
+#
 #| label: dados
 
 castor <- read.csv2("C:\\Users\\07391760137\\Downloads\\Outros\\MSc-est\\SINAPE\\castorseed.csv")
@@ -615,9 +615,9 @@ modelos <- list(
 tabelas_latex <- gerar_tabela_latex(modelos)
 tabelas_latex$coeficientes
 tabelas_latex$criterios
-```
-
-```{r}
+#
+#
+#
 extract_results <- function(fit){
 
   if(inherits(fit,"mle_media")){
@@ -674,9 +674,9 @@ extract_results <- function(fit){
 
   out
 }
-```
-
-```{r}
+#
+#
+#
 make_model_tables <- function(modelos,
                               folder = "C:\\Users\\07391760137\\Downloads\\Outros\\MSc-est\\SINAPE",
                               digits = 3){
@@ -884,11 +884,11 @@ make_model_tables <- function(modelos,
 }
 
 make_model_tables(modelos)
-```
-
-# Resíduos
-
-```{r}
+#
+#
+#
+#
+#
 #| label: fun_envelope
 
 ## Extrai (escala, forma) da BS padrão implícitos em cada família de modelo,
@@ -1022,9 +1022,9 @@ plot_hist <- function(t, main = "", file = NULL,
   if (!is.null(file))
     dev.off()
 }
-```
-
-```{r}
+#
+#
+#
 #| label: envelopes_aplicacao
 
 #histograma + densidade t
@@ -1068,4 +1068,7 @@ plot_envelope(env_q90, main = "",
               file = paste0(caminho_img, "envelope_quantil_90.png"))
 plot_residuals_vs_fitted(mle_quantil_90, x, t, model_type = "quantil", q = 0.9,
               file = paste0(caminho_img, "residuals_vs_fitted_quantil_90.png"))
-```
+#
+#
+#
+#
