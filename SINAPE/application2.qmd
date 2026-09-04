@@ -1010,7 +1010,7 @@ plot_hist <- function(t, main = "", file = NULL,
 
   hist(t,
        prob = TRUE,
-       xlab = "Tempo de germinação (dias)",
+       xlab = "Tempo até germinação (dias)",
        ylab = "Densidade",
        main = main,
        cex.axis = 1,
