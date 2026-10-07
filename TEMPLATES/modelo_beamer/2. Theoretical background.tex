@@ -1,0 +1,346 @@
+\section{Theoretical background}
+
+%**********************************************
+\subsection{Extreme Value Theory (EVT)}
+%**********************************************
+\begin{frame}{Extreme Value Theory (EVT)}
+
+\small
+\textbf{The interest goes beyond the general behavior of the data:} \\
+the focus now is directly on \textit{tail uncertainty.}
+
+
+\vspace{1cm}
+
+\textbf{How can we model the heavy tails of the data?}
+
+\begin{itemize}
+  \item Stochastic behavior of minima and maxima in i.i.d. sequences
+  \item Blocks maxima \& minima: partition data into blocks to extract extremes
+  \item GEV and Bimodal GEV distributions: asymptotic limits as $n \to \infty$
+  \item Risk assessment: Value at Risk (VaR), return levels, and extreme forecasts
+\end{itemize}
+
+
+\vfill
+\begin{flushright}
+{\tiny References: Fisher and Tippett (1928);  Von Mises (1936); Gnedenko (1943); Kotz and Nadarajah (2000); Yuliang et al. (2021)}
+\end{flushright}
+\end{frame}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Generalized Extreme Value distribution (GEV)}
+
+$\boldsymbol{Y \sim \mathbf{GEV}(\cdot;\,\xi,\mu,\sigma)}$
+
+\vspace*{0.3cm}
+\begin{block}{GEV density}
+  \resizebox{\linewidth}{!}{$
+    f_{\text{GEV}}(y;\mu,\sigma,\xi)=
+    \begin{cases}
+      \dfrac{1}{\sigma}\bigl[1+\xi \tfrac{(y-\mu)}{\sigma}\bigr]^{-1/\xi-1}
+      \exp\!\Bigl\{-\bigl[1+\xi \tfrac{(y-\mu)}{\sigma}\bigr]^{-1/\xi}\Bigr\},
+      & \xi\neq0,\\[14pt]
+      \dfrac{1}{\sigma}\,
+      \exp\!\Bigl\{-\tfrac{(y-\mu)}{\sigma}-\exp[-\tfrac{(y-\mu)}{\sigma}]\Bigr\},
+      & \xi=0.
+    \end{cases}
+  $}
+\end{block}
+
+\vspace*{0.5cm}
+\noindent Where $\xi \in \mathbb{R}$ (shape), $\mu \in \mathbb{R}$ (location), and $\sigma > 0$ (scale). With support given by 
+$1+\xi\,(y-\mu)/\sigma>0$ in general, i.e., $y>\mu-\sigma/\xi$ if $\xi>0$ and $y<\mu-\sigma/\xi$ if $\xi<0$, and $y\in\mathbb{R}$ when $\xi=0$.
+
+\vfill
+\begin{flushright}
+{\tiny References: Von Mises(1936); Jenkinson (1955); Kotz and Nadarajah (2000); e Longin (2016)}
+\end{flushright}
+\end{frame}
+
+
+\begin{comment}
+\vspace*{0.25cm}
+A distribuição GEV assume diferentes formas dependendo do valor de \(\xi\), e se reduz às distribuições:\\
+\begin{center} Gumbel (\(\xi = 0\)); Fréchet (\(\xi > 0\)); e Weibull negativa (\(\xi < 0\)).\end{center}
+\end{comment}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Generalized Extreme Value distribution (GEV)}
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=\textwidth]{distribuicao GEV.pdf}
+    \caption*{{\usebeamercolor[fg]{caption name} \bfseries Figure.} Probability density function and cumulative distribution function of the GEV with $\mu=0$, $\sigma=2$, and $\xi$ varying as indicated in the legend}
+\end{figure}
+
+
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Bimodal Generalized Extreme Value distribution (BGEV)}
+
+\vspace*{0.45cm}
+$\boldsymbol{X \sim \mathbf{BGEV}(\cdot;\xi,\mu,\sigma,\delta)}$
+
+\vspace*{0.3cm}
+\begin{block}{BGEV density}
+    \resizebox{\linewidth}{!}{$
+    \displaystyle
+    f_{\text{BGEV}}(x;\xi,\mu,\sigma,\delta)=
+    \begin{cases}
+    \dfrac{1}{\sigma}\Bigl[1+\xi \tfrac{T(x)}{\sigma}\Bigr]^{-1/\xi-1}
+            \exp\!\Bigl\{-\Bigl[1+\xi \tfrac{T(x)}{\sigma}\Bigr]^{-1/\xi}\Bigr\}
+            \,T'(x), & \xi\neq0,\\[14pt]
+    \dfrac{1}{\sigma}\,
+            \exp\!\bigl(-\tfrac{T(x)}{\sigma}\bigr)\;
+            \exp\!\Bigl\{ -\exp\!\bigl(-\tfrac{T(x)}{\sigma}\bigr)\Bigr\}
+            \,T'(x), & \xi=0.
+    \end{cases}
+    $}
+\end{block}
+
+\vspace*{0.5cm}
+
+Where $\xi \in \mathbb{R}$, $\delta > -1$, $\sigma > 0$ (shape parameters), and $\mu \in \mathbb{R}$ (location parameter). Additionally, $T(x) = (x - \mu)\, |x - \mu|^{\delta}$ and $T'(x) = (\delta + 1)\, |x - \mu|^{\delta}$.
+
+\vspace*{0.25cm}
+\begin{itemize}
+\item Note: when $\delta = 0$, $\boldsymbol{X \sim \text{\textbf{BGEV}}(\, \xi, \, \mu, \, \sigma, \, 0) = \text{\textbf{GEV}}(\xi, \mu, \sigma)}$
+\end{itemize}
+
+\vfill
+\begin{flushright}
+{\tiny References: Otiniano et al. (2023 and 2025)}
+\end{flushright}
+
+\end{frame}
+
+
+\begin{comment} % SUPORTE DA BGEV
+    \begin{equation*}
+    \label{bgev4_suporte_densidade}
+    \mathrm{supp}\left( f_{\text{BGEV}}(\cdot; \xi, \mu, \sigma, \delta) \right) =
+    \begin{cases}
+    \left[ \mu - \left( \frac{\sigma}{\xi} \right)^{\frac{1}{\delta + 1}}, +\infty \right), & \xi > 0, \\
+    \left( -\infty, \mu + \left| \frac{\sigma}{\xi} \right|^{\frac{1}{\delta + 1}} \right], & \xi < 0, \\
+    (-\infty, +\infty), & \xi = 0.
+    \end{cases}
+    \end{equation*}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Distribuição Generalizada de Valor Extremo Bimodal (BGEV)}
+
+\begin{itemize}
+\item Se $\delta = 0$: $\boldsymbol{X \sim \text{\textbf{BGEV}}(\, \xi, \, \mu, \, \sigma, \, 0) = \text{\textbf{GEV}}(\xi, \mu, \sigma)}$
+
+\vspace*{1cm}
+\item  \textbf{Função quantílica}
+\vspace*{-0.25cm}
+    \begin{equation*}
+    \label{bgev5_quantil}
+    Q(x) =
+    \begin{cases}
+    \operatorname{sgn} \left\{ \dfrac{\sigma}{\xi} \left[ (-\log(x))^{-\xi} - 1 \right] \right\}
+    \left| \dfrac{\sigma}{\xi} \left[ (-\log(x))^{-\xi} - 1 \right] \right|^{\frac{1}{\delta + 1}} + \mu, & \text{se } \xi \neq 0, \\[10pt]
+    \operatorname{sgn} \left[ -\sigma \log(-\log(x)) \right] \left| -\sigma \log(-\log(x)) \right|^{\frac{1}{\delta + 1}} + \mu, & \text{se } \xi = 0.
+    \end{cases}
+    \end{equation*}
+\end{itemize}
+
+\vfill
+\begin{flushright}
+{\tiny References: Otiniano et al., 2023}
+\end{flushright}
+
+
+\end{frame}
+\end{comment}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Bimodal Generalized Extreme Value distribution (BGEV)}
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=\textwidth]{distribuicao BGEV.pdf}
+    \caption*{{\usebeamercolor[fg]{caption name} \bfseries Figure.} 
+    Probability density function and cumulative distribution function, respectively, 
+    of the BGEV with $\mu = 0$, $\sigma = 1$, $\xi = 0$, and $\delta$ varying as indicated in the legend}
+\end{figure}
+
+\end{frame}
+
+
+%**********************************************
+\subsection{Copulas}
+%**********************************************
+
+\begin{comment}
+\begin{frame}{}
+\footnotesize
+\textbf{Idea.} A copula $C:[0,1]^d \!\to [0,1]$ is a multivariate distribution function with U[0,1] margins, 
+which captures the \emph{dependence structure} independently of the marginal behavior.
+
+\textbf{Why use it?}
+\begin{itemize}
+  \item Build flexible multivariate models (choose margins + choose dependence)
+  \item Capture tail (a)symmetry and tail dependence for risk/EVT
+  \item Simulate joint VaR, return levels, stress scenarios
+\end{itemize}
+
+\vspace*{0.5cm}
+\textbf{Sklar’s theorem.}  
+For a joint CDF $H(x_1,\dots,x_d)$ with marginal distributions $F_1,\dots,F_d$, there exists a copula $C:[0,1]^d\!\to[0,1]$ such that
+\[
+H(x_1,\dots,x_d)
+  = C\!\big(F_1(x_1),\dots,F_d(x_d)\big),
+\]
+and if the margins are continuous, $C$ is unique. Conversely, for any copula $C$ and margins $F_1,\dots,F_d$,
+\[
+C(u_1, u_2, \dots, u_d)
+  = H\!\Bigl(F_1^{-1}(u_1), \dots, F_d^{-1}(u_d)\Bigr),
+\]
+where each $u_i = F_i(x_i) \in [0,1]$ represents the \textit{probability scale} value of variable $X_i$.
+
+\vfill
+\begin{flushright}
+{\tiny References: Sklar (1959); Nelsen (2006); Trivedi and Zimmer (2007); Joe (2014)}
+\end{flushright}
+
+\end{frame}
+\end{comment}
+
+%%% %%% ALTERNATIVE %%% %%%
+\begin{frame}{Copula Theory}
+\footnotesize
+\begin{columns}[T]
+\begin{column}{0.48\textwidth}
+\textbf{Idea.}  
+A copula $C:[0,1]^d\!\to[0,1]$ is a multivariate distribution 
+with Uniform(0,1) margins, capturing the dependence structure 
+independently of the marginals.
+
+\vspace{0.5cm}
+\textbf{Why use it?}
+\begin{itemize}
+  \item Flexible modeling (margins + dependence)
+  \item Tail (a)symmetry and dependence
+  \item Joint risk and stress simulations
+\end{itemize}
+\end{column}
+
+\begin{column}{0.52\textwidth}
+\textbf{Sklar’s theorem.}
+For a joint CDF $H(x_1,\dots,x_d)$ with marginal distributions $F_1,\dots,F_d$, there exists a copula $C:[0,1]^d\!\to[0,1]$ such that
+\[
+H(x_1,\dots,x_d)
+  = C\!\big(F_1(x_1),\dots,F_d(x_d)\big),
+\]
+and if the margins are continuous, $C$ is unique. Conversely, for any copula $C$ and margins $F_1,\dots,F_d$,
+\[
+C(u_1, u_2, \dots, u_d)
+  = H\!\Bigl(F_1^{-1}(u_1), \dots, F_d^{-1}(u_d)\Bigr),
+\]
+where each $u_i = F_i(x_i) \in [0,1]$ represents the \textit{probability scale} value of variable $X_i$.
+\end{column}
+\end{columns}
+
+\vfill
+\begin{flushright}
+{\tiny References: Sklar (1959); Nelsen (2006); Trivedi and Zimmer (2007); Joe (2014)}
+\end{flushright}
+
+\end{frame}
+
+
+
+%==================== SLIDE 2 ====================
+\begin{frame}{Copulas: validity (bivariate case)}
+\footnotesize
+
+\begin{center}
+\textbf{When is $C$ a bivariate copula?}
+\end{center}
+
+\vspace*{0.3cm}
+
+Let $C:[0,1]^2 \to [0,1]$. Then $C$ is a copula if:
+
+\begin{enumerate}
+  \item $C$ is \textbf{non-decreasing} in each argument;
+  \item $C$ is \textbf{right-continuous} in each argument;
+  \item \textbf{Uniform margins on $[0,1]$:}
+  \[
+    C(u,1) = u,\quad C(1,v) = v,\quad
+    C(u,0) = 0,\quad C(0,v) = 0,\quad C(1,1)=1;
+  \]
+  \item \textbf{Bivariate monotonicity}: for any rectangle 
+  $[a_1,b_1]\times[a_2,b_2]\subset[0,1]^2$,
+  \[
+    C(b_1,b_2) - C(a_1,b_2) - C(b_1,a_2) + C(a_1,a_2) \ge 0.
+  \]
+\end{enumerate}
+
+\vfill
+\begin{flushright}
+{\tiny References: Nelsen (2006); Trivedi and Zimmer (2007); Joe (2014)}
+\end{flushright}
+\end{frame}
+
+
+\begin{frame}{Copulas: bivariate scenarios}
+\begin{figure}[ht]
+  \centering
+  \setlength{\abovecaptionskip}{1.2pt}   % ↓ distância entre imagem e legenda
+  \setlength{\belowcaptionskip}{0pt}   % ↓ distância após a legenda (opcional)
+  \includegraphics[width=1\textwidth]{copulas_sim.pdf}
+  \caption*{{\usebeamercolor[fg]{caption name}\bfseries Figure.} Examples of simulated bivariate copulas (Gaussian, Frank, Clayton, Joe) under two marginal settings: Normal-Normal and Lognormal-Gumbel}
+\end{figure}
+
+
+\end{frame}
+
+
+
+%**********************************************
+\subsection{Complex systems}
+%**********************************************
+\begin{frame}{Complex Systems: linking EVT and Copulas}
+\small
+
+\textbf{Idea.}  
+Real phenomena show \textit{non-Gaussian extremes}: heavy tails, multimodality, nonlinear/assymmetric dependence, and nonstationarity.
+
+\vspace{0.3cm}
+\textbf{Modeling strategy.}
+\begin{itemize}
+  \item \textbf{Marginals:} GEV/BGEV for extremes;
+  \item \textbf{Dependence:} Copulas
+  \item \textbf{Nonstationary:} parameters as functions of covariates
+\end{itemize}
+
+\vspace{0.25cm}
+\textbf{Workflow.}
+\begin{itemize}
+  \item Fit marginal tails $\Rightarrow$ transform to $u_i = F_i(y_i)$
+  \item Fit copula on $(u_1,u_2)$ $\Rightarrow$ infer tail dependence, joint risk
+\end{itemize}
+
+\vspace{0.25cm}
+\textbf{Key takeaway:}  
+EVT captures how extreme the values are; Copulas capture how they are related. Together they describe the complexity of joint extremes.
+
+\vfill
+\begin{flushright}
+{\tiny References: Kotz and Nadarajah (2000); Sornette (2004); Joe (2014)}
+\end{flushright}
+
+\end{frame}
+

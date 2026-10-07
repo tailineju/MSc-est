@@ -1,0 +1,158 @@
+%==============================================================
+%  Apresentação Beamer — Modelagem estatística de extremos espaciais
+%  Autor: Enzo Porto Brasil   •   UnB
+%==============================================================
+
+\documentclass[aspectratio=169]{beamer}
+
+% referências 
+\bibliographystyle{apalike} % ou outra de sua preferência
+\nocite{*}
+
+% EXTRAS ------------------
+\usepackage{comment} % para usar \begin{comment}
+\usepackage{changepage}  % modificar os blocks
+\usepackage{pdflscape}   % ou lscape
+\usepackage{booktabs}    % para \toprule etc.
+\usepackage{array}       % p/ colunas p{⟨largura⟩}
+\usepackage{xcolor}      % p/ colorir símbolo concluído
+\usepackage{pifont}      % p/ \ding{110} (■)
+\usepackage{graphicx}
+\usepackage{caption}      % \captionof
+
+\usepackage{multirow}
+\usepackage{float}      % permite usar [H] (fixa a tabela na posição exata)
+\usepackage{amsmath}    % para usar expressões matemáticas em modo texto ($...$, \times, ^{-3}, etc.)
+\usepackage{siunitx}    % opcional, mas ótimo para unidades físicas e alinhamento numérico
+\usepackage{geometry}   % opcional, para ajustar margens caso precise de espaço extra
+
+%--------------------------
+
+\usepackage[brazil]{babel}
+\addto\captionsbrazil{
+  \renewcommand{\figurename}{Figura}
+  \renewcommand{\tablename}{Tabela}
+  \renewcommand{\partname}{Parte}
+  \renewcommand{\chaptername}{Capítulo}
+  \renewcommand{\appendixname}{Apêndice}
+}
+\setbeamertemplate{caption}[numbered]
+
+% ---------- TEMA E CORES ----------
+\usetheme{Madrid}
+\definecolor{unbblue}{RGB}{0,38,100}
+\definecolor{lightgray}{gray}{0.94}
+\setbeamercolor{structure}{fg=unbblue}
+\setbeamercolor{palette primary}{bg=unbblue, fg=white}
+\setbeamercolor{palette secondary}{bg=unbblue, fg=white}
+\setbeamercolor{palette tertiary}{bg=unbblue, fg=white}
+\setbeamercolor{palette quaternary}{bg=unbblue, fg=white}
+%\setbeamercolor{background canvas}{bg=lightgray} % basta alterar aqui se quiser fundo cinza claro
+
+% ---------- METADADOS ----------
+\title[Joint extremes of solar irradiance and air density]{%
+  Joint extremes of solar irradiance and air density: \\ an EVT and copula approach to tail uncertainty}
+
+\author[BRASIL, E. P]{\large{Author: Enzo Porto Brasil \\[-0.35cm] }}
+
+\institute[]{\\[1.2cm] 
+             \small{Department of Statistics, University of Brasília, Brazil} \\[-0.45cm]}
+
+\date[]{\small{sys2025 - Huntsville, Alabama - November 15th, 2025}}
+
+
+% ---------- PACOTES NECESSÁRIOS ----------
+\usepackage{tikz}
+\usetikzlibrary{calc}
+
+% ---------- BOLINHAS DE PROGRESSO ----------
+\newcommand{\progresscircles}{%
+  \begin{tikzpicture}[remember picture,overlay]
+    \foreach \i in {1,...,4} {
+      \path let \p1 = ($(current page.north west)+(\i*0.5cm,-1cm)$) in
+        node[circle,fill=gray!40,inner sep=1.5pt] at (\p1) {};
+    }
+    \path let \p2 = ($(current page.north west)+(\insertsectionnumber*0.5cm,-1cm)$) in
+      node[circle,fill=unbblue,inner sep=1.5pt] at (\p2) {};
+  \end{tikzpicture}%
+}
+
+\addtobeamertemplate{frametitle}{}{
+  \vspace{-1.2em}
+  \progresscircles
+}
+
+% ---------- CONTROLE DO RODAPÉ: MOSTRAR OU NÃO SEÇÃO ----------
+\newif\ifshowsectionfooter
+\showsectionfootertrue % padrão: mostrar seção
+
+% ---------- PERSONALIZAÇÃO DA BARRA INFERIOR ----------
+\setbeamertemplate{footline}{%
+  \leavevmode
+  \hbox{%
+    \begin{beamercolorbox}[wd=\paperwidth,ht=2.5ex,dp=1ex,
+                           leftskip=1em,rightskip=1em]{palette primary}
+      \usebeamerfont{title in head/foot}%
+      % ESQUERDA: SEÇÃO : SUBSEÇÃO
+      \ifshowsectionfooter
+        \ifx\insertsectionhead\empty
+        \else
+          \uppercase{\insertsectionhead}%
+          \ifx\insertsubsectionhead\empty
+          \else
+            \,/\,\insertsubsectionhead
+          \fi
+        \fi
+      \fi
+      % DIREITA: título curto + nº de slide
+      \hfill
+      \insertshorttitle \quad \insertframenumber/\inserttotalframenumber
+    \end{beamercolorbox}%
+  }%
+  \vskip0pt% <- cola a barra no rodapé real
+}
+
+% informa ao Beamer a altura ocupada pelo rodapé
+% \setbeamersize{footer height=2.5ex}
+
+
+% ---------- MARGENS INTERNAS ----------
+\setbeamersize{text margin left=1.5cm, text margin right=1.5cm}
+
+% ---------- SUMÁRIO AO INICIAR SEÇÃO ----------
+\AtBeginSection[]{
+  \begin{frame}{Agenda}
+    \tableofcontents[currentsection]
+    \vfill
+  \end{frame}
+}
+
+
+% INÍCIO DO DOCUMENTO
+\begin{document}
+
+% CAPA --------------------------------------------------------
+% Substitua \maketitle por:
+% Orientadora: Prof. Cira E. G. Otiniano
+\begin{frame}
+  \titlepage
+\end{frame}
+
+
+
+% SUMÁRIO GERAL ----------------------------------------------
+{\begin{frame}{Agenda}
+  \tableofcontents
+\end{frame}
+}
+
+\input{1. Introduction}
+
+\input{2. Theoretical background}
+\input{3. Material and methods}
+\input{4. Results}
+\input{5. Conclusion}
+\input{6. References}
+
+%==============================================================
+\end{document}

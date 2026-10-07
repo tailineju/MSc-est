@@ -1,0 +1,41 @@
+\section{Material and methods}
+
+\begin{frame}{Research objective}
+Using Extreme Value Theory (EVT) and copula-based dependence models, this study aims to improve the robustness of tail inference beyond the traditional GEV framework, especially under complex data structures where standard assumptions fail. 
+\vspace*{0.3cm}
+In order to assess risk measures linking:
+\begin{itemize}
+\item[-] \textbf{Solar Spectral Irradiance (SSI)};
+\item[-] \textbf{Absolute uncertainty of SSI measurements};
+\item[-] \textbf{Air density}.
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{Material}
+
+\textbf{Datasets overview}
+\vspace*{0.5cm}
+\begin{itemize}
+  \item \textbf{Solar Spectral Irradiance (SSI)} - NASA SORCE/XPS mission (photodiode 0.1–7 nm, 2005–2019), daily interpolated series [W/m$^2$];
+    \vspace*{0.15cm}
+  \item \textbf{Absolute Uncertainty (AU) of SSI measurements} - Instrumental 1$\sigma$ uncertainty [W/m$^2$] from the same mission and period for SSI;
+    \vspace*{0.15cm}
+  \item \textbf{Air Density (AD)} - Obtained from the Brazilian National Meteorological Institute (INMET) station in Brasília, using temperature, pressure, and humidity (Picard et al., 2008).
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Methods}
+
+\textbf{Modeling steps}
+\vspace*{0.5cm}
+\begin{enumerate}
+  \item \textbf{Univariate modeling}: GEV and BGEV distributions fitted to minima (364 blocks of 15 days) and maxima (90 blocks of 61 days);
+  \vspace*{0.15cm}
+  \item \textbf{Dependence structure}: parametric bivariate copulas fitted to extreme blocks of SSI, AI, and AD;
+  \vspace*{0.15cm}
+  \item \textbf{Risk measures}: ``bivariate'' Value at Risk (VaR) and return levels derived from the selected copulas.
+\end{enumerate}
+
+
+\end{frame}

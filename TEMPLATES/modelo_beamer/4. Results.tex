@@ -1,0 +1,153 @@
+\section{Main results}
+
+%%%%%%%%%%%%%%%%%% %%%%%%%%%%%%%%%%%% 
+\begin{frame}{Datasets}
+\begin{figure}[ht]
+    \centering
+    % Slightly exceed text width for a broader visual span on the slide
+    \makebox[\textwidth][c]{\includegraphics[width=1.12\textwidth]{dataset.png}}
+    \caption*{{\usebeamercolor[fg]{caption name}\bfseries Figure.}\;
+    Time series illustrating the Solar Spectral Irradiance from the Lyman-alpha model (left) and the datasets analyzed in this study (right): SORCE mission observations of SSI and Brasília’s daily air density extremes derived from INMET atmospheric variables}
+\end{figure}
+
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%% %%%%%%%%%%%%%%%%%% 
+\begin{frame}{Univariate modeling}
+\begin{figure}[ht]
+    \centering
+    % Slightly exceed text width for a broader visual span on the slide
+    \makebox[\textwidth][c]{\includegraphics[width=\textwidth]{univariate.pdf}}
+    \caption*{{\usebeamercolor[fg]{caption name}\bfseries Figure.}\;
+    Empirical density and univariate fitting models of the GEV and BGEV distributions applied to block of maxima and minima}
+\end{figure}
+
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%% %%%%%%%%%%%%%%%%%% 
+\begin{frame}{Dependence structure}
+\begin{figure}[ht]
+    \centering
+    % Slightly exceed text width for a broader visual span on the slide
+    \makebox[\textwidth][c]{\includegraphics[width=1\textwidth]{Copulas/correlacoes.png}}
+    \caption*{{\usebeamercolor[fg]{caption name}\bfseries Figure.}\;
+    Scatter plots with histograms and corresponding empirical densities for block maxima and minima, referring to the log-returns of Solar Spectral Irradiance (daily mean), air density, and absolute uncertainty}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Copula fitting: scenario 1}
+\begin{center}\textbf{MAX: Log-return(Solar Spectral Irradiance) vs. Air Density}\end{center}
+
+\begin{figure}[ht]
+    \centering
+    % Slightly exceed text width for a broader visual span on the slide
+    \makebox[\textwidth][c]{\includegraphics[width=1.12\textwidth]{Copulas/ISxDA_max.pdf}}
+    \caption*{{\usebeamercolor[fg]{caption name}\bfseries Figure.}\;
+    Empirical joint density and three best-fitting copulas (Independent, Gaussian, and Frank - based on AIC) for \textbf{block maxima} of SSI log-returns (GEV model) and Air Density (BGEV model)}
+\end{figure}
+\end{frame}
+
+
+\begin{frame}{Copula fitting: scenario 1}
+\begin{center}\textbf{MAX: Log-return(Solar Spectral Irradiance) vs. Air Density}\end{center}
+\begin{figure}[ht]
+    \centering
+    % Slightly exceed text width for a broader visual span on the slide
+    \makebox[\textwidth][c]{\includegraphics[width=1.12\textwidth]{Copulas/3d - ISxDA_max.pdf}}
+    \caption*{{\usebeamercolor[fg]{caption name}\bfseries Figure.}\;
+    From left to right: fitted copula surface (Independent), empirical joint density surface, and their difference (model – empirical) for \textbf{block maxima} of SSI log-returns (GEV model) and Air Density (BGEV model)}
+\end{figure}
+
+\end{frame}
+
+\begin{frame}{Copula fitting: scenario 2}
+\begin{center}\textbf{MIN: Log-return(Solar Spectral Irradiance) vs. Air Density}\end{center}
+\begin{figure}[ht]
+    \centering
+    % Slightly exceed text width for a broader visual span on the slide
+    \makebox[\textwidth][c]{\includegraphics[width=1.12\textwidth]{Copulas/ISxDA_min.png}}
+    \caption*{{\usebeamercolor[fg]{caption name}\bfseries Figure.}\;
+    From left to right: empirical joint density with fitted copula (Tawn Type I, rotated $270^\circ$), copula surface, empirical joint density surface, and their difference (model – empirical) for \textbf{block minima} of SSI log-returns (GEV model) and Air Density (BGEV model)}
+\end{figure}
+\end{frame}
+
+
+
+\begin{frame}{Copula fitting: scenario 3}
+\begin{center}\textbf{MIN: Log-return(Solar Spectral Irradiance) vs. Absolute Uncertainty}\end{center}
+\begin{figure}[ht]
+    \centering
+    % Slightly exceed text width for a broader visual span on the slide
+    \makebox[\textwidth][c]{\includegraphics[width=1.12\textwidth]{Copulas/ISxAI_min.png}}
+    \caption*{{\usebeamercolor[fg]{caption name}\bfseries Figure.}\;
+    From left to right: empirical joint density with fitted copula (Frank), copula surface, empirical joint density surface, and their difference (model – empirical) for \textbf{block minima} of SSI log-returns (GEV model) and Absolute Uncertainty (BGEV model)}
+\end{figure}
+
+\end{frame}
+
+
+\begin{comment}
+\begin{frame}{Risk estimation: extremes of Solar Spectral Irradiance}
+
+\begin{table}[ht]
+\centering
+\footnotesize
+\caption{Expected daily values and percentage increase of the mean SSI (\(\times10^{-4}\)~W\,m\(^{-2}\)) for different return periods (\(T\)), considering minimum (15-day) and maximum (61-day) blocks. Overall mean irradiance: \(2.625\times10^{-4}\)~W\,m\(^{-2}\).}
+\vspace{0.2cm}
+\begin{tabular}{cc@{\hspace{0.3cm}}cc@{\hspace{0.6cm}}cc@{\hspace{0.3cm}}c}
+\toprule
+\multirow{2}{*}{$T_{\text{blocks}}$} &
+\multirow{2}{*}{$T_{\text{days}}$} &
+\multicolumn{2}{c}{\textbf{Minima}} &
+\multicolumn{2}{c}{\textbf{Maxima}} \\
+\cmidrule(lr){3-4} \cmidrule(lr){5-6}
+& & $\text{SSI (daily)}$ & Increase (\%) & $\text{SSI (daily)}$ & Increase (\%) \\ 
+\midrule
+2   & 30   & 3.06 $\pm$ 0.04 & 16.8 & 3.67 $\pm$ 0.17 & 39.7 \\
+5   & 75   & 3.56 $\pm$ 0.10 & 35.7 & 4.64 $\pm$ 0.38 & 76.8 \\
+20  & 300  & 4.74 $\pm$ 0.41 & 80.8 & 6.79 $\pm$ 1.31 & 158.6 \\
+50  & 750  & 6.13 $\pm$ 0.96 & 133.5 & 9.11 $\pm$ 2.83 & 246.9 \\
+100 & 1500 & 7.82 $\pm$ 1.83 & 198.0 & 11.72 $\pm$ 4.90 & 346.4 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\end{frame}
+\end{comment}
+
+
+\begin{frame}{Risk estimation: scenario 1}
+\begin{columns}[T,onlytextwidth]
+  \begin{column}{0.75\textwidth}
+  \vspace*{-.37cm}
+    \begin{adjustwidth*}{-1.3cm}{-1.3cm}  % aumenta área útil (ajuste o valor)
+      \includegraphics[width=1.2\textwidth]{Copulas/quadro_geral_ISxDA_max.pdf}
+    \end{adjustwidth*}
+  \end{column}
+  \begin{column}{0.25\textwidth}
+    \vspace*{3.5cm}
+    \scriptsize
+    \textbf{Description.}\\[0.2em] Summary of the complete modeling workflow: from Solar Spectral Irradiance (SSI) and air density data to marginal and copula fitting, leading to the estimation of the Value at Risk (VaR) for \textbf{block maxima}.
+  \end{column}
+\end{columns}
+\end{frame}
+
+
+
+\begin{frame}{Risk estimation: scenario 2}
+\begin{columns}[T,onlytextwidth]
+  \begin{column}{0.75\textwidth}
+  \vspace*{-.37cm}
+    \begin{adjustwidth*}{-1.3cm}{-1.3cm}  % aumenta área útil (ajuste o valor)
+      \includegraphics[width=1.2\textwidth]{Copulas/quadro_geral_ISxDA_min.pdf}
+    \end{adjustwidth*}
+  \end{column}
+  \begin{column}{0.25\textwidth}
+    \vspace*{3.5cm}
+    \scriptsize
+    \textbf{Description.}\\[0.2em] Summary of the complete modeling workflow: from Solar Spectral Irradiance (SSI) and air density data to marginal and copula fitting, leading to the estimation of the Value at Risk (VaR) for \textbf{block minima}.
+  \end{column}
+\end{columns}
+\end{frame}
